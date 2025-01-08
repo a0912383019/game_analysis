@@ -1,0 +1,3 @@
+interface apiBase {
+  platform: string
+}
