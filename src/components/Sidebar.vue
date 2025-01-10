@@ -77,7 +77,7 @@ const menuList = ref<MenuItem[]>([
               <cdp-icon :name="sidebarIcon[menuItem.name as SidebarIconType]" />
             </template>
             <a-menu-item v-for="child in menuItem.child" :key="child.name">
-              <router-link :to="child.urlPath"></router-link>
+              <router-link :to="child.urlPath || '/'"></router-link>
               <span> {{ $t(`sidebar.${child.name}`) }} </span>
             </a-menu-item>
           </a-sub-menu>
@@ -85,7 +85,7 @@ const menuList = ref<MenuItem[]>([
             <template #icon>
               <cdp-icon :name="sidebarIcon[menuItem.name as SidebarIconType]" />
             </template>
-            <router-link :to="menuItem.urlPath"></router-link>
+            <router-link :to="menuItem.urlPath || '/'"></router-link>
             <span> {{ $t(`sidebar.${menuItem.name}`) }} </span>
           </a-menu-item>
         </template>

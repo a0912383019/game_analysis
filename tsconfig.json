@@ -4,13 +4,21 @@
     "moduleResolution": "Node",
     "types": ["vite/client", "node", "jsdom"],
     "strict": true,
+    "outDir": "./dist",
+    "jsx": "preserve",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "sourceMap": true,
+    "lib": ["ESNext", "DOM"],
+    "skipLibCheck": true,
+    "noImplicitAny": false
   },
   "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "src/**/*.ts", "src/**/*.d.ts"]
 }

@@ -8,7 +8,6 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AButton: typeof import('ant-design-vue/es')['Button']
-    AButtonGroup: typeof import('ant-design-vue/es')['ButtonGroup']
     Account: typeof import('./../components/HeaderBar/components/Account.vue')['default']
     AConfigProvider: typeof import('ant-design-vue/es')['ConfigProvider']
     ADropdown: typeof import('ant-design-vue/es')['Dropdown']
@@ -19,9 +18,7 @@ declare module 'vue' {
     AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
     ASubMenu: typeof import('ant-design-vue/es')['SubMenu']
     CdpIcon: typeof import('./../components/CdpIcon.vue')['default']
-    HallGroup: typeof import('./../components/HeaderBar/components/HallGroup.vue')['default']
     Headerbar: typeof import('./../components/HeaderBar/Headerbar.vue')['default']
-    HeaderBar: typeof import('./../components/HeaderBar/HeaderBar.vue')['default']
     LoadingBox: typeof import('./../components/LoadingBox.vue')['default']
     PlatformGroup: typeof import('./../components/HeaderBar/components/PlatformGroup.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
