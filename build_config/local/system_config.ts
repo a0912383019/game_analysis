@@ -1,23 +1,27 @@
-type ColorConfig = {
-  name: string
-  color: string
-}
-
-export const platformDict: ColorConfig[] = [
+export var platformDict = [
   {
     name: 'BBIN',
-    color: '#ff00a5',
+    pColor: '#061127'
   },
   {
     name: 'BBGP',
-    color: '#ffb200',
+    pColor: '#18242C'
   },
   {
     name: 'XC',
-    color: '#087b05',
+    pColor: '#28182C'
   },
   {
     name: 'Midori',
-    color: '#fb5300',
-  },
+    pColor: '#332E21'
+  }
 ]
+export var sidebarIcon = {
+  home: 'home',
+  operations_center: 'operationsCenter',
+  risk_center: 'riskCenter',
+  member_center: 'memberCenter',
+  live_report: 'liveReport',
+  prob_report: 'probReport',
+  user_management: 'userManagement'
+}
