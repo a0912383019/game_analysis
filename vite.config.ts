@@ -14,23 +14,23 @@ export default defineConfig({
     AutoImport({
       include: [/\.[tj]sx?$/, /\.vue?$/],
       imports: ['vue', 'vue-router', { lodash: [['*', '_']] }],
-      dts: './src/types/auto-imports.d.ts',
+      dts: './src/types/auto-imports.d.ts'
     }),
     Components({
       resolvers: [AntDesignVueResolver({ importStyle: false })],
-      dts: './src/types/components.d.ts',
-    }),
+      dts: './src/types/components.d.ts'
+    })
   ],
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@use "@/assets/style/global.scss" as *;`,
-      },
-    },
+        additionalData: `@use "@/assets/style/global.scss" as *;`
+      }
+    }
   },
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-    },
-  },
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  }
 })

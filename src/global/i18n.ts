@@ -1,7 +1,5 @@
 import { createI18n } from 'vue-i18n'
 import zhTw from '@/languages/zh_Hant.json'
-// import zhCN from '@/locales/BBIN/cdp_frontend/zh_Hans.json'
-// import en from '@/locales/BBIN/cdp_frontend/en.json'
 
 export const i18n = createI18n({
   legacy: false, // 使用vue3 Composition Api 一定要設為false才可使用
@@ -9,14 +7,6 @@ export const i18n = createI18n({
   fallbackLocale: 'zh-TW',
   warnHtmlMessage: false, // i18n內包含html標籤，console不跳警告提示
   messages: {
-    'zh-TW': zhTw,
-    // 'zh-CN': zhCN,
-    // en: en
-  },
+    'zh-TW': zhTw
+  }
 })
-
-// export const lngs = {
-//   en: { nativeName: 'English' },
-//   'zh-TW': { nativeName: '繁體' },
-//   'zh-CN': { nativeName: '简体' }
-// }

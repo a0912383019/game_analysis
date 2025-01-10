@@ -1,34 +1,29 @@
 <script lang="ts" setup>
-import { useSidebarStore } from "@/stores/sidebar";
-import { useGlobalStore } from "@/stores/global";
-import { platformDict } from "@/../public/js/system_config";
+import { useSidebarStore } from '@/stores/sidebar'
+import { useGlobalStore } from '@/stores/global'
+import { platformDict } from '@/../public/js/system_config'
 
-const sidebarStore = useSidebarStore();
-const globalStore = useGlobalStore();
+const sidebarStore = useSidebarStore()
+const globalStore = useGlobalStore()
 
 const currentPlatform = computed(() => {
   document.documentElement.style.setProperty(
-    "--primary-color",
+    '--primary-color',
     getColorByName(globalStore.currentPlatform)
-  );
-  return globalStore.currentPlatform;
-});
+  )
+  return globalStore.currentPlatform
+})
 
 const getColorByName = (name: string): string => {
-  const platform = platformDict.find(
-    (item) => item.name.toLowerCase() === name
-  );
-  return platform?.pColor || "#000000"; // 找不到時返回預設顏色
-};
+  const platform = platformDict.find((item) => item.name.toLowerCase() === name)
+  return platform?.pColor || '#000000' // 找不到時返回預設顏色
+}
 </script>
 <template>
   <div class="mainArea">
     <sidebar />
     <headerbar />
-    <div
-      class="mainArea__rightbox"
-      :class="{ close: sidebarStore.isSidebarClose }"
-    >
+    <div class="mainArea__rightbox" :class="{ close: sidebarStore.isSidebarClose }">
       <div class="mainArea__container">
         <router-view :key="currentPlatform" />
       </div>

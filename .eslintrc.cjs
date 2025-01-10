@@ -1,0 +1,20 @@
+/* eslint-env node */
+require('@rushstack/eslint-patch/modern-module-resolution')
+
+module.exports = {
+  root: true,
+  extends: ['plugin:vue/vue3-essential', 'eslint:recommended', '@vue/eslint-config-prettier'],
+  overrides: [
+    {
+      files: ['cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}'], // 针对 Cypress 测试文件
+      extends: ['plugin:cypress/recommended']
+    }
+  ],
+  parserOptions: {
+    ecmaVersion: 'latest', // 启用最新的 ECMAScript 语法
+    parser: '@typescript-eslint/parser'
+  },
+  rules: {
+    'vue/multi-word-component-names': 'off'
+  }
+}

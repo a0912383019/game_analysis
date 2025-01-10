@@ -1,4 +1,4 @@
-interface QuerySmallBoxDataParams extends apiBase {
+interface QuerySmallBoxDataParams {
   hall_name: string
   search_date: string
 }

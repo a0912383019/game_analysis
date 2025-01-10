@@ -1,5 +1,17 @@
 {
   "sidebar": {
-    "home": "首頁"
+    "home": "首頁",
+    "operations_center": "營運中心",
+    "summary_report": "總報表",
+    "operational_analysis_chart": "營運分析圖",
+    "regional_volume_differences": "地區貨量差異",
+    "device_volume_difference": "裝置貨量差異",
+    "member_bet_inquiry": "會員注單查詢",
+    "game_comparison_chart": "遊戲比較圖表",
+    "risk_center": "風控中心",
+    "member_center": "會員中心",
+    "live_report": "視訊報表",
+    "prob_report": "電子報表",
+    "user_management": "使用者管理"
   }
 }

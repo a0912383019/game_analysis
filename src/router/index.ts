@@ -7,7 +7,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/home',
+      redirect: '/home'
     },
     {
       path: '/',
@@ -16,21 +16,21 @@ const router = createRouter({
         {
           path: '/home',
           name: 'Home',
-          component: () => import('../views/Home/Home.vue'),
+          component: () => import('../views/Home/Home.vue')
         },
         {
-          path: '/total_m',
-          name: 'TotalM',
-          component: () => import('../views/Total/TotalM.vue'),
+          path: '/summary_report',
+          name: 'SummaryReport',
+          component: () => import('../views/Total/TotalM.vue')
         },
         {
-          path: '/total_s',
-          name: 'TotalS',
-          component: () => import('../views/Total/TotalS.vue'),
-        },
-      ],
-    },
-  ],
+          path: '/operational_analysis_chart',
+          name: 'OperationalAnalysisChart',
+          component: () => import('../views/Total/TotalS.vue')
+        }
+      ]
+    }
+  ]
 })
 
 router.beforeEach(async (to, from, next) => {

@@ -6,7 +6,7 @@ const querySmallBoxData = async () => {
   try {
     const result = await apiQuerySmallBoxData({
       hall_name: 'esx',
-      search_date: '2024-12-23 ~ 2024-12-29',
+      search_date: '2024-12-23 ~ 2024-12-29'
     })
     const { return_code } = result.data.status
 
@@ -26,16 +26,16 @@ const barChartOptions = reactive({
   tooltip: {},
   xAxis: {
     type: 'category',
-    data: ['苹果', '橙子', '香蕉', '葡萄', '西瓜'],
+    data: ['苹果', '橙子', '香蕉', '葡萄', '西瓜']
   },
   yAxis: { type: 'value' },
   series: [
     {
       name: '销量',
       type: 'bar',
-      data: [5, 20, 36, 10, 10],
-    },
-  ],
+      data: [5, 20, 36, 10, 10]
+    }
+  ]
 })
 
 onMounted(() => {

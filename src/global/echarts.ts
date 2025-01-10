@@ -4,7 +4,7 @@ import {
   TitleComponent,
   TooltipComponent,
   LegendComponent,
-  GridComponent,
+  GridComponent
 } from 'echarts/components'
 import { CanvasRenderer } from 'echarts/renderers'
 import VueECharts from 'vue-echarts'
@@ -18,7 +18,7 @@ use([
   TooltipComponent,
   LegendComponent,
   GridComponent,
-  CanvasRenderer,
+  CanvasRenderer
 ])
 
 export const echartsRegister = (app: any) => {

@@ -2,12 +2,12 @@
 const props = defineProps({
   name: {
     type: String,
-    required: true,
+    required: true
   },
   color: {
     type: String,
-    default: '',
-  },
+    default: ''
+  }
 })
 
 const iconName = computed(() => `#icon-${props.name}`)

@@ -1,38 +1,57 @@
 <script lang="ts" setup>
-import {
-  PieChartOutlined,
-  MailOutlined,
-  DesktopOutlined,
-  InboxOutlined,
-} from "@ant-design/icons-vue";
-import { useSidebarStore } from "@/stores/sidebar";
-import { useGlobalStore } from "@/stores/global";
+import { useSidebarStore } from '@/stores/sidebar'
+import { sidebarIcon, SidebarIconType } from '@/../public/js/system_config'
+import type { MenuItem } from '@/types/entities/components/sidebar'
 
-const globalStore = useGlobalStore();
-const sidebarStore = useSidebarStore();
+const sidebarStore = useSidebarStore()
 
-const state = reactive({
-  selectedKeys: ["1"],
-  openKeys: ["sub1"],
-  preOpenKeys: ["sub1"],
-});
+const selectedKeys = ref<string[]>(['home'])
 
 const toggleCollapsed = () => {
-  sidebarStore.isSidebarClose = !sidebarStore.isSidebarClose;
-  state.openKeys = sidebarStore.isSidebarClose ? [] : state.preOpenKeys;
-  // iconName.value = sidebarStore.isSidebarClose ? "UnionRight" : "UnionLeft";
-};
+  sidebarStore.isSidebarClose = !sidebarStore.isSidebarClose
+}
 
-const toggleIconName = computed(() =>
-  sidebarStore.isSidebarClose ? "UnionRight" : "UnionLeft"
-);
+const toggleIconName = computed<string>(() =>
+  sidebarStore.isSidebarClose ? 'unionRight' : 'unionLeft'
+)
 
-watch(
-  () => state.openKeys,
-  (_val, oldVal) => {
-    state.preOpenKeys = oldVal;
+const menuList = ref<MenuItem[]>([
+  {
+    name: 'home',
+    urlPath: '/home'
+  },
+  {
+    name: 'operations_center',
+    child: [
+      { name: 'summary_report', urlPath: '/summary_report' },
+      { name: 'operational_analysis_chart', urlPath: '/operational_analysis_chart' },
+      { name: 'regional_volume_differences', urlPath: '/regional_volume_differences' },
+      { name: 'device_volume_difference', urlPath: '/device_volume_difference' },
+      { name: 'member_bet_inquiry', urlPath: '/member_bet_inquiry' },
+      { name: 'game_comparison_chart', urlPath: '/game_comparison_chart' }
+    ]
+  },
+  {
+    name: 'risk_center',
+    urlPath: '/home'
+  },
+  {
+    name: 'member_center',
+    urlPath: '/home'
+  },
+  {
+    name: 'live_report',
+    urlPath: '/home'
+  },
+  {
+    name: 'prob_report',
+    urlPath: '/home'
+  },
+  {
+    name: 'user_management',
+    urlPath: '/home'
   }
-);
+])
 </script>
 <template>
   <a-button
@@ -45,128 +64,207 @@ watch(
       <cdp-icon :name="toggleIconName" />
     </template>
   </a-button>
-  <div class="sidebar">
-    <div v-show="!sidebarStore.isSidebarClose" class="sidebar__bbin"></div>
-    <a-menu
-      v-model:openKeys="state.openKeys"
-      v-model:selectedKeys="state.selectedKeys"
-      mode="inline"
-      :inline-collapsed="sidebarStore.isSidebarClose"
-      theme="dark"
-    >
-      <a-menu-item key="1">
-        <template #icon>
-          <PieChartOutlined />
+  <a-layout class="sidebar">
+    <a-layout-sider v-model:collapsed="sidebarStore.isSidebarClose" collapsible>
+      <transition name="fade">
+        <div v-show="!sidebarStore.isSidebarClose" class="logo"></div
+      ></transition>
+      <a-menu theme="dark" v-model:selectedKeys="selectedKeys" mode="inline">
+        <template v-for="menuItem in menuList">
+          <a-sub-menu v-if="menuItem.child" :popupClassName="'sidebar__sub-menu'">
+            <template #title>{{ $t(`sidebar.${menuItem.name}`) }}</template>
+            <template #icon>
+              <cdp-icon :name="sidebarIcon[menuItem.name as SidebarIconType]" />
+            </template>
+            <a-menu-item v-for="child in menuItem.child" :key="child.name">
+              <router-link :to="child.urlPath"></router-link>
+              <span> {{ $t(`sidebar.${child.name}`) }} </span>
+            </a-menu-item>
+          </a-sub-menu>
+          <a-menu-item v-else :key="menuItem.name">
+            <template #icon>
+              <cdp-icon :name="sidebarIcon[menuItem.name as SidebarIconType]" />
+            </template>
+            <router-link :to="menuItem.urlPath"></router-link>
+            <span> {{ $t(`sidebar.${menuItem.name}`) }} </span>
+          </a-menu-item>
         </template>
-        <router-link to="/home"></router-link>
-        <span> {{ $t("sidebar.home") }} </span>
-      </a-menu-item>
-      <a-sub-menu key="sub1">
-        <template #icon>
-          <MailOutlined />
-        </template>
-        <template #title>營運中心</template>
-        <a-menu-item key="2">
-          <router-link to="/total_m"> </router-link>
-          <span> 總報表 </span>
-        </a-menu-item>
-        <a-menu-item key="3">
-          <router-link to="/total_s"> </router-link>
-          <span> 營運分析圖 </span>
-        </a-menu-item>
-        <a-menu-item key="4">地區貨量差異</a-menu-item>
-        <a-menu-item key="5">裝置貨量差異</a-menu-item>
-        <a-menu-item key="6">會員注單查詢</a-menu-item>
-        <a-menu-item key="7">遊戲比較圖表</a-menu-item>
-      </a-sub-menu>
-      <a-menu-item key="8">
-        <template #icon>
-          <DesktopOutlined />
-        </template>
-        <span>風控中心</span>
-      </a-menu-item>
-      <a-menu-item key="9">
-        <template #icon>
-          <InboxOutlined />
-        </template>
-        <span>會員中心</span>
-      </a-menu-item>
-    </a-menu>
-  </div>
+      </a-menu>
+    </a-layout-sider>
+  </a-layout>
 </template>
 <style lang="scss" scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease-in-out;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 .sidebar-toggle-btn {
   position: absolute;
   top: 10px;
   left: 200px;
   z-index: 101;
+  color: #fff;
+  border-color: var(--primary-color);
+  background-color: var(--primary-color);
   transition: all 0.2s ease;
+  svg {
+    width: 1.275em;
+    height: 1.275em;
+  }
+  &:hover {
+    color: #ffe5aa;
+    border-color: var(--primary-color);
+  }
   &.moved {
     left: 20px;
   }
 }
-.sidebar {
-  display: block;
+.logo {
+  top: 15px;
+  left: 24px;
   position: absolute;
-  width: 250px;
-  left: 0px;
-  top: 0px;
-  bottom: 0;
-  overflow-y: scroll;
+  width: 75px;
+  height: 30px;
+  flex-shrink: 0;
+  z-index: 500;
+  background: url('../assets/images/BBIN.png') var(--primary-color) 50% / contain no-repeat;
+}
+.sidebar {
   z-index: 100;
-  &__bbin {
-    top: 15px;
-    left: 24px;
-    position: absolute;
-    width: 75px;
-    height: 30px;
-    flex-shrink: 0;
-    z-index: 500;
-    background: url("../assets/images/BBIN.png") var(--primary-color) 50% /
-      contain no-repeat;
+  :deep(.ant-layout-sider) {
+    transition: all 0.2s ease;
   }
-  :deep(.ant-menu) {
+  :deep(.ant-layout-sider) {
     background: var(--primary-color);
-    &.ant-menu-sub {
-      background: none;
+    width: 250px !important;
+    min-width: 250px !important;
+    max-width: 250px !important;
+    flex: 0 0 250px !important;
+    &.ant-layout-sider-collapsed {
+      flex: 0 0 80px !important;
+      max-width: 80px !important;
+      min-width: 80px !important;
+      width: 80px !important;
+    }
+    .ant-layout-sider-trigger {
+      display: none;
+    }
+    .ant-menu.ant-menu-root {
+      margin-top: 60px;
+    }
+    .ant-menu {
+      padding-right: 10px;
+      background: var(--primary-color);
+      &.ant-menu-sub {
+        background: none;
+      }
+      .ant-menu-item {
+        border-radius: 0px 60px 60px 0px;
+        &-selected {
+          background-color: #ffffff1a;
+          color: #ffe5aa;
+        }
+        &:hover {
+          color: #ffe5aa;
+          background-color: #ffffff1a;
+        }
+        &:not(.ant-menu-item-selected):active {
+          background-color: #ffffff1a;
+        }
+        svg {
+          font-size: 14px;
+        }
+      }
+      .ant-menu-submenu {
+        .ant-menu-item {
+          > span::before {
+            content: '';
+            display: inline-block;
+            margin-right: 10px;
+            width: 8px;
+            height: 8px;
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px;
+            border-radius: 4px;
+            background-color: #ffffff1a;
+          }
+        }
+        .ant-menu-item:hover {
+          color: #fff;
+          background-color: #ffffff1a;
+        }
+        .ant-menu-submenu-title {
+          border-radius: 0px 60px 60px 0px;
+          &:hover {
+            color: #ffe5aa;
+            background-color: #ffffff1a;
+          }
+          &:active {
+            background-color: #ffffff1a;
+          }
+          .ant-menu-title-content:active {
+            background-color: unset;
+          }
+          svg {
+            font-size: 14px;
+          }
+        }
+        &.ant-menu-submenu-selected {
+          .ant-menu-submenu-title {
+            background-color: #ffffff1a;
+            .ant-menu-title-content {
+              color: #ffe5aa;
+            }
+            svg {
+              color: #ffe5aa;
+            }
+          }
+          .ant-menu-item-selected {
+            > span::before {
+              background-color: #ffe5aa;
+            }
+            &:hover {
+              background-color: #ffffff1a;
+            }
+            background-color: initial;
+            color: #ffe5aa;
+          }
+        }
+      }
+    }
+  }
+}
+</style>
+<style lang="scss">
+.sidebar__sub-menu {
+  .ant-menu {
+    background-color: var(--primary-color) !important;
+    .ant-menu-item {
+      > span::before {
+        content: '';
+        display: inline-block;
+        margin-right: 10px;
+        width: 8px;
+        height: 8px;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+        background-color: #ffffff1a;
+      }
     }
     .ant-menu-item-selected {
+      color: #ffe5aa;
       background-color: #ffffff1a;
-      color: #ffe5aa;
-    }
-    .ant-menu-item:hover {
-      color: #ffe5aa;
-    }
-  }
-  > ul {
-    padding-top: 60px;
-    min-height: 100%;
-    transform: translateZ(0);
-    border-right: 0;
-    ul li span::before {
-      content: "";
-      display: inline-block;
-      margin-right: 5px;
-      width: 8px;
-      height: 8px;
-      -moz-border-radius: 4px;
-      -webkit-border-radius: 4px;
-      border-radius: 4px;
-      background-color: #ffffff1a;
-    }
-  }
-  :deep(.ant-menu-dark .ant-menu-item-selected .ant-menu-item-icon) {
-    color: #ffe5aa;
-    + span {
-      color: #ffe5aa;
-    }
-  }
-  :deep(.ant-menu-submenu-selected) {
-    color: #ffe5aa;
-    .ant-menu-item-selected .ant-menu-title-content {
-      span::before {
+      > span::before {
         background-color: #ffe5aa;
       }
+    }
+    .ant-menu-item:not(.ant-menu-item-selected):active {
+      background-color: #ffffff1a;
     }
   }
 }

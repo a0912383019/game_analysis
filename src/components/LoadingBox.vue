@@ -2,13 +2,13 @@
 const props = defineProps({
   color: {
     type: String,
-    default: 'grey',
+    default: 'grey'
   },
   //sm md lg
   size: {
     type: String,
-    default: 'lg',
-  },
+    default: 'lg'
+  }
 })
 </script>
 <template>

@@ -1,27 +1,15 @@
-import axios, {
-  AxiosRequestConfig,
-  AxiosResponse,
-  AxiosError,
-  InternalAxiosRequestConfig,
-} from 'axios'
+import axios, { AxiosResponse, AxiosError, InternalAxiosRequestConfig } from 'axios'
 import { useGlobalStore } from '@/stores/global'
 
-// 定義環境變數的型別（如果需要）
 const baseURL: string = import.meta.env.VITE_API_GO_BASE_URL as string
 
 // 建立 axios 實例
 const axiosGoInstance = axios.create({
   baseURL,
   headers: {
-    'Content-Type': 'application/json',
-  },
+    'Content-Type': 'application/json'
+  }
 })
-
-// interface CustomResponse<T = any> {
-//   data: T
-//   status: number
-//   statusText: string
-// }
 
 const globalStore = useGlobalStore()
 
@@ -39,14 +27,14 @@ axiosGoInstance.interceptors.request.use(
     if (request.method === 'post' || request.method === 'put') {
       request.data = {
         ...(request.data || {}),
-        platform: globalStore.currentPlatform, // 預設 platform 為 bbin
+        platform: globalStore.currentPlatform // 預設 platform 為 bbin
       }
     }
 
     if (request.method === 'get' || request.method === 'delete') {
       request.params = {
         ...(request.params || {}),
-        platform: globalStore.currentPlatform, // 預設 platform 為 bbin
+        platform: globalStore.currentPlatform // 預設 platform 為 bbin
       }
     }
 
@@ -55,7 +43,7 @@ axiosGoInstance.interceptors.request.use(
   (error: AxiosError) => {
     console.error('Request Error:', error)
     return Promise.reject(error)
-  },
+  }
 )
 
 // 響應攔截器
@@ -66,7 +54,7 @@ axiosGoInstance.interceptors.response.use(
   (error: AxiosError) => {
     console.error('Response Error:', error)
     return Promise.reject(error)
-  },
+  }
 )
 
 export default axiosGoInstance

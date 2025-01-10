@@ -7,8 +7,8 @@ export const apiQuerySmallBoxData = (params: QuerySmallBoxDataParams) => {
   return axiosGoInstance.get('/api/auth/home/small_box_data', {
     params: {
       hall_name,
-      search_date,
-    },
+      search_date
+    }
   })
 }
 
@@ -20,8 +20,8 @@ export const apiQuerySmartMessNote = (params: QuerySmartMessNoteParams) => {
       hall_name,
       kind,
       search_date,
-      locale,
-    },
+      locale
+    }
   })
 }
 
@@ -30,7 +30,7 @@ export const apiReadSmartMessNote = (params: ReadSmartMessNoteParams) => {
   const { hall_name, message_id } = params
   return axiosGoInstance.put('/api/auth/home/smart_message_notification', {
     hall_name,
-    message_id,
+    message_id
   })
 }
 
