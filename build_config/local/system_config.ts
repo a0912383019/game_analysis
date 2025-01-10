@@ -1,4 +1,9 @@
-export var platformDict = [
+type ConfigMap = {
+  name: string
+  pColor: string
+}
+
+export const platformDict: ConfigMap[] = [
   {
     name: 'BBIN',
     pColor: '#061127'
@@ -16,7 +21,8 @@ export var platformDict = [
     pColor: '#332E21'
   }
 ]
-export var sidebarIcon = {
+
+export const sidebarIcon = {
   home: 'home',
   operations_center: 'operationsCenter',
   risk_center: 'riskCenter',
@@ -24,4 +30,6 @@ export var sidebarIcon = {
   live_report: 'liveReport',
   prob_report: 'probReport',
   user_management: 'userManagement'
-}
+} as const
+
+export type SidebarIconType = keyof typeof sidebarIcon
