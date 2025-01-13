@@ -1,4 +1,4 @@
-// BuildEnv: local
+// BuildEnv: rd
 
 type ConfigMap = {
   name: string

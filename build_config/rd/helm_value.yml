@@ -1,0 +1,27 @@
+# gcloud auth print-access-token | helm registry login -u oauth2accesstoken --password-stdin https://asia-docker.pkg.dev
+# gcloud container clusters get-credentials cdp-bbin-devqa-cluster --region us-east1 --project gcp-20230911-001
+# helm upgrade --install --create-namespace dev-game-frontend oci://asia-docker.pkg.dev/gcp-20240315-004/bi-cdp/helm-gke/istio-deployment --reuse-values -f build_config/dev/helm_value.yml --set deployment.container.image=asia-docker.pkg.dev/gcp-20240315-004/bi-cdp/frontend_vue_game:dev_0110_1816 --namespace cdp-web --atomic
+
+# namespace 預設 default
+namespace: cdp-web
+replicaCount: 1
+nodePool: web
+
+# deployment 設定
+deployment:
+  # 服務的名稱(必填)
+  appName: rd-game-frontend
+  appVersion: game
+  container:
+    containerPort: 80
+  resources:
+    request:
+      memory: "250Mi"
+      cpu: "50m"
+    limits:
+      memory: "500Mi"
+      cpu: "100m"
+
+# service 設定
+service:
+  name: cdp-inner-service
