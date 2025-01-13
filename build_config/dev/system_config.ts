@@ -1,4 +1,4 @@
-// BuildEnv: local
+// BuildEnv: dev
 
 type ConfigMap = {
   name: string

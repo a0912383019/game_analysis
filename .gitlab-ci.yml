@@ -1,0 +1,5 @@
+include:
+  - project: "bi/cdp/cicd"
+    ref: originmain
+    file:
+      - "/gke-helm-ci/project-yml/game/Frontend_Vue_Game.yml"
