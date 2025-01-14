@@ -7,7 +7,7 @@ import vue3GoogleLogin from 'vue3-google-login'
 
 let clientId = '1055824448864-oifmo3rcb9t51lucpbvsf6v0mhrfvh0s.apps.googleusercontent.com'
 
-export const googleLoginRegister = (app: any) => {
+export const googleLoginRegister = (app: ReturnType<typeof createApp>) => {
   app.use(vue3GoogleLogin, {
     clientId,
     buttonConfig: {

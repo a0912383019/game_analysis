@@ -1,23 +1,18 @@
 <script setup lang="ts">
-import dayjs from 'dayjs'
 import type { HomeCard } from '@/types/entities/home'
-import { formatNumber, getCurrencySign } from '@/utils/commonUtils'
-import { useGlobalStore } from '@/stores/global'
-
-const globalStore = useGlobalStore()
+import { formatNumber } from '@/utils/commonUtils'
 
 const titleIcon = ['prob', 'live', 'card', 'fish', 'lottery']
 
 const todayDate = ref<string>('2024/01/09')
 const cardList = ref<HomeCard[]>([])
 const transformData = (data: any) => {
-  const currencySign: string = getCurrencySign(globalStore.currentPlatform)
   titleIcon.forEach((ele) => {
     const cardData: HomeCard = {
       title: ele,
       customShapeColor: generateShapeColorClass(ele),
-      bet: formatNumber(data[ele].bet, currencySign),
-      payoff: formatNumber(data[ele].payoff, currencySign),
+      bet: formatNumber(data[ele].bet),
+      payoff: formatNumber(data[ele].payoff),
       amount: formatNumber(data[ele].amount),
       people: formatNumber(data[ele].people)
     }
@@ -84,8 +79,6 @@ onMounted(() => {
   }
 
   transformData(apiResult)
-  // console.log(dayjs().format())
-  // console.log(dayjs().toISOString())
 })
 </script>
 <template>
@@ -129,14 +122,13 @@ onMounted(() => {
   width: 5px;
   height: 39px;
   position: absolute;
-  // background: #e91e63;
   border-radius: 0px 100% 100% 0 / 0px 7px 7px 0px;
   top: 6px;
   left: 0;
 }
 :deep(.ant-col-5) {
   flex: 0 0 calc(20% - 10px);
-  max-width: 224px;
+  min-width: 224px;
   width: calc(20%);
 }
 :deep(.ant-card) {

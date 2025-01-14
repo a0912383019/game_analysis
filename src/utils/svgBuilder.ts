@@ -26,7 +26,7 @@ export const findSvgFile = (dir: string): string[] => {
         .replace(svgTitle, ($1, $2) => {
           let width = 0
           let height = 0
-          let content = $2.replace(clearHeightWidth, (s1: string, s2: string, s3: any) => {
+          let content = $2.replace(clearHeightWidth, (s1: string, s2: string, s3: string) => {
             if (s2 === 'width') {
               width = parseFloat(s3)
             } else if (s2 === 'height') {

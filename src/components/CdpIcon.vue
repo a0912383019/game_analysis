@@ -1,17 +1,15 @@
 <script lang="ts" setup>
-const props = defineProps({
-  name: {
-    type: String,
-    required: true
-  },
-  color: {
-    type: String,
-    default: ''
-  }
+interface Props {
+  name: string
+  color?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  color: ''
 })
 
-const iconName = computed(() => `#icon-${props.name}`)
-const svgClass = computed(() => {
+const iconName = computed<string>(() => `#icon-${props.name}`)
+const svgClass = computed<string>(() => {
   if (props.name) {
     return `svg-icon icon-${props.name}`
   }
@@ -28,7 +26,7 @@ const svgClass = computed(() => {
   width: 1em;
   height: 1em;
   fill: currentColor;
-  vertical-align: middle;
+  vertical-align: -0.125em;
   display: inline-block;
 }
 </style>

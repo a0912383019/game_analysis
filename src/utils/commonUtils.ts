@@ -15,13 +15,12 @@ export function roundDecimal(val: number, precision: number = 2): string {
 }
 
 /**
- * 數字加上千分位分隔符號及幣別符號
+ * 數字加上千分位分隔符號
  * @param n 要加工的數值
- * @param currencySign 要加上的幣別符號 (預設值為空字串)
  * @param precision 顯示的小數位數 (預設值為 0)
  * @returns {string} 返回格式化後的數字字串
  */
-export function formatNumber(n: number, currencySign: string = '', precision: number = 0): string {
+export function formatNumber(n: number, precision: number = 0): string {
   const rounded = roundDecimal(n, precision)
   const parts = rounded.split('.')
 
@@ -40,28 +39,5 @@ export function formatNumber(n: number, currencySign: string = '', precision: nu
   }
 
   const re = /(\d{1,3})(?=(\d{3})+$)/g
-  return currencySign + parts[0].replace(re, '$1,') + (parts.length === 2 ? '.' + parts[1] : '')
-}
-
-/**
- * 取得目前廳別幣別
- * @param platform 目前平台
- * @returns {string} 返回廳別幣別
- */
-export function getCurrencySign(platform: string): string {
-  let currencySign: string = '¥'
-  switch (platform) {
-    case 'bbin':
-    case 'bbgp':
-      currencySign = '¥'
-      break
-    case 'xc':
-      currencySign = '$'
-      break
-    case 'midori':
-      currencySign = '₱'
-      break
-  }
-
-  return currencySign
+  return parts[0].replace(re, '$1,') + (parts.length === 2 ? '.' + parts[1] : '')
 }

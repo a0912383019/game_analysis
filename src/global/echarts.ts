@@ -21,6 +21,6 @@ use([
   CanvasRenderer
 ])
 
-export const echartsRegister = (app: any) => {
+export const echartsRegister = (app: ReturnType<typeof createApp>) => {
   app.component('v-chart', VueECharts)
 }

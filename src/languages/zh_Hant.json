@@ -14,6 +14,12 @@
     "prob_report": "電子報表",
     "user_management": "使用者管理"
   },
+  "currency": {
+    "currency": "幣別",
+    "currency_¥": "人民幣",
+    "currency_$": "台幣",
+    "currency_₱": "菲律賓披索"
+  },
   "unit": {
     "amount": "單量",
     "people_num": "人數"

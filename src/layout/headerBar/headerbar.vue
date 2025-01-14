@@ -6,11 +6,10 @@ const sidebarStore = useSidebarStore()
 <template>
   <header :class="{ isClose: sidebarStore.isSidebarClose }">
     <platform-group />
-    <ul class="list">
-      <li class="list__account">
-        <account />
-      </li>
-    </ul>
+    <div class="flex items-center ml-auto">
+      <currency-sign-text class="mr-5" />
+      <account />
+    </div>
   </header>
 </template>
 <style lang="scss" scoped>
@@ -30,21 +29,6 @@ header {
   transition: all 0.2s ease;
   &.isClose {
     padding-left: 95px;
-  }
-}
-.list {
-  display: flex;
-  align-items: center;
-  margin-left: auto;
-  li {
-    list-style: none;
-  }
-  &__hall {
-    margin-right: 10px;
-  }
-  &__lang {
-    width: 150px;
-    margin-right: 15px;
   }
 }
 </style>

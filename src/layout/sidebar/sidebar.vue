@@ -61,7 +61,7 @@ const menuList = ref<MenuItem[]>([
     @click="toggleCollapsed"
   >
     <template #icon>
-      <cdp-icon :name="toggleIconName" />
+      <cdp-icon class="!align-middle" :name="toggleIconName" />
     </template>
   </a-button>
   <a-layout class="sidebar">
@@ -131,7 +131,7 @@ const menuList = ref<MenuItem[]>([
   height: 30px;
   flex-shrink: 0;
   z-index: 500;
-  background: url('../assets/images/BBIN.png') var(--primary-color) 50% / contain no-repeat;
+  background: url('@/assets/images/BBIN.png') var(--primary-color) 50% / contain no-repeat;
 }
 .sidebar {
   z-index: 100;

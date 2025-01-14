@@ -4,10 +4,6 @@ import { useI18n } from 'vue-i18n'
 
 const { locale } = useI18n()
 
-if (zhTw.Empty) {
-  zhTw.Empty.description = '暫無資料'
-}
-
 const lang = {
   'zh-TW': zhTw
 }

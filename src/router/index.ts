@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import MainLayout from '@/layout/Main.vue'
+import mainLayout from '@/layout/main.vue'
 import { useGlobalStore } from '@/stores/global'
 
 const router = createRouter({
@@ -12,31 +12,31 @@ const router = createRouter({
     {
       path: '/example',
       name: 'example',
-      component: () => import('../views/Example.vue')
+      component: () => import('../views/example.vue')
     },
     {
       path: '/login',
       name: 'Login',
-      component: () => import('../views/Login.vue')
+      component: () => import('../views/login.vue')
     },
     {
       path: '/',
-      component: MainLayout,
+      component: mainLayout,
       children: [
         {
           path: '/home',
           name: 'Home',
-          component: () => import('../views/Home/Home.vue')
+          component: () => import('../views/home/index.vue')
         },
         {
           path: '/summary_report',
           name: 'SummaryReport',
-          component: () => import('../views/Total/TotalM.vue')
+          component: () => import('../views/total/totalM.vue')
         },
         {
           path: '/operational_analysis_chart',
           name: 'OperationalAnalysisChart',
-          component: () => import('../views/Total/TotalS.vue')
+          component: () => import('../views/total/totalS.vue')
         }
       ]
     }

@@ -20,6 +20,7 @@ export default ({ mode }) => {
       }),
       Components({
         resolvers: [AntDesignVueResolver({ importStyle: false })],
+        dirs: ['src/components', 'src/layout', 'src/views'],
         dts: './src/types/components.d.ts'
       })
     ],

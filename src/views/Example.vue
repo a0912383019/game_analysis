@@ -4,21 +4,27 @@ import dayjs from 'dayjs'
 
 const querySmallBoxData = async () => {
   try {
-    const result = await apiQuerySmallBoxData({
+    const response = await apiQuerySmallBoxData({
       hall_name: 'esx',
       search_date: '2024-12-23 ~ 2024-12-29'
     })
-    const { return_code } = result.data.status
+    console.log(response)
 
-    if (return_code === '0000' && result.data.result.length !== 0) {
+    const { return_code } = response.status
+
+    if (return_code === '0000') {
       //整理table對應的資料
-      console.log(result.data.result)
+      meme(response.result)
     } else {
-      console.error(result.data.status)
+      console.error(response.status)
     }
   } catch (error) {
     console.error(error)
   }
+}
+
+const meme = (data: ResultSmallBoxData) => {
+  console.log('vivi', data)
 }
 
 const barChartOptions = reactive({

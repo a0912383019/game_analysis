@@ -49,7 +49,7 @@ axiosGoInstance.interceptors.request.use(
 // 響應攔截器
 axiosGoInstance.interceptors.response.use(
   (response: AxiosResponse) => {
-    return Promise.resolve(response)
+    return Promise.resolve(response.data)
   },
   (error: AxiosError) => {
     console.error('Response Error:', error)
