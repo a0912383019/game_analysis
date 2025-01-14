@@ -27,8 +27,8 @@ export const sidebarIcon = {
   operations_center: 'operationsCenter',
   risk_center: 'riskCenter',
   member_center: 'memberCenter',
-  live_report: 'liveReport',
-  prob_report: 'probReport',
+  live_report: 'live',
+  prob_report: 'prob',
   user_management: 'userManagement'
 } as const
 

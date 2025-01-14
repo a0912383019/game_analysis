@@ -1,0 +1,19 @@
+$cdp-pink: #ff00a5;
+
+$cdp-yellow: #ffb200;
+
+$cdp-green: #087b05;
+
+$cdp-blue: #005aff;
+
+$cdp-orange: #fb5300;
+
+// 支援 tailwind var 寫法
+:root {
+  --primary-color: #061127;
+  --cdp-pink: #{$cdp-pink};
+  --cdp-yellow: #{$cdp-yellow};
+  --cdp-green: #{$cdp-green};
+  --cdp-blue: #{$cdp-blue};
+  --cdp-orange: #{$cdp-orange};
+}

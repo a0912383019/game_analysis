@@ -1,5 +1,5 @@
-import '@/assets/style/tailwind.css'
-import '@/assets/style/master.scss'
+import '@/assets/css/tailwind.css'
+import '@/assets/css/master.scss'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { i18n } from '@/global/i18n'

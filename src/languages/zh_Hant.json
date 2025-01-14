@@ -13,5 +13,24 @@
     "live_report": "視訊報表",
     "prob_report": "電子報表",
     "user_management": "使用者管理"
+  },
+  "unit": {
+    "amount": "單量",
+    "people_num": "人數"
+  },
+  "lobby_group": {
+    "live": "視訊",
+    "prob": "電子",
+    "card": "棋牌",
+    "fish": "捕魚",
+    "lottery": "彩票"
+  },
+  "common": {
+    "logout": "登出",
+    "all": "全部"
+  },
+  "data_name": {
+    "bet_amount": "貨量",
+    "game_payoff": "遊戲損益"
   }
 }

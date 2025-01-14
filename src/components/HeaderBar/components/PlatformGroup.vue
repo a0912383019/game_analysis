@@ -14,10 +14,11 @@ const onSelect = (value: string) => {
 <template>
   <div class="flex gap-4">
     <a-button
-      class="rounded-[20px] w-[100px] h-[36px] bg-[#E8E9EC] hover:!border-[var(--primary-color)] hover:!text-[var(--primary-color)]"
+      class="border-[#E8E9EC] rounded-[20px] w-[100px] h-[36px] bg-[#E8E9EC] hover:!border-[var(--primary-color)]"
       :class="{
         '!bg-[var(--primary-color)] hover:!bg-[var(--primary-color)] hover:!text-[#fff]':
-          selectPlatform === item.name.toLowerCase()
+          selectPlatform === item.name.toLowerCase(),
+        'hover:!text-[var(--primary-color)]': selectPlatform !== item.name.toLowerCase()
       }"
       v-for="item in platformDict"
       :key="item.name.toLowerCase()"
