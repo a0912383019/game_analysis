@@ -8,7 +8,7 @@ import Antd from 'ant-design-vue'
 import App from './App.vue'
 import router from './router'
 
-const app = createApp(App)
+const app: ReturnType<typeof createApp> = createApp(App)
 globalRegister(app)
 
 app.use(i18n)

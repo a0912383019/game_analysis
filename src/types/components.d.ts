@@ -32,7 +32,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     Sidebar: typeof import('./../layout/sidebar/sidebar.vue')['default']
     TopCard: typeof import('./../views/home/topCard.vue')['default']
-    TotalM: typeof import('./../views/total/TotalM.vue')['default']
-    TotalS: typeof import('./../views/total/TotalS.vue')['default']
+    TotalM: typeof import('./../views/total/totalM.vue')['default']
+    TotalS: typeof import('./../views/total/totalS.vue')['default']
   }
 }

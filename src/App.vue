@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { Locale } from 'ant-design-vue/es/locale-provider'
 import zhTw from 'ant-design-vue/es/locale/zh_TW'
 import { useI18n } from 'vue-i18n'
 
@@ -8,7 +9,7 @@ const lang = {
   'zh-TW': zhTw
 }
 
-const language = computed(() => {
+const language = computed<Locale>(() => {
   return lang[locale.value as keyof typeof lang] || lang['zh-TW']
 })
 </script>

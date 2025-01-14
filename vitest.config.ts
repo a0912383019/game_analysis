@@ -1,14 +1,28 @@
 import { fileURLToPath } from 'node:url'
-import { mergeConfig, defineConfig, configDefaults } from 'vitest/config'
+import { mergeConfig, loadEnv } from 'vite'
+import { configDefaults, defineConfig } from 'vitest/config'
 import viteConfig from './vite.config'
 
-export default mergeConfig(
-  viteConfig,
-  defineConfig({
-    test: {
-      environment: 'jsdom',
-      exclude: [...configDefaults.exclude, 'e2e/**'],
-      root: fileURLToPath(new URL('./', import.meta.url))
-    }
-  })
+export default defineConfig((configEnv) =>
+  mergeConfig(
+    viteConfig(configEnv),
+    defineConfig({
+      test: {
+        environment: 'jsdom',
+        // include: ['src/app.test.ts'], // 可指定要測試哪個檔案，gitlab的cicd會跑很久，可用此設定測試
+        exclude: [...configDefaults.exclude, 'e2e/*'],
+        root: fileURLToPath(new URL('./', import.meta.url)),
+        coverage: {
+          provider: 'v8'
+        },
+        reporters:
+          loadEnv(configEnv.mode, process.cwd()).VITE_ENV !== 'local'
+            ? ['default']
+            : ['junit', 'json', 'verbose'],
+        outputFile: {
+          junit: './test/report.xml'
+        }
+      }
+    })
+  )
 )
