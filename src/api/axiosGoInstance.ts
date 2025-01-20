@@ -1,10 +1,10 @@
-import axios, { AxiosResponse, AxiosError, InternalAxiosRequestConfig } from 'axios'
+import axios, { AxiosResponse, AxiosError, InternalAxiosRequestConfig, AxiosInstance } from 'axios'
 import { useGlobalStore } from '@/stores/global'
 
 const baseURL: string = import.meta.env.VITE_API_GO_BASE_URL as string
 
 // 建立 axios 實例
-const axiosGoInstance = axios.create({
+const axiosGoInstance: AxiosInstance = axios.create({
   baseURL,
   headers: {
     'Content-Type': 'application/json'
@@ -49,7 +49,7 @@ axiosGoInstance.interceptors.request.use(
 // 響應攔截器
 axiosGoInstance.interceptors.response.use(
   (response: AxiosResponse) => {
-    return Promise.resolve(response.data)
+    return response.data
   },
   (error: AxiosError) => {
     console.error('Response Error:', error)

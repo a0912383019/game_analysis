@@ -24,6 +24,12 @@
 // // 通用的 API 回傳結構
 // type ApiResponse<T> = SuccessResponse<T> | ErrorResponse;
 
+interface ResponseData<T> {
+  code: Number
+  data: T
+  message: string
+}
+
 interface BaseStatus {
   return_code: string
   error_code?: string
