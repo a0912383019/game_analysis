@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { apiQuerySmallBoxData } from '@/api'
+import { querySmallBoxData, addUser } from '@/api'
 import dayjs from 'dayjs'
 
-const querySmallBoxData = async () => {
+const querySmallBoxDataa = async () => {
   try {
-    const response = await apiQuerySmallBoxData({
+    const response = await querySmallBoxData({
       hall_name: 'esx',
       search_date: '2024-12-23 ~ 2024-12-29'
     })
@@ -19,7 +19,30 @@ const querySmallBoxData = async () => {
       console.error(response.status)
     }
   } catch (error) {
-    console.error(error)
+    console.error('aa', error)
+  }
+}
+
+const addUserr = async () => {
+  try {
+    const response = await addUser({
+      access_hall_name: 'esxxxx',
+      email: 'user13467@example.com',
+      user_status: 0,
+      user_type: 0
+    })
+    console.log(response)
+
+    const { return_code } = response.status
+
+    if (return_code === '0000') {
+      //整理table對應的資料
+      // meme(response.result)
+    } else {
+      console.error(response.status)
+    }
+  } catch (error) {
+    console.error('aa', error)
   }
 }
 
@@ -48,7 +71,8 @@ onMounted(() => {
   console.log(dayjs().format())
   console.log(dayjs().toISOString())
 
-  querySmallBoxData()
+  querySmallBoxDataa()
+  addUserr()
 })
 </script>
 <template>

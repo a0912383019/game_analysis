@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import topCard from '@/views/home/topCard.vue'
+import filterBox from '@/views/operationCenter/memberBetQuery/filter.vue'
 </script>
 <template>
-  <top-card />
+  <filter-box />
 </template>
 <style lang="scss" scoped></style>

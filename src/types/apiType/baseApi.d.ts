@@ -37,11 +37,15 @@ interface BaseStatus {
   message: string
 }
 
-// 共用的回應基底結構
-interface BaseResponse<T> {
-  status: BaseStatus
-  result: T
-}
+// // 共用的回應基底結構
+// interface BaseResponse<T> {
+//   status: BaseStatus
+//   result: T
+// }
+
+type ApiResponse<T = undefined> = T extends undefined
+  ? { status: BaseStatus } // 無 result 的情況
+  : { status: BaseStatus; result: T } // 有 result 的情況 (ex: 新增刪除 api)
 
 // // 成功回應的結構（泛型）
 // interface SuccessResponse<T> extends BaseResponse {

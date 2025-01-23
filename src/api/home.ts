@@ -1,17 +1,28 @@
-import axiosGoInstance from './axiosGoInstance'
+import axiosGoInstance, { apiGet, apiPost } from './axiosGoInstance'
 
 //首頁
 //貨量/損益/優惠獎金/實動人數
-export const apiQuerySmallBoxData = (
-  params: QuerySmallBoxDataParams
-): Promise<BaseResponse<ResultSmallBoxData>> => {
-  const { hall_name, search_date } = params
-  return axiosGoInstance.get('/api/auth/home/small_box_data', {
-    params: {
-      hall_name,
-      search_date
-    }
-  })
+// export const apiQuerySmallBoxData = (
+//   params: QuerySmallBoxDataParams
+// ): Promise<ApiResponse<ResultSmallBoxData>> => {
+//   const { hall_name, search_date } = params
+//   return axiosGoInstance.get('/api/auth/home/small_box_data', {
+//     params: {
+//       hall_name,
+//       search_date
+//     }
+//   })
+// }
+
+export const querySmallBoxData = (params: QuerySmallBoxDataParams) => {
+  return apiGet<QuerySmallBoxDataParams, ResultSmallBoxData>(
+    '/api/auth/home/small_box_data',
+    params
+  )
+}
+
+export const addUser = (params: AddUserParams) => {
+  return apiPost<AddUserParams, undefined>('/api/auth/admin/users', params)
 }
 
 // //訊息通知

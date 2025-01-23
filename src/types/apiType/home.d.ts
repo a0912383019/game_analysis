@@ -15,3 +15,10 @@ interface ResultSmallBoxData {
   payoff?: Metrics // 盈虧相關數據
   premium_amount?: Metrics // 保費金額相關數據
 }
+
+interface AddUserParams {
+  email: string
+  user_type: number
+  user_status: number
+  access_hall_name: string
+}

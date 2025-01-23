@@ -22,6 +22,7 @@
     "noImplicitAny": false
   },
   "include": [
+    "src/**/*",
     "env.d.ts",
     "src/**/*",
     "src/**/*.vue",

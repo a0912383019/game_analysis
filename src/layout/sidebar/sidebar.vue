@@ -2,10 +2,18 @@
 import { useSidebarStore } from '@/stores/sidebar'
 import { sidebarIcon, SidebarIconType } from '@/../public/js/system_config'
 import type { MenuItem } from '@/types/entities/components/sidebar'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
 
 const sidebarStore = useSidebarStore()
 
-const selectedKeys = ref<string[]>(['home'])
+// const selectedKeys = ref<string[]>(['home'])
+const selectedKeys = computed<string[]>(() => {
+  console.log(route);
+
+  return [route.path]
+})
 
 const toggleCollapsed = () => {
   sidebarStore.isSidebarClose = !sidebarStore.isSidebarClose
@@ -33,23 +41,23 @@ const menuList = ref<MenuItem[]>([
   },
   {
     name: 'risk_center',
-    urlPath: '/home'
+    urlPath: '/risk_center'
   },
   {
     name: 'member_center',
-    urlPath: '/home'
+    urlPath: '/member_center'
   },
   {
     name: 'live_report',
-    urlPath: '/home'
+    urlPath: '/live_report'
   },
   {
     name: 'prob_report',
-    urlPath: '/home'
+    urlPath: '/prob_report'
   },
   {
     name: 'user_management',
-    urlPath: '/home'
+    urlPath: '/user_management'
   }
 ])
 </script>
@@ -76,12 +84,12 @@ const menuList = ref<MenuItem[]>([
             <template #icon>
               <cdp-icon :name="sidebarIcon[menuItem.name as SidebarIconType]" />
             </template>
-            <a-menu-item v-for="child in menuItem.child" :key="child.name">
+            <a-menu-item v-for="child in menuItem.child" :key="child.urlPath">
               <router-link :to="child.urlPath || '/'"></router-link>
               <span> {{ $t(`sidebar.${child.name}`) }} </span>
             </a-menu-item>
           </a-sub-menu>
-          <a-menu-item v-else :key="menuItem.name">
+          <a-menu-item v-else :key="menuItem.urlPath">
             <template #icon>
               <cdp-icon :name="sidebarIcon[menuItem.name as SidebarIconType]" />
             </template>

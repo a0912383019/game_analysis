@@ -26,17 +26,22 @@ const router = createRouter({
         {
           path: '/home',
           name: 'Home',
-          component: () => import('../views/home/index.vue')
+          component: () => import('@/views/home/index.vue')
         },
         {
           path: '/summary_report',
           name: 'SummaryReport',
-          component: () => import('../views/total/totalM.vue')
+          component: () => import('@/views/total/totalM.vue')
         },
         {
           path: '/operational_analysis_chart',
           name: 'OperationalAnalysisChart',
-          component: () => import('../views/total/totalS.vue')
+          component: () => import('@/views/total/totalS.vue')
+        },
+        {
+          path: '/member_bet_inquiry',
+          name: 'MemberBetQuery',
+          component: () => import('@/views/operationCenter/memberBetQuery/index.vue')
         }
       ]
     }

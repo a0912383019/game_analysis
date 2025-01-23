@@ -57,4 +57,34 @@ axiosGoInstance.interceptors.response.use(
   }
 )
 
+// T: api 參數結構
+// R: api 回傳結構
+export const apiGet = <T extends Record<string, any> | undefined, R = any>(
+  url: string,
+  params?: T
+): Promise<ApiResponse<R>> => {
+  return axiosGoInstance.get(url, { params })
+}
+
+export const apiPost = <T extends Record<string, any> | undefined, R = any>(
+  url: string,
+  params?: T
+): Promise<ApiResponse<R>> => {
+  return axiosGoInstance.post(url, params)
+}
+
+export const apiPut = <T extends Record<string, any> | undefined, R = any>(
+  url: string,
+  params?: T
+): Promise<ApiResponse<R>> => {
+  return axiosGoInstance.put(url, params)
+}
+
+export const apiDelete = <T extends Record<string, any> | undefined, R = any>(
+  url: string,
+  params?: T
+): Promise<ApiResponse<R>> => {
+  return axiosGoInstance.delete(url, { params })
+}
+
 export default axiosGoInstance

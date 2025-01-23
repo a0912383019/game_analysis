@@ -2,6 +2,56 @@
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.14);
 }
 
-// .cdp-section {
+.cdp-section {
+  margin: 15px 15px;
+  border-radius: 5px;
+  border: 1px solid rgba(165, 177, 197, 0.2);
+  background: #fff;
+}
 
-// }
+.ant-select {
+  width: 100%;
+  .ant-select-selector {
+    border-radius: 2px !important;
+  }
+  &.has-placeholder::after {
+    display: inline-block !important;
+    content: var(--placeholder-text);
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%) translateZ(0);
+    color: #a8abb2;
+    background-color: #fff;
+    line-height: 1em !important;
+    font-size: 14px;
+    transition:
+      top 0.2s,
+      font-size 0.2s,
+      background-color 0.1s !important;
+    pointer-events: none;
+    padding-inline-start: 3px !important;
+    padding-inline-end: 2px !important;
+  }
+
+  &.ant-select-open.has-placeholder::after,
+  &.is-active.has-placeholder::after {
+    top: 0px;
+    font-size: 0.75em;
+    padding-inline-start: 3px !important;
+    padding-inline-end: 2px !important;
+  }
+}
+
+.ant-select-dropdown {
+  .checkbox-wrap {
+    padding: 4px 8px 8px;
+    cursor: pointer;
+    .ant-checkbox-wrapper {
+      width: 100%;
+    }
+  }
+  .ant-divider {
+    margin: 0;
+  }
+}
