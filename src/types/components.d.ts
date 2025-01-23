@@ -34,14 +34,29 @@ declare module 'vue' {
     ASpin: typeof import('ant-design-vue/es')['Spin']
     ASubMenu: typeof import('ant-design-vue/es')['SubMenu']
     CdpIcon: typeof import('./../components/CdpIcon.vue')['default']
+<<<<<<< HEAD
     copy: typeof import('./../components/input/antSelect copy.vue')['default']
     CurrencySignText: typeof import('./../layout/headerBar/components/currencySignText.vue')['default']
     Headerbar: typeof import('./../layout/headerBar/headerbar.vue')['default']
     LoadingBox: typeof import('./../components/LoadingBox.vue')['default']
+=======
+    CurrencySignText: typeof import('./../layout/headerBar/components/currencySignText.vue')['default']
+    Example: typeof import('./../views/Example.vue')['default']
+    Headerbar: typeof import('./../layout/headerBar/headerbar.vue')['default']
+    Home: typeof import('./../views/home/index.vue')['default']
+    LoadingBox: typeof import('./../components/LoadingBox.vue')['default']
+    Login: typeof import('./../views/Login.vue')['default']
+>>>>>>> d38964e ([add] login page)
     Main: typeof import('./../layout/Main.vue')['default']
     PlatformGroup: typeof import('./../layout/headerBar/components/platformGroup.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Sidebar: typeof import('./../layout/sidebar/sidebar.vue')['default']
+<<<<<<< HEAD
+=======
+    TopCard: typeof import('./../views/home/topCard.vue')['default']
+    TotalM: typeof import('./../views/Total/TotalM.vue')['default']
+    TotalS: typeof import('./../views/Total/TotalS.vue')['default']
+>>>>>>> d38964e ([add] login page)
   }
 }
