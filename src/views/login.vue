@@ -19,6 +19,44 @@ const googleLoginCallback: CallbackTypes.CredentialCallback = (response) => {
 }
 </script>
 <template>
-  <GoogleLogin :callback="googleLoginCallback" prompt auto-login />
+  <div class="container">
+    <div class="content">
+      <div class="login-logo"></div>
+      <GoogleLogin :callback="googleLoginCallback"  prompt auto-login login />
+    </div>
+  </div>
+  <div class="login-img" ></div>
 </template>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100vw;  
+  height: 100vh;
+  z-index: 10;     
+  max-width: unset;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+.login-logo {
+  width: 116px;
+  height: 65px;
+  flex-shrink: 0;
+  background: url('@/assets/images/loginLogo.png') center / contain no-repeat;
+}
+.login-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('@/assets/images/loginImg.png') center / cover no-repeat;
+  z-index: -1;
+}
+</style>

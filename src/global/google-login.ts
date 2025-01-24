@@ -11,7 +11,7 @@ export const googleLoginRegister = (app: ReturnType<typeof createApp>) => {
   app.use(vue3GoogleLogin, {
     clientId,
     buttonConfig: {
-      theme: 'filled_black',
+      theme: 'outline',
       type: 'standard',
       size: 'large',
       shape: 'pill'
