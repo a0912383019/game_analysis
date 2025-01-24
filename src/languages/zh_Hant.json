@@ -43,12 +43,6 @@
     "amount": "單量",
     "people_num": "人數"
   },
-  "currency": {
-    "currency": "幣別：",
-    "currency_$": "台幣",
-    "currency_¥": "人民幣",
-    "currency_₱": "菲律賓披索"
-  },
   "lobby_group": {
     "live": "視訊",
     "prob": "電子",
@@ -76,6 +70,7 @@
   "common": {
     "logout": "登出",
     "all": "全部",
+    "select_all": "全選",
     "totals": "總計",
     "content": "內容",
     "search": "搜尋",
@@ -93,7 +88,7 @@
     "select_risk_label": "請選擇風險標籤",
     "select_game_label": "請選擇遊戲標籤",
     "required_select_hall": "需選擇一個廳",
-    "hall": "廳主",
+    "hall": "廳",
     "hall_name": "廳主名稱",
     "game": "遊戲",
     "player": "玩家",
@@ -108,14 +103,16 @@
     "risk_label": "風險標籤",
     "game_play": "遊戲及玩法",
     "member_id": "會員ID",
+    "accout": "帳號",
+    "id": "Id",
     "member_id_example": "會員ID (A,B,C...)",
     "member_account": "會員帳號",
     "member_quantity": "會員數",
     "search_method": "搜尋方式",
     "profit_ratio": "獲利率",
-    "overall_profit": "整體獲利",
+    "overall_profit": "整體獲利(%)",
     "member_win_rate": "會員勝率",
-    "single_game_profit": "單一遊戲獲利",
+    "single_game_profit": "單一遊戲獲利(%)",
     "profit_comparison_by_game": "遊戲獲利比",
     "profit_share_by_game": "佔獲利比",
     "game_type": "遊戲種類",

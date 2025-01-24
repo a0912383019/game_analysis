@@ -14,6 +14,8 @@ dist-ssr
 coverage
 *.local
 
+/scr/types/auto-imports.d.ts
+/scr/types/components.d.ts
 /public/js/system_config.ts
 
 /cypress/videos/

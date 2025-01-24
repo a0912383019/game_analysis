@@ -14,39 +14,15 @@
   .ant-select-selector {
     border-radius: 2px !important;
   }
-  &.has-placeholder::after {
-    display: inline-block !important;
-    content: var(--placeholder-text);
-    position: absolute;
-    left: 14px;
-    top: 50%;
-    transform: translateY(-50%) translateZ(0);
-    color: #a8abb2;
-    background-color: #fff;
-    line-height: 1em !important;
-    font-size: 14px;
-    transition:
-      top 0.2s,
-      font-size 0.2s,
-      background-color 0.1s !important;
-    pointer-events: none;
-    padding-inline-start: 3px !important;
-    padding-inline-end: 2px !important;
-  }
-
-  &.ant-select-open.has-placeholder::after,
-  &.is-active.has-placeholder::after {
-    top: 0px;
-    font-size: 0.75em;
-    padding-inline-start: 3px !important;
-    padding-inline-end: 2px !important;
-  }
 }
 
 .ant-select-dropdown {
   .checkbox-wrap {
     padding: 4px 8px 8px;
     cursor: pointer;
+    .ant-checkbox-inner {
+      border-radius: 0px;
+    }
     .ant-checkbox-wrapper {
       width: 100%;
     }
@@ -54,4 +30,53 @@
   .ant-divider {
     margin: 0;
   }
+}
+
+.ant-select-lg {
+  font-size: 14px;
+  .ant-select-selection-overflow-item {
+    top: -2px !important;
+  }
+  &.ant-select-multiple .ant-select-selection-item {
+    height: 24px;
+    line-height: 22px;
+    border-radius: 0px;
+  }
+}
+
+.ant-input {
+  border-radius: 0 2px 2px 0 !important;
+}
+
+.has-placeholder::after {
+  display: inline-block !important;
+  content: var(--placeholder-text);
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%) translateZ(0);
+  color: #a8abb2;
+  background-color: #fff;
+  line-height: 1em !important;
+  font-size: 14px;
+  transition:
+    top 0.2s,
+    font-size 0.2s,
+    background-color 0.1s !important;
+  pointer-events: none;
+  padding-inline-start: 3px !important;
+  padding-inline-end: 2px !important;
+}
+
+.ant-select-open.has-placeholder::after,
+.is-active.has-placeholder::after {
+  top: 0px;
+  font-size: 12px !important;
+  padding-inline-start: 3px !important;
+  padding-inline-end: 2px !important;
+}
+
+.ant-input-group-addon {
+  border-radius: 2px 0 0 2px !important;
+  background-color: #FFFFFF !important;
 }
