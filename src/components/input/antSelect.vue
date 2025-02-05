@@ -1,11 +1,12 @@
 <script lang="ts" setup>
-import type { AntSelectProps } from '@/types/entities/components/inputs'
+import type { AntSelectProps } from './inputs'
 import type { SelectProps } from 'ant-design-vue'
 
 const props = withDefaults(defineProps<AntSelectProps>(), {
   disabled: false,
   allowClear: true,
   hasPlaceholder: true,
+  defaultAll: true,
   handleChange: () => {}
 })
 
@@ -61,6 +62,13 @@ const selectAll = (status: boolean) => {
     emit('update:modelValue', [])
   }
 }
+
+onMounted(() => {
+  // 多選預設全選
+  if (props.mode === 'multiple' && props.defaultAll) {
+    selectAll(true)
+  }
+})
 </script>
 <template>
   <a-select
@@ -69,6 +77,7 @@ const selectAll = (status: boolean) => {
     :style="{ '--placeholder-text': `'${placeholder}'` }"
     size="large"
     :showArrow="true"
+    class="cdp-select"
     :class="{
       'has-placeholder': props.hasPlaceholder,
       'is-active': isActive
@@ -93,4 +102,35 @@ const selectAll = (status: boolean) => {
     </template>
   </a-select>
 </template>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.cdp-select {
+  width: 100%;
+  :deep(.ant-select-selector) {
+    border-radius: 2px !important;
+    font-size: 14px;
+    padding-left: 8px;
+    .ant-select-selection-overflow-item {
+      .ant-select-selection-item {
+        height: 24px;
+        line-height: 22px;
+        border-radius: 0px;
+      }
+    }
+  }
+}
+.ant-select-dropdown {
+  .checkbox-wrap {
+    padding: 4px 8px 8px;
+    cursor: pointer;
+    .ant-checkbox-inner {
+      border-radius: 0px;
+    }
+    .ant-checkbox-wrapper {
+      width: 100%;
+    }
+  }
+  .ant-divider {
+    margin: 0;
+  }
+}
+</style>

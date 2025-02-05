@@ -1,96 +1,98 @@
 <script lang="ts" setup>
-import type { AntSelectProps } from '@/types/entities/components/inputs'
-import type { SelectProps } from 'ant-design-vue'
+import { Dayjs } from 'dayjs'
+import dayjs from '@/utils/appDayjs'
+import { useDateStore } from '@/stores'
+import type { AppRangePickerProps } from './inputs'
 
-const props = withDefaults(defineProps<AntSelectProps>(), {
-  disabled: false,
-  allowClear: true,
-  hasPlaceholder: true,
-  handleChange: () => {}
+const props = withDefaults(defineProps<AppRangePickerProps>(), {
+  disabledDays: 60, // 預設 60天
+  rangeConfig: 1
 })
 
-const emit = defineEmits(['update:modelValue'])
+const { dateRangeConfig1, dateRangeConfig2 } = useDateStore()
 
-const isActive = computed<boolean>(() => {
-  if (props.modelValue === null || props.modelValue === undefined) {
-    return false
-  }
-  if (Array.isArray(props.modelValue)) {
-    return props.modelValue.length > 0
-  }
-  return true
-})
-
-const placeholder = computed<string | undefined>(() => {
-  if (props.modelValue === null || props.modelValue === undefined) {
-    return props.placeHolderText
-  }
-  if (Array.isArray(props.modelValue)) {
-    return props.modelValue.length > 0 ? props.placeHolderValuableText : props.placeHolderText
-  }
-  return props.placeHolderValuableText
-})
-
-const allBinding = computed(() => ({
-  value: props.modelValue,
-  allowClear: props.allowClear,
-  disabled: props.disabled,
-  mode: props.mode,
-  onChange: (value: string | string[]) => {
-    emit('update:modelValue', value)
-    props.handleChange?.(value)
-  }
-}))
-
-const formatOptions = computed<SelectProps['options']>(() => props.options || [])
-
-const selectAllBtn = computed<boolean>(() => {
-  if (Array.isArray(props.modelValue)) {
-    return formatOptions.value?.length === props.modelValue.length
-  }
-  return false
-})
-
-const selectAll = (status: boolean) => {
-  if (status) {
-    emit(
-      'update:modelValue',
-      formatOptions.value?.map((item) => item.value)
-    )
+const shortcuts = computed(() => {
+  if (props.rangeConfig === 1) {
+    return dateRangeConfig1 // 多種快捷
+  } else if (props.rangeConfig === 2) {
+    return dateRangeConfig2 // 7天快捷
   } else {
-    emit('update:modelValue', [])
+    return []
   }
+})
+
+const bindingValue = ref<[Dayjs, Dayjs] | undefined>(
+  props.defaultDates
+    ? ([
+        _.isString(props.defaultDates[0]) ? dayjs(props.defaultDates[0]) : props.defaultDates[0],
+        _.isString(props.defaultDates[1]) ? dayjs(props.defaultDates[1]) : props.defaultDates[1]
+      ] as [Dayjs, Dayjs])
+    : undefined
+)
+
+const hackValue = ref<[Dayjs, Dayjs] | undefined>()
+
+const disabledDate = (current: Dayjs) => {
+  // 禁用超過今天的日期
+  const disabledAfterToday = current > dayjs().endOf('day')
+  // 如果沒有選擇日期範圍
+  if (!bindingValue.value || bindingValue.value.length !== 2) {
+    return disabledAfterToday
+  }
+
+  const [start, end] = bindingValue.value
+
+  // 禁用超過 x 天以外的日期
+  const tooLate = start && current.diff(start, 'days') > props.disabledDays - 1
+  const tooEarly = end && end.diff(current, 'days') > props.disabledDays - 1
+
+  return disabledAfterToday || tooLate || tooEarly
+}
+
+const onOpenChange = (open: boolean) => {
+  if (open) {
+    bindingValue.value = [] as any
+  } else {
+    bindingValue.value = hackValue.value
+  }
+}
+
+const emit = defineEmits(['update:value'])
+
+const onChange = (val: [string | Dayjs, string | Dayjs]) => {
+  bindingValue.value = [
+    _.isString(val[0]) ? dayjs(val[0]) : val[0],
+    _.isString(val[1]) ? dayjs(val[1]) : val[1]
+  ] as [Dayjs, Dayjs]
+  hackValue.value = [
+    _.isString(val[0]) ? dayjs(val[0]) : val[0],
+    _.isString(val[1]) ? dayjs(val[1]) : val[1]
+  ] as [Dayjs, Dayjs]
+
+  emit('update:value', bindingValue.value)
+}
+
+const onCalendarChange = (val: [string | Dayjs, string | Dayjs]) => {
+  bindingValue.value = [
+    _.isString(val[0]) ? dayjs(val[0]) : val[0],
+    _.isString(val[1]) ? dayjs(val[1]) : val[1]
+  ] as [Dayjs, Dayjs]
 }
 </script>
 <template>
-  <a-select
-    v-bind="allBinding"
-    :options="formatOptions"
-    :style="{ '--placeholder-text': `'${placeholder}'` }"
+  <a-range-picker
+    :value="bindingValue"
+    :allowClear="false"
+    class="w-full cdp-range-picker has-placeholder is-active"
+    format="YYYY-MM-DD"
+    @openChange="onOpenChange"
+    @change="onChange"
+    @calendarChange="onCalendarChange"
+    :disabled-date="disabledDate"
+    :presets="shortcuts"
     size="large"
-    :showArrow="true"
-    :class="{
-      'has-placeholder': props.hasPlaceholder,
-      'is-active': isActive
-    }"
-    popupClassName="!rounded-none"
+    :style="{ '--placeholder-text': `'${$t('date.date_duration')}'` }"
   >
-    <template #suffixIcon>
-      <cdp-icon name="downOutline"></cdp-icon>
-    </template>
-    <template #dropdownRender="{ menuNode }">
-      <template v-if="props.mode === 'multiple'">
-        <div
-          class="w-full checkbox-wrap"
-          @click.stop
-          @pointerdown.prevent="selectAll(!selectAllBtn)"
-        >
-          <a-checkbox :checked="selectAllBtn">{{ $t('common.select_all') }}</a-checkbox>
-        </div>
-        <a-divider />
-      </template>
-      <component :is="menuNode" />
-    </template>
-  </a-select>
+  </a-range-picker>
 </template>
 <style lang="scss" scoped></style>

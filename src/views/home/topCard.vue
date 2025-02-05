@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { HomeCard } from '@/types/entities/home'
+import type { HomeCard } from './home'
 import { formatNumber } from '@/utils/commonUtils'
 
 const titleIcon = ['prob', 'live', 'card', 'fish', 'lottery']
@@ -99,7 +99,7 @@ onMounted(() => {
                 <div>{{ item.bet }}</div>
               </a-col>
               <a-col :span="12">
-                <div class="text-[13px] text-[#A5B1C5]">{{ $t('data_name.game_payoff') }}</div>
+                <div class="text-[13px] text-[#A5B1C5]">{{ $t('data_name.game_profit_loss') }}</div>
                 <div>{{ item.payoff }}</div>
               </a-col>
               <a-col :span="12">

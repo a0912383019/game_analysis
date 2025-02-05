@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useSidebarStore } from '@/stores/sidebar'
+import { useSidebarStore } from '@/stores'
 
 const sidebarStore = useSidebarStore()
 </script>

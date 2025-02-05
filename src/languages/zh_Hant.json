@@ -5,7 +5,17 @@
     "date_duration": "日期區間",
     "time_duration": "時間區間",
     "analysis_duration": "分析區間",
-    "compare_duration": "比較區間"
+    "compare_duration": "比較區間",
+    "start_time": "起始時間",
+    "end_time": "結束時間",
+    "today": "今天",
+    "yesterday": "昨天",
+    "last_7_days": "前7天",
+    "this_week": "本週",
+    "last_week": "上週",
+    "last_30_days": "前30天",
+    "this_month": "本月",
+    "last_month": "上月"
   },
   "sidebar": {
     "home": "首頁",
@@ -87,6 +97,8 @@
     "select_game_play": "請選擇遊戲及玩法",
     "select_risk_label": "請選擇風險標籤",
     "select_game_label": "請選擇遊戲標籤",
+    "select_start_time": "請選擇起始時間",
+    "select_end_time": "請選擇結束時間",
     "required_select_hall": "需選擇一個廳",
     "hall": "廳",
     "hall_name": "廳主名稱",
@@ -104,7 +116,7 @@
     "game_play": "遊戲及玩法",
     "member_id": "會員ID",
     "accout": "帳號",
-    "id": "Id",
+    "id": "ID",
     "member_id_example": "會員ID (A,B,C...)",
     "member_account": "會員帳號",
     "member_quantity": "會員數",
@@ -138,11 +150,11 @@
     "people_proportion": "人數比例",
     "total_bet_amount": "總下注額"
   },
-  "regional_volume_differences":{
+  "regional_volume_differences": {
     "bet_amount_growth_ratio": "貨量成長率",
     "country_region": "區域"
   },
-  "game_risk_analysis":{
+  "game_risk_analysis": {
     "game_overview": "遊戲概況",
     "game_bet_volume_ratio": "遊戲下注貨量比例",
     "member_betting_records": "會員投注紀錄",
@@ -158,7 +170,7 @@
     "payout_phase_ratio": "吐分期下注率",
     "bet_range": "投注範圍"
   },
-  "device_volume_difference":{
+  "device_volume_difference": {
     "volume_total": "貨量合計",
     "percentage_change": "差異",
     "personal_computer": "PC",
@@ -166,7 +178,7 @@
     "all_in_one": "AIO",
     "c_all_in_one": "cAIO"
   },
-  "member_bet_inquiry":{
+  "member_bet_inquiry": {
     "bet_slip": "注單",
     "betting_time": "下注時間",
     "game_hall": "遊戲大廳",
@@ -174,7 +186,7 @@
     "effective_bet_amount": "有效投注額",
     "bet_slip_status": "注單狀態"
   },
-  "operational_analysis_chart":{
+  "operational_analysis_chart": {
     "daily_avg_bet_amount": "日均貨量",
     "daily_avg_people_num": "日均人數",
     "daily_avg_order_quantity": "日均單量",
@@ -182,7 +194,7 @@
     "daily_avg_people_num_diff": "日均人數差異(比較-分析)",
     "daily_avg_order_quantity_diff": "日均單量差異(比較-分析)"
   },
-  "member_analysis":{
+  "member_analysis": {
     "last_update_time": "最後異動時間",
     "last_profit_date": "最後獲利日期",
     "common_login_ip": "常用登入IP",

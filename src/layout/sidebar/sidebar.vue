@@ -1,17 +1,14 @@
 <script lang="ts" setup>
-import { useSidebarStore } from '@/stores/sidebar'
+import { useSidebarStore } from '@/stores'
 import { sidebarIcon, SidebarIconType } from '@/../public/js/system_config'
-import type { MenuItem } from '@/types/entities/components/sidebar'
+import type { MenuItem } from './sidebar'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
 
 const sidebarStore = useSidebarStore()
 
-// const selectedKeys = ref<string[]>(['home'])
 const selectedKeys = computed<string[]>(() => {
-  console.log(route);
-
   return [route.path]
 })
 

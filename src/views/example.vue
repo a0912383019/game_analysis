@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { querySmallBoxData, addUser } from '@/api'
 import dayjs from 'dayjs'
+import { Dayjs } from 'dayjs'
 
 const querySmallBoxDataa = async () => {
   try {
@@ -67,6 +68,10 @@ const barChartOptions = reactive({
   ]
 })
 
+const datePickerChangeHandler = (date: [Dayjs, Dayjs] | undefined) => {
+  console.log(date)
+}
+
 onMounted(() => {
   console.log(dayjs().format())
   console.log(dayjs().toISOString())
@@ -79,6 +84,13 @@ onMounted(() => {
   <v-chart class="w-full" :option="barChartOptions" style="width: 600px; height: 400px"></v-chart>
   <div class="h-80 w-80" style="background-color: aqua">
     <span class="text-4xl">testest</span>
+    <ant-date-range
+      @update:value="datePickerChangeHandler"
+      :disabledDays="7"
+      :rangeConfig="2"
+      :showTime="true"
+    ></ant-date-range>
   </div>
+  <cdp-button-group />
 </template>
 <style lang="scss" scoped></style>

@@ -1,5 +1,5 @@
 import axios, { AxiosResponse, AxiosError, InternalAxiosRequestConfig, AxiosInstance } from 'axios'
-import { useGlobalStore } from '@/stores/global'
+import { useGlobalStore } from '@/stores'
 
 const baseURL: string = import.meta.env.VITE_API_GO_BASE_URL as string
 

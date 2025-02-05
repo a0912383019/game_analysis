@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import { useSidebarStore } from '@/stores/sidebar'
-import { useGlobalStore } from '@/stores/global'
+import { useSidebarStore, useGlobalStore } from '@/stores'
 import { platformDict } from '@/../public/js/system_config'
 
 const sidebarStore = useSidebarStore()
