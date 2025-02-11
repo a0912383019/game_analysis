@@ -224,6 +224,7 @@ onMounted(() => {
         }
         &:hover {
           color: #ffe5aa;
+          background-color: unset;
         }
         &:not(.ant-menu-item-selected):active {
           background-color: unset;
@@ -252,6 +253,7 @@ onMounted(() => {
           border-radius: 0px 60px 60px 0px;
           &:hover {
             color: #ffe5aa;
+            background-color: unset;
           }
           &:active {
             background-color: #ffffff1a;
