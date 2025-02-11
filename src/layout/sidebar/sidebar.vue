@@ -203,15 +203,20 @@ onMounted(() => {
       display: none;
     }
     .ant-menu.ant-menu-root {
-      margin-top: 60px;
+      margin-top: 70px;
+    }
+    .ant-menu-item {
+      height: 44px !important;
+      line-height: 44px !important;
     }
     .ant-menu {
-      padding-right: 10px;
+      font-size: 16px;
       background: var(--primary-color);
       &.ant-menu-sub {
         background: none;
       }
       .ant-menu-item {
+        margin: 0;
         border-radius: 0px 60px 60px 0px;
         &-selected {
           background-color: #ffffff1a;
@@ -219,21 +224,22 @@ onMounted(() => {
         }
         &:hover {
           color: #ffe5aa;
-          background-color: #ffffff1a;
+          background-color: unset;
         }
         &:not(.ant-menu-item-selected):active {
-          background-color: #ffffff1a;
+          background-color: unset;
         }
         svg {
-          font-size: 14px;
+          font-size: 16px;
         }
       }
       .ant-menu-submenu {
         .ant-menu-item {
+          margin-left: -20px;
           > span::before {
             content: '';
             display: inline-block;
-            margin-right: 10px;
+            margin-right: 14px;
             width: 8px;
             height: 8px;
             -moz-border-radius: 4px;
@@ -242,15 +248,12 @@ onMounted(() => {
             background-color: #ffffff1a;
           }
         }
-        .ant-menu-item:hover {
-          color: #fff;
-          background-color: #ffffff1a;
-        }
         .ant-menu-submenu-title {
+          margin-inline: 0;
           border-radius: 0px 60px 60px 0px;
           &:hover {
             color: #ffe5aa;
-            background-color: #ffffff1a;
+            background-color: unset;
           }
           &:active {
             background-color: #ffffff1a;
@@ -258,8 +261,11 @@ onMounted(() => {
           .ant-menu-title-content:active {
             background-color: unset;
           }
+          .ant-menu-submenu-arrow {
+          display: none !important;
+          }
           svg {
-            font-size: 14px;
+            font-size: 16px;
           }
         }
         &.ant-menu-submenu-selected {
@@ -273,13 +279,10 @@ onMounted(() => {
             }
           }
           .ant-menu-item-selected {
+            background-color: unset;
             > span::before {
               background-color: #ffe5aa;
             }
-            &:hover {
-              background-color: #ffffff1a;
-            }
-            background-color: initial;
             color: #ffe5aa;
           }
         }
@@ -290,13 +293,18 @@ onMounted(() => {
 </style>
 <style lang="scss">
 .sidebar__sub-menu {
+  .ant-menu-item {
+      height: 44px !important;
+      line-height: 44px !important;
+    }
   .ant-menu {
+    font-size: 16px;
     background-color: var(--primary-color) !important;
     .ant-menu-item {
       > span::before {
         content: '';
         display: inline-block;
-        margin-right: 10px;
+        margin-right: 14px;
         width: 8px;
         height: 8px;
         -moz-border-radius: 4px;
@@ -304,6 +312,9 @@ onMounted(() => {
         border-radius: 4px;
         background-color: #ffffff1a;
       }
+      &:hover {
+          color: #ffe5aa !important;
+        }
     }
     .ant-menu-item-selected {
       color: #ffe5aa;
