@@ -1,25 +1,33 @@
-// BuildEnv: local
-
 type ConfigMap = {
-  name: string
+  name: string,
+  key: string,
   pColor: string
 }
 
 export const platformDict: ConfigMap[] = [
   {
     name: 'BBIN',
+    key: 'bbin',
     pColor: '#061127'
   },
   {
     name: 'BBGP',
+    key: 'bbgp',
     pColor: '#18242C'
   },
   {
-    name: 'XC',
+    name: 'XC台灣站',
+    key: 'xc-tw',
+    pColor: '#28182C'
+  },
+  {
+    name: 'XC馬來站',
+    key: 'xc-ml',
     pColor: '#28182C'
   },
   {
     name: 'Midori',
+    key: 'midori',
     pColor: '#332E21'
   }
 ]

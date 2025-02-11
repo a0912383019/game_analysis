@@ -3,7 +3,6 @@ import { Dayjs } from 'dayjs'
 import type { AppDatePickerProps } from './inputs'
 
 const props = withDefaults(defineProps<AppDatePickerProps>(), {
-  disabledDays: 60, // 預設 60天
   showTime: false
 })
 

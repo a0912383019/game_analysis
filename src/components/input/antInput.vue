@@ -12,7 +12,7 @@ const emit = defineEmits(['update:modelValue'])
 
 const allBinding = computed(() => ({
   value: props.modelValue,
-  onChange: (e: any) => {
+  onChange: (e: Event) => {
     if (props.type === 'text') {
       const val = (e.target as HTMLInputElement)?.value
       emit('update:modelValue', val?.trim())

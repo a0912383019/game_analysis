@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useSidebarStore } from '@/stores'
-import { sidebarIcon, SidebarIconType } from '@/../public/js/system_config'
+import { sidebarIcon, SidebarIconType } from '@/config/systemConfig'
 import type { MenuItem } from './sidebar'
 import { useRoute } from 'vue-router'
 
@@ -9,8 +9,30 @@ const route = useRoute()
 const sidebarStore = useSidebarStore()
 
 const selectedKeys = computed<string[]>(() => {
-  return [route.path]
+  // 根據路由路徑設定選中的 key
+  const { activeItem } = findMenuItemAndParentKey(route.path)
+
+  console.log(activeItem)
+
+  return activeItem ? [activeItem.key] : []
 })
+
+const openKeys = ref<string[]>([])
+
+const findMenuItemAndParentKey = (path: string) => {
+  for (const item of menuList.value) {
+    if (item.urlPath === path) {
+      return { activeItem: item, parentKey: null }
+    }
+    if (item.child) {
+      const child = item.child.find((c) => c.urlPath === path)
+      if (child) {
+        return { activeItem: child, parentKey: item.key }
+      }
+    }
+  }
+  return { activeItem: null, parentKey: null }
+}
 
 const toggleCollapsed = () => {
   sidebarStore.isSidebarClose = !sidebarStore.isSidebarClose
@@ -22,41 +44,54 @@ const toggleIconName = computed<string>(() =>
 
 const menuList = ref<MenuItem[]>([
   {
+    key: '1',
     name: 'home',
     urlPath: '/home'
   },
   {
+    key: '2',
     name: 'operations_center',
     child: [
-      { name: 'summary_report', urlPath: '/summary_report' },
-      { name: 'operational_analysis_chart', urlPath: '/operational_analysis_chart' },
-      { name: 'regional_volume_differences', urlPath: '/regional_volume_differences' },
-      { name: 'device_volume_difference', urlPath: '/device_volume_difference' },
-      { name: 'member_bet_inquiry', urlPath: '/member_bet_inquiry' },
-      { name: 'game_comparison_chart', urlPath: '/game_comparison_chart' }
+      { key: '3', name: 'summary_report', urlPath: '/summary_report' },
+      { key: '4', name: 'operational_analysis_chart', urlPath: '/operational_analysis_chart' },
+      { key: '5', name: 'regional_volume_differences', urlPath: '/regional_volume_differences' },
+      { key: '6', name: 'device_volume_difference', urlPath: '/device_volume_difference' },
+      { key: '7', name: 'member_bet_inquiry', urlPath: '/member_bet_inquiry' },
+      { key: '8', name: 'game_comparison_chart', urlPath: '/game_comparison_chart' }
     ]
   },
   {
+    key: '9',
     name: 'risk_center',
     urlPath: '/risk_center'
   },
   {
+    key: '10',
     name: 'member_center',
     urlPath: '/member_center'
   },
   {
+    key: '11',
     name: 'live_report',
     urlPath: '/live_report'
   },
   {
+    key: '12',
     name: 'prob_report',
     urlPath: '/prob_report'
   },
   {
+    key: '13',
     name: 'user_management',
     urlPath: '/user_management'
   }
 ])
+
+onMounted(() => {
+  // 第一次載入或是刷新頁面會根據路由高亮選單並展開
+  const { parentKey } = findMenuItemAndParentKey(route.path)
+  openKeys.value = parentKey ? [parentKey] : []
+})
 </script>
 <template>
   <a-button
@@ -72,27 +107,36 @@ const menuList = ref<MenuItem[]>([
   <a-layout class="sidebar">
     <a-layout-sider v-model:collapsed="sidebarStore.isSidebarClose" collapsible>
       <transition name="fade">
-        <div v-show="!sidebarStore.isSidebarClose" class="logo"></div
-      ></transition>
-      <a-menu theme="dark" v-model:selectedKeys="selectedKeys" mode="inline">
+        <div v-show="!sidebarStore.isSidebarClose" class="logo"></div>
+      </transition>
+      <a-menu
+        theme="dark"
+        v-model:selectedKeys="selectedKeys"
+        mode="inline"
+        v-model:openKeys="openKeys"
+      >
         <template v-for="menuItem in menuList">
-          <a-sub-menu v-if="menuItem.child" :popupClassName="'sidebar__sub-menu'">
-            <template #title>{{ $t(`sidebar.${menuItem.name}`) }}</template>
-            <template #icon>
-              <cdp-icon :name="sidebarIcon[menuItem.name as SidebarIconType]" />
-            </template>
-            <a-menu-item v-for="child in menuItem.child" :key="child.urlPath">
-              <router-link :to="child.urlPath || '/'"></router-link>
-              <span> {{ $t(`sidebar.${child.name}`) }} </span>
+          <template v-if="menuItem.child">
+            <a-sub-menu :popupClassName="'sidebar__sub-menu'" :key="menuItem.key">
+              <template #title>{{ $t(`sidebar.${menuItem.name}`) }}</template>
+              <template #icon>
+                <cdp-icon :name="sidebarIcon[menuItem.name as SidebarIconType]" />
+              </template>
+              <a-menu-item v-for="child in menuItem.child" :key="child.key">
+                <router-link :to="child.urlPath || '/'"></router-link>
+                <span> {{ $t(`sidebar.${child.name}`) }} </span>
+              </a-menu-item>
+            </a-sub-menu>
+          </template>
+          <template v-else>
+            <a-menu-item :key="menuItem.key">
+              <template #icon>
+                <cdp-icon :name="sidebarIcon[menuItem.name as SidebarIconType]" />
+              </template>
+              <router-link :to="menuItem.urlPath || '/'"></router-link>
+              <span> {{ $t(`sidebar.${menuItem.name}`) }} </span>
             </a-menu-item>
-          </a-sub-menu>
-          <a-menu-item v-else :key="menuItem.urlPath">
-            <template #icon>
-              <cdp-icon :name="sidebarIcon[menuItem.name as SidebarIconType]" />
-            </template>
-            <router-link :to="menuItem.urlPath || '/'"></router-link>
-            <span> {{ $t(`sidebar.${menuItem.name}`) }} </span>
-          </a-menu-item>
+          </template>
         </template>
       </a-menu>
     </a-layout-sider>

@@ -36,7 +36,6 @@ export interface AppTimeRangeProps {
 }
 
 export interface AppDatePickerProps {
-  disabledDays?: number // 禁用超過的天數
   showTime?: boolean // 快捷選項
   placeHolderText?: string
 }
