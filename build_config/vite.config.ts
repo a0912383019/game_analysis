@@ -20,12 +20,14 @@ export default ({ mode }) => {
       }),
       Components({
         resolvers: [AntDesignVueResolver({ importStyle: false })],
+        dirs: ['src/components', 'src/layout'],
         dts: './src/types/components.d.ts'
       })
     ],
     css: {
       preprocessorOptions: {
         scss: {
+          api: 'modern-compiler',
           additionalData: `@use "@/assets/css/global.scss" as *;`
         }
       }

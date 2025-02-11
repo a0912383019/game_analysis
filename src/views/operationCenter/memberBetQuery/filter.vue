@@ -42,7 +42,7 @@ const memberProps = computed<AntInputProps>(() => {
   }
 })
 
-const overallProfitValue = ref<number | null>(null)
+const overallProfitValue = ref<number | undefined>(undefined)
 const overallProfitProps = computed<AntInputProps>(() => {
   return {
     placeHolderText: t('common.overall_profit'),
@@ -50,7 +50,7 @@ const overallProfitProps = computed<AntInputProps>(() => {
   }
 })
 
-const oneGameProfitValue = ref<number | null>(null)
+const oneGameProfitValue = ref<number | undefined>(undefined)
 const oneGameProfitProps = computed<AntInputProps>(() => {
   return {
     placeHolderText: t('common.single_game_profit'),

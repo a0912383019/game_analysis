@@ -1,4 +1,7 @@
-# yu_pro
+# game
+
+## 須先檢查再部署
+npm run type-check
 
 This template should help get you started developing with Vue 3 in Vite.
 
