@@ -203,15 +203,21 @@ onMounted(() => {
       display: none;
     }
     .ant-menu.ant-menu-root {
-      margin-top: 60px;
+      margin-top: 70px;
+    }
+    .ant-menu-item {
+      height: 44px !important;
+      line-height: 44px !important;
     }
     .ant-menu {
-      padding-right: 10px;
+      font-size: 16px;
       background: var(--primary-color);
       &.ant-menu-sub {
         background: none;
       }
       .ant-menu-item {
+        margin: 0;
+        width: 236px;
         border-radius: 0px 60px 60px 0px;
         &-selected {
           background-color: #ffffff1a;
@@ -219,21 +225,21 @@ onMounted(() => {
         }
         &:hover {
           color: #ffe5aa;
-          background-color: #ffffff1a;
         }
         &:not(.ant-menu-item-selected):active {
           background-color: #ffffff1a;
         }
         svg {
-          font-size: 14px;
+          font-size: 16px;
         }
       }
       .ant-menu-submenu {
         .ant-menu-item {
+          margin-left: -20px;
           > span::before {
             content: '';
             display: inline-block;
-            margin-right: 10px;
+            margin-right: 14px;
             width: 8px;
             height: 8px;
             -moz-border-radius: 4px;
@@ -242,15 +248,12 @@ onMounted(() => {
             background-color: #ffffff1a;
           }
         }
-        .ant-menu-item:hover {
-          color: #fff;
-          background-color: #ffffff1a;
-        }
         .ant-menu-submenu-title {
+          width: 236px;
+          margin-inline: 0;
           border-radius: 0px 60px 60px 0px;
           &:hover {
             color: #ffe5aa;
-            background-color: #ffffff1a;
           }
           &:active {
             background-color: #ffffff1a;
@@ -258,13 +261,15 @@ onMounted(() => {
           .ant-menu-title-content:active {
             background-color: unset;
           }
+          .ant-menu-submenu-arrow {
+          display: none !important;
+          }
           svg {
-            font-size: 14px;
+            font-size: 16px;
           }
         }
         &.ant-menu-submenu-selected {
           .ant-menu-submenu-title {
-            background-color: #ffffff1a;
             .ant-menu-title-content {
               color: #ffe5aa;
             }
@@ -276,10 +281,6 @@ onMounted(() => {
             > span::before {
               background-color: #ffe5aa;
             }
-            &:hover {
-              background-color: #ffffff1a;
-            }
-            background-color: initial;
             color: #ffe5aa;
           }
         }
@@ -296,7 +297,7 @@ onMounted(() => {
       > span::before {
         content: '';
         display: inline-block;
-        margin-right: 10px;
+        margin-right: 14px;
         width: 8px;
         height: 8px;
         -moz-border-radius: 4px;
