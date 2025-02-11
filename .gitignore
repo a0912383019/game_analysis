@@ -16,7 +16,7 @@ coverage
 
 scr/types/auto-imports.d.ts
 src/types/components.d.ts
-/public/js/system_config.ts
+# /public/js/system_config.ts
 
 /cypress/videos/
 /cypress/screenshots/

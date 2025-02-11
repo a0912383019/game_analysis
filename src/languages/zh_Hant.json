@@ -47,7 +47,8 @@
     "currency": "幣別",
     "currency_¥": "人民幣",
     "currency_$": "台幣",
-    "currency_₱": "菲律賓披索"
+    "currency_₱": "菲律賓披索",
+    "currency_RM": "馬幣"
   },
   "unit": {
     "amount": "單量",
