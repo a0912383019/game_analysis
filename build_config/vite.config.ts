@@ -26,7 +26,7 @@ export default ({ mode }) => {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: `@use "@/assets/style/global.scss" as *;`
+          additionalData: `@use "@/assets/css/global.scss" as *;`
         }
       }
     },
