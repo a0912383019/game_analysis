@@ -226,7 +226,7 @@ onMounted(() => {
           color: #ffe5aa;
         }
         &:not(.ant-menu-item-selected):active {
-          background-color: #ffffff1a;
+          background-color: unset;
         }
         svg {
           font-size: 16px;
@@ -268,6 +268,7 @@ onMounted(() => {
         }
         &.ant-menu-submenu-selected {
           .ant-menu-submenu-title {
+            background-color: #ffffff1a;
             .ant-menu-title-content {
               color: #ffe5aa;
             }
@@ -276,6 +277,7 @@ onMounted(() => {
             }
           }
           .ant-menu-item-selected {
+            background-color: unset;
             > span::before {
               background-color: #ffe5aa;
             }
@@ -289,7 +291,12 @@ onMounted(() => {
 </style>
 <style lang="scss">
 .sidebar__sub-menu {
+  .ant-menu-item {
+      height: 44px !important;
+      line-height: 44px !important;
+    }
   .ant-menu {
+    font-size: 16px;
     background-color: var(--primary-color) !important;
     .ant-menu-item {
       > span::before {
@@ -303,6 +310,9 @@ onMounted(() => {
         border-radius: 4px;
         background-color: #ffffff1a;
       }
+      &:hover {
+          color: #ffe5aa !important;
+        }
     }
     .ant-menu-item-selected {
       color: #ffe5aa;
