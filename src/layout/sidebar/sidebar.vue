@@ -217,7 +217,6 @@ onMounted(() => {
       }
       .ant-menu-item {
         margin: 0;
-        width: 236px;
         border-radius: 0px 60px 60px 0px;
         &-selected {
           background-color: #ffffff1a;
@@ -249,7 +248,6 @@ onMounted(() => {
           }
         }
         .ant-menu-submenu-title {
-          width: 236px;
           margin-inline: 0;
           border-radius: 0px 60px 60px 0px;
           &:hover {
