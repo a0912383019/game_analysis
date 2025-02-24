@@ -64,4 +64,7 @@ const allBinding = computed(() => ({
     border-radius: 0 2px 2px 0 !important;
   }
 }
+.has-placeholder::after {
+  left: 20px;
+}
 </style>

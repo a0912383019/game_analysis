@@ -63,7 +63,6 @@
   },
   "home": {
     "read": "已讀",
-    "payoff": "損益",
     "last_seven_days": "近7日",
     "game_category": "遊戲類別",
     "game_categories": "遊戲大類",
@@ -115,6 +114,7 @@
     "game_label": "遊戲標籤",
     "risk_label": "風險標籤",
     "game_play": "遊戲及玩法",
+    "member": "會員",
     "member_id": "會員ID",
     "accout": "帳號",
     "id": "ID",
@@ -148,6 +148,7 @@
     "bonus_amount": "派彩",
     "game_profit_loss": "遊戲損益",
     "composite_rtp": "綜合RTP",
+    "payoff": "損益",
     "people_proportion": "人數比例",
     "total_bet_amount": "總下注額"
   },
@@ -182,6 +183,7 @@
   "member_bet_inquiry": {
     "bet_slip": "注單",
     "betting_time": "下注時間",
+    "betting_date": "下注日期",
     "game_hall": "遊戲大廳",
     "bet_amount": "投注額",
     "effective_bet_amount": "有效投注額",
