@@ -152,7 +152,7 @@ onMounted(() => {
   opacity: 0;
 }
 .sidebar-toggle-btn {
-  position: absolute;
+  position: fixed;
   top: 10px;
   left: 200px;
   z-index: 101;
@@ -183,6 +183,10 @@ onMounted(() => {
   background: url('@/assets/images/BBIN.png') var(--primary-color) 50% / contain no-repeat;
 }
 .sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
   z-index: 100;
   :deep(.ant-layout-sider) {
     transition: all 0.2s ease;

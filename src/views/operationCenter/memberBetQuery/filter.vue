@@ -3,10 +3,15 @@ import type { SelectProps } from 'ant-design-vue'
 import { useI18n } from 'vue-i18n'
 import type { AntSelectProps, AntInputProps } from '@/components/input/inputs'
 import { Dayjs } from 'dayjs'
+import { useMemberBetQueryStore } from '@/stores'
 
 const { t } = useI18n()
 
-const hallValue = ref<number[]>([])
+const memberBetQueryStore = useMemberBetQueryStore()
+const { searchParams } = memberBetQueryStore
+
+
+const hallValue = ref<number>(8)
 const hallOptions = ref<SelectProps['options']>([
   {
     value: 6,
@@ -27,8 +32,7 @@ const hallProps = computed<AntSelectProps>(() => {
     allowClear: false,
     placeHolderText: t('common.select_hall'),
     placeHolderValuableText: t('common.hall'),
-    options: hallOptions.value,
-    mode: 'multiple'
+    options: hallOptions.value
   }
 })
 
@@ -37,24 +41,67 @@ const accoutOrId = ref<string>('account')
 
 const memberProps = computed<AntInputProps>(() => {
   return {
-    placeHolderText: t('common.required_select_hall'),
-    disabled: hallValue.value.length === 0
+    placeHolderText: t('common.member')
   }
 })
 
-const overallProfitValue = ref<number | undefined>(undefined)
-const overallProfitProps = computed<AntInputProps>(() => {
+const lobbyValue = ref<string | undefined>(undefined)
+const lobbyOptions = ref<SelectProps['options']>([
+  {
+    value: 'live',
+    label: t('lobby_group.live')
+  },
+  {
+    value: 'prob',
+    label: t('lobby_group.prob')
+  },
+  {
+    value: 'card',
+    label: t('lobby_group.card')
+  },
+  {
+    value: 'fish',
+    label: t('lobby_group.fish')
+  },
+  {
+    value: 'lottery',
+    label: t('lobby_group.lottery')
+  }
+])
+
+const lobbyProps = computed<AntSelectProps>(() => {
   return {
-    placeHolderText: t('common.overall_profit'),
-    type: 'number'
+    allowClear: false,
+    placeHolderText: t('common.select_game_hall'),
+    placeHolderValuableText: t('common.hall'),
+    options: lobbyOptions.value
   }
 })
 
-const oneGameProfitValue = ref<number | undefined>(undefined)
-const oneGameProfitProps = computed<AntInputProps>(() => {
+const gameTypeValue = ref<number[]>([])
+const gameTypeOptions = ref<SelectProps['options']>([
+  {
+    value: 1,
+    label: '老虎機'
+  },
+  {
+    value: 2,
+    label: '泡泡糖'
+  },
+  {
+    value: 3,
+    label: '水果派對'
+  }
+])
+
+const gameTypeProps = computed<AntSelectProps>(() => {
   return {
-    placeHolderText: t('common.single_game_profit'),
-    type: 'number'
+    allowClear: false,
+    placeHolderText: t('common.select_game'),
+    placeHolderValuableText: t('common.game'),
+    options: gameTypeOptions.value,
+    defaultAll: false,
+    mode: 'multiple'
   }
 })
 
@@ -87,21 +134,23 @@ const timeEndChange = (date: Dayjs) => {
 }
 
 const search = () => {
-  console.log(hallValue.value)
-  console.log(memberValue.value)
-  console.log(overallProfitValue.value)
-  console.log(oneGameProfitValue.value)
-  console.log(typeValue.value)
-  console.log(timeDuration.value)
+  searchParams.hallValue = hallValue.value
+  searchParams.memberValue = memberValue.value
+  searchParams.lobbyValue = lobbyValue.value
+  searchParams.gameTypeValue = gameTypeValue.value
+  searchParams.typeValue = typeValue.value
+  searchParams.timeDuration = timeDuration.value
+
+  memberBetQueryStore.isFiltered = new Date().getTime()
 }
 
 const searchDisable = ref<boolean>(false)
 
 watch(
-  [() => hallValue.value, () => timeDuration.value],
+  () => timeDuration.value,
   () => {
     // 廳與時間必填
-    if (hallValue.value.length === 0 || timeDuration.value.includes(undefined)) {
+    if (timeDuration.value.includes(undefined)) {
       searchDisable.value = true
     } else {
       searchDisable.value = false
@@ -119,7 +168,7 @@ watch(
       <a-col :span="12">
         <ant-input v-model="memberValue" v-bind="memberProps">
           <template #addonBefore>
-            <a-select :value="accoutOrId" class="w-[90px]" popupClassName="!rounded-none">
+            <a-select v-model:value="accoutOrId" class="w-[75px]" popupClassName="!rounded-none">
               <a-select-option value="account">{{ $t('common.accout') }}</a-select-option>
               <a-select-option value="memberId">{{ $t('common.id') }}</a-select-option>
               <template #suffixIcon>
@@ -130,10 +179,10 @@ watch(
         </ant-input>
       </a-col>
       <a-col :span="12">
-        <ant-input v-model="overallProfitValue" v-bind="overallProfitProps"></ant-input>
+        <ant-select v-model="lobbyValue" v-bind="lobbyProps"></ant-select>
       </a-col>
       <a-col :span="12">
-        <ant-input v-model="oneGameProfitValue" v-bind="oneGameProfitProps"></ant-input>
+        <ant-select v-model="gameTypeValue" v-bind="gameTypeProps"></ant-select>
       </a-col>
       <a-col :span="12">
         <ant-select v-model="typeValue" v-bind="typeProps"></ant-select>

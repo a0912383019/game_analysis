@@ -41,3 +41,7 @@ export function formatNumber(n: number, precision: number = 0): string {
   const re = /(\d{1,3})(?=(\d{3})+$)/g
   return parts[0].replace(re, '$1,') + (parts.length === 2 ? '.' + parts[1] : '')
 }
+
+export const sortDate: (a: any, b: any) => number = (a, b) => {
+  return new Date(a.betTime).getTime() - new Date(b.betTime).getTime()
+}

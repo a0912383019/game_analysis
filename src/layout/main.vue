@@ -42,7 +42,7 @@ const getColorByName = (name: string): string => {
   &__rightbox {
     width: calc(100% - 250px);
     margin-left: auto;
-    padding: 60px 0px;
+    padding: 60px 0px 0px 0px;
     transition: all 0.2s ease;
     &.close {
       width: calc(100% - 80px);
