@@ -5,6 +5,11 @@ import { Dayjs } from 'dayjs'
 import type { AntSelectProps, AntInputProps } from '@/components/input/inputs'
 import { useI18n } from 'vue-i18n'
 import type { TableColumnsType } from 'ant-design-vue'
+import type { Rule } from 'ant-design-vue/es/form'
+import type { FormInstance } from 'ant-design-vue'
+import type { SelectProps } from 'ant-design-vue'
+// import { useI18n } from 'vue-i18n'
+// import type { AntSelectProps, AntInputProps } from '@/components/input/inputs'
 
 const { t } = useI18n()
 
@@ -163,7 +168,7 @@ const columns = ref<TableColumnsType[]>([
       dataIndex: 'betAmount',
       key: 'betAmount',
       align: 'center',
-      sorter: (a: any, b: any) => a.betAmount - b.betAmount,
+      sorter: (a: any, b: any) => a.betAmount - b.betAmount
     },
     {
       title: '有效投注額',
@@ -210,7 +215,7 @@ const data = ref([
         betAmount: '49.2',
         commissionable: '8,833.12',
         status: '已結',
-        innerLoading: true,  // 第二個子層的loading
+        innerLoading: true, // 第二個子層的loading
         innerData: []
       },
       {
@@ -329,6 +334,57 @@ const bbb = async (record) => {
 
 const fetchSubData = ref([aaa, bbb])
 
+const formRef = ref<FormInstance>()
+const formState = reactive({
+  pass: undefined,
+  checkPass: '',
+  age: undefined
+})
+
+const hallOptions = ref<SelectProps['options']>([
+  {
+    value: 6,
+    label: 'esx'
+  },
+  {
+    value: 7,
+    label: 'mdo'
+  },
+  {
+    value: 8,
+    label: 'bmw'
+  }
+])
+
+const hallProps = computed<AntSelectProps>(() => {
+  return {
+    allowClear: true,
+    placeHolderText: t('common.select_hall'),
+    placeHolderValuableText: t('common.hall'),
+    options: hallOptions.value
+  }
+})
+
+const checkAge = async (_rule: Rule, value: number) => {
+  if (!value) {
+    return Promise.reject('Please input the age')
+  }
+  if (!Number.isInteger(value)) {
+    return Promise.reject('Please input digits')
+  } else {
+    if (value < 18) {
+      return Promise.reject('Age must be greater than 18')
+    } else {
+      return Promise.resolve()
+    }
+  }
+}
+
+const rules: Record<string, Rule[]> = {
+  pass: [{ required: true, trigger: 'change' }],
+  age: [{ validator: checkAge, trigger: 'change' }]
+}
+
 onMounted(() => {
   console.log(dayjs().format())
   console.log(dayjs().toISOString())
@@ -359,5 +415,25 @@ onMounted(() => {
   </div>
   <cdp-button-group />
   <!-- <ant-input v-model="overallProfitValue" v-bind="overallProfitProps"></ant-input> -->
+  <div>
+    <a-form ref="formRef" name="custom-validation" :model="formState" :rules="rules">
+      <a-row class="mt-[20px] mb-[15px] !mx-[7.5px]" justify="left" :gutter="[15, 15]">
+        <a-col :span="12">
+          <a-form-item has-feedback name="pass">
+            <!-- <a-input v-model:value="formState.pass" type="password" autocomplete="off" /> -->
+            <ant-select v-model="formState.pass" v-bind="hallProps"></ant-select>
+          </a-form-item>
+        </a-col>
+        <a-col :span="12">
+          <a-form-item has-feedback label="Confirm" name="age">
+            <a-input v-model:value="formState.age" type="password" autocomplete="off" />
+          </a-form-item>
+        </a-col>
+        <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
+          <a-button type="primary" html-type="submit">Submit</a-button>
+        </a-form-item>
+      </a-row>
+    </a-form>
+  </div>
 </template>
 <style lang="scss" scoped></style>
