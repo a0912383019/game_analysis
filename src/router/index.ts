@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import mainLayout from '@/layout/main.vue'
 import { useGlobalStore } from '@/stores'
 
+// 不用登入即可觀看的頁面
+const whiteList = ['/login']
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -41,12 +44,22 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   const globalStore = useGlobalStore()
   globalStore.isLoading = true
-  next()
+
+  // 如果是白名單，直接進入
+  if (whiteList.includes(to.path)) {
+    return next()
+  }
+
+  // 檢查是否已登入
+  const isLogin = !!sessionStorage.getItem('user_info')
+
+  // 如果已登入，繼續跳轉；否則導向登入頁
+  isLogin ? next() : next({ name: 'Login' })
 })
 
 router.afterEach((to, from) => {
   const globalStore = useGlobalStore()
-  setTimeout(() => (globalStore.isLoading = false), 2000)
+  globalStore.isLoading = false
 })
 
 export default router

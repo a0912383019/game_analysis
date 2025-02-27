@@ -15,7 +15,17 @@ export default ({ mode }) => {
       svgBuilder('./src/assets/icons/'),
       AutoImport({
         include: [/\.[tj]sx?$/, /\.vue?$/],
-        imports: ['vue', 'vue-router', { lodash: [['*', '_']] }],
+        imports: [
+          'vue',
+          'vue-router',
+          {
+            axios: [
+              // default imports
+              ['default', 'axios']
+            ],
+            lodash: [['*', '_']]
+          }
+        ],
         dts: './src/types/auto-imports.d.ts'
       }),
       Components({
@@ -47,6 +57,15 @@ export default ({ mode }) => {
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url))
+      }
+    },
+    server: {
+      proxy: {
+        '/go-api': {
+          target: 'http://35.196.102.68',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/go-api/, '')
+        }
       }
     }
   })

@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { useSidebarStore } from '@/stores'
+import { useGlobalStore } from '@/stores'
 
-const sidebarStore = useSidebarStore()
+const globalStore = useGlobalStore()
 </script>
 <template>
-  <header :class="{ isClose: sidebarStore.isSidebarClose }">
+  <header :class="{ isClose: globalStore.isSidebarClose }">
     <platform-group />
     <div class="flex items-center ml-auto">
       <currency-sign-text class="mr-5" />

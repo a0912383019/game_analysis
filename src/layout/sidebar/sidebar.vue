@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { useSidebarStore } from '@/stores'
+import { useGlobalStore } from '@/stores'
 import { sidebarIcon, SidebarIconType } from '@/config/systemConfig'
 import type { MenuItem } from './sidebar'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
 
-const sidebarStore = useSidebarStore()
+const globalStore = useGlobalStore()
 
 const selectedKeys = computed<string[]>(() => {
   // 根據路由路徑設定選中的 key
@@ -35,11 +35,11 @@ const findMenuItemAndParentKey = (path: string) => {
 }
 
 const toggleCollapsed = () => {
-  sidebarStore.isSidebarClose = !sidebarStore.isSidebarClose
+  globalStore.isSidebarClose = !globalStore.isSidebarClose
 }
 
 const toggleIconName = computed<string>(() =>
-  sidebarStore.isSidebarClose ? 'unionRight' : 'unionLeft'
+  globalStore.isSidebarClose ? 'unionRight' : 'unionLeft'
 )
 
 const menuList = ref<MenuItem[]>([
@@ -97,7 +97,7 @@ onMounted(() => {
   <a-button
     size="large"
     class="sidebar-toggle-btn"
-    :class="{ moved: sidebarStore.isSidebarClose }"
+    :class="{ moved: globalStore.isSidebarClose }"
     @click="toggleCollapsed"
   >
     <template #icon>
@@ -105,9 +105,9 @@ onMounted(() => {
     </template>
   </a-button>
   <a-layout class="sidebar">
-    <a-layout-sider v-model:collapsed="sidebarStore.isSidebarClose" collapsible>
+    <a-layout-sider v-model:collapsed="globalStore.isSidebarClose" collapsible>
       <transition name="fade">
-        <div v-show="!sidebarStore.isSidebarClose" class="logo"></div>
+        <div v-show="!globalStore.isSidebarClose" class="logo"></div>
       </transition>
       <a-menu
         theme="dark"
@@ -266,7 +266,7 @@ onMounted(() => {
             background-color: unset;
           }
           .ant-menu-submenu-arrow {
-          display: none !important;
+            display: none !important;
           }
           svg {
             font-size: 16px;
@@ -296,11 +296,15 @@ onMounted(() => {
 }
 </style>
 <style lang="scss">
+// 縮小後的 hover 樣式
+.ant-menu-submenu > .ant-menu {
+  border-radius: 2px;
+}
 .sidebar__sub-menu {
   .ant-menu-item {
-      height: 44px !important;
-      line-height: 44px !important;
-    }
+    height: 44px !important;
+    line-height: 44px !important;
+  }
   .ant-menu {
     font-size: 16px;
     background-color: var(--primary-color) !important;
@@ -317,8 +321,8 @@ onMounted(() => {
         background-color: #ffffff1a;
       }
       &:hover {
-          color: #ffe5aa !important;
-        }
+        color: #ffe5aa !important;
+      }
     }
     .ant-menu-item-selected {
       color: #ffe5aa;

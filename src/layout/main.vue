@@ -1,8 +1,7 @@
 <script lang="ts" setup>
-import { useSidebarStore, useGlobalStore } from '@/stores'
+import { useGlobalStore } from '@/stores'
 import { platformDict } from '@/config/systemConfig'
 
-const sidebarStore = useSidebarStore()
 const globalStore = useGlobalStore()
 
 const currentPlatform = computed(() => {
@@ -22,7 +21,7 @@ const getColorByName = (name: string): string => {
   <div class="mainArea">
     <sidebar />
     <headerbar />
-    <div class="mainArea__rightbox" :class="{ close: sidebarStore.isSidebarClose }">
+    <div class="mainArea__rightbox" :class="{ close: globalStore.isSidebarClose }">
       <div class="mainArea__container">
         <router-view :key="currentPlatform" />
       </div>

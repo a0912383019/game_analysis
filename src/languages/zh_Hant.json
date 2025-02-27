@@ -43,6 +43,9 @@
     "identity_list": "身份列表",
     "menu_manage": "選單管理"
   },
+  "msg": {
+    "logout": "登出成功"
+  },
   "currency": {
     "currency": "幣別",
     "currency_¥": "人民幣",
