@@ -51,7 +51,7 @@ router.beforeEach(async (to, from, next) => {
   }
 
   // 檢查是否已登入
-  const isLogin = !!sessionStorage.getItem('user_info')
+  const isLogin = !!sessionStorage.getItem('game_user_info')
 
   // 如果已登入，繼續跳轉；否則導向登入頁
   isLogin ? next() : next({ name: 'Login' })

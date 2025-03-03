@@ -1,4 +1,4 @@
-FROM node:22.0.0 as build
+FROM node:22.14.0 as build
 
 
 

@@ -473,7 +473,7 @@ onMounted(async () => {
 })
 </script>
 <template>
-  <section class="cdp-section p-4">
+  <section class="cdp-section !p-4">
     <custom-table
       :pageSize="pageSize"
       :dataSource="tableData"

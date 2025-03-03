@@ -16,7 +16,7 @@ const globalStore = useGlobalStore()
 // 請求攔截器
 axiosGoInstance.interceptors.request.use(
   (request: InternalAxiosRequestConfig) => {
-    const accessToken = sessionStorage.access_token
+    const accessToken = sessionStorage.game_access_token
     if (accessToken) {
       // 添加 Authorization
       request.headers.set('Authorization', accessToken)

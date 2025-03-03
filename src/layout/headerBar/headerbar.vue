@@ -6,8 +6,8 @@ const globalStore = useGlobalStore()
 <template>
   <header :class="{ isClose: globalStore.isSidebarClose }">
     <platform-group />
-    <div class="flex items-center ml-auto">
-      <currency-sign-text class="mr-5" />
+    <div class="flex items-center !ml-auto">
+      <currency-sign-text class="!mr-4" />
       <account />
     </div>
   </header>

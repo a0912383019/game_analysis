@@ -11,7 +11,7 @@ const googleLoginCallback: CallbackTypes.CredentialCallback = (response) => {
   // his Google account from the popup
   handleLogin({ credential: response.credential })
     .then(() => {
-      //  登入成功取得api access_token後才導至首頁
+      //  登入成功取得 api access_token 後才導至首頁
       router.push({ path: '/home' })
     })
     .catch(() => {
@@ -31,7 +31,7 @@ const handleLogin = async ({ credential }) => {
     const { result } = response
 
     if (typeof Storage !== 'undefined') {
-      //判斷瀏覽器是否有支援web storage
+      //判斷瀏覽器是否有支援 web storage
       if (result === 'success') {
         const { email, name, picture, token_type, access_token } = response.ret
         let userInfoEntity = {
@@ -39,9 +39,9 @@ const handleLogin = async ({ credential }) => {
           email,
           picture
         }
-        sessionStorage.user_info = JSON.stringify(userInfoEntity)
-        // 將取得的access_token存入sessionStorage
-        sessionStorage.access_token = token_type + ' ' + access_token
+        sessionStorage.game_user_info = JSON.stringify(userInfoEntity)
+        // 將取得的 access_token 存入 sessionStorage
+        sessionStorage.game_access_token = token_type + ' ' + access_token
         return true
       } else {
         // 若為其他錯誤，顯示系統繁忙中
