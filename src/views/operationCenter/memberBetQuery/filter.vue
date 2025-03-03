@@ -161,7 +161,7 @@ watch(
 </script>
 <template>
   <section class="cdp-section">
-    <a-row class="mt-[20px] mb-[15px] !mx-[7.5px]" justify="left" :gutter="[15, 15]">
+    <a-row class="!mt-[20px] !mb-[15px] !mx-[7.5px]" justify="left" :gutter="[15, 15]">
       <a-col :span="12">
         <ant-select v-model="hallValue" v-bind="hallProps"></ant-select>
       </a-col>

@@ -82,15 +82,15 @@ onMounted(() => {
 })
 </script>
 <template>
-  <section class="my-[15px] mx-[10px]">
+  <section class="!my-[15px] !mx-[10px]">
     <a-row justify="center" class="gap-2.5">
       <a-col :span="5" v-for="(item, idx) in cardList" :key="idx">
         <a-card class="shadow-lg">
           <template #title>
             <div class="custom-shape" :class="item.customShapeColor"></div>
             <cdp-icon :name="item.title"></cdp-icon>
-            <span class="text-base ml-2"> {{ $t(`lobby_group.${item.title}`) }} </span>
-            <span class="text-[13px] text-[#A5B1C5] ml-2"> {{ todayDate }} </span>
+            <span class="text-base !ml-2"> {{ $t(`lobby_group.${item.title}`) }} </span>
+            <span class="text-[13px] text-[#A5B1C5] !ml-2"> {{ todayDate }} </span>
           </template>
           <div>
             <a-row justify="center" :gutter="[10, 10]">
