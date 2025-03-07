@@ -12,7 +12,7 @@ export interface AntSelectProps {
   placeHolderText?: string
   placeHolderValuableText?: string
   options?: SelectProps['options']
-  mode?: string
+  mode?: 'multiple' | 'tags'
   handleChange?: Function
 }
 

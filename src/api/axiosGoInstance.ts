@@ -11,7 +11,6 @@ const axiosGoInstance: AxiosInstance = axios.create({
   }
 })
 
-const globalStore = useGlobalStore()
 
 // 請求攔截器
 axiosGoInstance.interceptors.request.use(
@@ -22,6 +21,7 @@ axiosGoInstance.interceptors.request.use(
       request.headers.set('Authorization', accessToken)
     }
 
+    const globalStore = useGlobalStore()
     if (request.method === 'post' || request.method === 'put') {
       request.data = {
         ...(request.data || {}),

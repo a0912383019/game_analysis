@@ -7,3 +7,7 @@ export const apiRelease = () => {
 export const apiLogin = (params: LoginParams) => {
   return apiPut<LoginParams, ResultLoginData>('/api/login_google', params)
 }
+
+export const apiGetSidebar = () => {
+  return apiGet<undefined, ResultSidebar[]>('/api/auth/menu/sidebar')
+}

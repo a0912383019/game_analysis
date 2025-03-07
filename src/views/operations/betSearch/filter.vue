@@ -3,12 +3,12 @@ import type { SelectProps } from 'ant-design-vue'
 import { useI18n } from 'vue-i18n'
 import type { AntSelectProps, AntInputProps } from '@/components/input/inputs'
 import { Dayjs } from 'dayjs'
-import { useMemberBetQueryStore } from '@/stores'
+import { useOperationsBetSearchStore } from '@/stores'
 
 const { t } = useI18n()
 
-const memberBetQueryStore = useMemberBetQueryStore()
-const { searchParams } = memberBetQueryStore
+const operationsBetSearchStore = useOperationsBetSearchStore()
+const { searchParams } = operationsBetSearchStore
 
 
 const hallValue = ref<number>(8)
@@ -109,7 +109,7 @@ const typeValue = ref<string>('bet')
 const typeOptions = ref<SelectProps['options']>([
   {
     value: 'bet',
-    label: t('member_bet_inquiry.bet_slip')
+    label: t('bet_search.bet_slip')
   },
   {
     value: 'date',
@@ -141,7 +141,7 @@ const search = () => {
   searchParams.typeValue = typeValue.value
   searchParams.timeDuration = timeDuration.value
 
-  memberBetQueryStore.isFiltered = new Date().getTime()
+  operationsBetSearchStore.isFiltered = new Date().getTime()
 }
 
 const searchDisable = ref<boolean>(false)
@@ -161,7 +161,7 @@ watch(
 </script>
 <template>
   <section class="cdp-section">
-    <a-row class="!mt-[20px] !mb-[15px] !mx-[7.5px]" justify="left" :gutter="[15, 15]">
+    <a-row class="!mt-[20px] !mb-[15px] !mx-[7.5px]" justify="start" :gutter="[15, 15]">
       <a-col :span="12">
         <ant-select v-model="hallValue" v-bind="hallProps"></ant-select>
       </a-col>

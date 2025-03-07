@@ -12,12 +12,16 @@ const emit = defineEmits(['update:modelValue'])
 
 const allBinding = computed(() => ({
   value: props.modelValue,
-  onChange: (e: Event) => {
+  onChange: (val: string | number | null | Event) => {
     if (props.type === 'text') {
-      const val = (e.target as HTMLInputElement)?.value
-      emit('update:modelValue', val?.trim())
-    } else if (props.type === 'number') {
-      emit('update:modelValue', e)
+      if (val instanceof Event) {
+        const inputValue = (val.target as HTMLInputElement)?.value
+        emit('update:modelValue', inputValue.trim())
+      } else {
+        emit('update:modelValue', typeof val === 'string' ? val.trim() : '')
+      }
+    } else {
+      emit('update:modelValue', typeof val === 'number' ? val : undefined)
     }
   }
 }))

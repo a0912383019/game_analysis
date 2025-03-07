@@ -58,9 +58,9 @@ const pagination = computed<Pagination>(() => ({
   }
 }))
 
-const scrollX = computed<boolean | string>(() => {
+const scrollX = computed<string | undefined>(() => {
   if (props.dataSource.length === 0) {
-    return false
+    return undefined
   }
 
   return 'max-content'

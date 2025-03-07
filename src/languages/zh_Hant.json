@@ -19,32 +19,32 @@
   },
   "sidebar": {
     "home": "首頁",
-    "operations_center": "營運中心",
-    "summary_report": "總報表",
-    "operational_analysis_chart": "營運分析圖",
-    "regional_volume_differences": "地區貨量差異",
-    "device_volume_difference": "裝置貨量差異",
-    "member_bet_inquiry": "會員注單查詢",
-    "game_comparison_chart": "遊戲比較圖表",
-    "risk_center": "風控中心",
-    "member_high_profit": "會員高額獲利",
-    "risk_behaviour_analysis": "風險行為分析",
-    "member_center": "會員中心",
+    "operations": "營運中心",
+    "overall_report": "總報表",
+    "operation_analysis": "營運分析圖",
+    "regional_difference": "地區貨量差異",
+    "device_difference": "裝置貨量差異",
+    "bet_search": "會員注單查詢",
+    "game_comparison": "遊戲比較圖表",
+    "risk_control": "風控中心",
+    "high_profit_members": "會員高額獲利",
+    "risk_behavior": "風險行為分析",
+    "members": "會員中心",
     "member_analysis": "會員分析",
-    "customer_tag_inquiry": "會員標籤查詢",
-    "live_report": "視訊報表",
-    "game_risk_analysis": "遊戲風險分析",
-    "live_table_report": "桌次報表",
-    "prob_report": "電子報表",
-    "bonus_statistics": "彩金統計",
-    "page_loading_time": "頁面載入時間",
+    "member_tags": "會員標籤查詢",
+    "video_reports": "視訊報表",
+    "game_risk": "遊戲風險分析",
+    "table_reports": "桌次報表",
+    "electronic_reports": "電子報表",
+    "jackpot_stats": "彩金統計",
+    "page_load_time": "頁面載入時間",
     "user_management": "使用者管理",
     "account_list": "帳號列表",
-    "identity_list": "身份列表",
-    "menu_manage": "選單管理"
+    "role_list": "身份列表",
+    "menu_management": "選單管理"
   },
   "msg": {
-    "logout": "登出成功"
+    "logout": "您已成功登出，謝謝使用"
   },
   "currency": {
     "currency": "幣別",
@@ -155,11 +155,11 @@
     "people_proportion": "人數比例",
     "total_bet_amount": "總下注額"
   },
-  "regional_volume_differences": {
+  "regional_difference": {
     "bet_amount_growth_ratio": "貨量成長率",
     "country_region": "區域"
   },
-  "game_risk_analysis": {
+  "game_risk": {
     "game_overview": "遊戲概況",
     "game_bet_volume_ratio": "遊戲下注貨量比例",
     "member_betting_records": "會員投注紀錄",
@@ -175,7 +175,7 @@
     "payout_phase_ratio": "吐分期下注率",
     "bet_range": "投注範圍"
   },
-  "device_volume_difference": {
+  "device_difference": {
     "volume_total": "貨量合計",
     "percentage_change": "差異",
     "personal_computer": "PC",
@@ -183,7 +183,7 @@
     "all_in_one": "AIO",
     "c_all_in_one": "cAIO"
   },
-  "member_bet_inquiry": {
+  "bet_search": {
     "bet_slip": "注單",
     "betting_time": "下注時間",
     "betting_date": "下注日期",
@@ -192,7 +192,7 @@
     "effective_bet_amount": "有效投注額",
     "bet_slip_status": "注單狀態"
   },
-  "operational_analysis_chart": {
+  "operation_analysis": {
     "daily_avg_bet_amount": "日均貨量",
     "daily_avg_people_num": "日均人數",
     "daily_avg_order_quantity": "日均單量",

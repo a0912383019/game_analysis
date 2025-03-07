@@ -6,7 +6,7 @@ const { t } = useI18n()
 
 const globalStore = useGlobalStore()
 
-const currencySignText = computed(() => {
+const currencySignText = computed<string>(() => {
   return t(`currency.currency_${getCurrencySign(globalStore.currentPlatform)}`)
 })
 

@@ -51,7 +51,7 @@ const disabledDate = (current: Dayjs) => {
 
 const onOpenChange = (open: boolean) => {
   if (open) {
-    bindingValue.value = [] as any
+    bindingValue.value = undefined
   } else {
     bindingValue.value = hackValue.value
   }

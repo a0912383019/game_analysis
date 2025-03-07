@@ -1,26 +1,23 @@
 <script lang="ts" setup>
-import { useGlobalStore } from '@/stores'
+import { useGlobalStore, useSystemStore } from '@/stores'
 import { sidebarIcon, SidebarIconType } from '@/config/systemConfig'
-import type { MenuItem } from './sidebar'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
 
 const globalStore = useGlobalStore()
+const systemStore = useSystemStore()
 
-const selectedKeys = computed<string[]>(() => {
-  // 根據路由路徑設定選中的 key
-  const { activeItem } = findMenuItemAndParentKey(route.path)
-
-  console.log(activeItem)
-
-  return activeItem ? [activeItem.key] : []
-})
+const selectedKeys = ref<string[]>([])
 
 const openKeys = ref<string[]>([])
 
 const findMenuItemAndParentKey = (path: string) => {
-  for (const item of menuList.value) {
+  if (!systemStore.menuList) {
+    return { activeItem: null, parentKey: null } // 確保有回傳值
+  }
+
+  for (const item of systemStore.menuList) {
     if (item.urlPath === path) {
       return { activeItem: item, parentKey: null }
     }
@@ -31,7 +28,8 @@ const findMenuItemAndParentKey = (path: string) => {
       }
     }
   }
-  return { activeItem: null, parentKey: null }
+
+  return { activeItem: null, parentKey: null } // 確保總是有回傳值
 }
 
 const toggleCollapsed = () => {
@@ -42,50 +40,11 @@ const toggleIconName = computed<string>(() =>
   globalStore.isSidebarClose ? 'unionRight' : 'unionLeft'
 )
 
-const menuList = ref<MenuItem[]>([
-  {
-    key: '1',
-    name: 'home',
-    urlPath: '/home'
-  },
-  {
-    key: '2',
-    name: 'operations_center',
-    child: [
-      { key: '3', name: 'summary_report', urlPath: '/summary_report' },
-      { key: '4', name: 'operational_analysis_chart', urlPath: '/operational_analysis_chart' },
-      { key: '5', name: 'regional_volume_differences', urlPath: '/regional_volume_differences' },
-      { key: '6', name: 'device_volume_difference', urlPath: '/device_volume_difference' },
-      { key: '7', name: 'member_bet_inquiry', urlPath: '/member_bet_inquiry' },
-      { key: '8', name: 'game_comparison_chart', urlPath: '/game_comparison_chart' }
-    ]
-  },
-  {
-    key: '9',
-    name: 'risk_center',
-    urlPath: '/risk_center'
-  },
-  {
-    key: '10',
-    name: 'member_center',
-    urlPath: '/member_center'
-  },
-  {
-    key: '11',
-    name: 'live_report',
-    urlPath: '/live_report'
-  },
-  {
-    key: '12',
-    name: 'prob_report',
-    urlPath: '/prob_report'
-  },
-  {
-    key: '13',
-    name: 'user_management',
-    urlPath: '/user_management'
-  }
-])
+// 刷新頁面取得當前要高亮的 sidebar
+watchEffect(() => {
+  const { activeItem } = findMenuItemAndParentKey(route.path)
+  selectedKeys.value = activeItem ? [activeItem.key] : []
+})
 
 onMounted(() => {
   // 第一次載入或是刷新頁面會根據路由高亮選單並展開
@@ -115,7 +74,7 @@ onMounted(() => {
         mode="inline"
         v-model:openKeys="openKeys"
       >
-        <template v-for="menuItem in menuList">
+        <template v-for="menuItem in systemStore.menuList">
           <template v-if="menuItem.child">
             <a-sub-menu :popupClassName="'sidebar__sub-menu'" :key="menuItem.key">
               <template #title>{{ $t(`sidebar.${menuItem.name}`) }}</template>
@@ -186,8 +145,11 @@ onMounted(() => {
   position: fixed;
   left: 0;
   top: 0;
-  height: 100vh;
   z-index: 100;
+  :deep(.ant-menu-root) {
+    height: calc(100vh - 85px); // 限制選單最大高度
+    overflow-y: auto; // 允許滾動
+  }
   :deep(.ant-layout-sider) {
     transition: all 0.2s ease;
   }
