@@ -4,16 +4,18 @@ import { platformDict } from '@/config/systemConfig'
 
 const globalStore = useGlobalStore()
 
-const currentPlatform = computed(() => {
+const currentPlatform = computed<string>(() => {
   document.documentElement.style.setProperty(
     '--primary-color',
     getColorByName(globalStore.currentPlatform)
   )
+
   return globalStore.currentPlatform
 })
 
 const getColorByName = (name: string): string => {
   const platform = platformDict.find((item) => item.name.toLowerCase() === name)
+
   return platform?.pColor || '#000000' // 找不到時返回預設顏色
 }
 </script>
@@ -39,6 +41,7 @@ const getColorByName = (name: string): string => {
   min-height: 100vh;
   overflow: hidden;
   &__rightbox {
+    position: relative;
     width: calc(100% - 250px);
     margin-left: auto;
     padding: 60px 0px 0px 0px;
@@ -47,17 +50,5 @@ const getColorByName = (name: string): string => {
       width: calc(100% - 80px);
     }
   }
-}
-.loading {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(#000000, 0.8);
 }
 </style>

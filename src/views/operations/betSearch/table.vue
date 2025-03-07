@@ -3,13 +3,13 @@ import type { TableColumnsType } from 'ant-design-vue'
 import dayjs from '@/utils/appDayjs'
 import { useI18n } from 'vue-i18n'
 import { Dayjs } from 'dayjs'
-import { querySmallBoxData } from '@/api'
-import { useMemberBetQueryStore } from '@/stores'
+// import { querySmallBoxData } from '@/api'
+import { useOperationsBetSearchStore } from '@/stores'
 
 const { t } = useI18n()
 
-const memberBetQueryStore = useMemberBetQueryStore()
-const { searchParams } = memberBetQueryStore
+const operationsBetSearchStore = useOperationsBetSearchStore()
+const { searchParams } = operationsBetSearchStore
 
 const tableData = ref([
   {
@@ -271,7 +271,7 @@ const tableData = ref([
 const columnsBet = ref<TableColumnsType[]>([
   [
     {
-      title: t('member_bet_inquiry.bet_slip'),
+      title: t('bet_search.bet_slip'),
       width: 125,
       dataIndex: 'bet',
       key: 'bet',
@@ -279,7 +279,7 @@ const columnsBet = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('member_bet_inquiry.betting_time'),
+      title: t('bet_search.betting_time'),
       width: 172,
       dataIndex: 'betTime',
       key: 'betTime',
@@ -303,7 +303,7 @@ const columnsBet = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('member_bet_inquiry.bet_amount'),
+      title: t('bet_search.bet_amount'),
       width: 125,
       dataIndex: 'betAmount',
       key: 'betAmount',
@@ -311,7 +311,7 @@ const columnsBet = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('member_bet_inquiry.effective_bet_amount'),
+      title: t('bet_search.effective_bet_amount'),
       width: 125,
       dataIndex: 'commissionable',
       key: 'commissionable',
@@ -319,7 +319,7 @@ const columnsBet = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('member_bet_inquiry.bet_slip_status'),
+      title: t('bet_search.bet_slip_status'),
       width: 115,
       dataIndex: 'status',
       key: 'status',
@@ -349,7 +349,7 @@ const columnsBet = ref<TableColumnsType[]>([
 const columnsDate = ref<TableColumnsType[]>([
   [
     {
-      title: t('member_bet_inquiry.betting_date'),
+      title: t('bet_search.betting_date'),
       width: 152,
       dataIndex: 'betDate',
       key: 'betDate',
@@ -373,7 +373,7 @@ const columnsDate = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('member_bet_inquiry.bet_amount'),
+      title: t('bet_search.bet_amount'),
       width: 152,
       dataIndex: 'betAmount',
       key: 'betAmount',
@@ -381,7 +381,7 @@ const columnsDate = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('member_bet_inquiry.effective_bet_amount'),
+      title: t('bet_search.effective_bet_amount'),
       width: 166,
       dataIndex: 'commissionable',
       key: 'commissionable',
@@ -415,23 +415,23 @@ const order = ref<string>('descend')
 
 const loading = ref<boolean>(true)
 
-const querySmallBoxDataa = async () => {
-  try {
-    const response = await querySmallBoxData({
-      hall_name: 'esx',
-      search_date: '2024-12-23 ~ 2024-12-29'
-    })
-    const { return_code } = response.status
+// const querySmallBoxDataa = async () => {
+//   try {
+//     const response = await querySmallBoxData({
+//       hall_name: 'esx',
+//       search_date: '2024-12-23 ~ 2024-12-29'
+//     })
+//     const { return_code } = response.status
 
-    if (return_code === '0000') {
-      transformTable()
-    } else {
-      console.error(response.status)
-    }
-  } catch (error) {
-    console.error('aa', error)
-  }
-}
+//     if (return_code === '0000') {
+//       transformTable()
+//     } else {
+//       console.error(response.status)
+//     }
+//   } catch (error) {
+//     console.error('aa', error)
+//   }
+// }
 
 const transformTable = () => {}
 
@@ -448,27 +448,27 @@ const tableChange = async (page: number, size: number, sortOrder: string, sortFi
   loading.value = true
   // tableData.value = []
   // tableData.value = tableData.value.slice(1)
-  await querySmallBoxDataa()
+  // await querySmallBoxDataa()
   loading.value = false
 }
 
 // 監聽搜尋
 watch(
-  () => memberBetQueryStore.isFiltered,
+  () => operationsBetSearchStore.isFiltered,
   async () => {
     columns.value = searchParams.typeValue === 'bet' ? columnsBet.value : columnsDate.value
 
     loading.value = true
     tableData.value = []
     // tableData.value = tableData.value.slice(1)
-    await querySmallBoxDataa()
+    // await querySmallBoxDataa()
     loading.value = false
   }
 )
 
 
 onMounted(async () => {
-  await querySmallBoxDataa()
+  // await querySmallBoxDataa()
   loading.value = false
 })
 </script>

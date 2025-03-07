@@ -60,7 +60,7 @@ const disabledEndDate = (current: Dayjs) => {
 }
 
 // 禁用超過當前的時間
-const disabledDateTime = (selectedDate?: Dayjs) => {
+const disabledDateTime = (selectedDate: Dayjs | null) => {
   const now = dayjs() // 獲取當前時間
 
   if (!selectedDate || !selectedDate.isSame(now, 'day')) {

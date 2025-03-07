@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { querySmallBoxData, addUser } from '@/api'
+// import { querySmallBoxData, addUser } from '@/api'
 import dayjs from 'dayjs'
 import { Dayjs } from 'dayjs'
 import type { AntSelectProps, AntInputProps } from '@/components/input/inputs'
@@ -13,49 +13,49 @@ import type { SelectProps } from 'ant-design-vue'
 
 const { t } = useI18n()
 
-const querySmallBoxDataa = async () => {
-  try {
-    const response = await querySmallBoxData({
-      hall_name: 'esx',
-      search_date: '2024-12-23 ~ 2024-12-29'
-    })
-    console.log(response)
+// const querySmallBoxDataa = async () => {
+//   try {
+//     const response = await querySmallBoxData({
+//       hall_name: 'esx',
+//       search_date: '2024-12-23 ~ 2024-12-29'
+//     })
+//     console.log(response)
 
-    const { return_code } = response.status
+//     const { return_code } = response.status
 
-    if (return_code === '0000') {
-      //整理table對應的資料
-      meme(response.result)
-    } else {
-      console.error(response.status)
-    }
-  } catch (error) {
-    console.error('aa', error)
-  }
-}
+//     if (return_code === '0000') {
+//       //整理table對應的資料
+//       meme(response.result)
+//     } else {
+//       console.error(response.status)
+//     }
+//   } catch (error) {
+//     console.error('aa', error)
+//   }
+// }
 
-const addUserr = async () => {
-  try {
-    const response = await addUser({
-      access_hall_name: 'esxxxx',
-      email: 'user13467@example.com',
-      user_status: 0,
-      user_type: 0
-    })
-    console.log(response)
+// const addUserr = async () => {
+//   try {
+//     const response = await addUser({
+//       access_hall_name: 'esxxxx',
+//       email: 'user13467@example.com',
+//       user_status: 0,
+//       user_type: 0
+//     })
+//     console.log(response)
 
-    const { return_code } = response.status
+//     const { return_code } = response.status
 
-    if (return_code === '0000') {
-      //整理table對應的資料
-      // meme(response.result)
-    } else {
-      console.error(response.status)
-    }
-  } catch (error) {
-    console.error('aa', error)
-  }
-}
+//     if (return_code === '0000') {
+//       //整理table對應的資料
+//       // meme(response.result)
+//     } else {
+//       console.error(response.status)
+//     }
+//   } catch (error) {
+//     console.error('aa', error)
+//   }
+// }
 
 const meme = (data: ResultSmallBoxData) => {
   console.log('vivi', data)
@@ -389,8 +389,8 @@ onMounted(() => {
   console.log(dayjs().format())
   console.log(dayjs().toISOString())
 
-  querySmallBoxDataa()
-  addUserr()
+  // querySmallBoxDataa()
+  // addUserr()
 })
 </script>
 <template>
@@ -417,7 +417,7 @@ onMounted(() => {
   <!-- <ant-input v-model="overallProfitValue" v-bind="overallProfitProps"></ant-input> -->
   <div>
     <a-form ref="formRef" name="custom-validation" :model="formState" :rules="rules">
-      <a-row class="mt-[20px] mb-[15px] !mx-[7.5px]" justify="left" :gutter="[15, 15]">
+      <a-row class="mt-[20px] mb-[15px] !mx-[7.5px]" justify="start" :gutter="[15, 15]">
         <a-col :span="12">
           <a-form-item has-feedback name="pass">
             <!-- <a-input v-model:value="formState.pass" type="password" autocomplete="off" /> -->

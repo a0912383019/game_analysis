@@ -20,9 +20,9 @@ const buttonClass = computed(() => {
 })
 </script>
 <template>
-  <button class="!rounded-sm" :class="buttonClass">
+  <button class="!rounded-sm cursor-pointer" :class="buttonClass">
     <cdp-icon v-if="props.icon" :name="props.icon" class="text-[15px] !ml-[-2px]" />
-    <span class="ml-2 text-sm font-normal">
+    <span class="!ml-2 text-sm font-normal">
       {{ props.name }}
     </span>
   </button>

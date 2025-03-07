@@ -37,10 +37,10 @@ const allBinding = computed(() => ({
   allowClear: props.allowClear,
   disabled: props.disabled,
   mode: props.mode,
-  onChange: (value: string | string[]) => {
+  onChange: ((value, option) => {
     emit('update:modelValue', value)
-    props.handleChange?.(value)
-  }
+    props.handleChange?.(value, option)
+  }) as SelectProps['onChange']
 }))
 
 const formatOptions = computed<SelectProps['options']>(() => props.options || [])

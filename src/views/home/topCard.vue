@@ -6,6 +6,7 @@ const titleIcon = ['prob', 'live', 'card', 'fish', 'lottery']
 
 const todayDate = ref<string>('2024/01/09')
 const cardList = ref<HomeCard[]>([])
+
 const transformData = (data: any) => {
   titleIcon.forEach((ele) => {
     const cardData: HomeCard = {

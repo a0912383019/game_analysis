@@ -10,33 +10,26 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/home'
+      redirect: (to) => {
+        const isLogin = !!sessionStorage.getItem('game_user_info')
+        return isLogin ? '/home' : '/login'
+      }
     },
     {
       path: '/example',
       name: 'example',
-      component: () => import('../views/example.vue')
+      component: () => import('@/views/example.vue')
     },
     {
       path: '/login',
       name: 'Login',
-      component: () => import('../views/login.vue')
+      component: () => import('@/views/login.vue')
     },
+    // 在 login.vue，會整理 api 回傳動態添加路由
     {
-      path: '/',
-      component: mainLayout,
-      children: [
-        {
-          path: '/home',
-          name: 'Home',
-          component: () => import('@/views/home/index.vue')
-        },
-        {
-          path: '/member_bet_inquiry',
-          name: 'MemberBetQuery',
-          component: () => import('@/views/operationCenter/memberBetQuery/index.vue')
-        }
-      ]
+      path: '/game',
+      name: 'Game',
+      component: mainLayout
     }
   ]
 })

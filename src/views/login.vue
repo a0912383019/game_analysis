@@ -1,29 +1,107 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
 import type { CallbackTypes } from 'vue3-google-login'
-import { apiLogin, apiRelease } from '@/api'
+import { apiLogin, apiRelease, apiGetSidebar } from '@/api'
+import { useSystemStore } from '@/stores'
+import { storeToRefs } from 'pinia'
+import { notification } from 'ant-design-vue'
 
 const router = useRouter()
 
+const systemStore = useSystemStore()
+const { menuList } = storeToRefs(systemStore)
+
+const isLoading = ref<boolean>(false)
+
 // google login
 const googleLoginCallback: CallbackTypes.CredentialCallback = (response) => {
+  isLoading.value = true
   // This callback will be triggered when the user selects or login to
   // his Google account from the popup
   handleLogin({ credential: response.credential })
-    .then(() => {
-      //  登入成功取得 api access_token 後才導至首頁
+    .then(async () => {
+      // 取得路由的動態 sidebar
+      await queryApiGetSidebar()
+      // 登入成功取得 api access_token 後才導至首頁
       router.push({ path: '/home' })
+
+      let { name } = JSON.parse(sessionStorage.game_user_info)
+      notification['success']({
+        message: `Hello, ${name}`,
+        style: {
+          width: '280px'
+        },
+        duration: 2
+      })
     })
     .catch(() => {
+      isLoading.value = false
       shake()
     })
 }
 
-const hasError = ref<boolean>(false)
-const errorMsg = ref<string>('')
+const queryApiGetSidebar = async () => {
+  try {
+    const response = await apiGetSidebar()
+    const { result } = response
+
+    if (result === 'success' && response.ret.length !== 0) {
+      const systemConfig = {
+        menu_config: response.ret
+      }
+      sessionStorage.setItem('game_config', JSON.stringify(systemConfig))
+      generateMenuList(response.ret)
+      systemStore.generateMenuRoutes(response.ret)
+    } else {
+      throw new Error()
+    }
+  } catch (err) {
+    console.error(err)
+    failMsg['msg4']['isShow'] = true // 系統錯誤
+    throw new Error()
+  }
+}
+
+const generateMenuList = (menuData: ResultSidebar[]) => {
+  let keyCounter = 1
+
+  function generateMenuItem(item: ResultSidebar) {
+    const menuItem: SidebarMenuItem = {
+      key: String(keyCounter++),
+      name: item.title.replace(/\s+/g, '_').toLowerCase(),
+      urlPath: item.route
+    }
+
+    if (item.submenu) {
+      menuItem.child = item.submenu.map((subItem) => generateMenuItem(subItem))
+    }
+
+    return menuItem
+  }
+
+  menuList.value = menuData.map((item) => generateMenuItem(item))
+}
+
+const failMsg = reactive({
+  msg1: {
+    isShow: false,
+    text: '密碼錯誤或無此帳戶'
+  },
+  msg2: {
+    isShow: false,
+    text: '系統繁忙中，請稍後再試'
+  },
+  msg3: {
+    isShow: false,
+    text: '瀏覽器不支援html5功能，請更換瀏覽器後重新登入'
+  },
+  msg4: {
+    isShow: false,
+    text: '系統錯誤，請聯繫管理員'
+  }
+})
 
 const handleLogin = async ({ credential }) => {
-  hasError.value = false
   try {
     const response = await apiLogin({
       id_token: credential
@@ -44,34 +122,35 @@ const handleLogin = async ({ credential }) => {
         sessionStorage.game_access_token = token_type + ' ' + access_token
         return true
       } else {
-        // 若為其他錯誤，顯示系統繁忙中
-        hasError.value = true
-        errorMsg.value = '系統繁忙中，請稍後再試'
-        throw new Error()
+        throw new Error('unknown')
       }
     } else {
-      hasError.value = true
-      errorMsg.value = '瀏覽器不支援html5功能，請更換瀏覽器後重新登入'
-      throw new Error()
+      throw new Error('web storage not supported')
     }
   } catch (error) {
-    hasError.value = true
+    console.error(error)
 
     if (axios.isAxiosError(error)) {
       const { code } = error.response?.data
 
       if (code === '220401004') {
-        errorMsg.value = '密碼錯誤或無此帳戶'
+        failMsg['msg1']['isShow'] = true // 登入失敗錯誤訊息
       } else if (code === '220400001') {
-        errorMsg.value = '系統錯誤，請稍後再試'
+        failMsg['msg4']['isShow'] = true // 系統錯誤
       } else {
-        errorMsg.value = '系統繁忙中，請稍後再試'
+        failMsg['msg2']['isShow'] = true // 系統繁忙中
+      }
+    } else if (error instanceof Error) {
+      if (error.message === 'web storage not supported') {
+        failMsg['msg3']['isShow'] = true // 瀏覽器不支援 web storage
+      } else {
+        failMsg['msg2']['isShow'] = true  // 系統繁忙中
       }
     } else {
-      errorMsg.value = '系統繁忙中，請稍後再試'
+      failMsg['msg2']['isShow'] = true // 系統繁忙中
     }
 
-    throw error
+    throw new Error()
   }
 }
 
@@ -84,6 +163,7 @@ const shake = () => {
   }, 2000)
 }
 
+// 用來確認 api 有沒有通
 const queryApiRelease = async () => {
   try {
     const result = await apiRelease()
@@ -99,13 +179,17 @@ onMounted(() => {
 </script>
 <template>
   <div class="container">
-    <div class="login-logo mb-7 mt-1"></div>
+    <div class="login-logo !mb-7 !mt-1"></div>
     <div class="content" :class="{ isShaking }">
       <GoogleLogin :callback="googleLoginCallback" />
-      <div class="error mt-1" v-show="hasError">
-        {{ errorMsg }}
-      </div>
+      <div class="error !mt-1" v-show="failMsg.msg1.isShow">{{ failMsg.msg1.text }}</div>
+      <div class="error !mt-1" v-show="failMsg.msg2.isShow">{{ failMsg.msg2.text }}</div>
+      <div class="error !mt-1" v-show="failMsg.msg3.isShow">{{ failMsg.msg3.text }}</div>
+      <div class="error !mt-1" v-show="failMsg.msg4.isShow">{{ failMsg.msg4.text }}</div>
     </div>
+  </div>
+  <div class="loading" v-show="isLoading">
+    <loading-box />
   </div>
 </template>
 <style lang="scss" scoped>

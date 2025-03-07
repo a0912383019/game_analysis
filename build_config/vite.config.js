@@ -6,16 +6,28 @@ import Components from 'unplugin-vue-components/vite'
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import AutoImport from 'unplugin-auto-import/vite'
 import { svgBuilder } from './src/utils/svgBuilder'
+import tailwindcss from '@tailwindcss/vite'
 
 export default ({ mode }) => {
   return defineConfig({
     base: '/game/',
     plugins: [
       vue(),
+      tailwindcss(),
       svgBuilder('./src/assets/icons/'),
       AutoImport({
         include: [/\.[tj]sx?$/, /\.vue?$/],
-        imports: ['vue', 'vue-router', { lodash: [['*', '_']] }],
+        imports: [
+          'vue',
+          'vue-router',
+          {
+            axios: [
+              // default imports
+              ['default', 'axios']
+            ],
+            lodash: [['*', '_']]
+          }
+        ],
         dts: './src/types/auto-imports.d.ts'
       }),
       Components({

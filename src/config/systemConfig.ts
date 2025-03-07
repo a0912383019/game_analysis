@@ -34,11 +34,11 @@ export const platformDict: ConfigMap[] = [
 
 export const sidebarIcon = {
   home: 'home',
-  operations_center: 'operationsCenter',
-  risk_center: 'riskCenter',
-  member_center: 'memberCenter',
-  live_report: 'live',
-  prob_report: 'prob',
+  operations: 'operationsCenter',
+  risk_control: 'riskCenter',
+  members: 'memberCenter',
+  video_reports: 'live',
+  electronic_reports: 'prob',
   user_management: 'userManagement'
 } as const
 

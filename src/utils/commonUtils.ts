@@ -45,3 +45,14 @@ export function formatNumber(n: number, precision: number = 0): string {
 export const sortDate: (a: any, b: any) => number = (a, b) => {
   return new Date(a.betTime).getTime() - new Date(b.betTime).getTime()
 }
+
+/**
+ * 取得儲存在sessionStorage中的JSON物件
+ * @param {string} key sessionStorage的key值
+ * @return {object} sessionStorage儲存的JSON物件
+ */
+export function getSessionStorageEntity(key: string): Record<string, any> {
+  const item = sessionStorage.getItem(key)
+  return item ? JSON.parse(item) : {}
+}
+

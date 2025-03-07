@@ -10,7 +10,7 @@ interface searchType {
   timeDuration: [Dayjs | undefined, Dayjs | undefined]
 }
 
-export const useMemberBetQueryStore = defineStore('memberBetQueryStore', () => {
+export const useOperationsBetSearchStore = defineStore('memberBetQueryStore', () => {
   const searchParams = reactive<searchType>({
     hallValue: 8,
     memberValue: '',

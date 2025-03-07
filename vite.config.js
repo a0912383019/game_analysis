@@ -64,7 +64,8 @@ export default ({ mode }) => {
     server: {
       proxy: {
         '/go-api': {
-          target: 'http://35.196.102.68',
+          secure: false,
+          target: 'https://devqa.vir777.xyz',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/go-api/, '')
         }

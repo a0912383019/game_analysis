@@ -10,3 +10,10 @@ interface ResultLoginData {
   picture: string
   token_type: string
 }
+
+
+interface ResultSidebar {
+  title: string
+  route: string
+  submenu?: ResultSidebar[]
+}
