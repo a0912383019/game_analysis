@@ -1,6 +1,6 @@
 type ConfigMap = {
-  name: string,
-  key: string,
+  name: string
+  key: string
   pColor: string
 }
 
@@ -17,12 +17,12 @@ export const platformDict: ConfigMap[] = [
   },
   {
     name: 'XC台灣站',
-    key: 'xc-tw',
+    key: 'xctw',
     pColor: '#28182C'
   },
   {
     name: 'XC馬來站',
-    key: 'xc-ml',
+    key: 'xcmy',
     pColor: '#28182C'
   },
   {
@@ -43,3 +43,13 @@ export const sidebarIcon = {
 } as const
 
 export type SidebarIconType = keyof typeof sidebarIcon
+
+// 遊戲大類編號
+export const lobbyGroupMap: Record<number, string> = {
+  1: 'sport', // 體育
+  2: 'lottery', // 彩票,
+  3: 'live', // 視訊,
+  4: 'fish', // 捕魚,
+  5: 'prob', // 電子,
+  6: 'card' // 棋牌,
+}

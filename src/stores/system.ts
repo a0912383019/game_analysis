@@ -1,27 +1,10 @@
 import { defineStore } from 'pinia'
 import { RouteRecordRaw } from 'vue-router'
-import { notification } from 'ant-design-vue'
-import { i18n } from '@/global/i18n'
 import router from '@/router'
 
 export const useSystemStore = defineStore(
   'systemStore',
   () => {
-    const { t } = i18n.global
-
-    const storeLogout = () => {
-      sessionStorage.clear()
-      localStorage.clear()
-      notification['success']({
-        message: t('msg.logout'),
-        style: {
-          width: '280px'
-        },
-        duration: 1.5
-      })
-      router.push({ name: 'Login' })
-    }
-
     const menuList = ref<SidebarMenuItem[]>([])
 
     const views = import.meta.glob('@/views/**/*.vue') // 直接載入所有 Vue 檔案
@@ -61,7 +44,7 @@ export const useSystemStore = defineStore(
       })
     }
 
-    return { storeLogout, menuList, generateMenuRoutes }
+    return { menuList, generateMenuRoutes }
   },
   {
     persist: true

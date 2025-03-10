@@ -1,7 +1,8 @@
 <script setup lang="ts">
 // import { querySmallBoxData, addUser } from '@/api'
-import dayjs from 'dayjs'
-import { Dayjs } from 'dayjs'
+// import dayjs from 'dayjs'
+// import { Dayjs } from 'dayjs'
+import dayjs, { Dayjs } from '@/utils/appDayjs'
 import type { AntSelectProps, AntInputProps } from '@/components/input/inputs'
 import { useI18n } from 'vue-i18n'
 import type { TableColumnsType } from 'ant-design-vue'
@@ -57,9 +58,9 @@ const { t } = useI18n()
 //   }
 // }
 
-const meme = (data: ResultSmallBoxData) => {
-  console.log('vivi', data)
-}
+// const meme = (data: ResultSmallBoxData) => {
+//   console.log('vivi', data)
+// }
 
 const barChartOptions = reactive({
   title: { text: '柱状图示例' },

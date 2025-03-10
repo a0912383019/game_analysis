@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import type { TableColumnsType } from 'ant-design-vue'
-import dayjs from '@/utils/appDayjs'
+import dayjs, { Dayjs } from '@/utils/appDayjs'
 import { useI18n } from 'vue-i18n'
-import { Dayjs } from 'dayjs'
 // import { querySmallBoxData } from '@/api'
 import { useOperationsBetSearchStore } from '@/stores'
 

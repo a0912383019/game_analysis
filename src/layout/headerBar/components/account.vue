@@ -1,8 +1,19 @@
 <script lang="ts" setup>
-import { useSystemStore } from '@/stores'
+import { notification } from 'ant-design-vue'
+import { useI18n } from 'vue-i18n'
+import router from '@/router'
 
-const systemStore = useSystemStore()
-const { storeLogout } = systemStore
+const { t } = useI18n()
+
+const storeLogout = () => {
+  sessionStorage.clear()
+  localStorage.clear()
+  notification['success']({
+    message: t('msg.logout'),
+    duration: 2
+  })
+  router.push({ name: 'Login' })
+}
 
 const { name, picture } = JSON.parse(sessionStorage.game_user_info)
 </script>

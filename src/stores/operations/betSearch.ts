@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { Dayjs } from 'dayjs'
+import { Dayjs } from '@/utils/appDayjs'
 
 interface searchType {
   hallValue: number

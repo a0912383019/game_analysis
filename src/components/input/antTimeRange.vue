@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import { Dayjs } from 'dayjs'
-import dayjs from '@/utils/appDayjs'
+import dayjs, { Dayjs } from '@/utils/appDayjs'
 import type { AppTimeRangeProps } from './inputs'
 import { SwapRightOutlined } from '@ant-design/icons-vue'
 
