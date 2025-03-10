@@ -17,10 +17,10 @@ export function roundDecimal(val: number, precision: number = 2): string {
 /**
  * 數字加上千分位分隔符號
  * @param n 要加工的數值
- * @param precision 顯示的小數位數 (預設值為 0)
+ * @param precision 顯示的小數位數 (預設值為 2)
  * @returns {string} 返回格式化後的數字字串
  */
-export function formatNumber(n: number, precision: number = 0): string {
+export function formatNumber(n: number, precision: number = 2): string {
   const rounded = roundDecimal(n, precision)
   const parts = rounded.split('.')
 

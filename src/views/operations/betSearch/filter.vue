@@ -2,7 +2,7 @@
 import type { SelectProps } from 'ant-design-vue'
 import { useI18n } from 'vue-i18n'
 import type { AntSelectProps, AntInputProps } from '@/components/input/inputs'
-import { Dayjs } from 'dayjs'
+import { Dayjs } from '@/utils/appDayjs'
 import { useOperationsBetSearchStore } from '@/stores'
 
 const { t } = useI18n()

@@ -28,9 +28,6 @@ const googleLoginCallback: CallbackTypes.CredentialCallback = (response) => {
       let { name } = JSON.parse(sessionStorage.game_user_info)
       notification['success']({
         message: `Hello, ${name}`,
-        style: {
-          width: '280px'
-        },
         duration: 2
       })
     })
@@ -101,7 +98,15 @@ const failMsg = reactive({
   }
 })
 
+const hideErrorMsg = () => {
+  //關閉所有錯誤訊息
+  Object.values(failMsg).forEach((item) => {
+    item.isShow = false
+  })
+}
+
 const handleLogin = async ({ credential }) => {
+  hideErrorMsg()
   try {
     const response = await apiLogin({
       id_token: credential

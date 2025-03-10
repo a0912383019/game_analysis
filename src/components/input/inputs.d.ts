@@ -1,5 +1,5 @@
 import type { SelectProps } from 'ant-design-vue'
-import { Dayjs } from 'dayjs'
+import { Dayjs } from '@/utils/appDayjs'
 
 export type SelectValue = number | number[] | string | string[]
 

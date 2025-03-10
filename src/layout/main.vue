@@ -4,20 +4,20 @@ import { platformDict } from '@/config/systemConfig'
 
 const globalStore = useGlobalStore()
 
-const currentPlatform = computed<string>(() => {
-  document.documentElement.style.setProperty(
-    '--primary-color',
-    getColorByName(globalStore.currentPlatform)
-  )
-
-  return globalStore.currentPlatform
-})
+const currentPlatform = computed<string>(() => globalStore.currentPlatform)
 
 const getColorByName = (name: string): string => {
   const platform = platformDict.find((item) => item.name.toLowerCase() === name)
 
   return platform?.pColor || '#000000' // 找不到時返回預設顏色
 }
+
+watchEffect(() => {
+  document.documentElement.style.setProperty(
+    '--primary-color',
+    getColorByName(currentPlatform.value)
+  )
+})
 </script>
 <template>
   <div class="mainArea">

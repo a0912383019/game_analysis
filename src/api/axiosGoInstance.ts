@@ -50,7 +50,6 @@ axiosGoInstance.interceptors.response.use(
     return response.data
   },
   (error: AxiosError) => {
-    console.error('Response Error:', error)
     return Promise.reject(error)
   }
 )

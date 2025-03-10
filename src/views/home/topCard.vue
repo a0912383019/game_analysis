@@ -1,26 +1,80 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+import { useGlobalStore } from '@/stores'
 import type { HomeCard } from './home'
 import { formatNumber } from '@/utils/commonUtils'
+import { apiGetGameReportByLobbyGroup } from '@/api'
+import { lobbyGroupMap } from '@/config/systemConfig'
+import { notification } from 'ant-design-vue'
+import dayjs, { Dayjs } from '@/utils/appDayjs'
 
-const titleIcon = ['prob', 'live', 'card', 'fish', 'lottery']
+const { t } = useI18n()
 
-const todayDate = ref<string>('2024/01/09')
-const cardList = ref<HomeCard[]>([])
+const globalStore = useGlobalStore()
 
-const transformData = (data: any) => {
-  titleIcon.forEach((ele) => {
-    const cardData: HomeCard = {
-      title: ele,
-      customShapeColor: generateShapeColorClass(ele),
-      bet: formatNumber(data[ele].bet),
-      payoff: formatNumber(data[ele].payoff),
-      amount: formatNumber(data[ele].amount),
-      people: formatNumber(data[ele].people)
+const todayDate = ref<Dayjs>(dayjs())
+
+const apiSuccess = ref<boolean>(false)
+const apiResponse = ref<ResultGameReportByLobbyGroup[]>([])
+
+const queryGameReportByLobbyGroup = async () => {
+  apiSuccess.value = false
+  apiResponse.value = []
+
+  try {
+    const response = await apiGetGameReportByLobbyGroup({
+      date: todayDate.value.format('YYYY-MM-DD')
+    })
+    const { result } = response
+
+    if (result === 'success') {
+      apiResponse.value = response.ret
+      apiSuccess.value = true
+    } else {
+      throw new Error()
     }
-
-    cardList.value.push(cardData)
-  })
+  } catch (err) {
+    console.error(err)
+    if (axios.isAxiosError(err)) {
+      const status = err.response?.status
+      if (status === 401) {
+        // token 錯誤，登出
+        globalStore.storeHandleApiError()
+      } else if (status === 403) {
+        // 沒有權限
+        notification['error']({
+          message: t('msg.no_permission')
+        })
+      } else {
+        // query failed
+        notification['error']({
+          message: t('msg.query_failed')
+        })
+      }
+    } else {
+      // query failed
+      notification['error']({
+        message: t('msg.query_failed')
+      })
+    }
+  }
 }
+
+const groupOrder: number[] = [5, 3, 6, 4, 2]
+
+const cardList = computed<HomeCard[]>(() =>
+  groupOrder.map((ele) => {
+    const cardObj = apiResponse.value.find((item) => item.lobby_group === ele)
+    return {
+      title: lobbyGroupMap[ele],
+      customShapeColor: generateShapeColorClass(lobbyGroupMap[ele]),
+      bet: cardObj ? formatNumber(parseFloat(cardObj.bet_amount)) : '--',
+      payoff: cardObj ? formatNumber(parseFloat(cardObj.payoff)) : '--',
+      amount: cardObj ? formatNumber(cardObj.wager_count) : '--',
+      people: cardObj ? formatNumber(cardObj.user_count) : '--'
+    }
+  })
+)
 
 const generateShapeColorClass = (val: string): string => {
   let colorClass: string = 'bg-[var(--cdp-pink)]'
@@ -46,40 +100,7 @@ const generateShapeColorClass = (val: string): string => {
 }
 
 onMounted(() => {
-  const apiResult = {
-    prob: {
-      bet: 420388770,
-      payoff: 83829,
-      amount: 2022111,
-      people: 8819
-    },
-    live: {
-      bet: 8812199,
-      payoff: -373922,
-      amount: 778922,
-      people: 20091
-    },
-    card: {
-      bet: 378222,
-      payoff: 774999,
-      amount: 22338,
-      people: 14888
-    },
-    fish: {
-      bet: 443574900,
-      payoff: -5254146,
-      amount: 9118662,
-      people: 668923
-    },
-    lottery: {
-      bet: 912199,
-      payoff: 87869,
-      amount: 44357,
-      people: 19908
-    }
-  }
-
-  transformData(apiResult)
+  queryGameReportByLobbyGroup()
 })
 </script>
 <template>
@@ -91,25 +112,27 @@ onMounted(() => {
             <div class="custom-shape" :class="item.customShapeColor"></div>
             <cdp-icon :name="item.title"></cdp-icon>
             <span class="text-base !ml-2"> {{ $t(`lobby_group.${item.title}`) }} </span>
-            <span class="text-[13px] text-[#A5B1C5] !ml-2"> {{ todayDate }} </span>
+            <span class="text-[13px] text-[#A5B1C5] !ml-2">
+              {{ todayDate.format(t('date.format_date_rule')) }}
+            </span>
           </template>
           <div>
-            <a-row justify="center" :gutter="[10, 10]">
+            <a-row justify="center" :gutter="[10, 10]" :class="{ 'text-[#A5B1C5]': !apiSuccess }">
               <a-col :span="12">
                 <div class="text-[13px] text-[#A5B1C5]">{{ $t('data_name.bet_amount') }}</div>
-                <div>{{ item.bet }}</div>
+                <div class="!font-medium">{{ item.bet }}</div>
               </a-col>
               <a-col :span="12">
                 <div class="text-[13px] text-[#A5B1C5]">{{ $t('data_name.game_profit_loss') }}</div>
-                <div>{{ item.payoff }}</div>
+                <div class="!font-medium">{{ item.payoff }}</div>
               </a-col>
               <a-col :span="12">
                 <div class="text-[13px] text-[#A5B1C5]">{{ $t('unit.amount') }}</div>
-                <div>{{ item.amount }}</div>
+                <div class="!font-medium">{{ item.amount }}</div>
               </a-col>
               <a-col :span="12">
                 <div class="text-[13px] text-[#A5B1C5]">{{ $t('unit.people_num') }}</div>
-                <div>{{ item.people }}</div>
+                <div class="!font-medium">{{ item.people }}</div>
               </a-col>
             </a-row>
           </div>

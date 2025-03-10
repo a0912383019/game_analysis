@@ -17,7 +17,7 @@ export default defineConfig((configEnv) =>
         },
         reporters:
           loadEnv(configEnv.mode, process.cwd()).VITE_ENV !== 'local'
-            ? ['default']
+            ? [['default', { summary: false }]]
             : ['junit', 'json', 'verbose'],
         outputFile: {
           junit: './test/report.xml'

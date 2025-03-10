@@ -52,6 +52,10 @@ router.beforeEach(async (to, from, next) => {
 
 router.afterEach((to, from) => {
   const globalStore = useGlobalStore()
+  // 重置 global store 狀態
+  if (to.name === 'Login') {
+    globalStore.resetState()
+  }
   globalStore.isLoading = false
 })
 

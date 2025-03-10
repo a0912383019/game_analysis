@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Dayjs } from 'dayjs'
+import { Dayjs } from '@/utils/appDayjs'
 import type { AppDatePickerProps } from './inputs'
 
 const props = withDefaults(defineProps<AppDatePickerProps>(), {

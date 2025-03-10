@@ -44,7 +44,10 @@
     "menu_management": "選單管理"
   },
   "msg": {
-    "logout": "您已成功登出，謝謝使用"
+    "logout": "您已成功登出，謝謝使用",
+    "query_failed": "查詢失敗，請重新操作",
+    "no_permission": "權限不足，請聯繫管理員",
+    "login_error": "登入狀態異常，請重新登入"
   },
   "currency": {
     "currency": "幣別",

@@ -1,4 +1,4 @@
-interface LoginParams {
+interface ParamsLogin {
   id_token: string
 }
 

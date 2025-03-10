@@ -4,8 +4,8 @@ export const apiRelease = () => {
   return apiGet<undefined, undefined>('/api/release')
 }
 
-export const apiLogin = (params: LoginParams) => {
-  return apiPut<LoginParams, ResultLoginData>('/api/login_google', params)
+export const apiLogin = (params: ParamsLogin) => {
+  return apiPut<ParamsLogin, ResultLoginData>('/api/login_google', params)
 }
 
 export const apiGetSidebar = () => {
