@@ -14,7 +14,7 @@ vi.mock('@/api', () => ({
 }))
 
 describe('login', () => {
-  let wrapper: VueWrapper<InstanceType<typeof login>>
+  let wrapper: VueWrapper<any>
   let systemStore: ReturnType<typeof useSystemStore>
   let spyPush: MockInstance
 

@@ -5,17 +5,16 @@ import { i18n } from '@/global/i18n'
 import { createTestingPinia } from '@pinia/testing'
 import router from '@/router'
 import { useGlobalStore } from '@/stores'
-import sidebar from '@/layout/sidebar/sidebar.vue'
-import headerbar from '@/layout/headerbar/headerbar.vue'
-import loadingBox from '@/components/loadingBox.vue'
 
 describe('main', () => {
-  let wrapper: VueWrapper<InstanceType<typeof main>>
+  // 用 instance type 會造成 type-check error
+  let wrapper: VueWrapper<any>
   let globalStore: ReturnType<typeof useGlobalStore>
 
   beforeEach(() => {
     createTestingPinia({ createSpy: vi.fn })
     globalStore = useGlobalStore()
+    globalStore.currentPlatform = 'bbin'
 
     wrapper = shallowMount(main, {
       global: {
@@ -29,9 +28,9 @@ describe('main', () => {
   })
 
   it('components', () => {
-    expect(wrapper.findComponent(sidebar).exists()).toBe(true)
-    expect(wrapper.findComponent(headerbar).exists()).toBe(true)
-    expect(wrapper.findComponent(loadingBox).exists()).toBe(true)
+    expect(wrapper.findComponent({ name: 'sidebar' }).exists()).toBe(true)
+    expect(wrapper.findComponent({ name: 'headerbar' }).exists()).toBe(true)
+    expect(wrapper.findComponent({ name: 'loading-box' }).exists()).toBe(true)
   })
 
   it('currentPlatform & watchEffect', async () => {
