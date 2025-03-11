@@ -77,7 +77,7 @@ const cardList = computed<HomeCard[]>(() =>
 )
 
 const generateShapeColorClass = (val: string): string => {
-  let colorClass: string = 'bg-[var(--cdp-pink)]'
+  let colorClass: string
   switch (val) {
     case 'prob':
       colorClass = 'bg-[var(--cdp-pink)]'
@@ -93,6 +93,9 @@ const generateShapeColorClass = (val: string): string => {
       break
     case 'lottery':
       colorClass = 'bg-[var(--cdp-orange)]'
+      break
+    default:
+      colorClass = 'bg-[var(--primary-color)]'
       break
   }
 
