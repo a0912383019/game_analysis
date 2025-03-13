@@ -1,9 +1,11 @@
 <script lang="ts" setup>
 import { notification } from 'ant-design-vue'
 import { useI18n } from 'vue-i18n'
-import router from '@/router'
+import { useRouter } from 'vue-router'
 
 const { t } = useI18n()
+
+const router = useRouter()
 
 const storeLogout = () => {
   sessionStorage.clear()

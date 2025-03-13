@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { useGlobalStore } from '@/stores'
-import type { HomeCard } from './home'
 import { formatNumber } from '@/utils/commonUtils'
 import { apiGetGameReportByLobbyGroup } from '@/api'
 import { lobbyGroupMap } from '@/config/systemConfig'

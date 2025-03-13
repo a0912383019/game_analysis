@@ -14,7 +14,6 @@ describe('main', () => {
   beforeEach(() => {
     createTestingPinia({ createSpy: vi.fn })
     globalStore = useGlobalStore()
-    globalStore.currentPlatform = 'bbin'
 
     wrapper = shallowMount(main, {
       global: {
