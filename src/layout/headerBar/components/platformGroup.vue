@@ -4,10 +4,9 @@ import { useGlobalStore } from '@/stores'
 
 const globalStore = useGlobalStore()
 
-const selectPlatform = ref<string>(platformDict[0].key)
+const currentPlatform = computed<string>(() => globalStore.currentPlatform)
 
-const onSelect = (value: string) => {
-  selectPlatform.value = value
+const handleChangePlatform = (value: string) => {
   globalStore.currentPlatform = value
 }
 </script>
@@ -18,12 +17,12 @@ const onSelect = (value: string) => {
       class="!border-[#E8E9EC] !rounded-[20px] w-[100px] h-[36px] !bg-[#E8E9EC] hover:!border-[var(--primary-color)]"
       :class="{
         '!bg-[var(--primary-color)] hover:!bg-[var(--primary-color)] hover:!text-[#fff]':
-          selectPlatform === item.key,
-        'hover:!text-[var(--primary-color)]': selectPlatform !== item.key
+          currentPlatform === item.key,
+        'hover:!text-[var(--primary-color)]': currentPlatform !== item.key
       }"
       :key="item.key"
-      :type="selectPlatform === item.key ? 'primary' : 'default'"
-      @click="onSelect(item.key)"
+      :type="currentPlatform === item.key ? 'primary' : 'default'"
+      @click="handleChangePlatform(item.key)"
     >
       {{ item.name }}
     </a-button>

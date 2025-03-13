@@ -4,9 +4,10 @@ import { i18n } from '@/global/i18n'
 import App from '@/App.vue'
 import { createTestingPinia } from '@pinia/testing'
 import router from '@/router'
+import zhTw from 'ant-design-vue/es/locale/zh_TW'
 
 describe('App.vue', () => {
-  let wrapper: VueWrapper<InstanceType<typeof App>>
+  let wrapper: VueWrapper<any>
 
   beforeEach(() => {
     wrapper = shallowMount(App, {
@@ -16,8 +17,12 @@ describe('App.vue', () => {
     })
   })
 
-  // aConfigProvider 元件是否存在於畫面上
   it('Whether the aConfigProvider component exists on the screen', () => {
     expect(wrapper.findComponent({ name: 'aConfigProvider' }).exists()).toBe(true)
+  })
+
+  it('language', () => {
+    expect(wrapper.vm.locale).toStrictEqual('zh-TW')
+    expect(wrapper.vm.language).toStrictEqual(zhTw)
   })
 })

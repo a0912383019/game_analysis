@@ -5,7 +5,7 @@ import { i18n } from '@/global/i18n'
 import { useSystemStore } from '@/stores'
 import login from '@/views/login.vue'
 import { apiLogin, apiRelease, apiGetSidebar } from '@/api'
-import { createRouterMock } from 'vue-router-mock'
+import { createRouterMock, RouterMock } from 'vue-router-mock'
 
 vi.mock('@/api', () => ({
   apiLogin: vi.fn(),
@@ -21,7 +21,7 @@ describe('login', () => {
   const consoleMock = vi.spyOn(console, 'log').mockImplementation(() => {})
 
   beforeEach(() => {
-    const router = createRouterMock({
+    const router: RouterMock = createRouterMock({
       spy: {
         create: (fn) => vi.fn(fn),
         reset: (spy) => spy.mockClear()
@@ -176,7 +176,7 @@ describe('login', () => {
     expect(sessionGameConfig).toStrictEqual(gameConfig)
 
     // 驗證 systemStore.menuList
-    const menuList = [
+    const menuList: SidebarMenuItem[] = [
       {
         key: '1',
         name: 'home',

@@ -1,4 +1,4 @@
-import { it, describe, expect, afterEach, vi, beforeEach, Mock, MockInstance } from 'vitest'
+import { it, describe, expect, afterEach, vi, beforeEach, Mock } from 'vitest'
 import { VueWrapper, shallowMount, flushPromises } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
 import { i18n } from '@/global/i18n'
@@ -9,7 +9,7 @@ vi.mock('@/api', () => ({
   apiGetGameReportByLobbyGroup: vi.fn()
 }))
 
-describe('login', () => {
+describe('topCard', () => {
   let wrapper: VueWrapper<any>
 
   beforeEach(() => {
@@ -62,7 +62,7 @@ describe('login', () => {
 
   it('hideErrorMsg', async () => {
     await flushPromises()
-    expect(wrapper.vm.apiResponse).toStrictEqual([
+    const expectApiResponse: ResultGameReportByLobbyGroup[] = [
       {
         bet_amount: '200.0000',
         lobby_group: 2,
@@ -91,8 +91,9 @@ describe('login', () => {
         user_count: 1,
         wager_count: 3
       }
-    ])
-    expect(wrapper.vm.cardList).toStrictEqual([
+    ]
+    expect(wrapper.vm.apiResponse).toStrictEqual(expectApiResponse)
+    const expectCardList: HomeCard[] = [
       {
         amount: '1,269',
         bet: '1,827,791',
@@ -133,21 +134,25 @@ describe('login', () => {
         people: '1',
         title: 'lottery'
       }
-    ])
+    ]
+    expect(wrapper.vm.cardList).toStrictEqual(expectCardList)
   })
 
   it('generateShapeColorClass', () => {
-    const probColor = wrapper.vm.generateShapeColorClass('prob')
-    expect(probColor).toStrictEqual('bg-[var(--cdp-pink)]')
-    const liveColor = wrapper.vm.generateShapeColorClass('live')
-    expect(liveColor).toStrictEqual('bg-[var(--cdp-yellow)]')
-    const cardColor = wrapper.vm.generateShapeColorClass('card')
-    expect(cardColor).toStrictEqual('bg-[var(--cdp-green)]')
-    const fishColor = wrapper.vm.generateShapeColorClass('fish')
-    expect(fishColor).toStrictEqual('bg-[var(--cdp-blue)]')
-    const lotteryColor = wrapper.vm.generateShapeColorClass('lottery')
-    expect(lotteryColor).toStrictEqual('bg-[var(--cdp-orange)]')
-    const otherColor = wrapper.vm.generateShapeColorClass('other')
-    expect(otherColor).toStrictEqual('bg-[var(--primary-color)]')
+    const expectedColors = {
+      prob: 'bg-[var(--cdp-pink)]',
+      live: 'bg-[var(--cdp-yellow)]',
+      card: 'bg-[var(--cdp-green)]',
+      fish: 'bg-[var(--cdp-blue)]',
+      lottery: 'bg-[var(--cdp-orange)]',
+      other: 'bg-[var(--primary-color)]'
+    } as const
+
+    expect(wrapper.vm.generateShapeColorClass('prob')).toStrictEqual(expectedColors.prob)
+    expect(wrapper.vm.generateShapeColorClass('live')).toStrictEqual(expectedColors.live)
+    expect(wrapper.vm.generateShapeColorClass('card')).toStrictEqual(expectedColors.card)
+    expect(wrapper.vm.generateShapeColorClass('fish')).toStrictEqual(expectedColors.fish)
+    expect(wrapper.vm.generateShapeColorClass('lottery')).toStrictEqual(expectedColors.lottery)
+    expect(wrapper.vm.generateShapeColorClass('other')).toStrictEqual(expectedColors.other)
   })
 })

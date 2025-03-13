@@ -1,4 +1,4 @@
-export interface HomeCard {
+interface HomeCard {
   title: string
   customShapeColor: string
   bet: string
