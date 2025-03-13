@@ -19,16 +19,16 @@ const bindingEndValue = ref<Dayjs | undefined>(parseDate(props.defaultDates[1]))
 const hackStartValue = ref<Dayjs | undefined>(parseDate(props.defaultDates[0]))
 const hackEndValue = ref<Dayjs | undefined>(parseDate(props.defaultDates[1]))
 
-const emit = defineEmits(['update:startValue', 'update:endValue'])
+const emit = defineEmits(['update:timeValue'])
 
 const onChangeStart = (val: string | Dayjs, formatString: string) => {
   hackStartValue.value = val as Dayjs
-  emit('update:startValue', val)
+  emit('update:timeValue', [val, bindingEndValue.value])
 }
 
 const onChangeEnd = (val: string | Dayjs, formatString: string) => {
   hackEndValue.value = val as Dayjs
-  emit('update:endValue', val)
+  emit('update:timeValue', [bindingStartValue.value, val])
 }
 
 const disabledStartDate = (current: Dayjs) => {
@@ -113,13 +113,11 @@ const handleBlur = () => {
 }
 
 const updateBindingValue = () => {
-  emit('update:startValue', bindingStartValue.value)
-  emit('update:endValue', bindingEndValue.value)
+  emit('update:timeValue', [bindingStartValue.value, bindingEndValue.value])
 }
 
 onMounted(() => {
-  emit('update:startValue', props.defaultDates[0])
-  emit('update:endValue', props.defaultDates[1])
+  emit('update:timeValue', [props.defaultDates[0], props.defaultDates[1]])
 })
 </script>
 <template>
@@ -150,26 +148,28 @@ onMounted(() => {
       <swap-right-outlined class="text-[#b3aeae] scale-110" />
     </a-col>
     <a-col :span="11">
-      <a-date-picker
-        v-model:value="bindingEndValue"
-        :allowClear="false"
-        class="w-full cdp-range-picker has-placeholder is-active"
-        :format="'YYYY/MM/DD HH:mm:ss'"
-        :showTime="{
-          hideDisabledOptions: true,
-          defaultValue: dayjs('23:59:59', 'HH:mm:ss')
-        }"
-        :placeholder="$t('common.select_end_time')"
-        :disabled-date="disabledEndDate"
-        :disabled-time="disabledDateTime"
-        :showToday="false"
-        :showNow="false"
-        @change="onChangeEnd"
-        @click="handleClick"
-        @blur="handleBlur"
-        size="large"
-        :style="{ '--placeholder-text': `'${$t('date.end_time')}'` }"
-      />
+      <a-form-item-rest>
+        <a-date-picker
+          v-model:value="bindingEndValue"
+          :allowClear="false"
+          class="w-full cdp-range-picker has-placeholder is-active"
+          :format="'YYYY/MM/DD HH:mm:ss'"
+          :showTime="{
+            hideDisabledOptions: true,
+            defaultValue: dayjs('23:59:59', 'HH:mm:ss')
+          }"
+          :placeholder="$t('common.select_end_time')"
+          :disabled-date="disabledEndDate"
+          :disabled-time="disabledDateTime"
+          :showToday="false"
+          :showNow="false"
+          @change="onChangeEnd"
+          @click="handleClick"
+          @blur="handleBlur"
+          size="large"
+          :style="{ '--placeholder-text': `'${$t('date.end_time')}'` }"
+        />
+      </a-form-item-rest>
     </a-col>
   </a-row>
 </template>
