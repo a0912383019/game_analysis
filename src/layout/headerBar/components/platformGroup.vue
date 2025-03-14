@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { platformDict } from '@/config/systemConfig'
+import { platformDict } from '@/../public/js/system_config'
 import { useGlobalStore } from '@/stores'
 
 const globalStore = useGlobalStore()

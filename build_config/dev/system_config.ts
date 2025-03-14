@@ -53,3 +53,27 @@ export const lobbyGroupMap: Record<number, string> = {
   5: 'prob', // 電子,
   6: 'card' // 棋牌,
 }
+
+// 各平台篩選預設值
+export const platformDefaultInfo = {
+  bbin: {
+    hall_id: 1, // 寶馬-我是廳名 [bmw]
+    lobby: 5 // BB電子
+  },
+  bbgp: {
+    hall_id: 3820605, // WG [wgg]
+    lobby: 5 // BB電子
+  },
+  xctw: {
+    hall_id: undefined,
+    lobby: undefined
+  },
+  xcmy: {
+    hall_id: undefined,
+    lobby: undefined
+  },
+  midori: {
+    hall_id: undefined,
+    lobby: undefined
+  }
+}

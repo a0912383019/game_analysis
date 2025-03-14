@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useGlobalStore, useSystemStore } from '@/stores'
-import { sidebarIcon, SidebarIconType } from '@/config/systemConfig'
+import { sidebarIcon, SidebarIconType } from '@/../public/js/system_config'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()

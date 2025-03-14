@@ -37,6 +37,7 @@ const allBinding = computed(() => ({
     <a-input
       v-if="props.type === 'text'"
       :disabled="props.disabled"
+      :placeholder="props.originPlaceHolder"
       type="text"
       class="cdp-input"
       v-bind="allBinding"
@@ -65,7 +66,13 @@ const allBinding = computed(() => ({
     background-color: #ffffff !important;
   }
   :deep(.ant-input) {
+    height: 40px;
+    font-size: 14px;
     border-radius: 0 2px 2px 0 !important;
+    &::placeholder {
+      font-size: 13px;
+      transform: translate3d(0, -1px, 0);
+    }
   }
 }
 .has-placeholder::after {

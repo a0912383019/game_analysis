@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import mainLayout from '@/layout/main.vue'
 import { useGlobalStore } from '@/stores'
 
 // 不用登入即可觀看的頁面
@@ -33,7 +32,7 @@ const router = createRouter({
     {
       path: '/game',
       name: 'Game',
-      component: mainLayout
+      component: () => import('@/layout/main.vue')
     }
   ]
 })

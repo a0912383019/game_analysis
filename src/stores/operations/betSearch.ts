@@ -2,21 +2,23 @@ import { defineStore } from 'pinia'
 import { Dayjs } from '@/utils/appDayjs'
 
 interface searchType {
-  hallValue: number
-  memberValue: string
-  lobbyValue: string | undefined
-  gameTypeValue: number[]
-  typeValue: string
+  hallValue: number | undefined
+  memberType: string
+  memberValue: string[]
+  lobbyValue: number | undefined
+  gameTypeValue: string[]
+  searchTypeValue: string
   timeDuration: [Dayjs | undefined, Dayjs | undefined]
 }
 
 export const useOperationsBetSearchStore = defineStore('memberBetQueryStore', () => {
   const searchParams = reactive<searchType>({
-    hallValue: 8,
-    memberValue: '',
+    hallValue: undefined,
+    memberType: '',
+    memberValue: [],
     lobbyValue: undefined,
     gameTypeValue: [],
-    typeValue: 'bet',
+    searchTypeValue: '',
     timeDuration: [undefined, undefined]
   })
 
