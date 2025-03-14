@@ -14,6 +14,8 @@ export interface AntSelectProps {
   options?: SelectProps['options']
   mode?: 'multiple' | 'tags'
   handleChange?: Function
+  showSearch?: boolean // 是否啟用搜尋模式
+  isLoading?: boolean
 }
 
 export interface AntInputProps {
@@ -21,6 +23,7 @@ export interface AntInputProps {
   type?: string
   hasPlaceholder?: boolean
   placeHolderText?: string
+  originPlaceHolder?: string // 原始套件自帶的 placeholder
   disabled?: boolean
 }
 

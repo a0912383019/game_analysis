@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import type { SelectProps } from 'ant-design-vue'
+import type { SelectProps, FormInstance } from 'ant-design-vue'
 import { useI18n } from 'vue-i18n'
 import type { AntSelectProps, AntInputProps } from '@/components/input/inputs'
 import { Dayjs } from 'dayjs'
 import { useOperationsBetSearchStore, useGlobalStore } from '@/stores'
-import type { FormInstance } from 'ant-design-vue'
 import type { Rule } from 'ant-design-vue/es/form'
+import { getSessionStorageEntity } from '@/utils/commonUtils.js'
+import { platformDefaultInfo } from '@/../public/js/system_config'
 
 const { t } = useI18n()
 
@@ -16,7 +17,6 @@ const { searchParams } = operationsBetSearchStore
 const formRef = ref<FormInstance>()
 const formState = reactive<BetSearchFilterFormState>({
   memberValue: '',
-  lobbyValue: undefined,
   timeDuration: [undefined, undefined]
 })
 
@@ -24,7 +24,7 @@ const memberValueRule = async (_rule: Rule, value: string) => {
   if (value === '') {
     return Promise.resolve()
   }
-  
+
   // 先檢查平台是否為 'xctw' 或 'xcmy'，這兩個平台不限制輸入格式
   if (['xctw', 'xcmy'].includes(globalStore.currentPlatform)) {
     return Promise.resolve()
@@ -64,27 +64,17 @@ const timeDurationRule = async (_rule: Rule, value: [Dayjs, Dayjs]) => {
 // 驗證規則
 const rules: Record<string, Rule[]> = {
   memberValue: [{ validator: memberValueRule }],
-  timeDuration: [{ validator: timeDurationRule }],
-  lobbyValue: [{ required: true, message: t('common.select_game_hall') }]
+  timeDuration: [{ validator: timeDurationRule }]
 }
 
 // 廳
-const hallValue = ref<number>(8)
-const hallOptions = ref<SelectProps['options']>([
-  {
-    value: 6,
-    label: 'esx'
-  },
-  {
-    value: 7,
-    label: 'mdo'
-  },
-  {
-    value: 8,
-    label: 'bmw'
-  }
-])
-
+const hallValue = ref<number | undefined>(platformDefaultInfo[globalStore.currentPlatform].hall_id)
+const hallOptions = ref<SelectProps['options']>(
+  getSessionStorageEntity('platform_halls').map(({ hall_id, login_code, name }) => ({
+    value: hall_id,
+    label: name + ` [${login_code}]`
+  }))
+)
 const hallProps = computed<AntSelectProps>(() => {
   return {
     allowClear: false,
@@ -96,65 +86,37 @@ const hallProps = computed<AntSelectProps>(() => {
 
 // 帳號 or id
 const accountOrId = ref<string>('account')
-
 const memberProps = computed<AntInputProps>(() => {
   return {
+    originPlaceHolder: t('common.comma_separated'),
     placeHolderText: t('common.member')
   }
 })
 
 // 遊戲大廳
-const lobbyOptions = ref<SelectProps['options']>([
-  {
-    value: 'live',
-    label: t('lobby_group.live')
-  },
-  {
-    value: 'prob',
-    label: t('lobby_group.prob')
-  },
-  {
-    value: 'card',
-    label: t('lobby_group.card')
-  },
-  {
-    value: 'fish',
-    label: t('lobby_group.fish')
-  },
-  {
-    value: 'lottery',
-    label: t('lobby_group.lottery')
-  }
-])
-
+const lobbyValue = ref<number | undefined>(platformDefaultInfo[globalStore.currentPlatform].lobby)
+const lobbyOptions = ref<SelectProps['options']>(
+  getSessionStorageEntity('platform_lobbies').map(({ lobby, lobby_name }) => ({
+    value: lobby,
+    label: lobby_name
+  }))
+)
 const lobbyProps = computed<AntSelectProps>(() => {
   return {
     allowClear: false,
     placeHolderText: t('common.select_game_hall'),
-    placeHolderValuableText: t('common.hall'),
+    placeHolderValuableText: t('bet_search.game_hall'),
     options: lobbyOptions.value
   }
 })
 
 // 遊戲
-const gameTypeValue = ref<number[]>([])
-const gameTypeOptions = ref<SelectProps['options']>([
-  {
-    value: 1,
-    label: '老虎機'
-  },
-  {
-    value: 2,
-    label: '泡泡糖'
-  },
-  {
-    value: 3,
-    label: '水果派對'
-  }
-])
-
+const gameTypeValue = ref<string[]>([])
+const gameTypeOptions = ref<SelectProps['options']>([])
+const gameTypeLoading = ref<boolean>(true)
 const gameTypeProps = computed<AntSelectProps>(() => {
   return {
+    isLoading: gameTypeLoading.value,
     allowClear: false,
     placeHolderText: t('common.select_game'),
     placeHolderValuableText: t('common.game'),
@@ -165,59 +127,76 @@ const gameTypeProps = computed<AntSelectProps>(() => {
 })
 
 // 搜尋方式
-const typeValue = ref<string>('bet')
-const typeOptions = ref<SelectProps['options']>([
+const searchTypeValue = ref<string>('settlement_date')
+const searchTypeOptions = ref<SelectProps['options']>([
+  {
+    value: 'settlement_date',
+    label: t('common.settlement_date')
+  },
   {
     value: 'bet',
     label: t('bet_search.bet_slip')
-  },
-  {
-    value: 'date',
-    label: t('date.date')
   }
 ])
-
-const typeProps = computed<AntSelectProps>(() => {
+const searchTypeProps = computed<AntSelectProps>(() => {
   return {
     allowClear: false,
     placeHolderValuableText: t('common.search_method'),
-    options: typeOptions.value
+    options: searchTypeOptions.value
   }
 })
 
 // 時間區間
 const timeDurationChange = (date: [Dayjs, Dayjs]) => {
-  formState.timeDuration[0] = date[0]
-  formState.timeDuration[1] = date[1]
+  formState.timeDuration = date
 }
 
 // 搜尋
 const handleSearch = () => {
-  console.log('sssi')
-
-  searchParams.hallValue = hallValue.value
-  searchParams.gameTypeValue = gameTypeValue.value
-  searchParams.typeValue = typeValue.value
-  
   formState.memberValue = formState.memberValue
-  .trim() // 去掉頭尾空格
-  .replace(/\s*,\s*/g, ',') // 去除逗號前後的空格
-  .replace(/,{2,}/g, ',') // 移除連續逗號
-  .replace(/(^,|,$)/g, '') // 移除開頭 結尾的逗號
+    .trim() // 去掉頭尾空格
+    .replace(/\s*,\s*/g, ',') // 去除逗號前後的空格
+    .replace(/,{2,}/g, ',') // 移除連續逗號
+    .replace(/(^,|,$)/g, '') // 移除開頭 結尾的逗號
 
-  formRef.value
-    ?.validate()
-    .then(() => {
-      searchParams.memberValue = formState.memberValue
-      searchParams.lobbyValue = formState.lobbyValue
-      searchParams.timeDuration = formState.timeDuration
-      operationsBetSearchStore.isFiltered = new Date().getTime()
-      console.log('驗證通過')
-    })
-    .catch(() => {
-      console.log('驗證失敗')
-    })
+  formRef.value?.validate().then(() => {
+    searchParams.hallValue = hallValue.value
+    searchParams.memberType = accountOrId.value
+    searchParams.gameTypeValue = gameTypeValue.value
+    searchParams.searchTypeValue = searchTypeValue.value
+    searchParams.memberValue = formState.memberValue.split(',')
+    searchParams.lobbyValue = lobbyValue.value
+    searchParams.timeDuration = formState.timeDuration
+
+    operationsBetSearchStore.isFiltered = new Date().getTime()
+  })
 }
+
+// 產生遊戲選項
+const generateLobbyGamesOptions = async () => {
+  gameTypeLoading.value = true
+  gameTypeValue.value = []
+  gameTypeOptions.value = []
+  if (lobbyValue.value !== undefined) {
+    await globalStore.queryLobbyGames(lobbyValue.value).then((games) => {
+      if (games) {
+        gameTypeOptions.value = games.map(({ game_code, game_name }) => ({
+          value: game_code,
+          label: game_name
+        }))
+      }
+    })
+  }
+  gameTypeLoading.value = false
+}
+
+watch(
+  () => lobbyValue.value,
+  () => {
+    generateLobbyGamesOptions()
+  },
+  { immediate: true }
+)
 </script>
 <template>
   <section class="cdp-section">
@@ -243,7 +222,7 @@ const handleSearch = () => {
                     popupClassName="!rounded-none"
                   >
                     <a-select-option value="account">{{ $t('common.accout') }}</a-select-option>
-                    <a-select-option value="memberId">{{ $t('common.id') }}</a-select-option>
+                    <a-select-option value="id">{{ $t('common.id') }}</a-select-option>
                     <template #suffixIcon>
                       <cdp-icon name="downOutline"></cdp-icon>
                     </template>
@@ -254,14 +233,14 @@ const handleSearch = () => {
           </a-col>
           <a-col :span="12">
             <a-form-item name="lobbyValue">
-              <ant-select v-model="formState.lobbyValue" v-bind="lobbyProps"></ant-select>
+              <ant-select v-model="lobbyValue" v-bind="lobbyProps"></ant-select>
             </a-form-item>
           </a-col>
           <a-col :span="12">
             <ant-select v-model="gameTypeValue" v-bind="gameTypeProps"></ant-select>
           </a-col>
           <a-col :span="12">
-            <ant-select v-model="typeValue" v-bind="typeProps"></ant-select>
+            <ant-select v-model="searchTypeValue" v-bind="searchTypeProps"></ant-select>
           </a-col>
           <a-col :span="12">
             <a-form-item name="timeDuration">

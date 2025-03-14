@@ -3,7 +3,7 @@ import { useI18n } from 'vue-i18n'
 import { useGlobalStore } from '@/stores'
 import { formatNumber } from '@/utils/commonUtils'
 import { apiGetGameReportByLobbyGroup } from '@/api'
-import { lobbyGroupMap } from '@/config/systemConfig'
+import { lobbyGroupMap } from '@/../public/js/system_config'
 import { notification } from 'ant-design-vue'
 import dayjs, { Dayjs } from '@/utils/appDayjs'
 
