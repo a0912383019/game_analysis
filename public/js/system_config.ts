@@ -77,3 +77,12 @@ export const platformDefaultInfo = {
     lobby: undefined
   }
 }
+
+// 各平台時區
+export const platformTimezones: Record<string, string> = {
+  bbin: 'America/New_York',
+  bbgp: 'America/New_York',
+  xctw: 'Asia/Taipei',
+  xcmy: 'Asia/Taipei',
+  midori: 'Asia/Manila'
+}

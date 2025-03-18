@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 import type { TableColumnsType, TablePaginationConfig, TableProps } from 'ant-design-vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 interface Props {
   // 資料集
@@ -13,6 +16,7 @@ interface Props {
   // 打開子層時呼叫的 api，有順序性
   fetchSubData?: Function[]
   loading?: boolean
+  total?: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -26,7 +30,7 @@ const pageSize = ref<number>(props.pageSize)
 
 // 表格資料
 const pageTableData = computed<any[]>(() => {
-  if (!props.serverSide) {
+  if (props.serverSide) {
     return props.dataSource
   }
   return props.dataSource.slice(
@@ -47,16 +51,24 @@ interface Pagination {
 
 const pagination = computed<Pagination>(() => ({
   pageSize: pageSize.value,
-  total: props.dataSource.length,
+  total: props.serverSide
+    ? props.total
+      ? props.total
+      : props.dataSource.length
+    : props.dataSource.length,
   current: currentPage.value,
-  showTotal: (total: number) => `共 ${total} 筆`,
+  showTotal: (total: number) => t('common.pagination_total', { total: total }),
   showSizeChanger: true,
-  pageSizeOptions: ['10', '30', '50', '100', '200', '500', 'Infinity'],
+  pageSizeOptions: ['10', '30', '50', '100'],
   onChange: (page: number, newPageSize: number) => {
     currentPage.value = page
     pageSize.value = newPageSize
   }
 }))
+
+const goToFirstPage = () => {
+  currentPage.value = 1
+}
 
 const scrollX = computed<string | undefined>(() => {
   if (props.dataSource.length === 0) {
@@ -72,18 +84,22 @@ const handleExpand = async (expanded: boolean, record: any) => {
   }
 }
 
+const emit = defineEmits(['update:tableChange'])
+
 // field 是 columns.dataIndex
 const handleTableChange: TableProps['onChange'] = (
   pag: TablePaginationConfig,
   filters: any,
   sorter: any
 ) => {
-  if (props.serverSide && pageTableData.value.length !== 0) {
+  if (props.serverSide) {
     emit('update:tableChange', pag.current, pag.pageSize, sorter.order, sorter.field)
   }
 }
 
 const tableKey = ref<number>(0)
+
+const hasData = computed(() => pageTableData.value.length > 0)
 
 // 當表格無資料時重新渲染，讓表頭恢復預設長度
 watch(
@@ -95,7 +111,7 @@ watch(
   }
 )
 
-const emit = defineEmits(['update:tableChange'])
+defineExpose({ goToFirstPage })
 </script>
 <template>
   <a-table
@@ -106,15 +122,14 @@ const emit = defineEmits(['update:tableChange'])
     :fetchSubData="props.fetchSubData"
     :data-source="pageTableData"
     :loading="props.loading"
+    :class="{ 'no-data': !hasData }"
     bordered
-    class="sub-table"
     @expand="handleExpand"
     @change="handleTableChange"
   >
     <template v-if="props.columns.length > 1" #expandedRowRender="{ record }">
       <custom-table
         bordered
-        class="sub-table"
         :loading="record.innerLoading"
         :columns="props.columns.slice(1)"
         :fetchSubData="props.fetchSubData?.slice(1)"
@@ -124,4 +139,14 @@ const emit = defineEmits(['update:tableChange'])
     </template>
   </a-table>
 </template>
-<style lang="scss" scoped></style>
+<style lang="scss">
+.no-data {
+  th {
+    pointer-events: none;
+  }
+  .ant-table-column-sorter {
+    display: none !important;
+    pointer-events: none;
+  }
+}
+</style>

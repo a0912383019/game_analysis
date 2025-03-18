@@ -9,5 +9,5 @@ dayjs.extend(timezone)
 dayjs.locale('zh-tw')
 dayjs.tz.setDefault('Asia/Taipei')
 
-export type { Dayjs } from 'dayjs'
+export type { Dayjs as AppDayjs } from 'dayjs'
 export default dayjs

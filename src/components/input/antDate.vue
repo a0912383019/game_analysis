@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { Dayjs } from '@/utils/appDayjs'
 import type { AppDatePickerProps } from './inputs'
 
 const props = withDefaults(defineProps<AppDatePickerProps>(), {
@@ -19,7 +18,7 @@ const onChange = (val: string | Dayjs, formatString: string) => {
     v-model:value="bindingValue"
     :allowClear="false"
     class="w-full cdp-range-picker has-placeholder is-active"
-    :format="'YYYY/MM/DD HH:mm:ss'"
+    :format="'YYYY-MM-DD HH:mm:ss'"
     :showTime="props.showTime"
     :showToday="false"
     @change="onChange"
