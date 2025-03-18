@@ -2,7 +2,6 @@
 import type { SelectProps, FormInstance } from 'ant-design-vue'
 import { useI18n } from 'vue-i18n'
 import type { AntSelectProps, AntInputProps } from '@/components/input/inputs'
-import { Dayjs } from 'dayjs'
 import { useOperationsBetSearchStore, useGlobalStore } from '@/stores'
 import type { Rule } from 'ant-design-vue/es/form'
 import { getSessionStorageEntity } from '@/utils/commonUtils.js'
@@ -17,7 +16,8 @@ const { searchParams } = operationsBetSearchStore
 const formRef = ref<FormInstance>()
 const formState = reactive<BetSearchFilterFormState>({
   memberValue: '',
-  timeDuration: [undefined, undefined]
+  timeDuration: [undefined, undefined],
+  dateDuration: [undefined, undefined]
 })
 
 const memberValueRule = async (_rule: Rule, value: string) => {
@@ -38,7 +38,7 @@ const memberValueRule = async (_rule: Rule, value: string) => {
   }
 
   // 如果是會員ID，需確保輸入的都是數字 + 逗號
-  if (accountOrId.value === 'memberId') {
+  if (accountOrId.value === 'id') {
     if (!/^[0-9,]+$/.test(value)) {
       return Promise.reject(t('common.member_id_be_number_confirm_the_content'))
     }
@@ -61,10 +61,18 @@ const timeDurationRule = async (_rule: Rule, value: [Dayjs, Dayjs]) => {
   return Promise.resolve()
 }
 
+const dateDurationRule = async (_rule: Rule, value: [Dayjs, Dayjs]) => {
+  if (!value || !value[0] || !value[1]) {
+    return Promise.reject(t('common.select_complete_date_range'))
+  }
+  return Promise.resolve()
+}
+
 // 驗證規則
 const rules: Record<string, Rule[]> = {
   memberValue: [{ validator: memberValueRule }],
-  timeDuration: [{ validator: timeDurationRule }]
+  timeDuration: [{ validator: timeDurationRule }],
+  dateDuration: [{ validator: dateDurationRule }]
 }
 
 // 廳
@@ -151,6 +159,10 @@ const timeDurationChange = (date: [Dayjs, Dayjs]) => {
   formState.timeDuration = date
 }
 
+const datePickerChangeHandler = (date: [Dayjs, Dayjs]) => {
+  formState.dateDuration = date
+}
+
 // 搜尋
 const handleSearch = () => {
   formState.memberValue = formState.memberValue
@@ -164,9 +176,10 @@ const handleSearch = () => {
     searchParams.memberType = accountOrId.value
     searchParams.gameTypeValue = gameTypeValue.value
     searchParams.searchTypeValue = searchTypeValue.value
-    searchParams.memberValue = formState.memberValue.split(',')
+    searchParams.memberValue = formState.memberValue.split(',').filter(Boolean)
     searchParams.lobbyValue = lobbyValue.value
     searchParams.timeDuration = formState.timeDuration
+    searchParams.dateDuration = formState.dateDuration
 
     operationsBetSearchStore.isFiltered = new Date().getTime()
   })
@@ -200,67 +213,68 @@ watch(
 </script>
 <template>
   <section class="cdp-section">
-    <div>
-      <a-form
-        ref="formRef"
-        :model="formState"
-        :rules="rules"
-        :hideRequiredMark="true"
-        validateTrigger="submit"
-      >
-        <a-row class="!mt-[20px] !mb-[15px] !mx-[7.5px]" justify="start" :gutter="[15, 15]">
-          <a-col :span="12">
-            <ant-select v-model="hallValue" v-bind="hallProps"></ant-select>
-          </a-col>
-          <a-col :span="12">
-            <a-form-item name="memberValue">
-              <ant-input v-model="formState.memberValue" v-bind="memberProps">
-                <template #addonBefore>
-                  <a-select
-                    v-model:value="accountOrId"
-                    class="w-[75px]"
-                    popupClassName="!rounded-none"
-                  >
-                    <a-select-option value="account">{{ $t('common.accout') }}</a-select-option>
-                    <a-select-option value="id">{{ $t('common.id') }}</a-select-option>
-                    <template #suffixIcon>
-                      <cdp-icon name="downOutline"></cdp-icon>
-                    </template>
-                  </a-select>
-                </template>
-              </ant-input>
-            </a-form-item>
-          </a-col>
-          <a-col :span="12">
-            <a-form-item name="lobbyValue">
-              <ant-select v-model="lobbyValue" v-bind="lobbyProps"></ant-select>
-            </a-form-item>
-          </a-col>
-          <a-col :span="12">
-            <ant-select v-model="gameTypeValue" v-bind="gameTypeProps"></ant-select>
-          </a-col>
-          <a-col :span="12">
-            <ant-select v-model="searchTypeValue" v-bind="searchTypeProps"></ant-select>
-          </a-col>
-          <a-col :span="12">
-            <a-form-item name="timeDuration">
-              <ant-time-range
-                :startValue="formState.timeDuration[0]"
-                :endValue="formState.timeDuration[1]"
-                @update:timeValue="timeDurationChange"
-              ></ant-time-range>
-            </a-form-item>
-          </a-col>
-          <a-col :span="12">
-            <cdp-button-icon
-              icon="magnifier"
-              :name="$t('common.search')"
-              @click.prevent="handleSearch"
-            ></cdp-button-icon>
-          </a-col>
-        </a-row>
-      </a-form>
-    </div>
+    <a-form
+      ref="formRef"
+      :model="formState"
+      :rules="rules"
+      :hideRequiredMark="true"
+      validateTrigger="submit"
+    >
+      <a-row class="!mt-[20px] !mb-[15px] !mx-[7.5px]" justify="start" :gutter="[15, 15]">
+        <a-col :span="12">
+          <ant-select v-model="hallValue" v-bind="hallProps"></ant-select>
+        </a-col>
+        <a-col :span="12">
+          <a-form-item name="memberValue">
+            <ant-input v-model="formState.memberValue" v-bind="memberProps">
+              <template #addonBefore>
+                <a-select
+                  v-model:value="accountOrId"
+                  class="w-[75px]"
+                  popupClassName="!rounded-none"
+                >
+                  <a-select-option value="account">{{ $t('common.accout') }}</a-select-option>
+                  <a-select-option value="id">{{ $t('common.id') }}</a-select-option>
+                  <template #suffixIcon>
+                    <cdp-icon name="downOutline"></cdp-icon>
+                  </template>
+                </a-select>
+              </template>
+            </ant-input>
+          </a-form-item>
+        </a-col>
+        <a-col :span="12">
+          <a-form-item name="lobbyValue">
+            <ant-select v-model="lobbyValue" v-bind="lobbyProps"></ant-select>
+          </a-form-item>
+        </a-col>
+        <a-col :span="12">
+          <ant-select v-model="gameTypeValue" v-bind="gameTypeProps"></ant-select>
+        </a-col>
+        <a-col :span="12">
+          <ant-select v-model="searchTypeValue" v-bind="searchTypeProps"></ant-select>
+        </a-col>
+        <a-col :span="12">
+          <a-form-item v-if="searchTypeValue === 'bet'" name="timeDuration">
+            <ant-time-range @update:timeValue="timeDurationChange"></ant-time-range>
+          </a-form-item>
+          <a-form-item v-else name="dateDuration">
+            <ant-date-range
+              @update:value="datePickerChangeHandler"
+              :rangeConfig="2"
+              :showTime="true"
+            ></ant-date-range>
+          </a-form-item>
+        </a-col>
+        <a-col :span="12">
+          <cdp-button-icon
+            icon="magnifier"
+            :name="$t('common.search')"
+            @click.prevent="handleSearch"
+          ></cdp-button-icon>
+        </a-col>
+      </a-row>
+    </a-form>
   </section>
 </template>
 <style lang="scss" scoped>

@@ -5,7 +5,7 @@ import { formatNumber } from '@/utils/commonUtils'
 import { apiGetGameReportByLobbyGroup } from '@/api'
 import { lobbyGroupMap } from '@/../public/js/system_config'
 import { notification } from 'ant-design-vue'
-import dayjs, { Dayjs } from '@/utils/appDayjs'
+import dayjs from '@/utils/appDayjs'
 
 const { t } = useI18n()
 

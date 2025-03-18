@@ -1,3 +1,8 @@
+import dayjs from '@/utils/appDayjs'
+import { platformTimezones } from '@/../public/js/system_config'
+import { useGlobalStore } from '@/stores'
+import { useI18n } from 'vue-i18n'
+
 /**
  * 將浮點數四捨五入至指定位數
  * @param val 要處理的數值
@@ -56,3 +61,29 @@ export function getSessionStorageEntity(key: string): Record<string, any> {
   return item ? JSON.parse(item) : {}
 }
 
+/**
+ * 轉換為api使用參數
+ * @param {Dayjs | string} dateTime 日期時間
+ * @return {string} 對應時區的日期時間
+ */
+export function formatToApiTaipeiIso(dateTime: Dayjs | string): string {
+  return dayjs(dateTime).tz('Asia/Taipei').format('YYYY-MM-DDTHH:mm:ssZ')
+}
+/**
+ * 轉換為api使用參數
+ * @param {Dayjs} dateVal 日期
+ * @return {string} 對應的日期
+ */
+export function formatToApiDate(dateVal: Dayjs | string): string {
+  return dayjs(dateVal).format('YYYY-MM-DD')
+}
+
+/**
+ * 根據當前平台轉換時區
+ * @param {Dayjs | string} dateTime 日期時間
+ * @return {Dayjs} 對應時區的日期時間
+ */
+export function formatByTimeZone(dateTime: Dayjs | string): Dayjs {
+  const globalStore = useGlobalStore()
+  return dayjs(dateTime).tz(platformTimezones[globalStore.currentPlatform])
+}
