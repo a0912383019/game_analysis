@@ -202,21 +202,14 @@ const queryBetApi = async (
   }
 }
 
-const generateBetResult = (status: number): string => {
-  let betStatus: string = ''
-  switch (status) {
-    case 1:
-      betStatus = t('bet_search.bet_finish')
-      break
-    case 0:
-      betStatus = t('bet_search.bet_not_finish')
-      break
-    case -1:
-      betStatus = t('bet_search.bet_destroy')
-      break
-  }
+const betStatusMap = {
+  1: t('bet_search.bet_finish'),
+  0: t('bet_search.bet_not_finish'),
+  '-1': t('bet_search.bet_destroy')
+}
 
-  return betStatus
+const generateBetResult = (status: number): string => {
+  return betStatusMap[status] || ''
 }
 
 const transformTable = (data: BetRecords[] | BetSettledByDate[], searchType: string) => {
@@ -251,6 +244,12 @@ const columns = computed(() =>
   searchParams.searchTypeValue === 'bet' ? columnsBet.value : columnsDate.value
 )
 
+const setColumnSortOrder = (sortField: string | undefined, sortOrder: any) => {
+  columns.value[0].forEach((col) => {
+    col.defaultSortOrder = col.key === sortField ? sortOrder : undefined
+  })
+}
+
 // 排序或是切換分頁時呼叫
 const tableChange = async (
   page: number,
@@ -258,8 +257,6 @@ const tableChange = async (
   sortOrder: any,
   sortField: string | undefined
 ) => {
-  console.log(sortOrder, sortField)
-
   // 設定排序方向與排序欄位
   sortColumn.value = sortField || sortColumn.value
 
@@ -272,9 +269,7 @@ const tableChange = async (
   }
 
   // 更新對應欄位的排序狀態
-  columns.value[0].forEach((col) => {
-    col.defaultSortOrder = col.key === sortField ? sortOrder : undefined
-  })
+  setColumnSortOrder(sortField, sortOrder)
 
   // 只有當 tableData.value 不為空時才執行換頁與 API 查詢
   if (tableData.value.length !== 0) {
@@ -328,7 +323,6 @@ const generateBetParams = (
 
 const handleSearch = async (originParams: BetRecordSearchType) => {
   loading.value = true
-  tableData.value = []
   let betParams = generateBetParams(originParams)
 
   const apiFunc = originParams.searchTypeValue === 'bet' ? apiBetRecords : apiBetSettledByDate
@@ -341,23 +335,15 @@ const handleSearch = async (originParams: BetRecordSearchType) => {
 watch(
   () => operationsBetSearchStore.isFiltered,
   () => {
+    // 回到第一頁
     tableRef.value.goToFirstPage()
 
     // 恢復預設值
+    tableData.value = []
     apiStart.value = 0
     order.value = 'descend'
-
-    if (searchParams.searchTypeValue === 'bet') {
-      sortColumn.value = 'bet_time'
-      columns.value[0].forEach((col) => {
-        col.defaultSortOrder = col.key === sortColumn.value ? 'descend' : undefined
-      })
-    } else {
-      sortColumn.value = 'settle_date'
-      columns.value[0].forEach((col) => {
-        col.defaultSortOrder = col.key === sortColumn.value ? 'descend' : undefined
-      })
-    }
+    sortColumn.value = searchParams.searchTypeValue === 'bet' ? 'bet_time' : 'settle_date'
+    setColumnSortOrder(sortColumn.value, 'descend')
 
     handleSearch(searchParams)
   }
@@ -365,7 +351,9 @@ watch(
 </script>
 <template>
   <section class="cdp-section !p-4">
+    <!-- 加 key 是因為有兩種表格，排序會互相影響，所以在搜尋後重新渲染表格 -->
     <custom-table
+      :key="operationsBetSearchStore.isFiltered"
       ref="tableRef"
       :pageSize="pageSize"
       :dataSource="tableData"

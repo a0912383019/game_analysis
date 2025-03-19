@@ -97,32 +97,16 @@ const handleTableChange: TableProps['onChange'] = (
   }
 }
 
-const tableKey = ref<number>(0)
-
-const hasData = computed(() => pageTableData.value.length > 0)
-
-// 當表格無資料時重新渲染，讓表頭恢復預設長度
-watch(
-  () => pageTableData.value.length,
-  (newVal) => {
-    if (newVal === 0) {
-      tableKey.value = new Date().getTime()
-    }
-  }
-)
-
 defineExpose({ goToFirstPage })
 </script>
 <template>
   <a-table
-    :key="tableKey"
     :pagination="props.dataSource.length === 0 ? false : pagination"
     :scroll="{ x: scrollX }"
     :columns="props.columns[0]"
     :fetchSubData="props.fetchSubData"
     :data-source="pageTableData"
     :loading="props.loading"
-    :class="{ 'no-data': !hasData }"
     bordered
     @expand="handleExpand"
     @change="handleTableChange"
@@ -139,14 +123,4 @@ defineExpose({ goToFirstPage })
     </template>
   </a-table>
 </template>
-<style lang="scss">
-.no-data {
-  th {
-    pointer-events: none;
-  }
-  .ant-table-column-sorter {
-    display: none !important;
-    pointer-events: none;
-  }
-}
-</style>
+<style lang="scss"></style>
