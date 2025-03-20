@@ -44,6 +44,17 @@ export const sidebarIcon = {
 
 export type SidebarIconType = keyof typeof sidebarIcon
 
+// 裝置種類編號
+export const deviceGroupList: { value: number; label: string }[] = [
+  { value: 0, label: 'PC' },
+  { value: 1, label: '其他' },
+  { value: 2, label: 'iOS 手機' },
+  { value: 3, label: '安卓手機' },
+  { value: 4, label: 'iOS 平板' },
+  { value: 5, label: '安卓平板' },
+  { value: 6, label: 'Mac' }
+]
+
 // 遊戲大類編號
 export const lobbyGroupMap: Record<number, string> = {
   1: 'sport', // 體育

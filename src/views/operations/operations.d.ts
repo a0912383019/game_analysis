@@ -14,3 +14,17 @@ interface BetRecordSearchType {
   timeDuration: [Dayjs | undefined, Dayjs | undefined]
   dateDuration: [Dayjs | undefined, Dayjs | undefined]
 }
+
+interface OverallReportSearchType {
+  hallValue: number
+  memberType: string
+  memberValue: string[]
+  lobbyGameValue: number | undefined
+  deviceTypeValue: number | undefined
+  dateDuration: [Dayjs | undefined, Dayjs | undefined]
+}
+
+interface OverallReportFilterFormState {
+  memberValue: string
+  dateDuration: [Dayjs | undefined, Dayjs | undefined]
+}
