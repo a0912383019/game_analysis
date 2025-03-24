@@ -1,10 +1,16 @@
 import main from '@/layout/main.vue'
-import { it, describe, expect, afterEach, beforeEach, vi } from 'vitest'
-import { VueWrapper, shallowMount } from '@vue/test-utils'
+import { it, describe, expect, afterEach, beforeEach, vi, Mock } from 'vitest'
+import { VueWrapper, shallowMount, flushPromises } from '@vue/test-utils'
 import { i18n } from '@/global/i18n'
 import { createTestingPinia } from '@pinia/testing'
 import router from '@/router'
 import { useGlobalStore } from '@/stores'
+import { apiHalls, apiLobbies } from '@/api'
+
+vi.mock('@/api', () => ({
+  apiHalls: vi.fn(),
+  apiLobbies: vi.fn()
+}))
 
 describe('main', () => {
   // 用 instance type 會造成 type-check error
@@ -15,6 +21,11 @@ describe('main', () => {
     createTestingPinia({ createSpy: vi.fn })
     globalStore = useGlobalStore()
 
+    const mockApiHalls = apiHalls as Mock
+    mockApiHalls.mockResolvedValue({ result: 'success', ret: [] })
+    const mockApiLobbies = apiLobbies as Mock
+    mockApiLobbies.mockResolvedValue({ result: 'success', ret: [] })
+
     wrapper = shallowMount(main, {
       global: {
         plugins: [i18n, router]
@@ -23,6 +34,7 @@ describe('main', () => {
   })
 
   afterEach(() => {
+    vi.clearAllMocks()
     wrapper.unmount()
   })
 
@@ -32,12 +44,12 @@ describe('main', () => {
     expect(wrapper.findComponent({ name: 'loading-box' }).exists()).toBe(true)
   })
 
-  it('currentPlatform & watchEffect', async () => {
+  it('currentPlatform & watch', async () => {
     expect(wrapper.vm.currentPlatform).toStrictEqual('bbin')
 
     let setPropertySpy = vi.spyOn(document.documentElement.style, 'setProperty')
     globalStore.currentPlatform = 'midori'
-    await wrapper.vm.$nextTick()
+    await flushPromises()
     expect(wrapper.vm.currentPlatform).toStrictEqual('midori')
     expect(setPropertySpy).toHaveBeenCalledWith('--primary-color', '#332E21')
   })

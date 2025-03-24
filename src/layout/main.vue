@@ -17,7 +17,6 @@ const getColorByName = (name: string): string => {
 
 // 通用 API 查詢函式
 const queryApiData = async (apiFunc: Function, storageKey: string, params = {}) => {
-  globalStore.isLoading = true
   try {
     const response = await apiFunc(params)
     if (response.result === 'success') {
@@ -29,20 +28,34 @@ const queryApiData = async (apiFunc: Function, storageKey: string, params = {}) 
     console.error(err)
     sessionStorage.setItem(storageKey, JSON.stringify([]))
     if (axios.isAxiosError(err) && err.response?.status === 401) {
-      globalStore.storeHandleApiError()
+      throw err // 讓外部統一處理 401
     } else {
       notification.error({ message: t(`msg.get_${storageKey}_failed`) })
     }
-  } finally {
-    globalStore.isLoading = false
   }
 }
 
 const refreshData = async () => {
-  await Promise.all([
+  globalStore.isLoading = true
+
+  const results = await Promise.allSettled([
     queryApiData(apiHalls, 'platform_halls', { hall_id: undefined }),
     queryApiData(apiLobbies, 'platform_lobbies', { lobby: undefined })
   ])
+
+  globalStore.isLoading = false
+
+  // 檢查是否有任何一個請求出現 401
+  if (
+    results.some(
+      (result) =>
+        result.status === 'rejected' &&
+        axios.isAxiosError(result.reason) &&
+        result.reason.response?.status === 401
+    )
+  ) {
+    globalStore.storeHandleApiError()
+  }
 }
 
 watch(
