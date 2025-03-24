@@ -397,6 +397,9 @@ onMounted(() => {
 </script>
 <template>
   <section class="cdp-section p-4">
+    <ant-cascader></ant-cascader>
+  </section>
+  <section class="cdp-section p-4">
     <custom-table
       :pageSize="3"
       :dataSource="data"

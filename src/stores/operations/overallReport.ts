@@ -5,7 +5,7 @@ export const useOperationsOverallReportStore = defineStore('overallReport', () =
     hallValue: 0,
     memberType: '',
     memberValue: [],
-    lobbyGameValue: undefined,
+    gamePlayValue: undefined,
     deviceTypeValue: undefined,
     dateDuration: [undefined, undefined]
   })

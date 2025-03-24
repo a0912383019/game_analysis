@@ -5,11 +5,14 @@ import type { AntSelectProps, AntInputProps } from '@/components/input/inputs'
 import { useOperationsBetSearchStore, useGlobalStore } from '@/stores'
 import type { Rule } from 'ant-design-vue/es/form'
 import { getSessionStorageEntity } from '@/utils/commonUtils.js'
+import { queryLobbyGames } from '@/utils/commonApi.js'
 import { platformDefaultInfo } from '@/../public/js/system_config'
+import { memberValueRule, dateDurationRule, timeDurationRule, tidyMember } from '@/utils/filterUtils.js'
 
 const { t } = useI18n()
 
 const globalStore = useGlobalStore()
+
 const operationsBetSearchStore = useOperationsBetSearchStore()
 const { searchParams } = operationsBetSearchStore
 
@@ -20,57 +23,9 @@ const formState = reactive<BetSearchFilterFormState>({
   dateDuration: [undefined, undefined]
 })
 
-const memberValueRule = async (_rule: Rule, value: string) => {
-  if (value === '') {
-    return Promise.resolve()
-  }
-
-  // 先檢查平台是否為 'xctw' 或 'xcmy'，這兩個平台不限制輸入格式
-  if (['xctw', 'xcmy'].includes(globalStore.currentPlatform)) {
-    return Promise.resolve()
-  }
-
-  // 如果是會員帳號，確保輸入只能包含英數字 + 逗號
-  if (accountOrId.value === 'account') {
-    if (!/^[0-9a-zA-Z,]+$/.test(value)) {
-      return Promise.reject(t('common.only_english_numbers_comma_separated'))
-    }
-  }
-
-  // 如果是會員ID，需確保輸入的都是數字 + 逗號
-  if (accountOrId.value === 'id') {
-    if (!/^[0-9,]+$/.test(value)) {
-      return Promise.reject(t('common.member_id_be_number_confirm_the_content'))
-    }
-  }
-
-  const members = value.split(',').filter((id) => id !== '')
-
-  // 限制最多10個帳號
-  if (members.length > 10) {
-    return Promise.reject(t('common.max_member_accounts_exceeded', { max: 10 }))
-  }
-
-  return Promise.resolve()
-}
-
-const timeDurationRule = async (_rule: Rule, value: [Dayjs, Dayjs]) => {
-  if (!value || !value[0] || !value[1]) {
-    return Promise.reject(t('common.select_complete_time_range'))
-  }
-  return Promise.resolve()
-}
-
-const dateDurationRule = async (_rule: Rule, value: [Dayjs, Dayjs]) => {
-  if (!value || !value[0] || !value[1]) {
-    return Promise.reject(t('common.select_complete_date_range'))
-  }
-  return Promise.resolve()
-}
-
 // 驗證規則
 const rules: Record<string, Rule[]> = {
-  memberValue: [{ validator: memberValueRule }],
+  memberValue: [{ validator: (_rule, value) => memberValueRule(_rule, value, accountOrId.value) }],
   timeDuration: [{ validator: timeDurationRule }],
   dateDuration: [{ validator: dateDurationRule }]
 }
@@ -165,11 +120,7 @@ const datePickerChangeHandler = (date: [Dayjs, Dayjs]) => {
 
 // 搜尋
 const handleSearch = () => {
-  formState.memberValue = formState.memberValue
-    .trim() // 去掉頭尾空格
-    .replace(/\s*,\s*/g, ',') // 去除逗號前後的空格
-    .replace(/,{2,}/g, ',') // 移除連續逗號
-    .replace(/(^,|,$)/g, '') // 移除開頭 結尾的逗號
+  formState.memberValue = tidyMember(formState.memberValue)
 
   formRef.value?.validate().then(() => {
     searchParams.hallValue = hallValue.value
@@ -191,7 +142,7 @@ const generateLobbyGamesOptions = async () => {
   gameTypeValue.value = []
   gameTypeOptions.value = []
   if (lobbyValue.value !== undefined) {
-    await globalStore.queryLobbyGames(lobbyValue.value).then((games) => {
+    await queryLobbyGames(lobbyValue.value).then((games) => {
       if (games) {
         gameTypeOptions.value = games.map(({ game_code, game_name }) => ({
           value: game_code,

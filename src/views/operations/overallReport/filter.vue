@@ -1,15 +1,21 @@
 <script setup lang="ts">
-import type { SelectProps, FormInstance } from 'ant-design-vue'
+import type { SelectProps, FormInstance, CascaderProps } from 'ant-design-vue'
 import { useI18n } from 'vue-i18n'
-import type { AntSelectProps, AntInputProps } from '@/components/input/inputs'
-import { useOperationsOverallReportStore, useGlobalStore } from '@/stores'
+import type { AntSelectProps, AntInputProps, AntCascaderProps } from '@/components/input/inputs'
+import { useOperationsOverallReportStore } from '@/stores'
 import type { Rule } from 'ant-design-vue/es/form'
 import { getSessionStorageEntity } from '@/utils/commonUtils.js'
 import { deviceGroupList } from '@/../public/js/system_config'
+import {
+  memberValueRule,
+  dateDurationRule,
+  loadData,
+  tidyMember,
+  generateGamePlayParam
+} from '@/utils/filterUtils.js'
 
 const { t } = useI18n()
 
-const globalStore = useGlobalStore()
 const operationsOverallReportStore = useOperationsOverallReportStore()
 const { searchParams } = operationsOverallReportStore
 
@@ -19,57 +25,16 @@ const formState = reactive<OverallReportFilterFormState>({
   dateDuration: [undefined, undefined]
 })
 
-const memberValueRule = async (_rule: Rule, value: string) => {
-  if (value === '') {
-    return Promise.resolve()
-  }
-  
-  // 先檢查平台是否為 'xctw' 或 'xcmy'，這兩個平台不限制輸入格式
-  if (['xctw', 'xcmy'].includes(globalStore.currentPlatform)) {
-    return Promise.resolve()
-  }
-
-  // 如果是會員帳號，確保輸入只能包含英數字 + 逗號
-  if (accountOrId.value === 'account') {
-    if (!/^[0-9a-zA-Z,]+$/.test(value)) {
-      return Promise.reject(t('common.only_english_numbers_comma_separated'))
-    }
-  }
-
-  // 如果是會員ID，需確保輸入的都是數字 + 逗號
-  if (accountOrId.value === 'memberId') {
-    if (!/^[0-9,]+$/.test(value)) {
-      return Promise.reject(t('common.member_id_be_number_confirm_the_content'))
-    }
-  }
-
-  const members = value.split(',').filter((id) => id !== '')
-
-  // 限制最多10個帳號
-  if (members.length > 10) {
-    return Promise.reject(t('common.max_member_accounts_exceeded', { max: 10 }))
-  }
-
-  return Promise.resolve()
-}
-
-const dateDurationRule = async (_rule: Rule, value: [Dayjs, Dayjs]) => {
-  if (!value || !value[0] || !value[1]) {
-    return Promise.reject(t('common.select_complete_date_range'))
-  }
-  return Promise.resolve()
-}
-
 // 驗證規則
 const rules: Record<string, Rule[]> = {
-  memberValue: [{ validator: memberValueRule }],
+  memberValue: [{ validator: (_rule, value) => memberValueRule(_rule, value, accountOrId.value) }],
   dateDuration: [{ validator: dateDurationRule }]
 }
 
 // 廳
 const hallValue = ref<number>(0)
 const hallOptions = ref<SelectProps['options']>([
-  {value: 0, label: t('common.all')},
+  { value: 0, label: t('common.all') },
   ...getSessionStorageEntity('platform_halls').map(({ hall_id, login_code, name }) => ({
     value: hall_id,
     label: name + ` [${login_code}]`
@@ -94,19 +59,20 @@ const memberProps = computed<AntInputProps>(() => {
 })
 
 // 遊戲及玩法
-const lobbyGameValue = ref<number | undefined>()
-const lobbyGameOptions = ref<SelectProps['options']>(
+const gamePlayValue = ref<LobbyGameData[]>([])
+const gamePlayOptions = ref<CascaderProps['options']>(
   getSessionStorageEntity('platform_lobbies').map(({ lobby, lobby_name }) => ({
     value: lobby,
-    label: lobby_name
+    label: lobby_name,
+    isLeaf: false
   }))
 )
-const lobbyGameProps = computed<AntSelectProps>(() => {
+const gamePlayProps = computed<AntCascaderProps>(() => {
   return {
-    allowClear: false,
     placeHolderText: t('common.select_game_play'),
     placeHolderValuableText: t('common.game_play'),
-    options: lobbyGameOptions.value
+    options: gamePlayOptions.value,
+    loadData: loadData
   }
 })
 
@@ -126,22 +92,20 @@ const dateDurationChange = (date: [Dayjs, Dayjs] | null) => {
 }
 
 // 搜尋
-const handleSearch = () => {  
-  formState.memberValue = formState.memberValue
-  .trim() // 去掉頭尾空格
-  .replace(/\s*,\s*/g, ',') // 去除逗號前後的空格
-  .replace(/,{2,}/g, ',') // 移除連續逗號
-  .replace(/(^,|,$)/g, '') // 移除開頭 結尾的逗號
+const handleSearch = () => {
+  formState.memberValue = tidyMember(formState.memberValue)
 
   formRef.value?.validate().then(() => {
     searchParams.hallValue = hallValue.value
     searchParams.memberType = accountOrId.value
     searchParams.memberValue = formState.memberValue.split(',')
     searchParams.deviceTypeValue = deviceTypeValue.value
-    searchParams.lobbyGameValue = lobbyGameValue.value
+    searchParams.gamePlayValue = generateGamePlayParam(gamePlayValue.value)
     searchParams.dateDuration = formState.dateDuration
 
     operationsOverallReportStore.isFiltered = new Date().getTime()
+
+    console.log(searchParams)
   })
 }
 </script>
@@ -179,14 +143,11 @@ const handleSearch = () => {
             </a-form-item>
           </a-col>
           <a-col :span="12">
-            <a-form-item name="lobbyGameValue">
-              <ant-select v-model="lobbyGameValue" v-bind="lobbyGameProps"></ant-select>
-            </a-form-item>
+            <ant-cascader v-model="gamePlayValue" v-bind="gamePlayProps"></ant-cascader>
           </a-col>
           <a-col :span="12">
             <ant-select v-model="deviceTypeValue" v-bind="deviceTypeProps"></ant-select>
           </a-col>
-          
           <a-col :span="12">
             <a-form-item name="dateDuration">
               <ant-date-range
