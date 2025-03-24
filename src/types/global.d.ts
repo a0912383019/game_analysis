@@ -4,4 +4,10 @@ declare global {
   namespace globalThis {
     type Dayjs = AppDayjs
   }
+  type LobbyGameData = (number | string)[]
+  interface Game {
+    game_code?: string
+    lobby: number
+    serial_type?: string[]
+  }
 }

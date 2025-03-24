@@ -51,5 +51,5 @@ interface ResultLobbyGames {
   enable: number
   game_code: string
   game_name: string
-  serial_info: SerialInfo
+  serial_info: SerialInfo[]
 }

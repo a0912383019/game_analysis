@@ -2,7 +2,6 @@ import { defineStore } from 'pinia'
 import router from '@/router'
 import { notification } from 'ant-design-vue'
 import { i18n } from '@/global/i18n'
-import { apiLobbyGames } from '@/api'
 
 export const useGlobalStore = defineStore('globalStore', () => {
   const isSidebarClose = ref<boolean>(false) // sidebar預設開啟
@@ -30,51 +29,11 @@ export const useGlobalStore = defineStore('globalStore', () => {
     currentPlatform.value = 'bbin'
   }
 
-  const queryLobbyGames = async (lobbyId: number): Promise<ResultLobbyGames[] | undefined> => {
-    try {
-      const response = await apiLobbyGames({
-        lobby_id: lobbyId
-      })
-      const { result } = response
-
-      if (result === 'success') {
-        return response.ret
-      } else {
-        throw new Error()
-      }
-    } catch (err) {
-      console.error(err)
-      if (axios.isAxiosError(err)) {
-        const status = err.response?.status
-        if (status === 401) {
-          // token 錯誤，登出
-          storeHandleApiError()
-        } else if (status === 403) {
-          // 沒有權限
-          notification['error']({
-            message: t('msg.no_permission')
-          })
-        } else {
-          // query failed
-          notification['error']({
-            message: t('msg.query_failed')
-          })
-        }
-      } else {
-        // query failed
-        notification['error']({
-          message: t('msg.query_failed')
-        })
-      }
-    }
-  }
-
   return {
     isSidebarClose,
     isLoading,
     currentPlatform,
     storeHandleApiError,
-    resetState,
-    queryLobbyGames
+    resetState
   }
 })

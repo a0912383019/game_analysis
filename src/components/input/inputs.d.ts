@@ -1,4 +1,4 @@
-import type { SelectProps } from 'ant-design-vue'
+import type { SelectProps, CascaderProps } from 'ant-design-vue'
 
 export type SelectValue = number | number[] | string | string[]
 
@@ -40,4 +40,13 @@ export interface AppTimeRangeProps {
 export interface AppDatePickerProps {
   showTime?: boolean // 快捷選項
   placeHolderText?: string
+}
+
+export interface AntCascaderProps {
+  modelValue?: any[]
+  options: CascaderProps['options']
+  loadData?: CascaderProps['loadData']
+  hasPlaceholder?: boolean
+  placeHolderText?: string
+  placeHolderValuableText?: string
 }

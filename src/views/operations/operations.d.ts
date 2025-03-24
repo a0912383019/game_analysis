@@ -19,7 +19,7 @@ interface OverallReportSearchType {
   hallValue: number
   memberType: string
   memberValue: string[]
-  lobbyGameValue: number | undefined
+  gamePlayValue: Game[] | undefined
   deviceTypeValue: number | undefined
   dateDuration: [Dayjs | undefined, Dayjs | undefined]
 }
