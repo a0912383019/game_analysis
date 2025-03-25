@@ -10,7 +10,7 @@ interface ButtonGroupProps {
 
 const props = withDefaults(defineProps<ButtonGroupProps>(), {
   itemObj: () => [
-    { name: '聽主', value: 1 },
+    { name: '廳主', value: 1 },
     { name: '遊戲', value: 2 },
     { name: '玩法', value: 3 }
   ]
