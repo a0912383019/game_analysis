@@ -397,7 +397,7 @@ onMounted(() => {
 </script>
 <template>
   <section class="cdp-section p-4">
-    <ant-cascader></ant-cascader>
+    <!-- <ant-cascader></ant-cascader> -->
   </section>
   <section class="cdp-section p-4">
     <custom-table
@@ -418,7 +418,7 @@ onMounted(() => {
       :showTime="true"
     ></ant-date-range>
   </div>
-  <cdp-button-group />
+  <!-- <cdp-button-group /> -->
   <!-- <ant-input v-model="overallProfitValue" v-bind="overallProfitProps"></ant-input> -->
   <div>
     <a-form ref="formRef" name="custom-validation" :model="formState" :rules="rules">

@@ -17,12 +17,18 @@ interface Props {
   fetchSubData?: Function[]
   loading?: boolean
   total?: number
+  // 是否有分頁
+  hasPage?: boolean
+  // 是否可展開
+  canExpand?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   pageSize: 10,
   serverSide: false,
-  loading: true
+  loading: true,
+  hasPage: true,
+  canExpand: true
 })
 
 const currentPage = ref<number>(1)
@@ -78,8 +84,21 @@ const scrollX = computed<string | undefined>(() => {
   return 'max-content'
 })
 
+// **展開的 row keys**
+const expandedRowKeys = ref<number[] | string[]>([])
+
 const handleExpand = async (expanded: boolean, record: any) => {
-  if (expanded && props.fetchSubData && props.fetchSubData[0] && record.isLoading) {
+  if (expanded && props.fetchSubData && props.fetchSubData[0]) {
+    // 確保 record 有 pagination 狀態
+    if (!record.innerPagination) {
+      record.innerPagination = {
+        current: 1,
+        pageSize: 10,
+        total: 0
+      }
+    }
+
+    // 呼叫 API
     await props.fetchSubData[0](record)
   }
 }
@@ -93,32 +112,80 @@ const handleTableChange: TableProps['onChange'] = (
   sorter: any
 ) => {
   if (props.serverSide) {
+    closeAllExpandedRows()
+
+    // 有分頁模式才會有 pag.current, pag.pageSize
     emit('update:tableChange', pag.current, pag.pageSize, sorter.order, sorter.field)
   }
 }
 
-defineExpose({ goToFirstPage })
+const handleSubTableChange = (
+  page: number,
+  size: number,
+  sortOrder: any,
+  sortField: string | undefined,
+  record: any
+) => {
+  if (page && size) {
+    record.innerPagination.current = page
+    record.innerPagination.pageSize = size
+  }
+  record.innerPagination.order = sortOrder
+
+  if (sortField) {
+    record.innerPagination.sort = sortField
+  }
+  // 重新獲取子層數據
+  if (!props.fetchSubData) return
+  props.fetchSubData[0](record)
+}
+
+const expandedRowsChange = (data: any) => {
+  expandedRowKeys.value = data
+}
+
+const childRef = ref<any>(null)
+
+// 遞迴關閉所有展開
+const closeAllExpandedRows = () => {
+  expandedRowKeys.value = []
+  if (childRef.value) {
+    childRef.value.closeAllExpandedRows()
+  }
+}
+
+defineExpose({ goToFirstPage, closeAllExpandedRows })
 </script>
 <template>
   <a-table
-    :pagination="props.dataSource.length === 0 ? false : pagination"
+    :pagination="props.dataSource.length === 0 || !props.hasPage ? false : pagination"
     :scroll="{ x: scrollX }"
     :columns="props.columns[0]"
     :fetchSubData="props.fetchSubData"
     :data-source="pageTableData"
     :loading="props.loading"
+    :expandedRowKeys="expandedRowKeys"
     bordered
     @expand="handleExpand"
     @change="handleTableChange"
+    @expandedRowsChange="expandedRowsChange"
   >
-    <template v-if="props.columns.length > 1" #expandedRowRender="{ record }">
+    <template v-if="props.columns.length > 1 && props.canExpand" #expandedRowRender="{ record }">
       <custom-table
-        bordered
-        :loading="record.innerLoading"
+        ref="childRef"
+        :pageSize="record.innerPagination.pageSize"
+        :hasPage="record.hasPage"
+        :dataSource="record.innerData"
         :columns="props.columns.slice(1)"
+        :serverSide="true"
+        :total="record.innerPagination.total"
+        :loading="record.innerLoading"
         :fetchSubData="props.fetchSubData?.slice(1)"
-        :data-source="record.innerData"
-        :pagination="false"
+        @update:tableChange="
+          (page, size, sortOrder, sortField) =>
+            handleSubTableChange(page, size, sortOrder, sortField, record)
+        "
+        :canExpand="record.canExpand"
       ></custom-table>
     </template>
   </a-table>

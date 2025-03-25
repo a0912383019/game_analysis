@@ -98,16 +98,18 @@ const handleSearch = () => {
   formRef.value?.validate().then(() => {
     searchParams.hallValue = hallValue.value
     searchParams.memberType = accountOrId.value
-    searchParams.memberValue = formState.memberValue.split(',')
+    searchParams.memberValue = formState.memberValue.split(',').filter(Boolean)
     searchParams.deviceTypeValue = deviceTypeValue.value
     searchParams.gamePlayValue = generateGamePlayParam(gamePlayValue.value)
     searchParams.dateDuration = formState.dateDuration
 
     operationsOverallReportStore.isFiltered = new Date().getTime()
-
-    console.log(searchParams)
   })
 }
+
+onMounted(() => {
+  handleSearch()
+})
 </script>
 <template>
   <section class="cdp-section">
