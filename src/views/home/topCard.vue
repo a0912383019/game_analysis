@@ -67,8 +67,8 @@ const cardList = computed<HomeCard[]>(() =>
     return {
       title: lobbyGroupMap[ele],
       customShapeColor: generateShapeColorClass(lobbyGroupMap[ele]),
-      bet: cardObj ? formatNumber(parseFloat(cardObj.bet_amount)) : '--',
-      payoff: cardObj ? formatNumber(parseFloat(cardObj.payoff)) : '--',
+      bet: cardObj ? formatNumber(cardObj.bet_amount) : '--',
+      payoff: cardObj ? formatNumber(cardObj.payoff) : '--',
       amount: cardObj ? formatNumber(cardObj.wager_count) : '--',
       people: cardObj ? formatNumber(cardObj.user_count) : '--'
     }

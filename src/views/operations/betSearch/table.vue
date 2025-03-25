@@ -8,7 +8,8 @@ import {
   formatNumber,
   formatToApiTaipeiIso,
   formatToApiDate,
-  formatByTimeZone
+  formatByTimeZone,
+  formatToPercentage
 } from '@/utils/commonUtils.js'
 import { notification } from 'ant-design-vue'
 
@@ -220,10 +221,10 @@ const transformTable = (data: BetRecords[] | BetSettledByDate[], searchType: str
         bet_time: formatByTimeZone(item.bet_time).format(t('date.format_time_rule')),
         username: item.username,
         game_name: item.game_name,
-        bet_amount: formatNumber(parseFloat(item.bet_amount)),
+        bet_amount: formatNumber(item.bet_amount),
         result: generateBetResult(item.result),
-        payoff: formatNumber(parseFloat(item.payoff)),
-        payoff_ratio: item.payoff_ratio ? formatNumber(parseFloat(item.payoff_ratio)) + '%' : '--'
+        payoff: formatNumber(item.payoff),
+        payoff_ratio: formatToPercentage(item.payoff_ratio)
       }
     })
   } else {
@@ -232,9 +233,9 @@ const transformTable = (data: BetRecords[] | BetSettledByDate[], searchType: str
         settle_date: item.settle_date,
         username: item.username,
         game_name: item.game_name,
-        bet_amount: formatNumber(parseFloat(item.bet_amount)),
-        payoff: formatNumber(parseFloat(item.payoff)),
-        payoff_ratio: item.payoff_ratio ? formatNumber(parseFloat(item.payoff_ratio)) + '%' : '--'
+        bet_amount: formatNumber(item.bet_amount),
+        payoff: formatNumber(item.payoff),
+        payoff_ratio: formatToPercentage(item.payoff_ratio)
       }
     })
   }

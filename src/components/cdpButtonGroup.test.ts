@@ -6,7 +6,15 @@ describe('cdpButtonGroup', () => {
   let wrapper: VueWrapper<any>
 
   beforeEach(() => {
-    wrapper = shallowMount(cdpButtonGroup)
+    wrapper = shallowMount(cdpButtonGroup, {
+      props: {
+        buttonGroup: [
+          { name: '廳主', value: 1 },
+          { name: '遊戲', value: 2 },
+          { name: '玩法', value: 3 }
+        ]
+      }
+    })
   })
 
   afterEach(() => {
@@ -15,7 +23,7 @@ describe('cdpButtonGroup', () => {
 
   // 測試是否正確應用預設 props
   it('should correctly apply props', () => {
-    expect(wrapper.props().itemObj).toStrictEqual([
+    expect(wrapper.props().buttonGroup).toStrictEqual([
       { name: '廳主', value: 1 },
       { name: '遊戲', value: 2 },
       { name: '玩法', value: 3 }
@@ -35,7 +43,7 @@ describe('cdpButtonGroup', () => {
   it('should handle string values correctly', () => {
     wrapper = shallowMount(cdpButtonGroup, {
       props: {
-        itemObj: [
+        buttonGroup: [
           { name: 'A', value: 'a' },
           { name: 'B', value: 'b' }
         ]
