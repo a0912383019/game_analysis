@@ -7,6 +7,8 @@ const props = withDefaults(defineProps<AntSelectProps>(), {
   allowClear: true,
   hasPlaceholder: true,
   defaultAll: true,
+  showSearch: true,
+  isLoading: false,
   handleChange: () => {}
 })
 
@@ -63,6 +65,10 @@ const selectAll = (status: boolean) => {
   }
 }
 
+const filterOption = (input: string, option: any) => {
+  return option.label.indexOf(input) >= 0
+}
+
 onMounted(() => {
   // 多選預設全選
   if (props.mode === 'multiple' && props.defaultAll) {
@@ -74,21 +80,24 @@ onMounted(() => {
   <a-select
     v-bind="allBinding"
     :options="formatOptions"
+    :show-search="props.showSearch"
     :style="{ '--placeholder-text': `'${placeholder}'` }"
     size="large"
+    :filter-option="filterOption"
     :showArrow="true"
     class="cdp-select"
     :class="{
       'has-placeholder': props.hasPlaceholder,
       'is-active': isActive
     }"
+    :max-tag-count="3"
     popupClassName="!rounded-none"
   >
     <template #suffixIcon>
       <cdp-icon name="downOutline"></cdp-icon>
     </template>
     <template #dropdownRender="{ menuNode }">
-      <template v-if="props.mode === 'multiple'">
+      <template v-if="props.mode === 'multiple' && props.options?.length !== 0">
         <div
           class="w-full checkbox-wrap"
           @click.stop
@@ -99,6 +108,9 @@ onMounted(() => {
         <a-divider />
       </template>
       <component :is="menuNode" />
+    </template>
+    <template v-if="props.isLoading" #notFoundContent>
+      <a-spin size="small" />
     </template>
   </a-select>
 </template>

@@ -1,9 +1,10 @@
 <script lang="ts" setup>
-import dayjs, { Dayjs } from '@/utils/appDayjs'
+import dayjs from '@/utils/appDayjs'
 import { useDateStore } from '@/stores'
 import type { AppRangePickerProps } from './inputs'
 
 const props = withDefaults(defineProps<AppRangePickerProps>(), {
+  defaultDates: () => [dayjs().add(-2, 'd').startOf('day'), dayjs().add(-1, 'd').endOf('day')], // 預設近 2天
   disabledDays: 60, // 預設 60天
   rangeConfig: 1
 })
@@ -29,14 +30,22 @@ const bindingValue = ref<[Dayjs, Dayjs] | undefined>(
     : undefined
 )
 
-const hackValue = ref<[Dayjs, Dayjs] | undefined>()
+const hackValue = ref<[Dayjs, Dayjs] | undefined>(
+  props.defaultDates
+    ? ([
+        _.isString(props.defaultDates[0]) ? dayjs(props.defaultDates[0]) : props.defaultDates[0],
+        _.isString(props.defaultDates[1]) ? dayjs(props.defaultDates[1]) : props.defaultDates[1]
+      ] as [Dayjs, Dayjs])
+    : undefined
+)
 
-const disabledDate = (current: Dayjs) => {
+const disabledDate = (current: Dayjs) :boolean => {
   // 禁用超過今天的日期
-  const disabledAfterToday = current > dayjs().endOf('day')
+  // const disabledAfterToday = current > dayjs().endOf('day')
   // 如果沒有選擇日期範圍
   if (!bindingValue.value || bindingValue.value.length !== 2) {
-    return disabledAfterToday
+    // return disabledAfterToday
+    return false
   }
 
   const [start, end] = bindingValue.value
@@ -45,7 +54,8 @@ const disabledDate = (current: Dayjs) => {
   const tooLate = start && current.diff(start, 'days') > props.disabledDays - 1
   const tooEarly = end && end.diff(current, 'days') > props.disabledDays - 1
 
-  return disabledAfterToday || tooLate || tooEarly
+  // return disabledAfterToday || tooLate || tooEarly
+  return tooLate || tooEarly
 }
 
 const onOpenChange = (open: boolean) => {
@@ -77,6 +87,10 @@ const onCalendarChange = (val: [string | Dayjs, string | Dayjs]) => {
     _.isString(val[1]) ? dayjs(val[1]) : val[1]
   ] as [Dayjs, Dayjs]
 }
+
+onMounted(() => {
+  emit('update:value', bindingValue.value)
+})
 </script>
 <template>
   <a-range-picker

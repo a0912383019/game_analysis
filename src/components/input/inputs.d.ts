@@ -1,5 +1,4 @@
-import type { SelectProps } from 'ant-design-vue'
-import { Dayjs } from '@/utils/appDayjs'
+import type { SelectProps, CascaderProps } from 'ant-design-vue'
 
 export type SelectValue = number | number[] | string | string[]
 
@@ -14,6 +13,8 @@ export interface AntSelectProps {
   options?: SelectProps['options']
   mode?: 'multiple' | 'tags'
   handleChange?: Function
+  showSearch?: boolean // 是否啟用搜尋模式
+  isLoading?: boolean
 }
 
 export interface AntInputProps {
@@ -21,6 +22,7 @@ export interface AntInputProps {
   type?: string
   hasPlaceholder?: boolean
   placeHolderText?: string
+  originPlaceHolder?: string // 原始套件自帶的 placeholder
   disabled?: boolean
 }
 
@@ -38,4 +40,13 @@ export interface AppTimeRangeProps {
 export interface AppDatePickerProps {
   showTime?: boolean // 快捷選項
   placeHolderText?: string
+}
+
+export interface AntCascaderProps {
+  modelValue?: any[]
+  options: CascaderProps['options']
+  loadData?: CascaderProps['loadData']
+  hasPlaceholder?: boolean
+  placeHolderText?: string
+  placeHolderValuableText?: string
 }

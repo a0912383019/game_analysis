@@ -11,9 +11,45 @@ interface ResultLoginData {
   token_type: string
 }
 
-
 interface ResultSidebar {
   title: string
   route: string
   submenu?: ResultSidebar[]
+}
+
+interface ParamsHalls {
+  hall_id?: number
+}
+
+interface ResultHalls {
+  hall_id: number
+  login_code: string
+  name: string
+}
+
+interface ParamsLobbies {
+  lobby?: number
+}
+
+interface ResultLobbies {
+  lobby: number
+  lobby_group: number
+  lobby_group_name: string
+  lobby_name: string
+}
+
+interface ParamsLobbyGames {
+  lobby_id: number
+}
+
+interface SerialInfo {
+  serial_name?: string
+  serial_type?: number
+}
+
+interface ResultLobbyGames {
+  enable: number
+  game_code: string
+  game_name: string
+  serial_info: SerialInfo[]
 }

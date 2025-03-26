@@ -1,26 +1,31 @@
+import dayjs from '@/utils/appDayjs'
+import { platformTimezones } from '@/../public/js/system_config'
+import { useGlobalStore } from '@/stores'
+
 /**
  * 將浮點數四捨五入至指定位數
- * @param val 要處理的數值
+ * @param {string | number} val 要處理的數值
  * @param precision 小數點後四捨五入的位數 (預設值為 2)
  * @returns {string} 返回四捨五入後的數字字串
  */
-export function roundDecimal(val: number, precision: number = 2): string {
+export function roundDecimal(val: string | number, precision: number = 2): string {
+  let parseVal = parseFloat(val.toString())
   const multiplier = Math.pow(10, precision)
   const roundedValue =
-    val > 0
-      ? Math.round(val * multiplier) / multiplier
-      : (Math.round(Math.abs(val) * multiplier) / multiplier) * -1
+    parseVal > 0
+      ? Math.round(parseVal * multiplier) / multiplier
+      : (Math.round(Math.abs(parseVal) * multiplier) / multiplier) * -1
 
   return roundedValue.toString()
 }
 
 /**
  * 數字加上千分位分隔符號
- * @param n 要加工的數值
+ * @param {string | number} n 要加工的數值
  * @param precision 顯示的小數位數 (預設值為 2)
  * @returns {string} 返回格式化後的數字字串
  */
-export function formatNumber(n: number, precision: number = 2): string {
+export function formatNumber(n: string | number, precision: number = 2): string {
   const rounded = roundDecimal(n, precision)
   const parts = rounded.split('.')
 
@@ -56,3 +61,40 @@ export function getSessionStorageEntity(key: string): Record<string, any> {
   return item ? JSON.parse(item) : {}
 }
 
+/**
+ * 轉換為api使用參數
+ * @param {Dayjs | string} dateTime 日期時間
+ * @return {string} 對應時區的日期時間
+ */
+export function formatToApiTaipeiIso(dateTime: Dayjs | string): string {
+  return dayjs(dateTime).tz('Asia/Taipei').format('YYYY-MM-DDTHH:mm:ssZ')
+}
+/**
+ * 轉換為api使用參數
+ * @param {Dayjs} dateVal 日期
+ * @return {string} 對應的日期
+ */
+export function formatToApiDate(dateVal: Dayjs | string): string {
+  return dayjs(dateVal).format('YYYY-MM-DD')
+}
+
+/**
+ * 根據當前平台轉換時區
+ * @param {Dayjs | string} dateTime 日期時間
+ * @return {Dayjs} 對應時區的日期時間
+ */
+export function formatByTimeZone(dateTime: Dayjs | string): Dayjs {
+  const globalStore = useGlobalStore()
+  return dayjs(dateTime).tz(platformTimezones[globalStore.currentPlatform])
+}
+
+/**
+ * 轉換成百分比字串
+ * @param {string | number | null} val 要加工的數值
+ * @param {number} precision 顯示的小數位數 (預設值為 2)
+ * @return {string} 返回格式化後的數字字串
+ */
+export function formatToPercentage(val: string | number | null, precision: number = 2): string {
+  if (!val) return '--'
+  return formatNumber(parseFloat(val.toString()) * 100, precision) + '%'
+}

@@ -1,5 +1,30 @@
 interface BetSearchFilterFormState {
   memberValue: string
   timeDuration: [Dayjs | undefined, Dayjs | undefined]
-  lobbyValue: string | undefined
+  dateDuration: [Dayjs | undefined, Dayjs | undefined]
+}
+
+interface BetRecordSearchType {
+  hallValue: number | undefined
+  memberType: string
+  memberValue: string[]
+  lobbyValue: number | undefined
+  gameTypeValue: string[]
+  searchTypeValue: string
+  timeDuration: [Dayjs | undefined, Dayjs | undefined]
+  dateDuration: [Dayjs | undefined, Dayjs | undefined]
+}
+
+interface OverallReportSearchType {
+  hallValue: number
+  memberType: string
+  memberValue: string[]
+  gamePlayValue: Game[] | undefined
+  deviceTypeValue: number | undefined
+  dateDuration: [Dayjs | undefined, Dayjs | undefined]
+}
+
+interface OverallReportFilterFormState {
+  memberValue: string
+  dateDuration: [Dayjs | undefined, Dayjs | undefined]
 }

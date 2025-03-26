@@ -1,22 +1,77 @@
 <script lang="ts" setup>
 import { useGlobalStore } from '@/stores'
-import { platformDict } from '@/config/systemConfig'
+import { platformDict } from '@/../public/js/system_config'
+import { apiHalls, apiLobbies } from '@/api'
+import { notification } from 'ant-design-vue'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const globalStore = useGlobalStore()
 
-const currentPlatform = computed<string>(() => globalStore.currentPlatform)
+// 刷新的 key
+const currentPlatform = ref<string>('bbin')
 
 const getColorByName = (name: string): string => {
-  const platform = platformDict.find((item) => item.name.toLowerCase() === name)
-
-  return platform?.pColor || '#000000' // 找不到時返回預設顏色
+  return platformDict.find((item) => item.name.toLowerCase() === name)?.pColor || '#000000'
 }
 
-watchEffect(() => {
-  document.documentElement.style.setProperty(
-    '--primary-color',
-    getColorByName(currentPlatform.value)
-  )
+// 通用 API 查詢函式
+const queryApiData = async (apiFunc: Function, storageKey: string, params = {}) => {
+  try {
+    const response = await apiFunc(params)
+    if (response.result === 'success') {
+      sessionStorage.setItem(storageKey, JSON.stringify(response.ret))
+    } else {
+      throw new Error()
+    }
+  } catch (err) {
+    console.error(err)
+    sessionStorage.setItem(storageKey, JSON.stringify([]))
+    if (axios.isAxiosError(err) && err.response?.status === 401) {
+      throw err // 讓外部統一處理 401
+    } else {
+      notification.error({ message: t(`msg.get_${storageKey}_failed`) })
+    }
+  }
+}
+
+const refreshData = async () => {
+  globalStore.isLoading = true
+
+  const results = await Promise.allSettled([
+    queryApiData(apiHalls, 'platform_halls', { hall_id: undefined }),
+    queryApiData(apiLobbies, 'platform_lobbies', { lobby: undefined })
+  ])
+
+  globalStore.isLoading = false
+
+  // 檢查是否有任何一個請求出現 401
+  if (
+    results.some(
+      (result) =>
+        result.status === 'rejected' &&
+        axios.isAxiosError(result.reason) &&
+        result.reason.response?.status === 401
+    )
+  ) {
+    globalStore.storeHandleApiError()
+  }
+}
+
+watch(
+  () => globalStore.currentPlatform,
+  async () => {
+    await refreshData()
+    document.documentElement.style.setProperty(
+      '--primary-color',
+      getColorByName(globalStore.currentPlatform)
+    )
+    currentPlatform.value = globalStore.currentPlatform
+  }
+)
+
+onMounted(() => {
+  refreshData()
 })
 </script>
 <template>

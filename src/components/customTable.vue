@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 import type { TableColumnsType, TablePaginationConfig, TableProps } from 'ant-design-vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 interface Props {
   // 資料集
@@ -13,12 +16,19 @@ interface Props {
   // 打開子層時呼叫的 api，有順序性
   fetchSubData?: Function[]
   loading?: boolean
+  total?: number
+  // 是否有分頁
+  hasPage?: boolean
+  // 是否可展開
+  canExpand?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   pageSize: 10,
   serverSide: false,
-  loading: true
+  loading: true,
+  hasPage: true,
+  canExpand: true
 })
 
 const currentPage = ref<number>(1)
@@ -26,7 +36,7 @@ const pageSize = ref<number>(props.pageSize)
 
 // 表格資料
 const pageTableData = computed<any[]>(() => {
-  if (!props.serverSide) {
+  if (props.serverSide) {
     return props.dataSource
   }
   return props.dataSource.slice(
@@ -47,16 +57,24 @@ interface Pagination {
 
 const pagination = computed<Pagination>(() => ({
   pageSize: pageSize.value,
-  total: props.dataSource.length,
+  total: props.serverSide
+    ? props.total
+      ? props.total
+      : props.dataSource.length
+    : props.dataSource.length,
   current: currentPage.value,
-  showTotal: (total: number) => `共 ${total} 筆`,
+  showTotal: (total: number) => t('common.pagination_total', { total: total }),
   showSizeChanger: true,
-  pageSizeOptions: ['10', '30', '50', '100', '200', '500', 'Infinity'],
+  pageSizeOptions: ['10', '30', '50', '100'],
   onChange: (page: number, newPageSize: number) => {
     currentPage.value = page
     pageSize.value = newPageSize
   }
 }))
+
+const goToFirstPage = () => {
+  currentPage.value = 1
+}
 
 const scrollX = computed<string | undefined>(() => {
   if (props.dataSource.length === 0) {
@@ -66,11 +84,26 @@ const scrollX = computed<string | undefined>(() => {
   return 'max-content'
 })
 
+// **展開的 row keys**
+const expandedRowKeys = ref<number[] | string[]>([])
+
 const handleExpand = async (expanded: boolean, record: any) => {
-  if (expanded && props.fetchSubData && props.fetchSubData[0] && record.isLoading) {
+  if (expanded && props.fetchSubData && props.fetchSubData[0]) {
+    // 確保 record 有 pagination 狀態
+    if (!record.innerPagination) {
+      record.innerPagination = {
+        current: 1,
+        pageSize: 10,
+        total: 0
+      }
+    }
+
+    // 呼叫 API
     await props.fetchSubData[0](record)
   }
 }
+
+const emit = defineEmits(['update:tableChange'])
 
 // field 是 columns.dataIndex
 const handleTableChange: TableProps['onChange'] = (
@@ -78,50 +111,83 @@ const handleTableChange: TableProps['onChange'] = (
   filters: any,
   sorter: any
 ) => {
-  if (props.serverSide && pageTableData.value.length !== 0) {
+  if (props.serverSide) {
+    closeAllExpandedRows()
+
+    // 有分頁模式才會有 pag.current, pag.pageSize
     emit('update:tableChange', pag.current, pag.pageSize, sorter.order, sorter.field)
   }
 }
 
-const tableKey = ref<number>(0)
-
-// 當表格無資料時重新渲染，讓表頭恢復預設長度
-watch(
-  () => pageTableData.value.length,
-  (newVal) => {
-    if (newVal === 0) {
-      tableKey.value = new Date().getTime()
-    }
+const handleSubTableChange = (
+  page: number,
+  size: number,
+  sortOrder: any,
+  sortField: string | undefined,
+  record: any
+) => {
+  if (page && size) {
+    record.innerPagination.current = page
+    record.innerPagination.pageSize = size
   }
-)
+  record.innerPagination.order = sortOrder
 
-const emit = defineEmits(['update:tableChange'])
+  if (sortField) {
+    record.innerPagination.sort = sortField
+  }
+  // 重新獲取子層數據
+  if (!props.fetchSubData) return
+  props.fetchSubData[0](record)
+}
+
+const expandedRowsChange = (data: any) => {
+  expandedRowKeys.value = data
+}
+
+const childRef = ref<any>(null)
+
+// 遞迴關閉所有展開
+const closeAllExpandedRows = () => {
+  expandedRowKeys.value = []
+  if (childRef.value) {
+    childRef.value.closeAllExpandedRows()
+  }
+}
+
+defineExpose({ goToFirstPage, closeAllExpandedRows })
 </script>
 <template>
   <a-table
-    :key="tableKey"
-    :pagination="props.dataSource.length === 0 ? false : pagination"
+    :pagination="props.dataSource.length === 0 || !props.hasPage ? false : pagination"
     :scroll="{ x: scrollX }"
     :columns="props.columns[0]"
     :fetchSubData="props.fetchSubData"
     :data-source="pageTableData"
     :loading="props.loading"
+    :expandedRowKeys="expandedRowKeys"
     bordered
-    class="sub-table"
     @expand="handleExpand"
     @change="handleTableChange"
+    @expandedRowsChange="expandedRowsChange"
   >
-    <template v-if="props.columns.length > 1" #expandedRowRender="{ record }">
+    <template v-if="props.columns.length > 1 && props.canExpand" #expandedRowRender="{ record }">
       <custom-table
-        bordered
-        class="sub-table"
-        :loading="record.innerLoading"
+        ref="childRef"
+        :pageSize="record.innerPagination.pageSize"
+        :hasPage="record.hasPage"
+        :dataSource="record.innerData"
         :columns="props.columns.slice(1)"
+        :serverSide="true"
+        :total="record.innerPagination.total"
+        :loading="record.innerLoading"
         :fetchSubData="props.fetchSubData?.slice(1)"
-        :data-source="record.innerData"
-        :pagination="false"
+        @update:tableChange="
+          (page, size, sortOrder, sortField) =>
+            handleSubTableChange(page, size, sortOrder, sortField, record)
+        "
+        :canExpand="record.canExpand"
       ></custom-table>
     </template>
   </a-table>
 </template>
-<style lang="scss" scoped></style>
+<style lang="scss"></style>

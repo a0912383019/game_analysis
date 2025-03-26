@@ -11,6 +11,7 @@ export const useGlobalStore = defineStore('globalStore', () => {
   const currentPlatform = ref<string>('bbin')
 
   const { t } = i18n.global
+
   const storeHandleApiError = async () => {
     // 當api錯誤時，會執行的內容
     // 清除所有sessionStorage與localStorage
@@ -28,5 +29,11 @@ export const useGlobalStore = defineStore('globalStore', () => {
     currentPlatform.value = 'bbin'
   }
 
-  return { isSidebarClose, isLoading, currentPlatform, storeHandleApiError, resetState }
+  return {
+    isSidebarClose,
+    isLoading,
+    currentPlatform,
+    storeHandleApiError,
+    resetState
+  }
 })

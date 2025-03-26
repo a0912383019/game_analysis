@@ -1,7 +1,8 @@
 {
   "date": {
     "date": "日期",
-    "format_date_rule": "YYYY/MM/DD",
+    "format_date_rule": "YYYY-MM-DD",
+    "format_time_rule": "YYYY-MM-DD HH:mm:ss",
     "date_duration": "日期區間",
     "time_duration": "時間區間",
     "analysis_duration": "分析區間",
@@ -45,9 +46,12 @@
   },
   "msg": {
     "logout": "您已成功登出，謝謝使用",
+    "query_success": "查詢成功",
     "query_failed": "查詢失敗，請重新操作",
     "no_permission": "權限不足，請聯繫管理員",
-    "login_error": "登入狀態異常，請重新登入"
+    "login_error": "登入狀態異常，請重新登入",
+    "get_platform_halls_failed": "取得廳別錯誤，請切換平台重試",
+    "get_platform_lobbies_failed": "取得遊戲大廳錯誤，請切換平台重試"
   },
   "currency": {
     "currency": "幣別",
@@ -71,7 +75,6 @@
     "read": "已讀",
     "last_seven_days": "近7日",
     "game_category": "遊戲類別",
-    "game_categories": "遊戲大類",
     "warning_news": "警示訊息通知",
     "game_combination": "遊玩組合",
     "game_flow": "遊玩流向",
@@ -108,13 +111,16 @@
     "required_select_hall": "需選擇一個廳",
     "enter_member_account": "請輸入會員帳號",
     "only_english_numbers_comma_separated": "請輸入英文或數字,多筆查詢以逗號分隔",
-    "only_numbers_comma_separated": "請輸入數字,多筆查詢以逗號分隔",
+    "comma_separated": "多筆查詢請以半形逗號分隔",
     "member_id_be_number_confirm_the_content": "會員ID必須為數字,請確認輸入內容",
     "select_complete_time_range": "請選擇完整的時間區間",
+    "select_complete_date_range": "請選擇完整的日期區間",
     "max_member_accounts_exceeded": "最多允許 {max} 個帳號",
     "hall": "廳",
+    "hall_master": "廳主",
     "hall_name": "廳主名稱",
     "game": "遊戲",
+    "game_categories": "遊戲大類",
     "player": "玩家",
     "gameplay": "玩法",
     "label": "標籤",
@@ -134,7 +140,7 @@
     "member_account": "會員帳號",
     "member_quantity": "會員數",
     "search_method": "搜尋方式",
-    "profit_ratio": "獲利率",
+    "profit_ratio": "獲利比",
     "overall_profit": "整體獲利(%)",
     "member_win_rate": "會員勝率",
     "single_game_profit": "單一遊戲獲利(%)",
@@ -153,7 +159,9 @@
     "num_of_lost_bet": "Base輸筆數",
     "num_of_free_game_win_bet": "Free贏筆數",
     "num_of_free_game_lost_bet": "Free輸筆數",
-    "win_bet_proportion": "贏單比例"
+    "win_bet_proportion": "贏單比例",
+    "settlement_date": "結算日期",
+    "pagination_total": "共 {total} 筆"
   },
   "data_name": {
     "bet_amount": "貨量",
@@ -199,7 +207,10 @@
     "game_hall": "遊戲大廳",
     "bet_amount": "投注額",
     "effective_bet_amount": "有效投注額",
-    "bet_slip_status": "注單狀態"
+    "bet_slip_status": "注單狀態",
+    "bet_finish": "已結",
+    "bet_not_finish": "未結",
+    "bet_destroy": "註銷"
   },
   "operation_analysis": {
     "daily_avg_bet_amount": "日均貨量",

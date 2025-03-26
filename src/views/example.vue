@@ -2,7 +2,8 @@
 // import { querySmallBoxData, addUser } from '@/api'
 // import dayjs from 'dayjs'
 // import { Dayjs } from 'dayjs'
-import dayjs, { Dayjs } from '@/utils/appDayjs'
+// import dayjs, { Dayjs } from '@/utils/appDayjs'
+import dayjs from '@/utils/appDayjs'
 import type { AntSelectProps, AntInputProps } from '@/components/input/inputs'
 import { useI18n } from 'vue-i18n'
 import type { TableColumnsType } from 'ant-design-vue'
@@ -396,6 +397,9 @@ onMounted(() => {
 </script>
 <template>
   <section class="cdp-section p-4">
+    <!-- <ant-cascader></ant-cascader> -->
+  </section>
+  <section class="cdp-section p-4">
     <custom-table
       :pageSize="3"
       :dataSource="data"
@@ -414,7 +418,7 @@ onMounted(() => {
       :showTime="true"
     ></ant-date-range>
   </div>
-  <cdp-button-group />
+  <!-- <cdp-button-group /> -->
   <!-- <ant-input v-model="overallProfitValue" v-bind="overallProfitProps"></ant-input> -->
   <div>
     <a-form ref="formRef" name="custom-validation" :model="formState" :rules="rules">
