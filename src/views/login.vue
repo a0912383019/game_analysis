@@ -5,6 +5,7 @@ import { apiLogin, apiRelease, apiGetSidebar } from '@/api'
 import { useSystemStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import { notification } from 'ant-design-vue'
+import { generateMenuRoutes } from '@/router/dynamicRoutes'
 
 const router = useRouter()
 
@@ -48,7 +49,7 @@ const queryApiGetSidebar = async () => {
       }
       sessionStorage.setItem('game_config', JSON.stringify(systemConfig))
       generateMenuList(response.ret)
-      systemStore.generateMenuRoutes(response.ret)
+      generateMenuRoutes(response.ret)
     } else {
       throw new Error()
     }
