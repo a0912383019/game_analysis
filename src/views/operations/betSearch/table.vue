@@ -10,7 +10,7 @@ import {
   formatToApiDate,
   formatByTimeZone,
   formatToPercentage
-} from '@/utils/commonUtils.js'
+} from '@/utils/commonUtils'
 import { notification } from 'ant-design-vue'
 
 const { t } = useI18n()

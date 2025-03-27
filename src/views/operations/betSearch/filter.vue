@@ -4,10 +4,15 @@ import { useI18n } from 'vue-i18n'
 import type { AntSelectProps, AntInputProps } from '@/components/input/inputs'
 import { useOperationsBetSearchStore, useGlobalStore } from '@/stores'
 import type { Rule } from 'ant-design-vue/es/form'
-import { getSessionStorageEntity } from '@/utils/commonUtils.js'
-import { queryLobbyGames } from '@/utils/commonApi.js'
+import { getSessionStorageEntity } from '@/utils/commonUtils'
+import { queryLobbyGames } from '@/utils/commonApi'
 import { platformDefaultInfo } from '@/../public/js/system_config'
-import { memberValueRule, dateDurationRule, timeDurationRule, tidyMember } from '@/utils/filterUtils.js'
+import {
+  memberValueRule,
+  dateDurationRule,
+  timeDurationRule,
+  tidyMember
+} from '@/utils/filterUtils'
 
 const { t } = useI18n()
 
@@ -159,6 +164,7 @@ watch(
   () => {
     generateLobbyGamesOptions()
   },
+   // 讓 watch 在第一次渲染組建就會觸發
   { immediate: true }
 )
 </script>
@@ -206,15 +212,15 @@ watch(
           <ant-select v-model="searchTypeValue" v-bind="searchTypeProps"></ant-select>
         </a-col>
         <a-col :span="12">
-          <a-form-item v-if="searchTypeValue === 'bet'" name="timeDuration">
-            <ant-time-range @update:timeValue="timeDurationChange"></ant-time-range>
-          </a-form-item>
-          <a-form-item v-else name="dateDuration">
+          <a-form-item v-if="searchTypeValue === 'settlement_date'" name="dateDuration">
             <ant-date-range
               @update:value="datePickerChangeHandler"
               :rangeConfig="2"
               :showTime="true"
             ></ant-date-range>
+          </a-form-item>
+          <a-form-item v-if="searchTypeValue === 'bet'" name="timeDuration">
+            <ant-time-range @update:timeValue="timeDurationChange"></ant-time-range>
           </a-form-item>
         </a-col>
         <a-col :span="12">
