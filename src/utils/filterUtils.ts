@@ -1,7 +1,7 @@
 import { i18n } from '@/global/i18n'
 import type { CascaderProps } from 'ant-design-vue'
 import type { Rule } from 'ant-design-vue/es/form'
-import { queryLobbyGames } from '@/utils/commonApi.js'
+import { queryLobbyGames } from '@/utils/commonApi'
 import { useGlobalStore } from '@/stores'
 
 export const loadData: CascaderProps['loadData'] = async (selectedOptions) => {

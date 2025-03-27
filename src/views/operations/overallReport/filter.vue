@@ -4,7 +4,7 @@ import { useI18n } from 'vue-i18n'
 import type { AntSelectProps, AntInputProps, AntCascaderProps } from '@/components/input/inputs'
 import { useOperationsOverallReportStore } from '@/stores'
 import type { Rule } from 'ant-design-vue/es/form'
-import { getSessionStorageEntity } from '@/utils/commonUtils.js'
+import { getSessionStorageEntity } from '@/utils/commonUtils'
 import { deviceGroupList } from '@/../public/js/system_config'
 import {
   memberValueRule,
@@ -12,7 +12,7 @@ import {
   loadData,
   tidyMember,
   generateGamePlayParam
-} from '@/utils/filterUtils.js'
+} from '@/utils/filterUtils'
 
 const { t } = useI18n()
 
