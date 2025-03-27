@@ -6,7 +6,7 @@ import { apiBetSettledByDate, apiBetRecords } from '@/api'
 import { useOperationsBetSearchStore, useGlobalStore } from '@/stores'
 import {
   formatNumber,
-  formatToApiTaipeiIso,
+  formatToApiTime,
   formatToApiDate,
   formatByTimeZone,
   formatToPercentage
@@ -245,7 +245,7 @@ const columns = computed(() =>
   searchParams.searchTypeValue === 'bet' ? columnsBet.value : columnsDate.value
 )
 
-const setColumnSortOrder = (sortField: string | undefined, sortOrder: any) => {
+const setColumnSortOrder = (sortField: string | undefined, sortOrder: 'descend' | 'ascend' | undefined) => {
   columns.value[0].forEach((col) => {
     col.defaultSortOrder = col.key === sortField ? sortOrder : undefined
   })
@@ -255,7 +255,7 @@ const setColumnSortOrder = (sortField: string | undefined, sortOrder: any) => {
 const tableChange = async (
   page: number,
   size: number,
-  sortOrder: any,
+  sortOrder: 'descend' | 'ascend' | undefined,
   sortField: string | undefined
 ) => {
   // 設定排序方向與排序欄位
@@ -299,7 +299,7 @@ const generateBetParams = (
   const orderType: 'DESC' | 'ASC' = order.value === 'descend' ? 'DESC' : 'ASC'
   const [start, end] =
     searchTypeValue === 'bet'
-      ? [formatToApiTaipeiIso(dayjs(timeDuration[0])), formatToApiTaipeiIso(dayjs(timeDuration[1]))]
+      ? [formatToApiTime(dayjs(timeDuration[0])), formatToApiTime(dayjs(timeDuration[1]))]
       : [formatToApiDate(dayjs(dateDuration[0])), formatToApiDate(dayjs(dateDuration[1]))]
 
   const user_id = memberType === 'id' ? memberValue : []
