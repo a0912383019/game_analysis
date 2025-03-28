@@ -66,8 +66,11 @@ export function getSessionStorageEntity(key: string): Record<string, any> {
  * @param {Dayjs | string} dateTime 日期時間
  * @return {string} 對應時區的日期時間
  */
-export function formatToApiTaipeiIso(dateTime: Dayjs | string): string {
-  return dayjs(dateTime).tz('Asia/Taipei').format('YYYY-MM-DDTHH:mm:ssZ')
+export function formatToApiTime(dateTime: Dayjs | string): string {
+  const globalStore = useGlobalStore()
+  return dayjs(dateTime)
+    .tz(platformTimezones[globalStore.currentPlatform], true)
+    .format('YYYY-MM-DDTHH:mm:ssZ')
 }
 /**
  * 轉換為api使用參數
