@@ -149,7 +149,7 @@ onMounted(() => {
         v-model:value="bindingStartValue"
         :allowClear="false"
         class="w-full cdp-range-picker has-placeholder is-active"
-        :format="'YYYY-MM-DD HH:mm:ss'"
+        format="YYYY-MM-DD HH:mm:ss"
         :showTime="{
           hideDisabledOptions: true,
           defaultValue: dayjs('00:00:00', 'HH:mm:ss')

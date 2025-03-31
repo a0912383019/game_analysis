@@ -55,7 +55,7 @@ export const findSvgFile = (dir: string): string[] => {
  * @param prefix - 用於生成符號 ID 的前綴。
  * @returns 用於處理 HTML 的插件對象。
  */
-export const svgBuilder = (path: string, prefix: string = 'icon') => {
+export const svgBuilder = (path: string, prefix: string = 'icon'): any => {
   if (!path) return null
 
   idPrefix = prefix
