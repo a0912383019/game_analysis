@@ -47,10 +47,6 @@ export function formatNumber(n: string | number, precision: number = 2): string 
   return parts[0].replace(re, '$1,') + (parts.length === 2 ? '.' + parts[1] : '')
 }
 
-export const sortDate: (a: any, b: any) => number = (a, b) => {
-  return new Date(a.betTime).getTime() - new Date(b.betTime).getTime()
-}
-
 /**
  * 取得儲存在sessionStorage中的JSON物件
  * @param {string} key sessionStorage的key值
@@ -62,7 +58,7 @@ export function getSessionStorageEntity(key: string): Record<string, any> {
 }
 
 /**
- * 轉換為api使用參數
+ * 轉換為api時間格式
  * @param {Dayjs | string} dateTime 日期時間
  * @return {string} 對應時區的日期時間
  */
@@ -73,7 +69,7 @@ export function formatToApiTime(dateTime: Dayjs | string): string {
     .format('YYYY-MM-DDTHH:mm:ssZ')
 }
 /**
- * 轉換為api使用參數
+ * 轉換為api使用日期格式
  * @param {Dayjs} dateVal 日期
  * @return {string} 對應的日期
  */
