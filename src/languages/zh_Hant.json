@@ -13,6 +13,7 @@
     "today": "今天",
     "yesterday": "昨天",
     "last_7_days": "前7天",
+    "last_seven_days": "近7天",
     "this_week": "本週",
     "last_week": "上週",
     "last_30_days": "前30天",
@@ -74,7 +75,6 @@
   },
   "home": {
     "read": "已讀",
-    "last_seven_days": "近7日",
     "game_category": "遊戲類別",
     "warning_news": "警示訊息通知",
     "game_combination": "遊玩組合",
