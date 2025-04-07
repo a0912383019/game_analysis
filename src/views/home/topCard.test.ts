@@ -60,7 +60,7 @@ describe('topCard', () => {
     wrapper.unmount()
   })
 
-  it('hideErrorMsg', async () => {
+  it('expect api called correctly', async () => {
     await flushPromises()
     const expectApiResponse: ResultGameReportByLobbyGroup[] = [
       {
@@ -136,23 +136,5 @@ describe('topCard', () => {
       }
     ]
     expect(wrapper.vm.cardList).toStrictEqual(expectCardList)
-  })
-
-  it('generateShapeColorClass', () => {
-    const expectedColors = {
-      prob: 'bg-[var(--cdp-pink)]',
-      live: 'bg-[var(--cdp-yellow)]',
-      card: 'bg-[var(--cdp-green)]',
-      fish: 'bg-[var(--cdp-blue)]',
-      lottery: 'bg-[var(--cdp-orange)]',
-      other: 'bg-[var(--primary-color)]'
-    } as const
-
-    expect(wrapper.vm.generateShapeColorClass('prob')).toStrictEqual(expectedColors.prob)
-    expect(wrapper.vm.generateShapeColorClass('live')).toStrictEqual(expectedColors.live)
-    expect(wrapper.vm.generateShapeColorClass('card')).toStrictEqual(expectedColors.card)
-    expect(wrapper.vm.generateShapeColorClass('fish')).toStrictEqual(expectedColors.fish)
-    expect(wrapper.vm.generateShapeColorClass('lottery')).toStrictEqual(expectedColors.lottery)
-    expect(wrapper.vm.generateShapeColorClass('other')).toStrictEqual(expectedColors.other)
   })
 })

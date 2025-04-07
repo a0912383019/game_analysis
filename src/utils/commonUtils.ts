@@ -97,3 +97,16 @@ export function formatToPercentage(val: string | number | null, precision: numbe
   if (!val) return '--'
   return formatNumber(parseFloat(val.toString()) * 100, precision) + '%'
 }
+
+/**
+ * 單位格式化，輸入 250000，輸出 2,500k
+ * @param {number | string} label - 要格式化的數值
+ * @param {number} precision 顯示的小數位數 (預設值為 2)
+ * @returns {string} 格式化後的字串
+ */
+export function formatNumberWithK(label: string | number, precision: number = 2): string {
+  const num = parseFloat(label as string) // 確保 label 轉為數字
+  return Math.abs(num) >= 1000
+    ? formatNumber(num / 1000, precision) + 'k'
+    : formatNumber(String(label), precision)
+}
