@@ -188,6 +188,14 @@ defineExpose({ goToFirstPage, closeAllExpandedRows })
         :canExpand="record.canExpand"
       ></custom-table>
     </template>
+    <template #bodyCell="{ column, record }">
+      <template v-if="$slots[column.dataIndex]">
+        <slot :name="column.dataIndex" :record="record"></slot>
+      </template>
+      <template v-else>
+        {{ record[column.dataIndex] }}
+      </template>
+    </template>
   </a-table>
 </template>
 <style lang="scss"></style>

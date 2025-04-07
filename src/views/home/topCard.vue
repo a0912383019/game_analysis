@@ -65,8 +65,8 @@ const cardList = computed<HomeCard[]>(() =>
   groupOrder.map((ele) => {
     const cardObj = apiResponse.value.find((item) => item.lobby_group === ele)
     return {
-      title: lobbyGroupMap[ele],
-      customShapeColor: generateShapeColorClass(lobbyGroupMap[ele]),
+      title: lobbyGroupMap[ele].name,
+      customShapeColor: `bg-[var(${lobbyGroupMap[ele].color})]`,
       bet: cardObj ? formatNumber(cardObj.bet_amount) : '--',
       payoff: cardObj ? formatNumber(cardObj.payoff) : '--',
       amount: cardObj ? formatNumber(cardObj.wager_count) : '--',
@@ -75,47 +75,21 @@ const cardList = computed<HomeCard[]>(() =>
   })
 )
 
-const generateShapeColorClass = (val: string): string => {
-  let colorClass: string
-  switch (val) {
-    case 'prob':
-      colorClass = 'bg-[var(--cdp-pink)]'
-      break
-    case 'live':
-      colorClass = 'bg-[var(--cdp-yellow)]'
-      break
-    case 'card':
-      colorClass = 'bg-[var(--cdp-green)]'
-      break
-    case 'fish':
-      colorClass = 'bg-[var(--cdp-blue)]'
-      break
-    case 'lottery':
-      colorClass = 'bg-[var(--cdp-orange)]'
-      break
-    default:
-      colorClass = 'bg-[var(--primary-color)]'
-      break
-  }
-
-  return colorClass
-}
-
 onMounted(() => {
   queryGameReportByLobbyGroup()
 })
 </script>
 <template>
-  <section class="!my-[15px] !mx-[10px]">
+  <section class="!mt-[15px] !mx-[10px]">
     <a-row justify="center" class="gap-2.5">
       <a-col :span="5" v-for="(item, idx) in cardList" :key="idx">
-        <a-card class="shadow-lg">
+        <a-card class="cdp-card shadow-lg">
           <template #title>
             <div class="custom-shape" :class="item.customShapeColor"></div>
             <cdp-icon :name="item.title"></cdp-icon>
             <span class="text-base !ml-2"> {{ $t(`lobby_group.${item.title}`) }} </span>
             <span class="text-[13px] text-[#A5B1C5] !ml-2">
-              {{ todayDate.format(t('date.format_date_rule')) }}
+              {{ todayDate.format(t('date.format_locale_date_rule')) }}
             </span>
           </template>
           <div>
@@ -144,14 +118,6 @@ onMounted(() => {
   </section>
 </template>
 <style lang="scss" scoped>
-.custom-shape {
-  width: 5px;
-  height: 39px;
-  position: absolute;
-  border-radius: 0px 100% 100% 0 / 0px 7px 7px 0px;
-  top: 6px;
-  left: 0;
-}
 :deep(.ant-col-5) {
   flex: 0 0 calc(20% - 10px);
   min-width: 224px;
@@ -160,21 +126,5 @@ onMounted(() => {
 :deep(.ant-card) {
   min-width: 224px;
   min-height: 180px;
-  .ant-card-head {
-    min-height: 51px;
-    padding: 0 16px;
-    border-bottom: 1px solid transparent;
-    border-image: linear-gradient(
-      90deg,
-      rgb(255, 255, 255),
-      rgba(240, 240, 240) 20%,
-      rgba(240, 240, 240) 80%,
-      rgb(255, 255, 255)
-    );
-    border-image-slice: 1;
-  }
-  .ant-card-body {
-    padding: 15px;
-  }
 }
 </style>

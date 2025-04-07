@@ -6,7 +6,8 @@ import {
   formatToApiTime,
   formatToApiDate,
   formatByTimeZone,
-  formatToPercentage
+  formatToPercentage,
+  formatNumberWithK
 } from '@/utils/commonUtils'
 import { useGlobalStore } from '@/stores'
 import { createTestingPinia } from '@pinia/testing'
@@ -109,5 +110,16 @@ describe('commonUtils', () => {
 
     const result3 = formatToPercentage('96.8817', 1)
     expect(result3).toStrictEqual('9,688.2%')
+  })
+
+  it('formatNumberWithK', () => {
+    const result1 = formatNumberWithK(82939482)
+    expect(result1).toStrictEqual('82,939.48k')
+
+    const result2 = formatNumberWithK('450026.8812')
+    expect(result2).toStrictEqual('450.03k')
+
+    const result3 = formatNumberWithK('926.8817', 1)
+    expect(result3).toStrictEqual('926.9')
   })
 })
