@@ -183,7 +183,7 @@ onMounted(() => {
       <cdp-icon name="operationsCenter"></cdp-icon>
       <span class="text-base !ml-2"> {{ $t('home.commercial_trend_chart') }} </span>
       <span class="text-[13px] text-[#A5B1C5] !ml-2">
-        {{ $t('home.last_seven_days') }}
+        {{ $t('date.last_seven_days') }}
       </span>
     </template>
     <div class="!px-1">
