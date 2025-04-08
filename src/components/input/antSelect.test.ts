@@ -44,7 +44,7 @@ describe('antSelect', () => {
   })
 
   it('should emit update:modelValue when onMounted select all or selecting value', async () => {
-    const wrapper = shallowMount(antSelect, {
+    wrapper = shallowMount(antSelect, {
       global: { stubs: { ASelect: { template: '<div><slot /></div>' } } },
       props: {
         modelValue: [],
@@ -66,7 +66,7 @@ describe('antSelect', () => {
   it('should call handleChange when option changes', async () => {
     const handleChange = vi.fn()
 
-    const wrapper = shallowMount(antSelect, {
+    wrapper = shallowMount(antSelect, {
       global: { stubs: { ASelect: { template: '<div><slot /></div>' } } },
       props: {
         modelValue: [],
@@ -80,7 +80,7 @@ describe('antSelect', () => {
   })
 
   it('formatOptions & selectAllBtn & filterOption', () => {
-    const wrapper = shallowMount(antSelect, {
+    wrapper = shallowMount(antSelect, {
       global: { stubs: { ASelect: { template: '<div><slot /></div>' } } },
       props: {
         modelValue: ['1', '2'],

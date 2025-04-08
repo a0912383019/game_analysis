@@ -45,7 +45,7 @@ describe('antCascader', () => {
   })
 
   it('emit update:modelValue on change', async () => {
-    const wrapper = shallowMount(antCascader, {
+    wrapper = shallowMount(antCascader, {
       global: { stubs: { ACascader: { template: '<div><slot /></div>' } } },
       props: {
         modelValue: [],
@@ -60,7 +60,7 @@ describe('antCascader', () => {
   })
 
   it('can render tag with correct label path', () => {
-    const wrapper = shallowMount(antCascader, {
+    wrapper = shallowMount(antCascader, {
       global: { stubs: { ACascader: { template: '<div><slot /></div>' } } },
       props: {
         modelValue: [['asia', 'taiwan']],
@@ -73,7 +73,7 @@ describe('antCascader', () => {
   })
 
   it('can delete selected item', async () => {
-    const wrapper = shallowMount(antCascader, {
+    wrapper = shallowMount(antCascader, {
       global: { stubs: { ACascader: { template: '<div><slot /></div>' } } },
       props: {
         modelValue: [['asia', 'taiwan']],
