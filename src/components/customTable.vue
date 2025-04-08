@@ -189,11 +189,11 @@ defineExpose({ goToFirstPage, closeAllExpandedRows })
       ></custom-table>
     </template>
     <template #bodyCell="{ column, record }">
-      <template v-if="$slots[column.dataIndex]">
-        <slot :name="column.dataIndex" :record="record"></slot>
+      <template v-if="$slots[String(column.dataIndex)]">
+        <slot :name="String(column.dataIndex)" :record="record"></slot>
       </template>
       <template v-else>
-        {{ record[column.dataIndex] }}
+        {{ record[String(column.dataIndex)] }}
       </template>
     </template>
   </a-table>
