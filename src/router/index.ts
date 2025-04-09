@@ -9,9 +9,9 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: (to) => {
-        const isLogin = !!sessionStorage.getItem('game_user_info')
-        return isLogin ? '/home' : '/login'
+      redirect: () => {
+        const hasRoute = router.hasRoute('/home')
+        return hasRoute ? '/home' : '/login'
       }
     },
     {
@@ -43,7 +43,14 @@ router.beforeEach(async (to, from, next) => {
 
   // 如果是白名單，直接進入
   if (whiteList.includes(to.path)) {
-    return next()
+    next()
+    return
+  }
+
+  // 特殊路由，會顯示空 layoout，所以直接導轉
+  if (to.path === '/game') {
+    next('/')
+    return
   }
 
   // 檢查是否已登入

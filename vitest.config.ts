@@ -13,7 +13,19 @@ export default defineConfig((configEnv) =>
         exclude: [...configDefaults.exclude, 'e2e/*'],
         root: fileURLToPath(new URL('./', import.meta.url)),
         coverage: {
-          provider: 'v8'
+          provider: 'v8',
+          exclude: [
+            ...configDefaults.exclude,
+            'e2e/*',
+            '.eslintrc.cjs', // 忽略 eslint 設定檔
+            'src/types/*', // 忽略型別定義檔案
+            'src/global/*', // 忽略套件設定檔案
+            '**/*.d.ts', // 忽略型別定義檔案
+            'build_config/*', // 忽略環境 config 設定檔
+            'tailwind.config.js', // 忽略 Tailwind 設定檔
+            'src/main.ts', // 忽略 Vue 入口文件
+            'src/api/*' //  忽略 api 接口
+          ]
         },
         reporters:
           loadEnv(configEnv.mode, process.cwd()).VITE_ENV !== 'local'

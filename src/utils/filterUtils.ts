@@ -1,39 +1,40 @@
 import { i18n } from '@/global/i18n'
-import type { CascaderProps } from 'ant-design-vue'
+import type { DefaultOptionType } from 'ant-design-vue/es/cascader'
 import type { Rule } from 'ant-design-vue/es/form'
-import { queryLobbyGames } from '@/utils/commonApi.js'
+import { queryLobbyGames } from '@/utils/commonApi'
 import { useGlobalStore } from '@/stores'
 
-export const loadData: CascaderProps['loadData'] = async (selectedOptions) => {
+// 遊戲及玩法選項
+export const loadData = async (selectedOptions: DefaultOptionType[]) => {
   const targetOption = selectedOptions[selectedOptions.length - 1]
   if (targetOption.children !== undefined) {
     return
   }
   targetOption.loading = true
 
-  await queryLobbyGames(targetOption['value'] as number).then((games) => {
-    if (games) {
-      targetOption.children = games.map((ele) => {
-        let children: any[] | undefined = undefined
-        if (targetOption['value'] === 3) {
-          children = ele.serial_info.map((item) => ({
-            label: item.serial_name,
-            value: `${ele.game_code}-${item.serial_type}`
-          }))
-        }
-        return {
-          label: ele.game_name,
-          value: ele.game_code,
-          isLeaf: targetOption['value'] !== 3 || (children && children.length === 0),
-          children: children
-        }
-      })
-      targetOption.loading = false
-    }
-  })
+  const games = await queryLobbyGames(targetOption['value'] as number)
+  if (games) {
+    targetOption.children = games.map((ele) => {
+      let children: any[] | undefined = undefined
+      if (targetOption['value'] === 3) {
+        children = ele.serial_info.map((item) => ({
+          label: item.serial_name,
+          value: `${ele.game_code}-${item.serial_type}`
+        }))
+      }
+      return {
+        label: ele.game_name,
+        value: ele.game_code,
+        isLeaf: targetOption['value'] !== 3 || (children && children.length === 0),
+        children: children
+      }
+    })
+  }
+
+  targetOption.loading = false
 }
 
-export const dateDurationRule = async (_rule: Rule, value: [Dayjs, Dayjs]) => {
+export const dateDurationRule = (_rule: Rule, value: [Dayjs, Dayjs]) => {
   const { t } = i18n.global
 
   if (!value || !value[0] || !value[1]) {
@@ -42,7 +43,7 @@ export const dateDurationRule = async (_rule: Rule, value: [Dayjs, Dayjs]) => {
   return Promise.resolve()
 }
 
-export const timeDurationRule = async (_rule: Rule, value: [Dayjs, Dayjs]) => {
+export const timeDurationRule = (_rule: Rule, value: [Dayjs, Dayjs]) => {
   const { t } = i18n.global
 
   if (!value || !value[0] || !value[1]) {
@@ -51,7 +52,7 @@ export const timeDurationRule = async (_rule: Rule, value: [Dayjs, Dayjs]) => {
   return Promise.resolve()
 }
 
-export const memberValueRule = async (_rule: Rule, value: string, accountOrId: string) => {
+export const memberValueRule = (_rule: Rule, value: string, accountOrId: string) => {
   const { t } = i18n.global
 
   if (value === '') {

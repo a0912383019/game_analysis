@@ -1,4 +1,4 @@
-import { it, describe, expect, vi, beforeEach } from 'vitest'
+import { it, describe, expect, vi, beforeEach, afterEach } from 'vitest'
 import { shallowMount, VueWrapper } from '@vue/test-utils'
 import { i18n } from '@/global/i18n'
 import App from '@/App.vue'
@@ -15,6 +15,10 @@ describe('App.vue', () => {
         plugins: [i18n, router, createTestingPinia({ createSpy: vi.fn })]
       }
     })
+  })
+
+  afterEach(() => {
+    wrapper.unmount()
   })
 
   it('Whether the aConfigProvider component exists on the screen', () => {

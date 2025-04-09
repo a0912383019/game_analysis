@@ -6,10 +6,10 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import { i18n } from '@/global/i18n'
 import { globalRegister } from '@/global'
 import Antd from 'ant-design-vue'
-import App from './App.vue'
-import router from './router'
-import { useSystemStore } from '@/stores'
-import { getSessionStorageEntity } from '@/utils/commonUtils.js'
+import App from '@/App.vue'
+import router from '@/router'
+import { generateMenuRoutes } from '@/router/dynamicRoutes'
+import { getSessionStorageEntity } from '@/utils/commonUtils'
 
 const app: ReturnType<typeof createApp> = createApp(App)
 globalRegister(app)
@@ -23,9 +23,8 @@ app.use(Antd)
 
 // 重整頁面會丟失動態添加的 route，所以須重新加入
 const storageMenu = getSessionStorageEntity('game_config').menu_config
-const systemStore = useSystemStore()
 if (storageMenu) {
-  systemStore.generateMenuRoutes(storageMenu)
+  generateMenuRoutes(storageMenu)
 } else {
   sessionStorage.clear()
   localStorage.clear()

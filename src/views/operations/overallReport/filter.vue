@@ -4,7 +4,7 @@ import { useI18n } from 'vue-i18n'
 import type { AntSelectProps, AntInputProps, AntCascaderProps } from '@/components/input/inputs'
 import { useOperationsOverallReportStore } from '@/stores'
 import type { Rule } from 'ant-design-vue/es/form'
-import { getSessionStorageEntity } from '@/utils/commonUtils.js'
+import { getSessionStorageEntity } from '@/utils/commonUtils'
 import { deviceGroupList } from '@/../public/js/system_config'
 import {
   memberValueRule,
@@ -12,7 +12,7 @@ import {
   loadData,
   tidyMember,
   generateGamePlayParam
-} from '@/utils/filterUtils.js'
+} from '@/utils/filterUtils'
 
 const { t } = useI18n()
 
@@ -113,62 +113,60 @@ onMounted(() => {
 </script>
 <template>
   <section class="cdp-section">
-    <div>
-      <a-form
-        ref="formRef"
-        :model="formState"
-        :rules="rules"
-        :hideRequiredMark="true"
-        validateTrigger="submit"
-      >
-        <a-row class="!mt-[20px] !mb-[15px] !mx-[7.5px]" justify="start" :gutter="[15, 15]">
-          <a-col :span="12">
-            <ant-select v-model="hallValue" v-bind="hallProps"></ant-select>
-          </a-col>
-          <a-col :span="12">
-            <a-form-item name="memberValue">
-              <ant-input v-model="formState.memberValue" v-bind="memberProps">
-                <template #addonBefore>
-                  <a-select
-                    v-model:value="accountOrId"
-                    class="w-[75px]"
-                    popupClassName="!rounded-none"
-                  >
-                    <a-select-option value="account">{{ $t('common.accout') }}</a-select-option>
-                    <a-select-option value="memberId">{{ $t('common.id') }}</a-select-option>
-                    <template #suffixIcon>
-                      <cdp-icon name="downOutline"></cdp-icon>
-                    </template>
-                  </a-select>
-                </template>
-              </ant-input>
-            </a-form-item>
-          </a-col>
-          <a-col :span="12">
-            <ant-cascader v-model="gamePlayValue" v-bind="gamePlayProps"></ant-cascader>
-          </a-col>
-          <a-col :span="12">
-            <ant-select v-model="deviceTypeValue" v-bind="deviceTypeProps"></ant-select>
-          </a-col>
-          <a-col :span="12">
-            <a-form-item name="dateDuration">
-              <ant-date-range
-                v-model="formState.dateDuration"
-                @update:value="dateDurationChange"
-                :rangeConfig="2"
-              ></ant-date-range>
-            </a-form-item>
-          </a-col>
-          <a-col :span="12">
-            <cdp-button-icon
-              icon="magnifier"
-              :name="$t('common.search')"
-              @click.prevent="handleSearch"
-            ></cdp-button-icon>
-          </a-col>
-        </a-row>
-      </a-form>
-    </div>
+    <a-form
+      ref="formRef"
+      :model="formState"
+      :rules="rules"
+      :hideRequiredMark="true"
+      validateTrigger="submit"
+    >
+      <a-row class="!mt-[20px] !mb-[15px] !mx-[7.5px]" justify="start" :gutter="[15, 15]">
+        <a-col :span="12">
+          <ant-select v-model="hallValue" v-bind="hallProps"></ant-select>
+        </a-col>
+        <a-col :span="12">
+          <a-form-item name="memberValue">
+            <ant-input v-model="formState.memberValue" v-bind="memberProps">
+              <template #addonBefore>
+                <a-select
+                  v-model:value="accountOrId"
+                  class="w-[75px]"
+                  popupClassName="!rounded-none"
+                >
+                  <a-select-option value="account">{{ $t('common.accout') }}</a-select-option>
+                  <a-select-option value="memberId">{{ $t('common.id') }}</a-select-option>
+                  <template #suffixIcon>
+                    <cdp-icon name="downOutline"></cdp-icon>
+                  </template>
+                </a-select>
+              </template>
+            </ant-input>
+          </a-form-item>
+        </a-col>
+        <a-col :span="12">
+          <ant-cascader v-model="gamePlayValue" v-bind="gamePlayProps"></ant-cascader>
+        </a-col>
+        <a-col :span="12">
+          <ant-select v-model="deviceTypeValue" v-bind="deviceTypeProps"></ant-select>
+        </a-col>
+        <a-col :span="12">
+          <a-form-item name="dateDuration">
+            <ant-date-range
+              v-model="formState.dateDuration"
+              @update:value="dateDurationChange"
+              :rangeConfig="2"
+            ></ant-date-range>
+          </a-form-item>
+        </a-col>
+        <a-col :span="12">
+          <cdp-button-icon
+            icon="magnifier"
+            :name="$t('common.search')"
+            @click.prevent="handleSearch"
+          ></cdp-button-icon>
+        </a-col>
+      </a-row>
+    </a-form>
   </section>
 </template>
 <style lang="scss" scoped>

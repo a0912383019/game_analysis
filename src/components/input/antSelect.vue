@@ -66,7 +66,7 @@ const selectAll = (status: boolean) => {
 }
 
 const filterOption = (input: string, option: any) => {
-  return option.label.indexOf(input) >= 0
+  return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
 }
 
 onMounted(() => {

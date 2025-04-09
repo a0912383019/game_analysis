@@ -10,7 +10,7 @@ import {
 } from '@/api'
 import { notification } from 'ant-design-vue'
 import { useGlobalStore, useOperationsOverallReportStore } from '@/stores'
-import { formatNumber, formatToApiDate, formatToPercentage } from '@/utils/commonUtils.js'
+import { formatNumber, formatToApiDate, formatToPercentage } from '@/utils/commonUtils'
 
 /**
  * 第一層有分頁

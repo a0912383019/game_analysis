@@ -6,11 +6,16 @@ import { useSystemStore } from '@/stores'
 import login from '@/views/login.vue'
 import { apiLogin, apiRelease, apiGetSidebar } from '@/api'
 import { createRouterMock, RouterMock } from 'vue-router-mock'
+import { generateMenuRoutes } from '@/router/dynamicRoutes'
 
 vi.mock('@/api', () => ({
   apiLogin: vi.fn(),
   apiRelease: vi.fn(),
   apiGetSidebar: vi.fn()
+}))
+
+vi.mock('@/router/dynamicRoutes', () => ({
+  generateMenuRoutes: vi.fn()
 }))
 
 describe('login', () => {
@@ -80,8 +85,6 @@ describe('login', () => {
   })
 
   it('googleLoginCallback & handleLogin & queryApiGetSidebar', async () => {
-    const generateMenuRoutes = vi.fn()
-    systemStore.generateMenuRoutes = generateMenuRoutes
     expect(generateMenuRoutes).toBeCalledTimes(0)
 
     const mockApiLogin = apiLogin as Mock

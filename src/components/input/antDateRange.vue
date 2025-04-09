@@ -39,7 +39,7 @@ const hackValue = ref<[Dayjs, Dayjs] | undefined>(
     : undefined
 )
 
-const disabledDate = (current: Dayjs) :boolean => {
+const disabledDate = (current: Dayjs): boolean => {
   // 禁用超過今天的日期
   // const disabledAfterToday = current > dayjs().endOf('day')
   // 如果沒有選擇日期範圍
@@ -49,10 +49,11 @@ const disabledDate = (current: Dayjs) :boolean => {
   }
 
   const [start, end] = bindingValue.value
+  if (!start && !end) return false
 
   // 禁用超過 x 天以外的日期
-  const tooLate = start && current.diff(start, 'days') > props.disabledDays - 1
-  const tooEarly = end && end.diff(current, 'days') > props.disabledDays - 1
+  const tooLate = start ? current.diff(start, 'days') > props.disabledDays - 1 : false
+  const tooEarly = end ? end.diff(current, 'days') > props.disabledDays - 1 : false
 
   // return disabledAfterToday || tooLate || tooEarly
   return tooLate || tooEarly

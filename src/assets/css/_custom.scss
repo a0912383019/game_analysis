@@ -141,3 +141,33 @@
   margin-top: 50px !important;
   margin-bottom: 0px !important;
 }
+
+.custom-shape {
+  width: 5px;
+  height: 39px;
+  position: absolute;
+  border-radius: 0px 100% 100% 0 / 0px 7px 7px 0px;
+  top: 6px;
+  left: 0;
+}
+
+.cdp-card {
+  &.ant-card {
+    .ant-card-head {
+      min-height: 51px;
+      padding: 0 16px;
+      border-bottom: 1px solid transparent;
+      border-image: linear-gradient(
+        90deg,
+        rgb(255, 255, 255),
+        rgba(240, 240, 240) 10%,
+        rgba(240, 240, 240) 90%,
+        rgb(255, 255, 255)
+      );
+      border-image-slice: 1;
+    }
+    .ant-card-body {
+      padding: 15px;
+    }
+  }
+}
