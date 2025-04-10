@@ -136,6 +136,19 @@ interface ResultBetReportByLobby {
   records_total: number
 }
 
+interface BetReportByUser {
+  bet_amount: string
+  payoff: string
+  payoff_ratio: string
+  user_id: string
+  wager_count: number
+}
+
+interface ResultBetReportByUser {
+  data: BetReportByUser[]
+  records_total: number
+}
+
 interface BetReportLiveBySerialType {
   bet_amount: string
   expected_rtp: string

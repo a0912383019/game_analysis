@@ -98,8 +98,10 @@ const handleExpand = async (expanded: boolean, record: any) => {
       }
     }
 
-    // 呼叫 API
-    await props.fetchSubData[0](record)
+    // 沒搜尋過才呼叫 API
+    if (record.innerLoading) {
+      await props.fetchSubData[0](record)
+    }
   }
 }
 

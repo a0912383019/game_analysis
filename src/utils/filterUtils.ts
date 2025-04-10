@@ -19,7 +19,7 @@ export const loadData = async (selectedOptions: DefaultOptionType[]) => {
       if (targetOption['value'] === 3) {
         children = ele.serial_info.map((item) => ({
           label: item.serial_name,
-          value: `${ele.game_code}-${item.serial_type}`
+          value: item.serial_type?.toString()
         }))
       }
       return {
