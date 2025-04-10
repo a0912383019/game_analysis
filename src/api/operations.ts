@@ -26,6 +26,14 @@ export const apiBetReportByLobby = (params: ParamsBetReport) => {
   )
 }
 
+// 取得投注報表（by 會員）
+export const apiBetReportByUser = (params: ParamsBetReport) => {
+  return apiPost<ParamsBetReport, ResultBetReportByUser>(
+    '/api/auth/operation/bet_report/by_user',
+    params
+  )
+}
+
 // 取得視訊投注報表（by 遊戲玩法）
 export const apiBetReportLiveBySerialType = (params: ParamsBetReport) => {
   return apiPost<ParamsBetReport, ResultBetReportLiveBySerialType>(

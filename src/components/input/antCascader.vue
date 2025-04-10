@@ -62,6 +62,7 @@ const deleteItem = (val: string) => {
     v-bind="allBinding"
     :options="props.options"
     multiple
+    :showSearch="true"
     :load-data="props.loadData"
     :style="{ '--placeholder-text': `'${placeholder}'` }"
     class="cdp-cascader"

@@ -6,6 +6,7 @@ import {
   apiBetReportByLobby, // 第一層
   apiBetReportByGame, // 第二層
   apiBetReportByHall, // 第三層
+  apiBetReportByUser, // 第四層
   apiBetReportLiveBySerialType // 第五層
 } from '@/api'
 import { notification } from 'ant-design-vue'
@@ -37,6 +38,7 @@ const columns = ref<TableColumnsType[]>([
       dataIndex: 'lobby_name',
       key: 'lobby_name',
       align: 'center',
+      defaultSortOrder: 'descend',
       sorter: true
     },
     {
@@ -82,6 +84,7 @@ const columns = ref<TableColumnsType[]>([
       dataIndex: 'game_name',
       key: 'game_name',
       align: 'center',
+      defaultSortOrder: 'descend',
       sorter: true
     },
     {
@@ -176,6 +179,7 @@ const columns = ref<TableColumnsType[]>([
       dataIndex: 'hall_name',
       key: 'hall_name',
       align: 'center',
+      defaultSortOrder: 'descend',
       sorter: true
     },
     {
@@ -267,8 +271,8 @@ const columns = ref<TableColumnsType[]>([
   [
     {
       title: t('common.member_id'),
-      dataIndex: 'hall_name',
-      key: 'hall_name',
+      dataIndex: 'user_id',
+      key: 'user_id',
       align: 'center',
       sorter: true
     },
@@ -277,6 +281,7 @@ const columns = ref<TableColumnsType[]>([
       dataIndex: 'wager_count',
       key: 'wager_count',
       align: 'center',
+      defaultSortOrder: 'descend',
       sorter: true
     },
     {
@@ -335,45 +340,46 @@ const columns = ref<TableColumnsType[]>([
       align: 'center',
       sorter: true
     }
+  ],
+  // 第五層 header 玩法(僅視訊)
+  [
+    {
+      title: t('common.game_mode'),
+      dataIndex: 'serial_type_name',
+      key: 'serial_type_name',
+      align: 'center',
+      sorter: true
+    },
+    {
+      title: t('unit.amount'),
+      dataIndex: 'wager_count',
+      key: 'wager_count',
+      align: 'center',
+      defaultSortOrder: 'descend',
+      sorter: true
+    },
+    {
+      title: t('data_name.bet_amount'),
+      dataIndex: 'bet_amount',
+      key: 'bet_amount',
+      align: 'center',
+      sorter: true
+    },
+    {
+      title: t('data_name.payoff'),
+      dataIndex: 'payoff',
+      key: 'payoff',
+      align: 'center',
+      sorter: true
+    },
+    {
+      title: t('common.profit_ratio'),
+      dataIndex: 'payoff_ratio',
+      key: 'payoff_ratio',
+      align: 'center',
+      sorter: true
+    }
   ]
-  // // 第五層 header 玩法(僅視訊)
-  // [
-  //   {
-  //     title: t('common.game_mode'),
-  //     dataIndex: 'game_name',
-  //     key: 'game_name',
-  //     align: 'center',
-  //     sorter: true
-  //   },
-  //   {
-  //     title: t('unit.amount'),
-  //     dataIndex: 'wager_count',
-  //     key: 'wager_count',
-  //     align: 'center',
-  //     sorter: true
-  //   },
-  //   {
-  //     title: t('data_name.bet_amount'),
-  //     dataIndex: 'bet_amount',
-  //     key: 'bet_amount',
-  //     align: 'center',
-  //     sorter: true
-  //   },
-  //   {
-  //     title: t('data_name.payoff'),
-  //     dataIndex: 'payoff',
-  //     key: 'payoff',
-  //     align: 'center',
-  //     sorter: true
-  //   },
-  //   {
-  //     title: t('common.profit_ratio'),
-  //     dataIndex: 'payoff_ratio',
-  //     key: 'payoff_ratio',
-  //     align: 'center',
-  //     sorter: true
-  //   }
-  // ]
 ])
 
 const apiStart = ref<number>(0) // 起始筆數
@@ -388,16 +394,27 @@ const generateParams = (
   apiLength: number,
   sortCol: string,
   apiStart: number,
-  order: string
+  order: string,
+  hallId?: number | undefined,
+  userId?: string[] | undefined
 ): ParamsBetReport => {
   let apiParams = {
     device: searchParams.deviceTypeValue,
     end_date: formatToApiDate(dayjs(searchParams.dateDuration[1])),
     start_date: formatToApiDate(dayjs(searchParams.dateDuration[0])),
-    hall_id: searchParams.hallValue === 0 ? undefined : searchParams.hallValue,
-    user_id: searchParams.memberType === 'id' ? searchParams.memberValue : [],
+    hall_id:
+      hallId === undefined
+        ? searchParams.hallValue === 0
+          ? undefined
+          : searchParams.hallValue
+        : hallId,
+    user_id: searchParams.memberType === 'memberId' ? searchParams.memberValue : [],
     username: searchParams.memberType === 'account' ? searchParams.memberValue : [],
     game: searchParams.gamePlayValue
+  }
+
+  if (userId !== undefined && userId.length !== 0) {
+    apiParams.user_id = userId
   }
 
   return {
@@ -472,19 +489,21 @@ const transformBetReportByLobby = (
       payoff_ratio: formatToPercentage(item.payoff_ratio),
       innerLoading: true, // 第二層的 loading
       hasPage: false, // 第二層是否分頁模式
-      // canExpand: false, // 第二層的 +
-      fatherParams: params,
+      canExpand: true, // 第二層是否可展開 (預設 true，可不寫)
+      fatherParams: params, // 本層參數保留
       innerExtraParams: {
+        // 下一層需要額外帶入的參數
         lobby: item.lobby
       },
       innerPagination: {
+        // 下一層分頁的預設值
         current: 1,
         pageSize: 1000,
         total: 0,
         sort: 'game_name',
         order: 'descend'
       },
-      innerData: []
+      innerData: [] // 存放下一層資料的地方
     }
   })
 }
@@ -496,40 +515,48 @@ const transformBetReportByGame = (
   params: ParamsBetReport
 ) => {
   record.innerPagination.total = ret.records_total
-  record.innerData = ret.data.map((item, idx) => {
-    return {
-      key: idx,
-      game_name: item.game_name,
-      user_count: formatNumber(item.user_count),
-      wager_count: formatNumber(item.wager_count),
-      bet_amount: formatNumber(item.bet_amount),
-      payoff: formatNumber(item.payoff),
-      payoff_ratio: formatToPercentage(item.payoff_ratio),
-      rtp: formatToPercentage(item.rtp),
-      expected_rtp: formatToPercentage(item.expected_rtp),
-      base_win_wager_count: formatNumber(item.base_win_wager_count),
-      base_lose_wager_count: formatNumber(item.base_lose_wager_count),
-      free_win_wager_count: formatNumber(item.free_win_wager_count),
-      free_lose_wager_count: formatNumber(item.free_lose_wager_count),
-      win_ratio: formatToPercentage(item.win_ratio),
-      innerLoading: true, // 第三層的loading
-      hasPage: false, // 第三層是否分頁模式
-      fatherParams: params,
-      innerExtraParams: {
-        lobby: item.lobby,
-        game_code: item.game_code,
-        expected_rtp: item.expected_rtp
-      },
-      innerPagination: {
-        current: 1,
-        pageSize: 1000,
-        total: 0,
-        sort: 'hall_name',
-        order: 'descend'
-      },
-      innerData: []
-    }
-  })
+  record.innerData = ret.data
+    .filter(
+      (item) =>
+        !searchParams.gamePlayValue?.length ||
+        searchParams.gamePlayValue.some(
+          (ele) => ele.lobby === item.lobby && (!ele.game_code || ele.game_code === item.game_code)
+        )
+    )
+    .map((item, idx) => {
+      return {
+        key: idx,
+        game_name: item.game_name,
+        user_count: formatNumber(item.user_count),
+        wager_count: formatNumber(item.wager_count),
+        bet_amount: formatNumber(item.bet_amount),
+        payoff: formatNumber(item.payoff),
+        payoff_ratio: formatToPercentage(item.payoff_ratio),
+        rtp: formatToPercentage(item.rtp),
+        expected_rtp: formatToPercentage(item.expected_rtp),
+        base_win_wager_count: formatNumber(item.base_win_wager_count),
+        base_lose_wager_count: formatNumber(item.base_lose_wager_count),
+        free_win_wager_count: formatNumber(item.free_win_wager_count),
+        free_lose_wager_count: formatNumber(item.free_lose_wager_count),
+        win_ratio: formatToPercentage(item.win_ratio),
+        innerLoading: true, // 第三層的loading
+        hasPage: false, // 第三層是否分頁模式
+        fatherParams: params,
+        innerExtraParams: {
+          lobby: item.lobby,
+          game_code: item.game_code,
+          expected_rtp: item.expected_rtp
+        },
+        innerPagination: {
+          current: 1,
+          pageSize: 1000,
+          total: 0,
+          sort: 'hall_name',
+          order: 'descend'
+        },
+        innerData: []
+      }
+    })
 }
 
 // 第三層 api 轉換
@@ -557,11 +584,19 @@ const transformBetReportByHall = (
       win_ratio: formatToPercentage(item.win_ratio),
       innerLoading: true, // 第四層的loading
       hasPage: true, // 第四層是否分頁模式
+      fatherParams: params,
+      canExpand: record.innerExtraParams.lobby === 3, // 第四層是否可擴展（只有視訊可展開）
+      innerExtraParams: {
+        // 下一層需要額外帶入的參數
+        lobby: record.innerExtraParams.lobby,
+        game_code: record.innerExtraParams.game_code,
+        hall_id: item.hall_id
+      },
       innerPagination: {
         current: 1,
         pageSize: 10,
         total: 0,
-        sort: 'bet_amount',
+        sort: 'wager_count',
         order: 'descend'
       },
       innerData: []
@@ -569,40 +604,194 @@ const transformBetReportByHall = (
   })
 }
 
+// 第四層 api 轉換
+const transformBetReportByUser = (
+  ret: ResultBetReportByUser,
+  record: any,
+  params: ParamsBetReport
+) => {
+  record.innerPagination.total = ret.records_total
+  record.innerData = ret.data.map((item, idx) => {
+    return {
+      key: idx,
+      user_id: item.user_id,
+      wager_count: formatNumber(item.wager_count),
+      bet_amount: formatNumber(item.bet_amount),
+      payoff: formatNumber(item.payoff),
+      payoff_ratio: formatToPercentage(item.payoff_ratio),
+      // base_win_wager_count: formatNumber(item.base_win_wager_count),
+      // base_lose_wager_count: formatNumber(item.base_lose_wager_count),
+      // free_win_wager_count: formatNumber(item.free_win_wager_count),
+      // free_lose_wager_count: formatNumber(item.free_lose_wager_count),
+      // win_ratio: formatToPercentage(item.win_ratio),
+      innerLoading: true, // 第五層的loading
+      hasPage: false, // 第五層是否分頁模式
+      fatherParams: params,
+      innerExtraParams: {
+        // 下一層需要額外帶入的參數
+        lobby: record.innerExtraParams.lobby,
+        game_code: record.innerExtraParams.game_code,
+        hall_id: record.innerExtraParams.hall_id,
+        user_id: [item.user_id]
+      },
+      innerPagination: {
+        current: 1,
+        pageSize: 1000,
+        total: 0,
+        sort: 'wager_count',
+        order: 'descend'
+      },
+      innerData: []
+    }
+  })
+}
+
+// 第五層 api 轉換
+const transformBetReportLiveBySerialType = (
+  ret: ResultBetReportLiveBySerialType,
+  record: any,
+  params: ParamsBetReport
+) => {
+  record.innerPagination.total = ret.records_total
+  record.innerData = ret.data
+    .filter(
+      (item) =>
+        !searchParams.gamePlayValue?.length ||
+        searchParams.gamePlayValue.some(
+          (ele) =>
+            ele.lobby === record.innerExtraParams.lobby &&
+            record.innerExtraParams.game_code === item.game_code &&
+            (!ele.serial_type || ele.serial_type?.includes(item.serial_type))
+        )
+    )
+    .map((item, idx) => {
+      return {
+        key: idx,
+        serial_type_name: item.serial_type_name,
+        wager_count: formatNumber(item.wager_count),
+        bet_amount: formatNumber(item.bet_amount),
+        payoff: formatNumber(item.payoff),
+        payoff_ratio: formatToPercentage(item.payoff_ratio)
+      }
+    })
+}
+
 // 第二層 api 呼叫
 const subFuncBetReportByGame = async (record: any) => {
-  record.innerLoading = true
+  // record.innerLoading = true
   const { current, pageSize, sort, order } = record.innerPagination
   let apiStart = (current - 1) * pageSize
 
   let params = generateParams(pageSize, sort, apiStart, order)
-  params.game = [
-    {
-      lobby: record.innerExtraParams.lobby
-    }
-  ]
+
+  const newGameParams = searchParams.gamePlayValue?.filter(
+    (ele) => ele.lobby === record.innerExtraParams.lobby
+  )
+  params.game =
+    newGameParams?.length !== 0
+      ? newGameParams
+      : [
+          {
+            lobby: record.innerExtraParams.lobby
+          }
+        ]
   await queryBetApi(apiBetReportByGame, params, transformBetReportByGame, record)
   record.innerLoading = false
 }
 
 // 第三層 api 呼叫
 const subFuncBetReportByHall = async (record: any) => {
-  record.innerLoading = true
+  // record.innerLoading = true
   const { current, pageSize, sort, order } = record.innerPagination
   let apiStart = (current - 1) * pageSize
 
   let params = generateParams(pageSize, sort, apiStart, order)
-  params.game = [
-    {
-      lobby: record.innerExtraParams.lobby,
-      game_code: record.innerExtraParams.game_code
-    }
-  ]
+  const newGameParams = searchParams.gamePlayValue?.filter(
+    (ele) =>
+      ele.lobby === record.innerExtraParams.lobby &&
+      ele.game_code === record.innerExtraParams.game_code
+  )
+  params.game =
+    newGameParams?.length !== 0
+      ? newGameParams
+      : [
+          {
+            lobby: record.innerExtraParams.lobby,
+            game_code: record.innerExtraParams.game_code
+          }
+        ]
   await queryBetApi(apiBetReportByHall, params, transformBetReportByHall, record)
   record.innerLoading = false
 }
 
-const fetchSubData = ref([subFuncBetReportByGame, subFuncBetReportByHall])
+// 第四層 api 呼叫
+const subFuncBetReportByUser = async (record: any) => {
+  // record.innerLoading = true
+  const { current, pageSize, sort, order } = record.innerPagination
+  let apiStart = (current - 1) * pageSize
+
+  let params = generateParams(pageSize, sort, apiStart, order, record.innerExtraParams.hall_id)
+  const newGameParams = searchParams.gamePlayValue?.filter(
+    (ele) =>
+      ele.lobby === record.innerExtraParams.lobby &&
+      ele.game_code === record.innerExtraParams.game_code
+  )
+  params.game =
+    newGameParams?.length !== 0
+      ? newGameParams
+      : [
+          {
+            lobby: record.innerExtraParams.lobby,
+            game_code: record.innerExtraParams.game_code
+          }
+        ]
+  await queryBetApi(apiBetReportByUser, params, transformBetReportByUser, record)
+  record.innerLoading = false
+}
+
+// 第五層 api 呼叫
+const subFuncBetReportLiveBySerialType = async (record: any) => {
+  // record.innerLoading = true
+  const { current, pageSize, sort, order } = record.innerPagination
+  let apiStart = (current - 1) * pageSize
+
+  let params = generateParams(
+    pageSize,
+    sort,
+    apiStart,
+    order,
+    record.innerExtraParams.hall_id,
+    record.innerExtraParams.user_id
+  )
+  const newGameParams = searchParams.gamePlayValue?.filter(
+    (ele) =>
+      ele.lobby === record.innerExtraParams.lobby &&
+      ele.game_code === record.innerExtraParams.game_code
+  )
+  params.game =
+    newGameParams?.length !== 0
+      ? newGameParams
+      : [
+          {
+            lobby: record.innerExtraParams.lobby,
+            game_code: record.innerExtraParams.game_code
+          }
+        ]
+  await queryBetApi(
+    apiBetReportLiveBySerialType,
+    params,
+    transformBetReportLiveBySerialType,
+    record
+  )
+  record.innerLoading = false
+}
+
+const fetchSubData = ref([
+  subFuncBetReportByGame,
+  subFuncBetReportByHall,
+  subFuncBetReportByUser,
+  subFuncBetReportLiveBySerialType
+])
 
 // 第一層排序或換頁
 const tableChange = async (
