@@ -5,9 +5,9 @@ import operatingTrendsChart from '@/views/home/operatingTrendsChart.vue'
 <template>
   <topCard />
   <a-row justify="start" class="gap-2.5">
-    <a-col :span="12">
+    <!-- <a-col :span="12">
       <operatingTrendsChart />
-    </a-col>
+    </a-col> -->
   </a-row>
 </template>
 <style lang="scss" scoped></style>
