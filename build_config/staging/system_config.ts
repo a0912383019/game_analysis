@@ -24,12 +24,12 @@ export const platformDict: ConfigMap[] = [
     name: 'XC馬來站',
     key: 'xcmy',
     pColor: '#28182C'
+  },
+  {
+    name: 'Midori',
+    key: 'midori',
+    pColor: '#332E21'
   }
-  // {
-  //   name: 'Midori',
-  //   key: 'midori',
-  //   pColor: '#332E21'
-  // }
 ]
 
 export const sidebarIcon = {
@@ -67,25 +67,25 @@ export const lobbyGroupMap: Record<number, { name: string; color: string }> = {
 // 各平台篩選預設值
 export const platformDefaultInfo = {
   bbin: {
-    hall_id: 1, // 寶馬-我是廳名 [bmw]
+    hall_id: 1, // 寶馬 [bmw]
     lobby: 5 // BB電子
   },
   bbgp: {
-    hall_id: 3820605, // WG [wgg]
+    hall_id: 3820474, // BGP API 測試廳[bgp]
     lobby: 5 // BB電子
   },
   xctw: {
-    hall_id: 19, // default_classify []
-    lobby: 5 // Gt5電子
+    hall_id: 6, // default_classify []
+    lobby: 5 // DW電子
   },
   xcmy: {
-    hall_id: 29,
-    lobby: 5 // Gt5電子
+    hall_id: 32, // default_classify []
+    lobby: 5 // DW電子
+  },
+  midori: {
+    hall_id: 3, // Midori Online1 [mdo]
+    lobby: 3 // BB視訊
   }
-  // midori: {
-  //   hall_id: undefined,
-  //   lobby: undefined
-  // }
 }
 
 // 各平台時區
