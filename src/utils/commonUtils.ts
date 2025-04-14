@@ -1,6 +1,8 @@
 import dayjs from '@/utils/appDayjs'
 import { platformTimezones } from '@/../public/js/system_config'
 import { useGlobalStore } from '@/stores'
+import { notification } from 'ant-design-vue'
+import { i18n } from '@/global/i18n'
 
 /**
  * 將浮點數四捨五入至指定位數
@@ -109,4 +111,22 @@ export function formatNumberWithK(label: string | number, precision: number = 2)
   return Math.abs(num) >= 1000
     ? formatNumber(num / 1000, precision) + 'k'
     : formatNumber(String(label), precision)
+}
+
+export function handleApiError(err: unknown) {
+  const globalStore = useGlobalStore()
+  const { t } = i18n.global
+
+  if (axios.isAxiosError(err)) {
+    const status = err.response?.status
+    if (status === 401) {
+      globalStore.storeHandleApiError()
+    } else if (status === 403) {
+      notification['error']({ message: t('msg.no_permission') })
+    } else {
+      notification['error']({ message: t('msg.query_failed') })
+    }
+  } else {
+    notification['error']({ message: t('msg.query_failed') })
+  }
 }

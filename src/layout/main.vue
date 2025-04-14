@@ -27,11 +27,7 @@ const queryApiData = async (apiFunc: Function, storageKey: string, params = {}) 
   } catch (err) {
     console.error(err)
     sessionStorage.setItem(storageKey, JSON.stringify([]))
-    if (axios.isAxiosError(err) && err.response?.status === 401) {
-      throw err // 讓外部統一處理 401
-    } else {
-      notification.error({ message: t(`msg.get_${storageKey}_failed`) })
-    }
+    throw err // 讓外部統一處理 401
   }
 }
 
@@ -55,6 +51,10 @@ const refreshData = async () => {
     )
   ) {
     globalStore.storeHandleApiError()
+  }
+  // 其他錯誤
+  else if (results.some((result) => result.status === 'rejected')) {
+    notification.error({ message: t(`msg.platform_switch_failed`) })
   }
 }
 

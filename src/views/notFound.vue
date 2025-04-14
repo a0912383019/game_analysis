@@ -9,9 +9,9 @@
 .not-found {
   display: flex;
   flex-direction: column;
+  height: 80vh;
+  justify-content: center;
   align-items: center;
-  margin-top: 28%;
-  height: 100vh;
   text-align: center;
 }
 h1 {
