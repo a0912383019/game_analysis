@@ -59,7 +59,7 @@ const queryGameReportByLobbyGroup = async () => {
   }
 }
 
-const groupOrder: number[] = [5, 3, 6, 4, 2]
+const groupOrder: number[] = [3, 2, 6, 5, 4]
 
 const cardList = computed<HomeCard[]>(() =>
   groupOrder.map((ele) => {

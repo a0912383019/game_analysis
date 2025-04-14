@@ -57,11 +57,10 @@ export const deviceGroupList: { value: number; label: string }[] = [
 
 // 遊戲大類編號
 export const lobbyGroupMap: Record<number, { name: string; color: string }> = {
-  1: { name: 'sport', color: '--primary-color' }, // 體育
-  2: { name: 'lottery', color: '--cdp-orange' }, // 彩票
-  3: { name: 'live', color: '--cdp-yellow' }, // 視訊
-  4: { name: 'fish', color: '--cdp-blue' }, // 捕魚
-  5: { name: 'prob', color: '--cdp-pink' }, // 電子
+  2: { name: 'live', color: '--cdp-yellow' }, // 視訊
+  3: { name: 'prob', color: '--cdp-pink' }, // 電子
+  4: { name: 'lottery', color: '--cdp-orange' }, // 彩票
+  5: { name: 'fish', color: '--cdp-blue' }, // 捕魚
   6: { name: 'card', color: '--cdp-green' } // 棋牌
 }
 
