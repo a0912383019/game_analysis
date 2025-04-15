@@ -178,6 +178,7 @@ const columns = ref<TableColumnsType[]>([
       key: 'hall_name',
       align: 'center',
       defaultSortOrder: 'descend',
+      width: 320,
       sorter: true
     },
     {

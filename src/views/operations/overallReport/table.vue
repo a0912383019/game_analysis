@@ -77,9 +77,4 @@ watch(
     height: 100px !important;
   }
 }
-:deep(.ant-table-tbody) {
-  td {
-    max-width: 260px !important;
-  }
-}
 </style>
