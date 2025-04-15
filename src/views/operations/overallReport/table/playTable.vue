@@ -32,6 +32,7 @@ const columns = ref<TableColumnsType[]>([
       dataIndex: 'serial_type_name',
       key: 'serial_type_name',
       align: 'center',
+      width: 320,
       sorter: true
     },
     {
@@ -107,6 +108,7 @@ const columns = ref<TableColumnsType[]>([
       key: 'hall_name',
       align: 'center',
       defaultSortOrder: 'descend',
+      width: 320,
       sorter: true
     },
     {
