@@ -2,6 +2,7 @@ import { i18n } from '@/global/i18n'
 import type { DefaultOptionType } from 'ant-design-vue/es/cascader'
 import type { Rule } from 'ant-design-vue/es/form'
 import { queryLobbyGames } from '@/utils/commonApi'
+import { handleApiError } from '@/utils/commonUtils'
 import { useGlobalStore } from '@/stores'
 
 // 遊戲及玩法選項
@@ -115,4 +116,54 @@ export const generateGamePlayParam = (data: LobbyGameData[]): Game[] => {
   })
 
   return Array.from(map.values())
+}
+
+// 總報表共用參數整理
+export const generateOverallParams = (
+  apiLength: number,
+  apiStart: number,
+  sortCol: string,
+  order: string,
+  paramInfo: any
+): ParamsBetReport => {
+  let apiParams = {
+    device: paramInfo.device,
+    end_date: paramInfo.endDate,
+    start_date: paramInfo.startDate,
+    hall_id: paramInfo.hallId,
+    user_id: paramInfo.userId,
+    username: paramInfo.username,
+    game: paramInfo.game
+  }
+
+  return {
+    ...apiParams,
+    length: apiLength,
+    sort: sortCol,
+    start: apiStart,
+    order: order === 'descend' ? 'DESC' : 'ASC'
+  }
+}
+
+export const queryApi = async (
+  apiFunc: Function,
+  params: ParamsBetReport,
+  transformFunc: Function,
+  record: any
+) => {
+  try {
+    const response = await apiFunc(params)
+    const { result } = response
+
+    if (result === 'success') {
+      if (response.ret.data.length !== 0) {
+        transformFunc(response.ret, record, params)
+      }
+    } else {
+      throw new Error()
+    }
+  } catch (err) {
+    console.error(err)
+    handleApiError(err)
+  }
 }
