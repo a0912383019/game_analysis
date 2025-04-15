@@ -5,15 +5,22 @@ import {
   timeDurationRule,
   memberValueRule,
   tidyMember,
-  generateGamePlayParam
+  generateGamePlayParam,
+  generateOverallParams,
+  queryApi
 } from '@/utils/filterUtils'
 import { queryLobbyGames } from '@/utils/commonApi'
+import { handleApiError } from '@/utils/commonUtils'
 import dayjs from '@/utils/appDayjs'
 import { useGlobalStore } from '@/stores'
 import { createTestingPinia } from '@pinia/testing'
 
 vi.mock('@/utils/commonApi', () => ({
   queryLobbyGames: vi.fn()
+}))
+
+vi.mock('@/utils/commonUtils', () => ({
+  handleApiError: vi.fn()
 }))
 
 describe('filterUtils', () => {
@@ -105,15 +112,15 @@ describe('filterUtils', () => {
           children: [
             {
               label: '虎',
-              value: '3026-1'
+              value: '1'
             },
             {
               label: '龍',
-              value: '3026-2'
+              value: '2'
             },
             {
               label: '和',
-              value: '3026-3'
+              value: '3'
             }
           ],
           isLeaf: false,
@@ -183,5 +190,62 @@ describe('filterUtils', () => {
 
     // should return [] when input []
     expect(generateGamePlayParam([])).toStrictEqual([])
+  })
+
+  it('generateOverallParams', () => {
+    const paramInfo = {
+      device: 1,
+      endDate: '2025-04-10',
+      startDate: '2025-04-01',
+      hallId: 123,
+      userId: ['u1', 'u2'],
+      username: ['user1'],
+      game: ['game1']
+    }
+
+    const result = generateOverallParams(10, 0, 'username', 'descend', paramInfo)
+
+    expect(result).toEqual({
+      device: 1,
+      end_date: '2025-04-10',
+      start_date: '2025-04-01',
+      hall_id: 123,
+      user_id: ['u1', 'u2'],
+      username: ['user1'],
+      game: ['game1'],
+      length: 10,
+      sort: 'username',
+      start: 0,
+      order: 'DESC'
+    })
+  })
+
+  it('queryApi', async () => {
+    const apiSuccessFunc = vi.fn().mockResolvedValue({
+      result: 'success',
+      ret: { data: [1, 2, 3] }
+    })
+
+    const transformFunc = vi.fn()
+    const params = {
+      start_date: '2024-01-01',
+      end_date: '2024-01-11',
+      sort: 'hall_name',
+      order: 'DESC' as 'DESC' | 'ASC',
+      length: 10,
+      start: 0
+    }
+
+    await queryApi(apiSuccessFunc, params, transformFunc, undefined)
+
+    expect(apiSuccessFunc).toHaveBeenCalledWith(params)
+    expect(transformFunc).toHaveBeenCalledWith({ data: [1, 2, 3] }, undefined, params)
+
+    vi.spyOn(console, 'error').mockImplementation(() => {})
+    const apiErrorFunc = vi.fn().mockResolvedValue({ result: 'error' })
+
+    await queryApi(apiErrorFunc, params, vi.fn(), undefined)
+
+    expect(handleApiError).toHaveBeenCalled()
   })
 })

@@ -16,10 +16,11 @@ describe('useOperationsOverallReportStore', () => {
     expect(operationsOverallReportStore.searchParams.hallValue).toBe(0)
     expect(operationsOverallReportStore.searchParams.memberType).toBe('')
     expect(operationsOverallReportStore.searchParams.memberValue).toEqual([])
-    expect(operationsOverallReportStore.searchParams.gamePlayValue).toBeUndefined()
+    expect(operationsOverallReportStore.searchParams.gamePlayValue).toEqual([])
     expect(operationsOverallReportStore.searchParams.deviceTypeValue).toBeUndefined()
     expect(operationsOverallReportStore.searchParams.dateDuration).toEqual([undefined, undefined])
     expect(operationsOverallReportStore.isFiltered).toBe(0)
+    expect(operationsOverallReportStore.tableBaseParams).toEqual({})
   })
 
   //  測試 searchParams 的值改變時，是否正確更新
@@ -54,5 +55,23 @@ describe('useOperationsOverallReportStore', () => {
       dayjs('2025-01-01')
     ])
     expect(operationsOverallReportStore.isFiltered).toBe(2)
+  })
+
+  it('should update tableBaseParams correctly', () => {
+    const dummyGame: Game = { lobby: 1 }
+
+    const params: BaseOverallReportParams = {
+      device: 2,
+      endDate: '2025-04-10',
+      startDate: '2025-04-01',
+      hallId: 123,
+      userId: ['123'],
+      username: ['abc'],
+      game: [dummyGame]
+    }
+
+    Object.assign(operationsOverallReportStore.tableBaseParams, params)
+
+    expect(operationsOverallReportStore.tableBaseParams).toEqual(params)
   })
 })

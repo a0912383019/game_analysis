@@ -24,6 +24,16 @@ interface OverallReportSearchType {
   dateDuration: [Dayjs | undefined, Dayjs | undefined]
 }
 
+interface BaseOverallReportParams {
+  device?: number
+  endDate?: string
+  startDate?: string
+  hallId?: number
+  userId?: string[]
+  username?: string[]
+  game?: Game[]
+}
+
 interface OverallReportFilterFormState {
   memberValue: string
   dateDuration: [Dayjs | undefined, Dayjs | undefined]

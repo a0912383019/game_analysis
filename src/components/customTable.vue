@@ -76,14 +76,6 @@ const goToFirstPage = () => {
   currentPage.value = 1
 }
 
-const scrollX = computed<string | undefined>(() => {
-  if (props.dataSource.length === 0) {
-    return undefined
-  }
-
-  return 'max-content'
-})
-
 // **展開的 row keys**
 const expandedRowKeys = ref<number[] | string[]>([])
 
@@ -161,7 +153,7 @@ defineExpose({ goToFirstPage, closeAllExpandedRows })
 <template>
   <a-table
     :pagination="props.dataSource.length === 0 || !props.hasPage ? false : pagination"
-    :scroll="{ x: scrollX }"
+    :scroll="{ x: 'max-content' }"
     :columns="props.columns[0]"
     :fetchSubData="props.fetchSubData"
     :data-source="pageTableData"

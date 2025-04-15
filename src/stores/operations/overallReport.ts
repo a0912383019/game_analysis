@@ -5,12 +5,14 @@ export const useOperationsOverallReportStore = defineStore('overallReport', () =
     hallValue: 0,
     memberType: '',
     memberValue: [],
-    gamePlayValue: undefined,
+    gamePlayValue: [],
     deviceTypeValue: undefined,
     dateDuration: [undefined, undefined]
   })
 
   const isFiltered = ref<number>(0)
 
-  return { searchParams, isFiltered }
+  const tableBaseParams = reactive<BaseOverallReportParams>({})
+
+  return { searchParams, isFiltered, tableBaseParams }
 })
