@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
-import { useI18n } from 'vue-i18n'
+import { i18n } from '@/global/i18n'
 import dayjs from '@/utils/appDayjs'
 
 export const useDateStore = defineStore('dateStore', () => {
-  const { t } = useI18n()
+  const { t } = i18n.global
 
   const dateRangeConfig1 = ref([
     { label: t('date.today'), value: [dayjs(), dayjs()] },
