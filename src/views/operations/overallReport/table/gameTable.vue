@@ -114,7 +114,7 @@ const columns = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('common.profit_comparison_by_game'),
+      title: t('common.profit_ratio'),
       dataIndex: 'payoff_ratio',
       key: 'payoff_ratio',
       align: 'center',
@@ -210,7 +210,7 @@ const columns = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('common.profit_comparison_by_game'),
+      title: t('common.profit_ratio'),
       dataIndex: 'payoff_ratio',
       key: 'payoff_ratio',
       align: 'center',
@@ -298,7 +298,7 @@ const columns = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('common.profit_comparison_by_game'),
+      title: t('common.profit_ratio'),
       dataIndex: 'payoff_ratio',
       key: 'payoff_ratio',
       align: 'center',
@@ -548,11 +548,11 @@ const transformBetReportByUser = (
       bet_amount: formatNumber(item.bet_amount),
       payoff: formatNumber(item.payoff),
       payoff_ratio: formatToPercentage(item.payoff_ratio),
-      // base_win_wager_count: formatNumber(item.base_win_wager_count),
-      // base_lose_wager_count: formatNumber(item.base_lose_wager_count),
-      // free_win_wager_count: formatNumber(item.free_win_wager_count),
-      // free_lose_wager_count: formatNumber(item.free_lose_wager_count),
-      // win_ratio: formatToPercentage(item.win_ratio),
+      base_win_wager_count: formatNumber(item.base_win_wager_count),
+      base_lose_wager_count: formatNumber(item.base_lose_wager_count),
+      free_win_wager_count: formatNumber(item.free_win_wager_count),
+      free_lose_wager_count: formatNumber(item.free_lose_wager_count),
+      win_ratio: formatToPercentage(item.win_ratio),
       innerLoading: true, // 第五層的loading
       hasPage: false, // 第五層是否分頁模式
       innerExtraParams: {

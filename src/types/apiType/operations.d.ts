@@ -142,6 +142,11 @@ interface BetReportByUser {
   payoff_ratio: string
   user_id: string
   wager_count: number
+  base_lose_wager_count: number
+  base_win_wager_count: number
+  free_lose_wager_count: number
+  free_win_wager_count: number
+  win_ratio: string
 }
 
 interface ResultBetReportByUser {
