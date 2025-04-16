@@ -76,5 +76,8 @@ watch(
   .ant-table-placeholder {
     height: 100px !important;
   }
+  .ant-pagination {
+    margin-top: 15px !important;
+  }
 }
 </style>

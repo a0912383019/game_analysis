@@ -93,7 +93,7 @@ const columns = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('common.win_bet_proportion'),
+      title: t('common.profit_share_by_game'),
       dataIndex: 'serial_type_payoff_ratio',
       key: 'serial_type_payoff_ratio',
       align: 'center',
@@ -193,7 +193,7 @@ const columns = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('common.profit_comparison_by_game'),
+      title: t('common.profit_ratio'),
       dataIndex: 'payoff_ratio',
       key: 'payoff_ratio',
       align: 'center',

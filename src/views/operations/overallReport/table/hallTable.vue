@@ -69,7 +69,7 @@ const columns = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('common.profit_comparison_by_game'),
+      title: t('common.profit_ratio'),
       dataIndex: 'payoff_ratio',
       key: 'payoff_ratio',
       align: 'center',
@@ -108,7 +108,7 @@ const columns = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('common.profit_comparison_by_game'),
+      title: t('common.profit_ratio'),
       dataIndex: 'payoff_ratio',
       key: 'payoff_ratio',
       align: 'center',
@@ -186,7 +186,7 @@ const columns = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('common.profit_comparison_by_game'),
+      title: t('common.profit_ratio'),
       dataIndex: 'payoff_ratio',
       key: 'payoff_ratio',
       align: 'center',
