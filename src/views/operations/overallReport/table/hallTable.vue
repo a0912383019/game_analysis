@@ -38,7 +38,8 @@ const columns = ref<TableColumnsType[]>([
       align: 'center',
       defaultSortOrder: 'descend',
       width: 320,
-      sorter: true
+      sorter: true,
+      sortDirections: ['descend', 'ascend'],
     },
     {
       title: t('common.member_quantity'),
@@ -277,6 +278,7 @@ const transformBetReportByHall = (
         current: 1,
         pageSize: 10,
         total: 0,
+        defaultSortCol: 'wager_count',
         sort: 'wager_count',
         order: 'descend'
       },
@@ -316,6 +318,7 @@ const transformBetReportByUser = (
         current: 1,
         pageSize: 1000,
         total: 0,
+        defaultSortCol: 'lobby_name',
         sort: 'lobby_name',
         order: 'descend'
       },
@@ -357,6 +360,7 @@ const transformBetReportByLobby = (
         current: 1,
         pageSize: 1000,
         total: 0,
+        defaultSortCol: 'game_name',
         sort: 'game_name',
         order: 'descend'
       },
@@ -398,6 +402,7 @@ const transformBetReportByGame = (
         current: 1,
         pageSize: 1000,
         total: 0,
+        defaultSortCol: 'wager_count',
         sort: 'wager_count',
         order: 'descend'
       },

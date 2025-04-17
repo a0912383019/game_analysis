@@ -124,11 +124,15 @@ const handleSubTableChange = (
     record.innerPagination.current = page
     record.innerPagination.pageSize = size
   }
-  record.innerPagination.order = sortOrder
 
-  if (sortField) {
+  if (sortOrder) {
+    record.innerPagination.order = sortOrder
     record.innerPagination.sort = sortField
+  } else {
+    record.innerPagination.order = 'descend'
+    record.innerPagination.sort = record.innerPagination.defaultSortCol
   }
+
   // 重新獲取子層數據
   if (!props.fetchSubData) return
   props.fetchSubData[0](record)
