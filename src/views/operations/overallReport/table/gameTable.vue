@@ -426,6 +426,7 @@ const transformBetReportByLobby = (
         current: 1,
         pageSize: 1000,
         total: 0,
+        defaultSortCol: 'game_name',
         sort: 'game_name',
         order: 'descend'
       },
@@ -476,6 +477,7 @@ const transformBetReportByGame = (
         current: 1,
         pageSize: 1000,
         total: 0,
+        defaultSortCol: 'hall_name',
         sort: 'hall_name',
         order: 'descend'
       },
@@ -525,6 +527,7 @@ const transformBetReportByHall = (
         current: 1,
         pageSize: 10,
         total: 0,
+        defaultSortCol: 'wager_count',
         sort: 'wager_count',
         order: 'descend'
       },
@@ -570,6 +573,7 @@ const transformBetReportByUser = (
         current: 1,
         pageSize: 1000,
         total: 0,
+        defaultSortCol: 'wager_count',
         sort: 'wager_count',
         order: 'descend'
       },
