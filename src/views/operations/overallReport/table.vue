@@ -5,7 +5,7 @@ import gameTable from '@/views/operations/overallReport/table/gameTable.vue'
 import playTable from '@/views/operations/overallReport/table/playTable.vue'
 import dateTable from '@/views/operations/overallReport/table/dateTable.vue'
 import { useOperationsOverallReportStore } from '@/stores'
-import { formatNumber, formatToApiDate, formatToPercentage } from '@/utils/commonUtils'
+import { formatToApiDate } from '@/utils/commonUtils'
 import dayjs from '@/utils/appDayjs'
 
 const { t } = useI18n()
