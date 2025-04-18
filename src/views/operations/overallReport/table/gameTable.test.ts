@@ -627,6 +627,7 @@ describe('gameTable', () => {
           current: 1,
           order: 'descend',
           pageSize: 1000,
+          defaultSortCol: 'game_name',
           sort: 'game_name',
           total: 0
         },
@@ -734,6 +735,7 @@ describe('gameTable', () => {
           current: 1,
           order: 'descend',
           pageSize: 1000,
+          defaultSortCol: 'hall_name',
           sort: 'hall_name',
           total: 0
         },
@@ -771,6 +773,7 @@ describe('gameTable', () => {
           current: 1,
           order: 'descend',
           pageSize: 1000,
+          defaultSortCol: 'hall_name',
           sort: 'hall_name',
           total: 0
         },
@@ -859,6 +862,7 @@ describe('gameTable', () => {
           current: 1,
           order: 'descend',
           pageSize: 10,
+          defaultSortCol: 'wager_count',
           sort: 'wager_count',
           total: 0
         },
@@ -939,6 +943,7 @@ describe('gameTable', () => {
           current: 1,
           order: 'descend',
           pageSize: 1000,
+          defaultSortCol: 'wager_count',
           sort: 'wager_count',
           total: 0
         },

@@ -28,12 +28,12 @@ describe('currencySignText', () => {
     expect(wrapper.vm.currencySignText).toStrictEqual('人民幣')
 
     globalStore.currentPlatform = 'midori'
-    expect(wrapper.vm.currencySignText).toStrictEqual('菲律賓披索')
+    expect(wrapper.vm.currencySignText).toStrictEqual('披索')
   })
 
   it('getCurrencySign', () => {
-    expect(wrapper.vm.getCurrencySign('xc-tw')).toBe('$')
-    expect(wrapper.vm.getCurrencySign('xc-ml')).toBe('RM')
+    expect(wrapper.vm.getCurrencySign('xctw')).toBe('$')
+    expect(wrapper.vm.getCurrencySign('xcmy')).toBe('$')
     expect(wrapper.vm.getCurrencySign('midori')).toBe('₱')
     expect(wrapper.vm.getCurrencySign('bbin')).toBe('¥')
     expect(wrapper.vm.getCurrencySign('bbgp')).toBe('¥')

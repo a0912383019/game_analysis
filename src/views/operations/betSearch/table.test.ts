@@ -137,19 +137,19 @@ describe('table', () => {
         },
         {
           align: 'center',
-          dataIndex: 'bet_amount',
-          key: 'bet_amount',
-          sorter: true,
-          title: '貨量',
-          width: 125
-        },
-        {
-          align: 'center',
           dataIndex: 'result',
           key: 'result',
           sorter: true,
           title: '注單狀態',
           width: 115
+        },
+        {
+          align: 'center',
+          dataIndex: 'bet_amount',
+          key: 'bet_amount',
+          sorter: true,
+          title: '貨量',
+          width: 125
         },
         {
           align: 'center',
