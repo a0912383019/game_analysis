@@ -472,6 +472,7 @@ describe('hallTable', () => {
           current: 1,
           order: 'descend',
           pageSize: 10,
+          defaultSortCol: 'wager_count',
           sort: 'wager_count',
           total: 0
         },
@@ -541,6 +542,7 @@ describe('hallTable', () => {
           current: 1,
           order: 'descend',
           pageSize: 1000,
+          defaultSortCol: 'lobby_name',
           sort: 'lobby_name',
           total: 0
         },
@@ -608,6 +610,7 @@ describe('hallTable', () => {
           current: 1,
           order: 'descend',
           pageSize: 1000,
+          defaultSortCol: 'game_name',
           sort: 'game_name',
           total: 0
         },
@@ -710,6 +713,7 @@ describe('hallTable', () => {
           current: 1,
           order: 'descend',
           pageSize: 1000,
+          defaultSortCol: 'wager_count',
           sort: 'wager_count',
           total: 0
         },
@@ -738,6 +742,7 @@ describe('hallTable', () => {
           current: 1,
           order: 'descend',
           pageSize: 1000,
+          defaultSortCol: 'wager_count',
           sort: 'wager_count',
           total: 0
         },
