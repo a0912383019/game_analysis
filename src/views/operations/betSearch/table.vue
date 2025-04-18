@@ -59,18 +59,18 @@ const columnsBet = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('data_name.bet_amount'),
-      width: 125,
-      dataIndex: 'bet_amount',
-      key: 'bet_amount',
-      align: 'center',
-      sorter: true
-    },
-    {
       title: t('bet_search.bet_slip_status'),
       width: 115,
       dataIndex: 'result',
       key: 'result',
+      align: 'center',
+      sorter: true
+    },
+    {
+      title: t('data_name.bet_amount'),
+      width: 125,
+      dataIndex: 'bet_amount',
+      key: 'bet_amount',
       align: 'center',
       sorter: true
     },
@@ -245,7 +245,10 @@ const columns = computed(() =>
   searchParams.searchTypeValue === 'bet' ? columnsBet.value : columnsDate.value
 )
 
-const setColumnSortOrder = (sortField: string | undefined, sortOrder: 'descend' | 'ascend' | undefined) => {
+const setColumnSortOrder = (
+  sortField: string | undefined,
+  sortOrder: 'descend' | 'ascend' | undefined
+) => {
   columns.value[0].forEach((col) => {
     col.defaultSortOrder = col.key === sortField ? sortOrder : undefined
   })
