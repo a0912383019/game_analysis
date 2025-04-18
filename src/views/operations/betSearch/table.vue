@@ -97,7 +97,7 @@ const columnsBet = ref<TableColumnsType[]>([
 const columnsDate = ref<TableColumnsType[]>([
   [
     {
-      title: t('bet_search.betting_date'),
+      title: t('common.settlement_date'),
       width: 152,
       dataIndex: 'settle_date',
       key: 'settle_date',
@@ -121,7 +121,7 @@ const columnsDate = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('bet_search.bet_amount'),
+      title: t('data_name.bet_amount'),
       width: 152,
       dataIndex: 'bet_amount',
       key: 'bet_amount',
