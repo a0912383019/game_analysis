@@ -38,8 +38,7 @@ const columns = ref<TableColumnsType[]>([
       align: 'center',
       defaultSortOrder: 'descend',
       width: 320,
-      sorter: true,
-      sortDirections: ['descend', 'ascend'],
+      sorter: true
     },
     {
       title: t('common.member_quantity'),
