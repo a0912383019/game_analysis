@@ -176,7 +176,7 @@ describe('table', () => {
           dataIndex: 'settle_date',
           key: 'settle_date',
           sorter: true,
-          title: '下注日期',
+          title: '結算日期',
           width: 152
         },
         {
@@ -200,7 +200,7 @@ describe('table', () => {
           dataIndex: 'bet_amount',
           key: 'bet_amount',
           sorter: true,
-          title: '投注額',
+          title: '貨量',
           width: 152
         },
         {
