@@ -95,19 +95,19 @@ describe('topCard', () => {
     expect(wrapper.vm.apiResponse).toStrictEqual(expectApiResponse)
     const expectCardList: HomeCard[] = [
       {
-        amount: '1,269',
-        bet: '1,827,791',
+        amount: '6',
+        bet: '50',
         customShapeColor: 'bg-[var(--cdp-pink)]',
-        payoff: '54,080.05',
-        people: '5',
+        payoff: '-35.4',
+        people: '2',
         title: 'prob'
       },
       {
-        amount: '6',
-        bet: '50',
+        amount: '1',
+        bet: '200',
         customShapeColor: 'bg-[var(--cdp-yellow)]',
-        payoff: '-35.4',
-        people: '2',
+        payoff: '-192',
+        people: '1',
         title: 'live'
       },
       {
@@ -119,19 +119,19 @@ describe('topCard', () => {
         title: 'card'
       },
       {
-        amount: '--',
-        bet: '--',
+        amount: '1,269',
+        bet: '1,827,791',
         customShapeColor: 'bg-[var(--cdp-blue)]',
-        payoff: '--',
-        people: '--',
+        payoff: '54,080.05',
+        people: '5',
         title: 'fish'
       },
       {
-        amount: '1',
-        bet: '200',
+        amount: '--',
+        bet: '--',
         customShapeColor: 'bg-[var(--cdp-orange)]',
-        payoff: '-192',
-        people: '1',
+        payoff: '--',
+        people: '--',
         title: 'lottery'
       }
     ]

@@ -76,14 +76,6 @@ const goToFirstPage = () => {
   currentPage.value = 1
 }
 
-const scrollX = computed<string | undefined>(() => {
-  if (props.dataSource.length === 0) {
-    return undefined
-  }
-
-  return 'max-content'
-})
-
 // **展開的 row keys**
 const expandedRowKeys = ref<number[] | string[]>([])
 
@@ -132,11 +124,15 @@ const handleSubTableChange = (
     record.innerPagination.current = page
     record.innerPagination.pageSize = size
   }
-  record.innerPagination.order = sortOrder
 
-  if (sortField) {
+  if (sortOrder) {
+    record.innerPagination.order = sortOrder
     record.innerPagination.sort = sortField
+  } else {
+    record.innerPagination.order = 'descend'
+    record.innerPagination.sort = record.innerPagination.defaultSortCol
   }
+
   // 重新獲取子層數據
   if (!props.fetchSubData) return
   props.fetchSubData[0](record)
@@ -161,7 +157,7 @@ defineExpose({ goToFirstPage, closeAllExpandedRows })
 <template>
   <a-table
     :pagination="props.dataSource.length === 0 || !props.hasPage ? false : pagination"
-    :scroll="{ x: scrollX }"
+    :scroll="{ x: 'max-content' }"
     :columns="props.columns[0]"
     :fetchSubData="props.fetchSubData"
     :data-source="pageTableData"

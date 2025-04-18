@@ -5,13 +5,13 @@ import { formatNumber } from '@/utils/commonUtils'
 import { apiGetGameReportByLobbyGroup } from '@/api'
 import { lobbyGroupMap } from '@/../public/js/system_config'
 import { notification } from 'ant-design-vue'
-import dayjs from '@/utils/appDayjs'
+import { getPlatformToday } from '@/utils/appDayjs'
 
 const { t } = useI18n()
 
 const globalStore = useGlobalStore()
 
-const todayDate = ref<Dayjs>(dayjs())
+const todayDate = ref<Dayjs>(getPlatformToday(globalStore.currentPlatform))
 
 const apiSuccess = ref<boolean>(false)
 const apiResponse = ref<ResultGameReportByLobbyGroup[]>([])

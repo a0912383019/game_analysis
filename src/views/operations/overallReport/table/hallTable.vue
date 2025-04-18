@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { TableColumnsType } from 'ant-design-vue'
-import dayjs from '@/utils/appDayjs'
 import { useI18n } from 'vue-i18n'
 import {
   apiBetReportByHall, // 第一層
@@ -10,12 +9,8 @@ import {
   apiBetReportLiveBySerialType // 第五層
 } from '@/api'
 import { useOperationsOverallReportStore } from '@/stores'
-import {
-  formatNumber,
-  formatToApiDate,
-  formatToPercentage,
-  handleApiError
-} from '@/utils/commonUtils'
+import { formatNumber, formatToPercentage } from '@/utils/commonUtils'
+import { generateOverallParams, queryApi } from '@/utils/filterUtils'
 
 /**
  * 第一層有分頁
@@ -28,7 +23,7 @@ import {
 const { t } = useI18n()
 
 const operationsOverallReportStore = useOperationsOverallReportStore()
-const { searchParams } = operationsOverallReportStore
+const { searchParams, tableBaseParams } = operationsOverallReportStore
 
 const tableRef = ref()
 const tableData = ref<any[]>([])
@@ -42,7 +37,9 @@ const columns = ref<TableColumnsType[]>([
       key: 'hall_name',
       align: 'center',
       defaultSortOrder: 'descend',
-      sorter: true
+      width: 320,
+      sorter: true,
+      sortDirections: ['descend', 'ascend'],
     },
     {
       title: t('common.member_quantity'),
@@ -73,7 +70,7 @@ const columns = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('common.profit_comparison_by_game'),
+      title: t('common.profit_ratio'),
       dataIndex: 'payoff_ratio',
       key: 'payoff_ratio',
       align: 'center',
@@ -112,7 +109,7 @@ const columns = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('common.profit_comparison_by_game'),
+      title: t('common.profit_ratio'),
       dataIndex: 'payoff_ratio',
       key: 'payoff_ratio',
       align: 'center',
@@ -190,7 +187,7 @@ const columns = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('common.profit_comparison_by_game'),
+      title: t('common.profit_ratio'),
       dataIndex: 'payoff_ratio',
       key: 'payoff_ratio',
       align: 'center',
@@ -249,55 +246,6 @@ const sortColumn = ref<string>('hall_name')
 const order = ref<string>('descend')
 const loading = ref<boolean>(false)
 
-const generateParams = (
-  apiLength: number,
-  apiStart: number,
-  sortCol: string,
-  order: string,
-  paramInfo: any
-): ParamsBetReport => {
-  let apiParams = {
-    device: paramInfo.device,
-    end_date: paramInfo.endDate,
-    start_date: paramInfo.startDate,
-    hall_id: paramInfo.hallId,
-    user_id: paramInfo.userId,
-    username: paramInfo.username,
-    game: paramInfo.game
-  }
-
-  return {
-    ...apiParams,
-    length: apiLength,
-    sort: sortCol,
-    start: apiStart,
-    order: order === 'descend' ? 'DESC' : 'ASC'
-  }
-}
-
-const queryBetApi = async (
-  apiFunc: Function,
-  params: ParamsBetReport,
-  transformFunc: Function,
-  record: any
-) => {
-  try {
-    const response = await apiFunc(params)
-    const { result } = response
-
-    if (result === 'success') {
-      if (response.ret.data.length !== 0) {
-        transformFunc(response.ret, record, params)
-      }
-    } else {
-      throw new Error()
-    }
-  } catch (err) {
-    console.error(err)
-    handleApiError(err)
-  }
-}
-
 // 第一層 api 轉換
 const transformBetReportByHall = (
   ret: ResultBetReportByHall,
@@ -330,6 +278,7 @@ const transformBetReportByHall = (
         current: 1,
         pageSize: 10,
         total: 0,
+        defaultSortCol: 'wager_count',
         sort: 'wager_count',
         order: 'descend'
       },
@@ -369,6 +318,7 @@ const transformBetReportByUser = (
         current: 1,
         pageSize: 1000,
         total: 0,
+        defaultSortCol: 'lobby_name',
         sort: 'lobby_name',
         order: 'descend'
       },
@@ -410,6 +360,7 @@ const transformBetReportByLobby = (
         current: 1,
         pageSize: 1000,
         total: 0,
+        defaultSortCol: 'game_name',
         sort: 'game_name',
         order: 'descend'
       },
@@ -451,6 +402,7 @@ const transformBetReportByGame = (
         current: 1,
         pageSize: 1000,
         total: 0,
+        defaultSortCol: 'wager_count',
         sort: 'wager_count',
         order: 'descend'
       },
@@ -483,10 +435,10 @@ const subFuncBetReportByUser = async (record: any) => {
   const { current, pageSize, sort, order } = record.innerPagination
   let apiStart = (current - 1) * pageSize
 
-  let params = generateParams(pageSize, apiStart, sort, order, record.innerExtraParams)
+  let params = generateOverallParams(pageSize, apiStart, sort, order, record.innerExtraParams)
 
   record.innerLoading = true
-  await queryBetApi(apiBetReportByUser, params, transformBetReportByUser, record)
+  await queryApi(apiBetReportByUser, params, transformBetReportByUser, record)
   record.innerLoading = false
 }
 
@@ -495,10 +447,10 @@ const subFuncBetReportByLobby = async (record: any) => {
   const { current, pageSize, sort, order } = record.innerPagination
   let apiStart = (current - 1) * pageSize
 
-  let params = generateParams(pageSize, apiStart, sort, order, record.innerExtraParams)
+  let params = generateOverallParams(pageSize, apiStart, sort, order, record.innerExtraParams)
 
   record.innerLoading = true
-  await queryBetApi(apiBetReportByLobby, params, transformBetReportByLobby, record)
+  await queryApi(apiBetReportByLobby, params, transformBetReportByLobby, record)
   record.innerLoading = false
 }
 
@@ -518,10 +470,10 @@ const subFuncBetReportByGame = async (record: any) => {
             lobby: record.innerExtraParams.lobby
           }
         ]
-  let params = generateParams(pageSize, apiStart, sort, order, record.innerExtraParams)
+  let params = generateOverallParams(pageSize, apiStart, sort, order, record.innerExtraParams)
 
   record.innerLoading = true
-  await queryBetApi(apiBetReportByGame, params, transformBetReportByGame, record)
+  await queryApi(apiBetReportByGame, params, transformBetReportByGame, record)
   record.innerLoading = false
 }
 
@@ -544,15 +496,10 @@ const subFuncBetReportLiveBySerialType = async (record: any) => {
             game_code: record.innerExtraParams.gameCode
           }
         ]
-  let params = generateParams(pageSize, apiStart, sort, order, record.innerExtraParams)
+  let params = generateOverallParams(pageSize, apiStart, sort, order, record.innerExtraParams)
 
   record.innerLoading = true
-  await queryBetApi(
-    apiBetReportLiveBySerialType,
-    params,
-    transformBetReportLiveBySerialType,
-    record
-  )
+  await queryApi(apiBetReportLiveBySerialType, params, transformBetReportLiveBySerialType, record)
   record.innerLoading = false
 }
 
@@ -585,47 +532,31 @@ const tableChange = async (
   pagination.pageSize = size
   pagination.apiStart = (pagination.currentPage - 1) * pagination.pageSize
 
-  const paramInfo = getParamInfo()
-
-  let params = generateParams(
+  let params = generateOverallParams(
     pagination.pageSize,
     pagination.apiStart,
     sortColumn.value,
     order.value,
-    paramInfo
+    tableBaseParams
   )
 
   loading.value = true
-  await queryBetApi(apiBetReportByHall, params, transformBetReportByHall, undefined)
+  await queryApi(apiBetReportByHall, params, transformBetReportByHall, undefined)
   loading.value = false
-}
-
-const getParamInfo = () => {
-  return {
-    device: searchParams.deviceTypeValue,
-    endDate: formatToApiDate(dayjs(searchParams.dateDuration[1])),
-    startDate: formatToApiDate(dayjs(searchParams.dateDuration[0])),
-    hallId: searchParams.hallValue === 0 ? undefined : searchParams.hallValue,
-    userId: searchParams.memberType === 'memberId' ? searchParams.memberValue : [],
-    username: searchParams.memberType === 'account' ? searchParams.memberValue : [],
-    game: searchParams.gamePlayValue
-  }
 }
 
 onMounted(async () => {
   if (operationsOverallReportStore.isFiltered !== 0) {
-    const paramInfo = getParamInfo()
-
-    let params = generateParams(
+    let params = generateOverallParams(
       pagination.pageSize,
       pagination.apiStart,
       sortColumn.value,
       order.value,
-      paramInfo
+      tableBaseParams
     )
 
     loading.value = true
-    await queryBetApi(apiBetReportByHall, params, transformBetReportByHall, undefined)
+    await queryApi(apiBetReportByHall, params, transformBetReportByHall, undefined)
     loading.value = false
   }
 })
@@ -643,9 +574,4 @@ onMounted(async () => {
     @update:tableChange="tableChange"
   ></custom-table>
 </template>
-<style lang="scss" scoped>
-// 無資料時 table 的高度
-:deep(.ant-table-placeholder) {
-  height: 400px;
-}
-</style>
+<style lang="scss" scoped></style>
