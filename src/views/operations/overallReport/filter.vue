@@ -5,7 +5,6 @@ import type { AntSelectProps, AntInputProps, AntCascaderProps } from '@/componen
 import { useOperationsOverallReportStore } from '@/stores'
 import type { Rule } from 'ant-design-vue/es/form'
 import { getSessionStorageEntity } from '@/utils/commonUtils'
-import { deviceGroupList } from '@/../public/js/system_config'
 import {
   memberValueRule,
   dateDurationRule,
@@ -35,10 +34,12 @@ const rules: Record<string, Rule[]> = {
 const hallValue = ref<number>(0)
 const hallOptions = ref<SelectProps['options']>([
   { value: 0, label: t('common.all') },
-  ...getSessionStorageEntity('platform_halls').map(({ hall_id, login_code, name }) => ({
-    value: hall_id,
-    label: name + ` [${login_code}]`
-  }))
+  ...getSessionStorageEntity('platform_config').platform_halls?.map(
+    ({ hall_id, login_code, name }) => ({
+      value: hall_id,
+      label: name + ` [${login_code}]`
+    })
+  )
 ])
 const hallProps = computed<AntSelectProps>(() => {
   return {
@@ -61,11 +62,11 @@ const memberProps = computed<AntInputProps>(() => {
 // 遊戲及玩法
 const gamePlayValue = ref<LobbyGameData[]>([])
 const gamePlayOptions = ref<CascaderProps['options']>(
-  getSessionStorageEntity('platform_lobbies').map(({ lobby, lobby_name }) => ({
+  getSessionStorageEntity('platform_config').platform_lobbies?.map(({ lobby, lobby_name }) => ({
     value: lobby,
     label: lobby_name,
     isLeaf: false
-  }))
+  })) || []
 )
 const gamePlayProps = computed<AntCascaderProps>(() => {
   return {
@@ -78,11 +79,17 @@ const gamePlayProps = computed<AntCascaderProps>(() => {
 
 // 裝置
 const deviceTypeValue = ref<number | undefined>()
+const deviceTypeOptions = ref<SelectProps['options']>(
+  getSessionStorageEntity('platform_config').platform_devices?.map(({ id, name }) => ({
+    value: id,
+    label: name
+  }))
+)
 const deviceTypeProps = computed<AntSelectProps>(() => {
   return {
     placeHolderText: t('common.select_device'),
     placeHolderValuableText: t('common.device'),
-    options: deviceGroupList
+    options: deviceTypeOptions.value
   }
 })
 

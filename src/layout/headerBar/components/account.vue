@@ -20,7 +20,7 @@ const storeLogout = () => {
 const { name, picture } = JSON.parse(sessionStorage.game_user_info)
 </script>
 <template>
-  <a-dropdown overlayClassName="!min-w-[60px]" :trigger="['hover']" placement="bottom">
+  <a-dropdown overlayClassName="!min-w-[100px]" :trigger="['hover']" placement="bottom">
     <div class="flex cursor-pointer items-center !mr-6">
       <div class="w-[30px] h-[30px] rounded-full overflow-hidden">
         <img :src="picture" alt="" />
