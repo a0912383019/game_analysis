@@ -31,6 +31,7 @@ const queryApiData = async (apiFunc: Function, storageKey: string, params = {}) 
   }
 }
 
+const isReady = ref(false)
 const refreshData = async () => {
   globalStore.isLoading = true
 
@@ -70,8 +71,9 @@ watch(
   }
 )
 
-onMounted(() => {
-  refreshData()
+onMounted(async () => {
+  await refreshData()
+  isReady.value = true
 })
 </script>
 <template>
@@ -80,7 +82,7 @@ onMounted(() => {
     <headerbar />
     <div class="mainArea__rightbox" :class="{ close: globalStore.isSidebarClose }">
       <div class="mainArea__container">
-        <router-view :key="currentPlatform" />
+        <router-view v-if="isReady" :key="currentPlatform" />
       </div>
       <div class="loading" v-show="globalStore.isLoading">
         <loading-box />
@@ -94,7 +96,9 @@ onMounted(() => {
   display: flex;
   background-color: #f4f6f9;
   min-height: 100vh;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-width: 1024px;
   &__rightbox {
     position: relative;
     width: calc(100% - 250px);

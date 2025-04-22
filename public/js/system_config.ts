@@ -24,12 +24,12 @@ export const platformDict: ConfigMap[] = [
     name: 'XC馬來站',
     key: 'xcmy',
     pColor: '#28182C'
-  },
-  {
-    name: 'Midori',
-    key: 'midori',
-    pColor: '#332E21'
   }
+  // {
+  //   name: 'Midori',
+  //   key: 'midori',
+  //   pColor: '#332E21'
+  // }
 ]
 
 export const sidebarIcon = {
@@ -64,27 +64,35 @@ export const lobbyGroupMap: Record<number, { name: string; color: string }> = {
   6: { name: 'card', color: '--cdp-green' } // 棋牌
 }
 
+export const targetGroupKey = {
+  2: 'live',
+  3: 'prob',
+  4: 'lottery',
+  5: 'fish',
+  6: 'card'
+}
+
 // 各平台篩選預設值
 export const platformDefaultInfo = {
   bbin: {
-    hall_id: 1, // 寶馬 [bmw]
-    lobby: 5 // BB電子
+    hall_id: 1, // 寶馬-我是廳名 [bmw]
+    lobby: 5, // BB電子
+    target: [3, 2, 6, 5, 4]
   },
   bbgp: {
     hall_id: 3820605, // WG [wgg]
-    lobby: 5 // BB電子
+    lobby: 5, // BB電子
+    target: [3, 2, 6, 5, 4]
   },
   xctw: {
-    hall_id: 6, // default_classify []
-    lobby: 5 // DW電子
+    hall_id: 19, // default_classify []
+    lobby: 5, // Gt5電子
+    target: [3]
   },
   xcmy: {
-    hall_id: 31, // default_classify []
-    lobby: 5 // DW電子
-  },
-  midori: {
-    hall_id: 3, // Midori Online1 [mdo]
-    lobby: 3 // BB視訊
+    hall_id: 29,
+    lobby: 5, // Gt5電子
+    target: [3]
   }
 }
 

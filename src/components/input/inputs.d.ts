@@ -15,6 +15,8 @@ export interface AntSelectProps {
   handleChange?: Function
   showSearch?: boolean // 是否啟用搜尋模式
   isLoading?: boolean
+  size?: SelectProps['size']
+  hasAllBtn?: boolean
 }
 
 export interface AntInputProps {

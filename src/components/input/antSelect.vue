@@ -9,7 +9,9 @@ const props = withDefaults(defineProps<AntSelectProps>(), {
   defaultAll: true,
   showSearch: true,
   isLoading: false,
-  handleChange: () => {}
+  hasAllBtn: true,
+  handleChange: () => {},
+  size: 'large'
 })
 
 const emit = defineEmits(['update:modelValue'])
@@ -82,7 +84,7 @@ onMounted(() => {
     :options="formatOptions"
     :show-search="props.showSearch"
     :style="{ '--placeholder-text': `'${placeholder}'` }"
-    size="large"
+    :size="props.size"
     :filter-option="filterOption"
     :showArrow="true"
     class="cdp-select"
@@ -90,14 +92,14 @@ onMounted(() => {
       'has-placeholder': props.hasPlaceholder,
       'is-active': isActive
     }"
-    :max-tag-count="3"
+    max-tag-count="responsive"
     popupClassName="!rounded-none"
   >
     <template #suffixIcon>
       <cdp-icon name="downOutline"></cdp-icon>
     </template>
     <template #dropdownRender="{ menuNode }">
-      <template v-if="props.mode === 'multiple' && props.options?.length !== 0">
+      <template v-if="props.mode === 'multiple' && props.options?.length !== 0 && props.hasAllBtn">
         <div
           class="w-full checkbox-wrap"
           @click.stop
@@ -108,6 +110,9 @@ onMounted(() => {
         <a-divider />
       </template>
       <component :is="menuNode" />
+    </template>
+    <template v-if="$slots.tagRender" #tagRender="{ value: val, label, closable, onClose, option }">
+      <slot name="tagRender" :info="{ value: val, label, closable, onClose, option }"></slot>
     </template>
     <template v-if="props.isLoading" #notFoundContent>
       <a-spin size="small" />
