@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useGlobalStore } from '@/stores'
 import { platformDict } from '@/../public/js/system_config'
-import { apiHalls, apiLobbies } from '@/api'
+import { apiHalls, apiLobbies, apiLobbyDevices } from '@/api'
 import { notification } from 'ant-design-vue'
 import { useI18n } from 'vue-i18n'
 
@@ -15,46 +15,50 @@ const getColorByName = (name: string): string => {
   return platformDict.find((item) => item.name.toLowerCase() === name)?.pColor || '#000000'
 }
 
-// 通用 API 查詢函式
-const queryApiData = async (apiFunc: Function, storageKey: string, params = {}) => {
-  try {
-    const response = await apiFunc(params)
-    if (response.result === 'success') {
-      sessionStorage.setItem(storageKey, JSON.stringify(response.ret))
-    } else {
-      throw new Error()
-    }
-  } catch (err) {
-    console.error(err)
-    sessionStorage.setItem(storageKey, JSON.stringify([]))
-    throw err // 讓外部統一處理 401
-  }
-}
-
+const isReady = ref(false)
 const refreshData = async () => {
   globalStore.isLoading = true
 
-  const results = await Promise.allSettled([
-    queryApiData(apiHalls, 'platform_halls', { hall_id: undefined }),
-    queryApiData(apiLobbies, 'platform_lobbies', { lobby: undefined })
-  ])
+  try {
+    const [hallRes, lobbyRes, deviceRes] = await Promise.all([
+      apiHalls({
+        hall_id: undefined
+      }),
+      apiLobbies({
+        lobby: undefined
+      }),
+      apiLobbyDevices({
+        device: undefined
+      })
+    ])
 
-  globalStore.isLoading = false
+    const platformData: Record<string, any> = {}
 
-  // 檢查是否有任何一個請求出現 401
-  if (
-    results.some(
-      (result) =>
-        result.status === 'rejected' &&
-        axios.isAxiosError(result.reason) &&
-        result.reason.response?.status === 401
-    )
-  ) {
-    globalStore.storeHandleApiError()
-  }
-  // 其他錯誤
-  else if (results.some((result) => result.status === 'rejected')) {
-    notification.error({ message: t(`msg.platform_switch_failed`) })
+    if (hallRes.result === 'success' && hallRes.ret.length !== 0) {
+      platformData['platform_halls'] = hallRes.ret
+    }
+    if (lobbyRes.result === 'success' && lobbyRes.ret.length !== 0) {
+      platformData['platform_lobbies'] = lobbyRes.ret
+    }
+    if (deviceRes.result === 'success' && deviceRes.ret.length !== 0) {
+      platformData['platform_devices'] = deviceRes.ret
+    }
+
+    sessionStorage.setItem('platform_config', JSON.stringify(platformData))
+  } catch (error) {
+    console.error(error)
+    if (axios.isAxiosError(error)) {
+      const status = error.response?.status
+      if (status === 401) {
+        globalStore.storeHandleApiError()
+      } else {
+        notification['error']({
+          message: t('msg.platform_config_error')
+        })
+      }
+    }
+  } finally {
+    globalStore.isLoading = false
   }
 }
 
@@ -70,8 +74,9 @@ watch(
   }
 )
 
-onMounted(() => {
-  refreshData()
+onMounted(async () => {
+  await refreshData()
+  isReady.value = true
 })
 </script>
 <template>
@@ -80,7 +85,7 @@ onMounted(() => {
     <headerbar />
     <div class="mainArea__rightbox" :class="{ close: globalStore.isSidebarClose }">
       <div class="mainArea__container">
-        <router-view :key="currentPlatform" />
+        <router-view v-if="isReady" :key="currentPlatform" />
       </div>
       <div class="loading" v-show="globalStore.isLoading">
         <loading-box />
@@ -94,9 +99,11 @@ onMounted(() => {
   display: flex;
   background-color: #f4f6f9;
   min-height: 100vh;
-  overflow: hidden;
+  min-width: 1024px;
   &__rightbox {
     position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
     width: calc(100% - 250px);
     margin-left: auto;
     padding: 60px 0px 0px 0px;

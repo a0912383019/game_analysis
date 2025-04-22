@@ -38,6 +38,16 @@ interface ResultLobbies {
   lobby_name: string
 }
 
+interface ParamsDevices {
+  device?: number
+}
+
+interface ResultDevices {
+  created_time: string
+  id: number
+  name: string
+}
+
 interface ParamsLobbyGames {
   lobby_id: number
 }

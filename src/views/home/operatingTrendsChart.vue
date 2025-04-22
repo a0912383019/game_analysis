@@ -177,7 +177,7 @@ onMounted(() => {
 })
 </script>
 <template>
-  <a-card class="cdp-card shadow-lg !mt-[15px] !ml-[15px]">
+  <a-card class="cdp-card shadow-lg !mt-[10px]">
     <template #title>
       <div class="custom-shape bg-[var(--primary-color)]"></div>
       <cdp-icon name="operationsCenter"></cdp-icon>

@@ -38,7 +38,7 @@ const rules: Record<string, Rule[]> = {
 // 廳
 const hallValue = ref<number | undefined>(platformDefaultInfo[globalStore.currentPlatform].hall_id)
 const hallOptions = ref<SelectProps['options']>(
-  getSessionStorageEntity('platform_halls').map(({ hall_id, login_code, name }) => ({
+  getSessionStorageEntity('platform_config').platform_halls?.map(({ hall_id, login_code, name }) => ({
     value: hall_id,
     label: name + ` [${login_code}]`
   }))
@@ -64,7 +64,7 @@ const memberProps = computed<AntInputProps>(() => {
 // 遊戲大廳
 const lobbyValue = ref<number | undefined>(platformDefaultInfo[globalStore.currentPlatform].lobby)
 const lobbyOptions = ref<SelectProps['options']>(
-  getSessionStorageEntity('platform_lobbies').map(({ lobby, lobby_name }) => ({
+  getSessionStorageEntity('platform_config').platform_lobbies?.map(({ lobby, lobby_name }) => ({
     value: lobby,
     label: lobby_name
   }))

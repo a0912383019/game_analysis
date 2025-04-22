@@ -44,17 +44,6 @@ export const sidebarIcon = {
 
 export type SidebarIconType = keyof typeof sidebarIcon
 
-// 裝置種類編號
-export const deviceGroupList: { value: number; label: string }[] = [
-  { value: 0, label: 'PC' },
-  { value: 6, label: 'Mac' },
-  { value: 2, label: 'iOS 手機' },
-  { value: 3, label: '安卓手機' },
-  { value: 4, label: 'iOS 平板' },
-  { value: 5, label: '安卓平板' },
-  { value: 1, label: '其他' }
-]
-
 // 遊戲大類編號
 export const lobbyGroupMap: Record<number, { name: string; color: string }> = {
   2: { name: 'live', color: '--cdp-yellow' }, // 視訊
@@ -64,27 +53,40 @@ export const lobbyGroupMap: Record<number, { name: string; color: string }> = {
   6: { name: 'card', color: '--cdp-green' } // 棋牌
 }
 
+export const targetGroupKey = {
+  2: 'live',
+  3: 'prob',
+  4: 'lottery',
+  5: 'fish',
+  6: 'card'
+}
+
 // 各平台篩選預設值
 export const platformDefaultInfo = {
   bbin: {
     hall_id: 1, // 寶馬 [bmw]
-    lobby: 5 // BB電子
+    lobby: 5, // BB電子
+    target: [3, 2, 6, 5, 4]
   },
   bbgp: {
     hall_id: 3820605, // WG [wgg]
-    lobby: 5 // BB電子
+    lobby: 5, // BB電子
+    target: [3, 2, 6, 5, 4]
   },
   xctw: {
     hall_id: 6, // default_classify []
-    lobby: 5 // DW電子
+    lobby: 5, // DW電子
+    target: [3]
   },
   xcmy: {
     hall_id: 31, // default_classify []
-    lobby: 5 // DW電子
+    lobby: 5, // DW電子
+    target: [3]
   },
   midori: {
     hall_id: 3, // Midori Online1 [mdo]
-    lobby: 3 // BB視訊
+    lobby: 3, // BB視訊
+    target: [2]
   }
 }
 

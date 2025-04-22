@@ -52,7 +52,7 @@
     "query_failed": "查詢失敗，請重新操作",
     "no_permission": "權限不足，請聯繫管理員",
     "login_error": "登入狀態異常，請重新登入",
-    "platform_switch_failed": "廳別切換錯誤，請重新嘗試"
+    "platform_config_error": "平台數據異常，請切換平台重試"
   },
   "currency": {
     "currency": "幣別",
@@ -85,6 +85,13 @@
     "commercial_trend_chart": "營運趨勢圖",
     "game_combination_analysis": "遊玩組合分析",
     "game_combination_flow": "遊玩組合流向"
+  },
+  "room": {
+    "live": "視訊廳",
+    "prob": "電子廳",
+    "lottery": "彩票廳",
+    "fish": "捕魚廳",
+    "card": "棋牌廳"
   },
   "common": {
     "logout": "登出",
@@ -119,6 +126,7 @@
     "hall": "廳",
     "hall_master": "廳主",
     "hall_name": "廳主名稱",
+    "hall_group": "廳主分類",
     "game": "遊戲",
     "game_categories": "遊戲大類",
     "player": "玩家",

@@ -31,6 +31,31 @@ const getCurrencySign = (platform: string): string => {
 }
 </script>
 <template>
-  <div class="text-sm">({{ $t('currency.currency') + '：' + currencySignText }})</div>
+  <div class="text-sm !ml-5">
+    (
+    <span class="show-on-desktop">
+      {{ $t('currency.currency') + '：' + currencySignText }}
+    </span>
+    <span class="show-on-pad">
+      {{ getCurrencySign(globalStore.currentPlatform) }}
+    </span>
+    )
+  </div>
 </template>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.show-on-desktop {
+  display: inline;
+}
+.show-on-pad {
+  display: none;
+}
+
+@media (max-width: 1045px) {
+  .show-on-desktop {
+    display: none;
+  }
+  .show-on-pad {
+    display: inline;
+  }
+}
+</style>

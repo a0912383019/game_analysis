@@ -20,12 +20,12 @@ const storeLogout = () => {
 const { name, picture } = JSON.parse(sessionStorage.game_user_info)
 </script>
 <template>
-  <a-dropdown overlayClassName="shadow-[0px_2px_12px_0px_rgba(0,0,0,0.14)]" :trigger="['hover']">
-    <div class="flex cursor-pointer items-center !mr-5">
+  <a-dropdown overlayClassName="!min-w-[100px]" :trigger="['hover']" placement="bottom">
+    <div class="flex cursor-pointer items-center !mr-6">
       <div class="w-[30px] h-[30px] rounded-full overflow-hidden">
         <img :src="picture" alt="" />
       </div>
-      <a class="!pl-3">
+      <a class="!pl-3 show-on-desktop">
         {{ name }}
         <cdp-icon name="downOutline" class="!w-[12px] !ml-2" />
       </a>
@@ -39,4 +39,14 @@ const { name, picture } = JSON.parse(sessionStorage.game_user_info)
     </template>
   </a-dropdown>
 </template>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.show-on-desktop {
+  display: inline;
+}
+
+@media (max-width: 1023px) {
+  .show-on-desktop {
+    display: none;
+  }
+}
+</style>
