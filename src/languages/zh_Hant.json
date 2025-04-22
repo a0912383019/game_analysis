@@ -52,7 +52,7 @@
     "query_failed": "查詢失敗，請重新操作",
     "no_permission": "權限不足，請聯繫管理員",
     "login_error": "登入狀態異常，請重新登入",
-    "platform_switch_failed": "廳別切換錯誤，請重新嘗試"
+    "platform_config_error": "平台數據異常，請切換平台重試"
   },
   "currency": {
     "currency": "幣別",

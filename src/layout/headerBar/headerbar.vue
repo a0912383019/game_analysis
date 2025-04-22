@@ -22,6 +22,8 @@ header {
   align-items: center;
   width: 100%;
   height: 60px;
+  overflow-x: auto;
+  white-space: nowrap; // 防止子元素換行
   padding-left: 260px;
   color: black;
   background: #fff;
