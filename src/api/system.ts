@@ -20,7 +20,7 @@ export const apiLobbies = (params: ParamsLobbies) => {
   return apiGet<ParamsLobbies, ResultLobbies[]>('/api/auth/lobbies', params)
 }
 
-export const apiLobbyDevices = (params: ParamsDevices) => {
+export const apiDevices = (params: ParamsDevices) => {
   return apiGet<ParamsDevices, ResultDevices[]>('/api/auth/devices', params)
 }
 

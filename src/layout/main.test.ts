@@ -5,7 +5,7 @@ import { i18n } from '@/global/i18n'
 import { createTestingPinia } from '@pinia/testing'
 import router from '@/router'
 import { useGlobalStore } from '@/stores'
-import { apiHalls, apiLobbies } from '@/api'
+import { apiHalls, apiLobbies, apiDevices } from '@/api'
 
 vi.mock('@/../public/js/system_config', () => ({
   platformDict: [
@@ -29,7 +29,8 @@ vi.mock('@/../public/js/system_config', () => ({
 
 vi.mock('@/api', () => ({
   apiHalls: vi.fn(),
-  apiLobbies: vi.fn()
+  apiLobbies: vi.fn(),
+  apiDevices: vi.fn()
 }))
 
 describe('main', () => {
@@ -45,6 +46,8 @@ describe('main', () => {
     mockApiHalls.mockResolvedValue({ result: 'success', ret: [] })
     const mockApiLobbies = apiLobbies as Mock
     mockApiLobbies.mockResolvedValue({ result: 'success', ret: [] })
+    const mockApiDevices = apiDevices as Mock
+    mockApiDevices.mockResolvedValue({ result: 'success', ret: [] })
 
     wrapper = shallowMount(main, {
       global: {
@@ -66,10 +69,16 @@ describe('main', () => {
 
   it('currentPlatform & watch', async () => {
     expect(wrapper.vm.currentPlatform).toStrictEqual('bbin')
+    expect(apiHalls).toBeCalledTimes(1)
+    expect(apiLobbies).toBeCalledTimes(1)
+    expect(apiDevices).toBeCalledTimes(1)
 
     let setPropertySpy = vi.spyOn(document.documentElement.style, 'setProperty')
     globalStore.currentPlatform = 'midori'
     await flushPromises()
+    expect(apiHalls).toBeCalledTimes(2)
+    expect(apiLobbies).toBeCalledTimes(2)
+    expect(apiDevices).toBeCalledTimes(2)
     expect(wrapper.vm.currentPlatform).toStrictEqual('midori')
     expect(setPropertySpy).toHaveBeenCalledWith('--primary-color', '#332E21')
   })
