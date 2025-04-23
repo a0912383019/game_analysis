@@ -50,17 +50,14 @@ describe('filter', () => {
 
     vi.setSystemTime(mockDate.toDate())
 
-    vi.spyOn(module, 'getSessionStorageEntity').mockImplementation((key: string) => {
-      if (key === 'platform_halls') {
-        return [{ hall_id: 1, login_code: 'bmw', name: '寶馬-我是廳名' }]
-      }
-      if (key === 'platform_lobbies') {
-        return [
+    vi.spyOn(module, 'getSessionStorageEntity').mockImplementation(() => {
+      return {
+        platform_halls: [{ hall_id: 1, login_code: 'bmw', name: '寶馬-我是廳名' }],
+        platform_lobbies: [
           { lobby: 5, lobby_name: 'BB電子' },
           { lobby: 66, lobby_name: 'BB棋牌' }
         ]
       }
-      return []
     })
 
     wrapper = shallowMount(filter, {
