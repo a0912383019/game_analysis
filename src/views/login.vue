@@ -26,7 +26,7 @@ const googleLoginCallback: CallbackTypes.CredentialCallback = (response) => {
       // 登入成功取得 api access_token 後才導至首頁
       router.push({ path: '/home' })
 
-      let { name } = JSON.parse(sessionStorage.game_user_info)
+      let { name } = JSON.parse(localStorage.game_user_info)
       notification['success']({
         message: `Hello, ${name}`,
         duration: 2
@@ -44,10 +44,7 @@ const queryApiGetSidebar = async () => {
     const { result } = response
 
     if (result === 'success' && response.ret.length !== 0) {
-      const systemConfig = {
-        menu_config: response.ret
-      }
-      sessionStorage.setItem('game_config', JSON.stringify(systemConfig))
+      localStorage.setItem('menu_config', JSON.stringify(response.ret))
       generateMenuList(response.ret)
       generateMenuRoutes(response.ret)
     } else {
@@ -123,9 +120,9 @@ const handleLogin = async ({ credential }) => {
           email,
           picture
         }
-        sessionStorage.game_user_info = JSON.stringify(userInfoEntity)
-        // 將取得的 access_token 存入 sessionStorage
-        sessionStorage.game_access_token = token_type + ' ' + access_token
+        // 將取得的 access_token 存入 localStorage
+        localStorage.setItem('game_user_info', JSON.stringify(userInfoEntity))
+        localStorage.setItem('game_access_token', token_type + ' ' + access_token)
         return true
       } else {
         throw new Error('unknown')
@@ -150,7 +147,7 @@ const handleLogin = async ({ credential }) => {
       if (error.message === 'web storage not supported') {
         failMsg['msg3']['isShow'] = true // 瀏覽器不支援 web storage
       } else {
-        failMsg['msg2']['isShow'] = true  // 系統繁忙中
+        failMsg['msg2']['isShow'] = true // 系統繁忙中
       }
     } else {
       failMsg['msg2']['isShow'] = true // 系統繁忙中

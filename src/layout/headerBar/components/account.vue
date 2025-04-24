@@ -17,7 +17,7 @@ const storeLogout = () => {
   router.push({ name: 'Login' })
 }
 
-const { name, picture } = JSON.parse(sessionStorage.game_user_info)
+const { name, picture } = JSON.parse(localStorage.game_user_info)
 </script>
 <template>
   <a-dropdown overlayClassName="!min-w-[100px]" :trigger="['hover']" placement="bottom">

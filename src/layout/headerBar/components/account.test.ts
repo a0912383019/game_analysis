@@ -22,7 +22,7 @@ describe('account', () => {
       name: 'Yuyu',
       picture: 'test.jpg'
     }
-    sessionStorage.setItem('game_user_info', JSON.stringify(game_user_info))
+    localStorage.setItem('game_user_info', JSON.stringify(game_user_info))
 
     wrapper = shallowMount(account, {
       global: {
