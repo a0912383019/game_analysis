@@ -66,7 +66,7 @@ interface Game {
 
 // 總報表參數
 interface ParamsBetReport extends BasePaginationParams {
-  device?: number
+  device?: number[]
   end_date: string
   game?: Game[]
   hall_id?: number

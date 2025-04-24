@@ -13,7 +13,7 @@ describe('Vue Router Guards', () => {
 
   afterEach(() => {
     vi.clearAllMocks()
-    sessionStorage.clear()
+    localStorage.clear()
   })
 
   it('應該在未登入時導向 /login', async () => {
@@ -24,7 +24,7 @@ describe('Vue Router Guards', () => {
   it('應該在已登入時允許導航', async () => {
     // home 是動態路由，因此先手動加入
     router.addRoute({ path: '/home', name: '/home', component: expect.any(Function) })
-    sessionStorage.setItem('game_user_info', 'mockUser')
+    localStorage.setItem('game_user_info', 'mockUser')
     await router.push('/home')
     expect(router.currentRoute.value.path).toBe('/home')
   })

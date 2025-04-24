@@ -15,7 +15,7 @@ const axiosGoInstance: AxiosInstance = axios.create({
 // 請求攔截器
 axiosGoInstance.interceptors.request.use(
   (request: InternalAxiosRequestConfig) => {
-    const accessToken = sessionStorage.game_access_token
+    const accessToken = localStorage.getItem('game_access_token')
     if (accessToken) {
       // 添加 Authorization
       request.headers.set('Authorization', accessToken)

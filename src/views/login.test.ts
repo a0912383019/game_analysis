@@ -164,19 +164,15 @@ describe('login', () => {
       email: 'robot@mail.chungyo.net',
       picture: 'abc.jpg'
     }
-    const sessionGameUserInfo = JSON.parse(sessionStorage.game_user_info)
+    const sessionGameUserInfo = JSON.parse(localStorage.game_user_info)
     expect(sessionGameUserInfo).toStrictEqual(gameUserInfo)
 
     // 驗證 access_token 組合
-    const sessionAccessToken = sessionStorage.game_access_token
+    const sessionAccessToken = localStorage.game_access_token
     expect(sessionAccessToken).toStrictEqual('bearer test token')
 
-    // 驗證 game_config
-    const gameConfig = {
-      menu_config: apiRoutes
-    }
-    const sessionGameConfig = JSON.parse(sessionStorage.game_config)
-    expect(sessionGameConfig).toStrictEqual(gameConfig)
+    const sessionGameConfig = JSON.parse(localStorage.menu_config)
+    expect(sessionGameConfig).toStrictEqual(apiRoutes)
 
     // 驗證 systemStore.menuList
     const menuList: SidebarMenuItem[] = [
