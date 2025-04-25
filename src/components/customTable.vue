@@ -86,8 +86,6 @@ const handleExpand = async (expanded: boolean, record: any) => {
     // 確保 record 有 pagination 狀態
     if (!record.innerPagination) {
       record.innerPagination = {
-        current: 1,
-        pageSize: 10,
         total: 0
       }
     }

@@ -381,7 +381,7 @@ const columns = ref<TableColumnsType[]>([
   ]
 ])
 
-const pagination = reactive({
+const pagination = reactive<Pagination>({
   apiStart: 0,
   pageSize: 10,
   total: 0,
@@ -423,9 +423,6 @@ const transformBetReportByLobby = (
       },
       innerPagination: {
         // 下一層分頁的預設值
-        current: 1,
-        pageSize: 1000,
-        total: 0,
         defaultSortCol: 'game_name',
         sort: 'game_name',
         order: 'descend'
@@ -441,8 +438,6 @@ const transformBetReportByGame = (
   record: any,
   params: ParamsBetReport
 ) => {
-  record.innerPagination.total = ret.records_total
-  // 進階篩選選項排除
   record.innerData = ret.data.map((item, idx) => {
     return {
       key: idx,
@@ -474,9 +469,6 @@ const transformBetReportByGame = (
         expectedRtp: item.expected_rtp
       },
       innerPagination: {
-        current: 1,
-        pageSize: 1000,
-        total: 0,
         defaultSortCol: 'hall_name',
         sort: 'hall_name',
         order: 'descend'
@@ -492,7 +484,6 @@ const transformBetReportByHall = (
   record: any,
   params: ParamsBetReport
 ) => {
-  record.innerPagination.total = ret.records_total
   record.innerData = ret.data.map((item, idx) => {
     return {
       key: idx,
@@ -570,9 +561,6 @@ const transformBetReportByUser = (
         gameCode: record.innerExtraParams.gameCode
       },
       innerPagination: {
-        current: 1,
-        pageSize: 1000,
-        total: 0,
         defaultSortCol: 'wager_count',
         sort: 'wager_count',
         order: 'descend'
@@ -588,7 +576,6 @@ const transformBetReportLiveBySerialType = (
   record: any,
   params: ParamsBetReport
 ) => {
-  record.innerPagination.total = ret.records_total
   record.innerData = ret.data.map((item, idx) => {
     return {
       key: idx,
@@ -603,8 +590,7 @@ const transformBetReportLiveBySerialType = (
 
 // 第二層 api 呼叫
 const subFuncBetReportByGame = async (record: any) => {
-  const { current, pageSize, sort, order } = record.innerPagination
-  let apiStart = (current - 1) * pageSize
+  const { sort, order } = record.innerPagination
 
   const newGameParams = searchParams.gamePlayValue?.filter(
     (ele) => ele.lobby === record.innerExtraParams.lobby
@@ -617,7 +603,7 @@ const subFuncBetReportByGame = async (record: any) => {
             lobby: record.innerExtraParams.lobby
           }
         ]
-  let params = generateOverallParams(pageSize, apiStart, sort, order, record.innerExtraParams)
+  let params = generateOverallParams(undefined, undefined, sort, order, record.innerExtraParams)
 
   record.innerLoading = true
   await queryApi(apiBetReportByGame, params, transformBetReportByGame, record)
@@ -626,8 +612,7 @@ const subFuncBetReportByGame = async (record: any) => {
 
 // 第三層 api 呼叫
 const subFuncBetReportByHall = async (record: any) => {
-  const { current, pageSize, sort, order } = record.innerPagination
-  let apiStart = (current - 1) * pageSize
+  const { sort, order } = record.innerPagination
 
   const newGameParams = searchParams.gamePlayValue?.filter(
     (ele) =>
@@ -643,7 +628,7 @@ const subFuncBetReportByHall = async (record: any) => {
             game_code: record.innerExtraParams.gameCode
           }
         ]
-  let params = generateOverallParams(pageSize, apiStart, sort, order, record.innerExtraParams)
+  let params = generateOverallParams(undefined, undefined, sort, order, record.innerExtraParams)
 
   record.innerLoading = true
   await queryApi(apiBetReportByHall, params, transformBetReportByHall, record)
@@ -678,8 +663,7 @@ const subFuncBetReportByUser = async (record: any) => {
 
 // 第五層 api 呼叫
 const subFuncBetReportLiveBySerialType = async (record: any) => {
-  const { current, pageSize, sort, order } = record.innerPagination
-  let apiStart = (current - 1) * pageSize
+  const { sort, order } = record.innerPagination
 
   const newGameParams = searchParams.gamePlayValue?.filter(
     (ele) =>
@@ -695,7 +679,7 @@ const subFuncBetReportLiveBySerialType = async (record: any) => {
             game_code: record.innerExtraParams.gameCode
           }
         ]
-  let params = generateOverallParams(pageSize, apiStart, sort, order, record.innerExtraParams)
+  let params = generateOverallParams(undefined, undefined, sort, order, record.innerExtraParams)
 
   record.innerLoading = true
   await queryApi(apiBetReportLiveBySerialType, params, transformBetReportLiveBySerialType, record)
