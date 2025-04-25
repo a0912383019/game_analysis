@@ -216,7 +216,7 @@ const columns = ref<TableColumnsType[]>([
   ]
 ])
 
-const pagination = reactive({
+const pagination = reactive<Pagination>({
   apiStart: 0,
   pageSize: 10,
   total: 0,
@@ -270,9 +270,6 @@ const transformBetReportLiveBySerialType = (
         expectedRtp: item.expected_rtp
       },
       innerPagination: {
-        current: 1,
-        pageSize: 1000,
-        total: 0,
         defaultSortCol: 'hall_name',
         sort: 'hall_name',
         order: 'descend'
@@ -288,7 +285,6 @@ const transformBetReportByHall = (
   record: any,
   params: ParamsBetReport
 ) => {
-  record.innerPagination.total = ret.records_total
   record.innerData = ret.data.map((item, idx) => {
     return {
       key: idx,
@@ -350,9 +346,8 @@ const transformBetReportByUser = (
 
 // 第二層 api 呼叫
 const subFuncBetReportByHall = async (record: any) => {
-  const { current, pageSize, sort, order } = record.innerPagination
-  let apiStart = (current - 1) * pageSize
-  let params = generateOverallParams(pageSize, apiStart, sort, order, record.innerExtraParams)
+  const { sort, order } = record.innerPagination
+  let params = generateOverallParams(undefined, undefined, sort, order, record.innerExtraParams)
 
   record.innerLoading = true
   await queryApi(apiBetReportByHall, params, transformBetReportByHall, record)
