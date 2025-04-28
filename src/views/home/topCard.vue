@@ -3,7 +3,7 @@ import { useI18n } from 'vue-i18n'
 import { useGlobalStore } from '@/stores'
 import { formatNumber } from '@/utils/commonUtils'
 import { apiGetGameReportByLobbyGroup } from '@/api'
-import { lobbyGroupMap } from '@/../public/js/system_config'
+import { targetMap, targetOrder } from '@/../public/js/system_config'
 import { notification } from 'ant-design-vue'
 import { getPlatformToday } from '@/utils/appDayjs'
 
@@ -59,14 +59,12 @@ const queryGameReportByLobbyGroup = async () => {
   }
 }
 
-const groupOrder: number[] = [3, 2, 6, 5, 4]
-
 const cardList = computed<HomeCard[]>(() =>
-  groupOrder.map((ele) => {
+  targetOrder.map((ele) => {
     const cardObj = apiResponse.value.find((item) => item.lobby_group === ele)
     return {
-      title: lobbyGroupMap[ele].name,
-      customShapeColor: `bg-[var(${lobbyGroupMap[ele].color})]`,
+      title: targetMap[ele].name,
+      customShapeColor: `bg-[var(${targetMap[ele].color})]`,
       bet: cardObj ? formatNumber(cardObj.bet_amount) : '--',
       payoff: cardObj ? formatNumber(cardObj.payoff) : '--',
       amount: cardObj ? formatNumber(cardObj.wager_count) : '--',
@@ -87,7 +85,7 @@ onMounted(() => {
           <template #title>
             <div class="custom-shape" :class="item.customShapeColor"></div>
             <cdp-icon :name="item.title"></cdp-icon>
-            <span class="text-base !ml-2"> {{ $t(`lobby_group.${item.title}`) }} </span>
+            <span class="text-base !ml-2"> {{ $t(`target_group.${item.title}`) }} </span>
             <span class="text-[13px] text-[#A5B1C5] !ml-2">
               {{ todayDate.format(t('date.format_locale_date_rule')) }}
             </span>
