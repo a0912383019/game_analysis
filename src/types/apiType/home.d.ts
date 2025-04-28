@@ -10,3 +10,59 @@ interface ResultGameReportByLobbyGroup {
   user_count: number
   wager_count: number
 }
+
+interface ParamsGameReportTrend {
+  start_date: string
+  end_date: string
+}
+
+interface GameReportTrend {
+  betAmount: string
+  data_date: string
+  first_play_count: number
+  loss_count: number
+  payoff: string
+  target_id: number
+  target_name: string
+  wagers_count: number
+}
+
+interface GameReportTrendDaily {
+  commissionable: string
+  data_date: string
+  first_play_count: number
+  loss_count: number
+  payoff: string
+  wagers_count: number
+}
+
+interface GameReportTrendTarget {
+  commissionable: string
+  first_play_count: number
+  loss_count: number
+  payoff: string
+  target_id: number
+  target_name: string
+  wagers_count: number
+}
+
+interface GameReportTrendOverall {
+  commissionable: string
+  first_play_count: number
+  loss_count: number
+  payoff: string
+  wagers_count: number
+  target_id?: number
+  target_name?: string
+}
+
+interface GameReportTrendTotal {
+  by_daily: GameReportTrendDaily[]
+  by_target: GameReportTrendTarget[]
+  overall: GameReportTrendOverall
+}
+
+interface ResultGameReportTrend {
+  data: GameReportTrend[]
+  total: GameReportTrendTotal
+}
