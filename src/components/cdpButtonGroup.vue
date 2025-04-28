@@ -31,7 +31,7 @@ const onSelect = (value: string | number) => {
   <div class="flex flex-wrap gap-2">
     <a-button
       v-for="item in props.buttonGroup"
-      class="border-[#E8E9EC] !pl-[10px] !pr-[10px] rounded min-w-[70px] h-[30px] hover:!border-[var(--primary-color)]"
+      class="border-[#E8E9EC] !pl-[10px] !pr-[10px] rounded min-w-[75px] h-[30px] hover:!border-[var(--primary-color)]"
       :class="{
         '!bg-[var(--primary-color)] hover:!bg-[var(--primary-color)] hover:!text-[#fff]':
           selectedItems === item.value,

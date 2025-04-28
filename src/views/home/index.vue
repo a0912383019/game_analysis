@@ -7,7 +7,7 @@ import playCombination from '@/views/home/playCombination.vue'
   <topCard />
   <a-row justify="center">
     <a-col :span="12">
-      <!-- <operatingTrendsChart class="!ml-[15px] !mr-[5px]" /> -->
+      <operatingTrendsChart class="!ml-[15px] !mr-[5px]" />
     </a-col>
     <a-col :span="12">
       <!-- <operatingTrendsChart /> -->

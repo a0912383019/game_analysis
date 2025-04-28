@@ -8,3 +8,11 @@ export const apiGetGameReportByLobbyGroup = (params: ParamsGameReportByLobbyGrou
     params
   )
 }
+
+// 取得營運趨勢圖及數值
+export const apiGetGameReportTrend = (params: ParamsGameReportTrend) => {
+  return apiGet<ParamsGameReportTrend, ResultGameReportTrend>(
+    '/api/auth/stats/game_report/trend',
+    params
+  )
+}
