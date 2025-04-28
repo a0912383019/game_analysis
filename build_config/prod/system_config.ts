@@ -45,13 +45,15 @@ export const sidebarIcon = {
 export type SidebarIconType = keyof typeof sidebarIcon
 
 // 遊戲大類編號
-export const lobbyGroupMap: Record<number, { name: string; color: string }> = {
+export const targetMap: Record<number, { name: string; color: string }> = {
   2: { name: 'live', color: '--cdp-yellow' }, // 視訊
   3: { name: 'prob', color: '--cdp-pink' }, // 電子
   4: { name: 'lottery', color: '--cdp-orange' }, // 彩票
   5: { name: 'fish', color: '--cdp-blue' }, // 捕魚
   6: { name: 'card', color: '--cdp-green' } // 棋牌
 }
+
+export const targetOrder: number[] = [3, 2, 6, 5, 4]
 
 export const targetGroupKey = {
   2: 'live',

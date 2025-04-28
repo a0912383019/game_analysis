@@ -33,9 +33,9 @@ interface ParamsLobbies {
 
 interface ResultLobbies {
   lobby: number
-  lobby_group: number
-  lobby_group_name: string
   lobby_name: string
+  target: number
+  target_name: string
 }
 
 interface ParamsDevices {

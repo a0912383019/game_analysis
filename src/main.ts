@@ -9,7 +9,6 @@ import Antd from 'ant-design-vue'
 import App from '@/App.vue'
 import router from '@/router'
 import { generateMenuRoutes } from '@/router/dynamicRoutes'
-import { getSessionStorageEntity } from '@/utils/commonUtils'
 
 const app: ReturnType<typeof createApp> = createApp(App)
 globalRegister(app)

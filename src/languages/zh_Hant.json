@@ -65,7 +65,7 @@
     "amount": "單量",
     "people_num": "人數"
   },
-  "lobby_group": {
+  "target_group": {
     "live": "視訊",
     "prob": "電子",
     "card": "棋牌",
@@ -109,7 +109,6 @@
     "select_device": "請選擇裝置",
     "select_country": "請選擇國家",
     "select_province": "請選擇省份",
-    "select_live_room": "請選擇視訊廳",
     "select_game_play": "請選擇遊戲及玩法",
     "select_risk_label": "請選擇風險標籤",
     "select_game_label": "請選擇遊戲標籤",
@@ -135,7 +134,6 @@
     "device": "裝置",
     "country": "國家",
     "province": "省份",
-    "live_room": "視訊廳",
     "live_table": "桌次",
     "game_label": "遊戲標籤",
     "risk_label": "風險標籤",
