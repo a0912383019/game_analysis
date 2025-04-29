@@ -111,9 +111,9 @@ onMounted(() => {
       </template>
       <component :is="menuNode" />
     </template>
-    <template v-if="$slots.tagRender" #tagRender="{ value: val, label, closable, onClose, option }">
+    <!-- <template v-if="$slots.tagRender" #tagRender="{ value: val, label, closable, onClose, option }">
       <slot name="tagRender" :info="{ value: val, label, closable, onClose, option }"></slot>
-    </template>
+    </template> -->
     <template v-if="props.isLoading" #notFoundContent>
       <a-spin size="small" />
     </template>

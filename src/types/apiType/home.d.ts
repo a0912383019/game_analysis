@@ -66,3 +66,23 @@ interface ResultGameReportTrend {
   data: GameReportTrend[]
   total: GameReportTrendTotal
 }
+
+interface ParamsOperationGameAnalysis extends Required<BasePaginationParams> {
+  analysis_type: 'combination' | 'flow'
+  data_date: string
+  target_types: string
+}
+
+interface OperationGameAnalysis {
+  bet_amount: string
+  comprehensive_rtp: string
+  content: string
+  payoff: string
+  user_count: number
+  user_count_ratio: string
+}
+
+interface ResultOperationGameAnalysis {
+  data: OperationGameAnalysis[]
+  records_total: number
+}

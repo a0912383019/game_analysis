@@ -55,14 +55,6 @@ export const targetMap: Record<number, { name: string; color: string }> = {
 
 export const targetOrder: number[] = [3, 2, 6, 5, 4]
 
-export const targetGroupKey = {
-  2: 'live',
-  3: 'prob',
-  4: 'lottery',
-  5: 'fish',
-  6: 'card'
-}
-
 // 各平台篩選預設值
 export const platformDefaultInfo = {
   bbin: {

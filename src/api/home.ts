@@ -16,3 +16,11 @@ export const apiGetGameReportTrend = (params: ParamsGameReportTrend) => {
     params
   )
 }
+
+// 取得遊玩(組合/流向)分析
+export const apiGetOperationGameAnalysis = (params: ParamsOperationGameAnalysis) => {
+  return apiGet<ParamsOperationGameAnalysis, ResultOperationGameAnalysis>(
+    '/api/auth/operation/game_analysis',
+    params
+  )
+}
