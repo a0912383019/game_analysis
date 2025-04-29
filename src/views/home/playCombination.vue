@@ -3,11 +3,11 @@ import type { TableColumnsType, SelectProps } from 'ant-design-vue'
 import type { AntSelectProps } from '@/components/input/inputs'
 import { useI18n } from 'vue-i18n'
 import { useGlobalStore } from '@/stores'
-import { apiGetGameReportByLobbyGroup } from '@/api'
+import { apiGetOperationGameAnalysis } from '@/api'
 import { notification } from 'ant-design-vue'
 import { getPlatformToday } from '@/utils/appDayjs'
 import { getSessionStorageEntity, formatNumber, formatToPercentage } from '@/utils/commonUtils'
-import { targetGroupKey, platformDefaultInfo } from '@/../public/js/system_config'
+import { targetMap } from '@/../public/js/system_config'
 
 const { t } = useI18n()
 
@@ -27,7 +27,7 @@ const pagination = reactive({
 
 const sortColumn = ref<string>('bet_amount')
 const order = ref<string>('descend')
-const loading = ref<boolean>(false)
+const apiLoading = ref<boolean>(false)
 
 const columns = ref<TableColumnsType[]>([
   [
@@ -77,138 +77,117 @@ const columns = ref<TableColumnsType[]>([
   ]
 ])
 
-// 廳
-const hallGroupValue = ref<number[]>([0])
-const hallGroupOptions = ref<SelectProps['options']>([
-  { value: 0, label: t('common.all') },
-  ...platformDefaultInfo[globalStore.currentPlatform].target.map((ele) => ({
-    value: ele,
-    label: t(`room.${targetGroupKey[ele]}`)
+const hallGroupValue = ref<string[]>([])
+const hallGroupOptions = ref<SelectProps['options']>(
+  getSessionStorageEntity('platform_config').platform_lobbies?.map(({ target }) => ({
+    value: target,
+    label: t(`room.${targetMap[target].name}`)
   }))
-])
+)
 const hallGroupProps = computed<AntSelectProps>(() => {
   return {
     allowClear: false,
     hasPlaceholder: false,
     size: 'middle',
     mode: 'multiple',
-    hasAllBtn: false,
-    defaultAll: false,
     options: hallGroupOptions.value
   }
 })
 
-const transformGameCombination = (data) => {
-  data = [
-    {
-      content: 'BB電子-超牛逼',
-      user_count_ratio: '0.0667',
-      user_count: 1,
-      bet_amount: '1332.0000',
-      payoff: '557.7000',
-      comprehensive_rtp: '0.5813'
-    },
-    {
-      content: 'BB電子-財犬',
-      user_count_ratio: '0.0667',
-      user_count: 1,
-      bet_amount: '190400.0000',
-      payoff: '17760.0000',
-      comprehensive_rtp: '0.9067'
-    },
-    {
-      content: 'BB電子-豬寶滿滿',
-      user_count_ratio: '0.0667',
-      user_count: 1,
-      bet_amount: '2500.0000',
-      payoff: '-2700.0000',
-      comprehensive_rtp: '2.0800'
-    },
-    {
-      content: 'BB電子-碰碰胡、BB電子-連消1024',
-      user_count_ratio: '0.0667',
-      user_count: 1,
-      bet_amount: '399.0000',
-      payoff: '211.7000',
-      comprehensive_rtp: '0.4694'
-    },
-    {
-      content: 'BB電子-瘋狂果醬罐',
-      user_count_ratio: '0.0667',
-      user_count: 1,
-      bet_amount: '3500.0000',
-      payoff: '2100.0000',
-      comprehensive_rtp: '0.4000'
-    }
-  ]
+const queryOperationGameAnalysis = async () => {
+  apiLoading.value = true
+  tableData.value = []
 
+  try {
+    const response = await apiGetOperationGameAnalysis({
+      analysis_type: 'combination',
+      data_date: todayDate.value.format('YYYY-MM-DD'),
+      target_types:
+        hallGroupValue.value.length === 0 ? '-1' : [...hallGroupValue.value].sort().join(),
+      length: pagination.pageSize,
+      start: pagination.apiStart,
+      order: order.value === 'descend' ? 'DESC' : 'ASC',
+      sort: sortColumn.value
+    })
+    const { result } = response
+
+    if (result === 'success') {
+      pagination.total = response.ret.records_total
+      transformGameCombination(response.ret.data)
+    } else {
+      throw new Error()
+    }
+  } catch (err) {
+    console.error(err)
+    if (axios.isAxiosError(err)) {
+      const status = err.response?.status
+      if (status === 401) {
+        // token 錯誤，登出
+        globalStore.storeHandleApiError()
+      } else if (status === 403) {
+        // 沒有權限
+        notification['error']({
+          message: t('msg.no_permission')
+        })
+      } else {
+        // query failed
+        notification['error']({
+          message: t('msg.query_failed')
+        })
+      }
+    } else {
+      // query failed
+      notification['error']({
+        message: t('msg.query_failed')
+      })
+    }
+  } finally {
+    apiLoading.value = false
+  }
+}
+
+const transformGameCombination = (data: OperationGameAnalysis[]) => {
   tableData.value = data.map((item) => {
     return {
       content: item.content,
-      user_count_ratio: formatToPercentage(item.payoff_ratio),
+      user_count_ratio: formatToPercentage(item.user_count_ratio),
       user_count: formatNumber(item.user_count),
       bet_amount: formatNumber(item.bet_amount),
       payoff: formatNumber(item.payoff),
       comprehensive_rtp: formatToPercentage(item.comprehensive_rtp)
     }
   })
-
-  pagination.total = 99
 }
 
-const tableChange = () => {}
+const tableChange = async (
+  page: number,
+  size: number,
+  sortOrder: 'descend' | 'ascend' | undefined,
+  sortField: string | undefined
+) => {
+  // 設定排序方向與排序欄位
+  sortColumn.value = sortField || sortColumn.value
 
-const hasAll = computed<boolean>(() => {
-  return hallGroupValue.value?.includes(0)
-})
+  // 如果排序是 undefined，恢復預設
+  if (sortOrder) {
+    order.value = sortOrder
+  } else {
+    order.value = 'descend'
+    sortColumn.value = 'bet_amount'
+  }
 
-const isHandlingChange = ref(false)
+  pagination.currentPage = page
+  pagination.pageSize = size
+  pagination.apiStart = (page - 1) * size
+
+  queryOperationGameAnalysis()
+}
 
 watch(
-  hallGroupValue,
-  (newVal, oldVal) => {
-    if (isHandlingChange.value) return
-    isHandlingChange.value = true
-
-    const allValue = 0
-    const allOptions: number[] = hallGroupOptions.value
-      ? hallGroupOptions.value
-          .filter((ele) => ele.value !== allValue)
-          .map((ele) => ele.value as number)
-      : []
-
-    const newHasAll = newVal.includes(allValue)
-    const oldHasAll = oldVal?.includes(allValue)
-    const newFilterArr = newVal.filter((ele) => ele !== allValue)
-
-    let nextVal = [...newVal]
-
-    if ((newHasAll && !oldHasAll) || !oldVal) {
-      nextVal = [allValue, ...allOptions]
-    } else if (!newHasAll && oldHasAll) {
-      nextVal = []
-    } else if (oldHasAll && newFilterArr.length < allOptions.length) {
-      nextVal = newFilterArr
-    } else if (!oldHasAll && newFilterArr.length === allOptions.length) {
-      nextVal = [allValue, ...allOptions]
-    }
-
-    // 只有當值真正有變時才更新
-    if (JSON.stringify(nextVal) !== JSON.stringify(newVal)) {
-      hallGroupValue.value = nextVal
-    }
-
-    // 最後呼叫 callback
-    nextTick(() => {
-      tableRef.value.goToFirstPage()
-
-      console.log(hallGroupValue.value.filter((o) => o !== 0).sort())
-      transformGameCombination('dd')
-
-      isHandlingChange.value = false
-    })
-  },
-  { immediate: true }
+  () => hallGroupValue.value,
+  () => {
+    queryOperationGameAnalysis()
+  }
 )
 </script>
 <template>
@@ -224,15 +203,7 @@ watch(
       </template>
       <template #extra>
         <span class="text-[#A5B1C5] !mr-2">{{ $t('common.hall_group') }}</span>
-        <ant-select
-          class="!w-[200px] !mr-15px"
-          :class="{ 'has-all': hasAll }"
-          v-model="hallGroupValue"
-          v-bind="hallGroupProps"
-        >
-          <template v-if="hasAll" #tagRender="data">
-            <span v-if="data.info.value === 0">{{ data.info.label }}</span>
-          </template>
+        <ant-select class="!w-[200px] !mr-15px" v-model="hallGroupValue" v-bind="hallGroupProps">
         </ant-select>
       </template>
       <div>
@@ -243,8 +214,9 @@ watch(
           :columns="columns"
           :serverSide="true"
           :total="pagination.total"
-          :loading="loading"
+          :loading="apiLoading"
           :showSizeChanger="false"
+          :showRange="true"
           @update:tableChange="tableChange"
         ></custom-table>
       </div>
@@ -288,6 +260,9 @@ watch(
 :deep(.ant-table-tbody) {
   .ant-table-cell {
     text-align: left !important;
+  }
+  > tr.ant-table-row > td {
+    padding: 16px 16px !important;
   }
 }
 </style>

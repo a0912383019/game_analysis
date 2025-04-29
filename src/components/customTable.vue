@@ -22,6 +22,7 @@ interface Props {
   // 是否可展開
   canExpand?: boolean
   showSizeChanger?: boolean
+  showRange?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -30,7 +31,8 @@ const props = withDefaults(defineProps<Props>(), {
   loading: true,
   hasPage: true,
   canExpand: true,
-  showSizeChanger: true
+  showSizeChanger: true,
+  showRange: false
 })
 
 const currentPage = ref<number>(1)
@@ -51,7 +53,7 @@ interface Pagination {
   pageSize: number
   total: number
   current: number
-  showTotal: (total: number) => string
+  showTotal: (total, range) => string
   showSizeChanger: boolean
   pageSizeOptions: string[]
   onChange: (page: number, pageSize: number) => void
@@ -65,7 +67,10 @@ const pagination = computed<Pagination>(() => ({
       : props.dataSource.length
     : props.dataSource.length,
   current: currentPage.value,
-  showTotal: (total: number) => t('common.pagination_total', { total: total }),
+  showTotal: (total, range) =>
+    props.showRange
+      ? `${range[0]}-${range[1]} / ` + t('common.pagination_total', { total: total })
+      : t('common.pagination_total', { total: total }),
   showSizeChanger: props.showSizeChanger,
   pageSizeOptions: ['10', '30', '50', '100'],
   onChange: (page: number, newPageSize: number) => {
