@@ -5,7 +5,7 @@ import type { TableColumnsType } from 'ant-design-vue'
 
 const { t } = useI18n()
 
-const columns = ref<TableColumnsType[]>([
+const combinationColumns = ref<TableColumnsType[]>([
   [
     {
       title: t('home.game_combination'),
@@ -57,7 +57,7 @@ const columns = ref<TableColumnsType[]>([
   <playTable
     icon="playSet"
     title="game_combination"
-    :columns="columns"
+    :columns="combinationColumns"
     analysisType="combination"
   />
 </template>
