@@ -35,7 +35,7 @@ const pagination = reactive({
 
 const sortColumn = ref<string>('bet_amount')
 const order = ref<string>('descend')
-const apiLoading = ref<boolean>(false)
+const apiLoading = ref<boolean>(true)
 
 const platformLobbies = getSessionStorageEntity('platform_config').platform_lobbies || []
 
@@ -148,6 +148,7 @@ const tableChange = async (
 watch(
   () => hallGroupValue.value,
   _.debounce(() => {
+    tableRef.value.goToFirstPage()
     queryOperationGameAnalysis()
   }, 300)
 )
@@ -168,20 +169,18 @@ watch(
         <ant-select class="!w-[200px] !mr-15px" v-model="hallGroupValue" v-bind="hallGroupProps">
         </ant-select>
       </template>
-      <div>
-        <custom-table
-          ref="tableRef"
-          :pageSize="pagination.pageSize"
-          :dataSource="tableData"
-          :columns="props.columns"
-          :serverSide="true"
-          :total="pagination.total"
-          :loading="apiLoading"
-          :showSizeChanger="false"
-          :showRange="true"
-          @update:tableChange="tableChange"
-        ></custom-table>
-      </div>
+      <custom-table
+        ref="tableRef"
+        :pageSize="pagination.pageSize"
+        :dataSource="tableData"
+        :columns="props.columns"
+        :serverSide="true"
+        :total="pagination.total"
+        :loading="apiLoading"
+        :showSizeChanger="false"
+        :showRange="true"
+        @update:tableChange="tableChange"
+      ></custom-table>
     </a-card>
   </section>
 </template>
