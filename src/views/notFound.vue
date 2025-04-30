@@ -2,7 +2,7 @@
   <div class="not-found">
     <h1>404</h1>
     <p>SYSTEM FAILURE: PAGE NOT FOUND</p>
-    <router-link to="/" class="neon-button">RETURN TO HOME</router-link>
+    <router-link to="/">RETURN TO HOME</router-link>
   </div>
 </template>
 <style scoped>
