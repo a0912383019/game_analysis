@@ -13,7 +13,7 @@ import playCombination from '@/views/home/playCombination.vue'
       <!-- <operatingTrendsChart /> -->
     </a-col>
     <a-col :span="24">
-      <playCombination class="!mx-[15px]" />
+      <playCombination />
     </a-col>
   </a-row>
 </template>
