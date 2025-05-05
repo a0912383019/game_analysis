@@ -42,6 +42,14 @@ export const apiBetReportLiveBySerialType = (params: ParamsBetReport) => {
   )
 }
 
+// 取得投注報表（by 日期）
+export const apiBetReportByDate = (params: ParamsBetReport) => {
+  return apiPost<ParamsBetReport, ResultBetReportByDate>(
+    '/api/auth/operation/bet_report/by_date',
+    params
+  )
+}
+
 // 會員注單查詢 [注單]
 export const apiBetRecords = (params: ParamsBetRecords) => {
   return apiGet<ParamsBetRecords, ResultBetRecords>('/api/auth/operation/bet/records', params)
