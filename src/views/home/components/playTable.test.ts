@@ -5,6 +5,7 @@ import { i18n } from '@/global/i18n'
 import playTable from '@/views/home/components/playTable.vue'
 import { apiGetOperationGameAnalysis } from '@/api'
 import * as module from '@/utils/commonUtils'
+import type { TableColumnsType } from 'ant-design-vue'
 
 vi.mock('@/api', () => ({
   apiGetOperationGameAnalysis: vi.fn()
@@ -30,7 +31,7 @@ vi.mock('lodash', async () => {
 
 describe('playTable', () => {
   let wrapper: VueWrapper<any>
-  const columns = [
+  const columns: TableColumnsType[] = [
     [
       {
         title: 'column 1',
