@@ -2,8 +2,8 @@
 import { useI18n } from 'vue-i18n'
 import type { TableColumnsType } from 'ant-design-vue'
 import { useGlobalStore } from '@/stores'
-import { formatNumberWithK, formatNumber } from '@/utils/commonUtils'
-import { targetMap, targetOrder } from '@/../public/js/system_config'
+import { getSessionStorageEntity, formatNumberWithK, formatNumber } from '@/utils/commonUtils'
+import { targetMap } from '@/../public/js/system_config'
 import { EChartsOption, SeriesOption } from 'echarts'
 import { Empty } from 'ant-design-vue'
 import { apiGetGameReportTrend } from '@/api'
@@ -17,8 +17,8 @@ const { t } = useI18n()
 const globalStore = useGlobalStore()
 
 const todayDate = ref<Dayjs>(getPlatformToday(globalStore.currentPlatform))
-
 const apiLoading = ref<boolean>(true)
+const platformLobbies = getSessionStorageEntity('platform_config').platform_lobbies || []
 
 const buttonGroup = computed(() => [
   { name: t('data_name.payoff'), value: 'payoff' },
@@ -185,12 +185,14 @@ const transformData = (data: ResultGameReportTrend) => {
   ]
 
   buttonGroup.value.forEach((item) => {
-    chartTypeData[item.value] = targetOrder.map((ele) => {
+    chartTypeData[item.value] = platformLobbies.map(({ target }) => {
       return {
-        name: t(`target_group.${targetMap[ele].name}`),
+        name: t(`target_group.${targetMap[target].name}`),
         type: 'line',
-        color: getCssVar(targetMap[ele].color),
-        data: sortedByDate.map((record) => getTrendValueByTargetId(record.items, item.value, ele))
+        color: getCssVar(targetMap[target].color),
+        data: sortedByDate.map((record) =>
+          getTrendValueByTargetId(record.items, item.value, target)
+        )
       }
     })
 
@@ -202,11 +204,11 @@ const transformData = (data: ResultGameReportTrend) => {
       data: data.total.by_daily.map((ele) => ele[item.value])
     })
 
-    tableTypeData[item.value] = targetOrder.map((ele) => {
+    tableTypeData[item.value] = platformLobbies.map(({ target }) => {
       return {
-        game_category: t(`target_group.${targetMap[ele].name}`),
-        color: `bg-[var(${targetMap[ele].color})]`,
-        totals: formatNumber(getTrendValueByTargetId(data.total.by_target, item.value, ele))
+        game_category: t(`target_group.${targetMap[target].name}`),
+        color: `bg-[var(${targetMap[target].color})]`,
+        totals: formatNumber(getTrendValueByTargetId(data.total.by_target, item.value, target))
       }
     })
     tableTypeData[item.value].unshift({

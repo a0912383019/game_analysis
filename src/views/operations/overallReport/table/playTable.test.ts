@@ -124,7 +124,6 @@ describe('playTable', () => {
         {
           align: 'center',
           dataIndex: 'hall_name',
-          defaultSortOrder: 'descend',
           key: 'hall_name',
           sorter: true,
           title: '廳主名稱',
@@ -140,6 +139,7 @@ describe('playTable', () => {
         {
           align: 'center',
           dataIndex: 'wager_count',
+          defaultSortOrder: 'descend',
           key: 'wager_count',
           sorter: true,
           title: '單量'
@@ -417,8 +417,8 @@ describe('playTable', () => {
         innerLoading: true,
         innerPagination: {
           order: 'descend',
-          defaultSortCol: 'hall_name',
-          sort: 'hall_name'
+          defaultSortCol: 'wager_count',
+          sort: 'wager_count'
         },
         key: 0,
         payoff: '0',
@@ -454,8 +454,8 @@ describe('playTable', () => {
         innerLoading: true,
         innerPagination: {
           order: 'descend',
-          defaultSortCol: 'hall_name',
-          sort: 'hall_name'
+          defaultSortCol: 'wager_count',
+          sort: 'wager_count'
         },
         key: 1,
         payoff: '400',

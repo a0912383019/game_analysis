@@ -4,6 +4,7 @@ import { createTestingPinia } from '@pinia/testing'
 import { i18n } from '@/global/i18n'
 import operatingTrendsChart from '@/views/home/operatingTrendsChart.vue'
 import { apiGetGameReportTrend } from '@/api'
+import * as module from '@/utils/commonUtils'
 
 vi.mock('@/api', () => ({
   apiGetGameReportTrend: vi.fn()
@@ -16,8 +17,7 @@ vi.mock('@/../public/js/system_config', () => ({
     4: { name: 'lottery', color: '--cdp-orange' }, // 彩票
     5: { name: 'fish', color: '--cdp-blue' }, // 捕魚
     6: { name: 'card', color: '--cdp-green' } // 棋牌
-  },
-  targetOrder: [3, 2, 6, 5, 4]
+  }
 }))
 
 describe('operatingTrendsChart', () => {
@@ -494,6 +494,43 @@ describe('operatingTrendsChart', () => {
             loss_count: 39
           }
         }
+      }
+    })
+
+    vi.spyOn(module, 'getSessionStorageEntity').mockImplementation(() => {
+      return {
+        platform_lobbies: [
+          {
+            lobby: 5,
+            lobby_name: 'BB電子',
+            target: 3,
+            target_name: '電子'
+          },
+          {
+            lobby: 3,
+            lobby_name: 'BB視訊',
+            target: 2,
+            target_name: '視訊'
+          },
+          {
+            lobby: 66,
+            lobby_name: 'BB棋牌',
+            target: 6,
+            target_name: '棋牌'
+          },
+          {
+            lobby: 38,
+            lobby_name: 'BB捕魚大師',
+            target: 5,
+            target_name: '捕魚'
+          },
+          {
+            lobby: 12,
+            lobby_name: 'BB彩票',
+            target: 4,
+            target_name: '彩票'
+          }
+        ]
       }
     })
 

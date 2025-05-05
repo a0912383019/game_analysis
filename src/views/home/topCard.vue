@@ -3,7 +3,7 @@ import { useI18n } from 'vue-i18n'
 import { useGlobalStore } from '@/stores'
 import { formatNumber } from '@/utils/commonUtils'
 import { apiGetGameReportByLobbyGroup } from '@/api'
-import { targetMap, targetOrder } from '@/../public/js/system_config'
+import { targetMap } from '@/../public/js/system_config'
 import { notification } from 'ant-design-vue'
 import { getPlatformToday } from '@/utils/appDayjs'
 
@@ -58,6 +58,8 @@ const queryGameReportByLobbyGroup = async () => {
     }
   }
 }
+
+const targetOrder: number[] = [3, 2, 6, 5, 4]
 
 const cardList = computed<HomeCard[]>(() =>
   targetOrder.map((ele) => {
