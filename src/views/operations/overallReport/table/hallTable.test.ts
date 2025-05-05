@@ -54,7 +54,6 @@ describe('hallTable', () => {
         {
           align: 'center',
           dataIndex: 'hall_name',
-          defaultSortOrder: 'descend',
           key: 'hall_name',
           sorter: true,
           title: '廳主名稱',
@@ -70,6 +69,7 @@ describe('hallTable', () => {
         {
           align: 'center',
           dataIndex: 'wager_count',
+          defaultSortOrder: 'descend',
           key: 'wager_count',
           sorter: true,
           title: '單量'
@@ -138,7 +138,6 @@ describe('hallTable', () => {
         {
           align: 'center',
           dataIndex: 'lobby_name',
-          defaultSortOrder: 'descend',
           key: 'lobby_name',
           sorter: true,
           title: '遊戲大類'
@@ -146,6 +145,7 @@ describe('hallTable', () => {
         {
           align: 'center',
           dataIndex: 'wager_count',
+          defaultSortOrder: 'descend',
           key: 'wager_count',
           sorter: true,
           title: '單量'
@@ -176,7 +176,6 @@ describe('hallTable', () => {
         {
           align: 'center',
           dataIndex: 'game_name',
-          defaultSortOrder: 'descend',
           key: 'game_name',
           sorter: true,
           title: '遊戲名稱'
@@ -184,6 +183,7 @@ describe('hallTable', () => {
         {
           align: 'center',
           dataIndex: 'wager_count',
+          defaultSortOrder: 'descend',
           key: 'wager_count',
           sorter: true,
           title: '單量'
@@ -542,8 +542,8 @@ describe('hallTable', () => {
         innerLoading: true,
         innerPagination: {
           order: 'descend',
-          defaultSortCol: 'lobby_name',
-          sort: 'lobby_name'
+          defaultSortCol: 'wager_count',
+          sort: 'wager_count'
         },
         key: 0,
         payoff: '-81',
@@ -601,8 +601,8 @@ describe('hallTable', () => {
         innerLoading: true,
         innerPagination: {
           order: 'descend',
-          defaultSortCol: 'game_name',
-          sort: 'game_name'
+          defaultSortCol: 'wager_count',
+          sort: 'wager_count'
         },
         key: 0,
         lobby_name: 'BB電子',

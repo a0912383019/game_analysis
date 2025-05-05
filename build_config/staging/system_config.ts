@@ -53,8 +53,6 @@ export const targetMap: Record<number, { name: string; color: string }> = {
   6: { name: 'card', color: '--cdp-green' } // 棋牌
 }
 
-export const targetOrder: number[] = [3, 2, 6, 5, 4]
-
 // 各平台篩選預設值
 export const platformDefaultInfo = {
   bbin: {
