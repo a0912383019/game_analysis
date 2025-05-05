@@ -168,6 +168,7 @@ defineExpose({ goToFirstPage, closeAllExpandedRows })
     :data-source="pageTableData"
     :loading="props.loading"
     :expandedRowKeys="expandedRowKeys"
+    :row-class-name="(record) => (record.allowExpand === false ? 'hide-icon-row' : '')"
     bordered
     @expand="handleExpand"
     @change="handleTableChange"
@@ -201,4 +202,8 @@ defineExpose({ goToFirstPage, closeAllExpandedRows })
     </template>
   </a-table>
 </template>
-<style lang="scss"></style>
+<style lang="scss" scoped>
+:deep(.hide-icon-row .ant-table-row-expand-icon) {
+  display: none;
+}
+</style>

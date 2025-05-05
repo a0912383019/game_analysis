@@ -36,7 +36,6 @@ const columns = ref<TableColumnsType[]>([
       dataIndex: 'lobby_name',
       key: 'lobby_name',
       align: 'center',
-      defaultSortOrder: 'descend',
       sorter: true
     },
     {
@@ -51,6 +50,7 @@ const columns = ref<TableColumnsType[]>([
       dataIndex: 'wager_count',
       key: 'wager_count',
       align: 'center',
+      defaultSortOrder: 'descend',
       sorter: true
     },
     {
@@ -82,7 +82,6 @@ const columns = ref<TableColumnsType[]>([
       dataIndex: 'game_name',
       key: 'game_name',
       align: 'center',
-      defaultSortOrder: 'descend',
       sorter: true
     },
     {
@@ -97,6 +96,7 @@ const columns = ref<TableColumnsType[]>([
       dataIndex: 'wager_count',
       key: 'wager_count',
       align: 'center',
+      defaultSortOrder: 'descend',
       sorter: true
     },
     {
@@ -177,7 +177,6 @@ const columns = ref<TableColumnsType[]>([
       dataIndex: 'hall_name',
       key: 'hall_name',
       align: 'center',
-      defaultSortOrder: 'descend',
       width: 320,
       sorter: true
     },
@@ -193,6 +192,7 @@ const columns = ref<TableColumnsType[]>([
       dataIndex: 'wager_count',
       key: 'wager_count',
       align: 'center',
+      defaultSortOrder: 'descend',
       sorter: true
     },
     {
@@ -423,8 +423,8 @@ const transformBetReportByLobby = (
       },
       innerPagination: {
         // 下一層分頁的預設值
-        defaultSortCol: 'game_name',
-        sort: 'game_name',
+        defaultSortCol: 'wager_count',
+        sort: 'wager_count',
         order: 'descend'
       },
       innerData: [] // 存放下一層資料的地方
@@ -469,8 +469,8 @@ const transformBetReportByGame = (
         expectedRtp: item.expected_rtp
       },
       innerPagination: {
-        defaultSortCol: 'hall_name',
-        sort: 'hall_name',
+        defaultSortCol: 'wager_count',
+        sort: 'wager_count',
         order: 'descend'
       },
       innerData: []

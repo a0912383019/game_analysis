@@ -176,3 +176,17 @@ interface ResultBetReportLiveBySerialType {
   data: BetReportLiveBySerialType[]
   records_total: number
 }
+
+interface BetReportByDate {
+  bet_amount: string
+  data_date: string
+  payoff: string
+  payoff_ratio: string
+  user_count: number
+  wager_count: number
+}
+
+interface ResultBetReportByDate {
+  data: BetReportByDate[]
+  records_total: number
+}

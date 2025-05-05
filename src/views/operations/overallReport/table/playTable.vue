@@ -107,7 +107,6 @@ const columns = ref<TableColumnsType[]>([
       dataIndex: 'hall_name',
       key: 'hall_name',
       align: 'center',
-      defaultSortOrder: 'descend',
       width: 320,
       sorter: true
     },
@@ -123,6 +122,7 @@ const columns = ref<TableColumnsType[]>([
       dataIndex: 'wager_count',
       key: 'wager_count',
       align: 'center',
+      defaultSortOrder: 'descend',
       sorter: true
     },
     {
@@ -270,8 +270,8 @@ const transformBetReportLiveBySerialType = (
         expectedRtp: item.expected_rtp
       },
       innerPagination: {
-        defaultSortCol: 'hall_name',
-        sort: 'hall_name',
+        defaultSortCol: 'wager_count',
+        sort: 'wager_count',
         order: 'descend'
       },
       innerData: []
