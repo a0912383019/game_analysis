@@ -192,6 +192,7 @@ defineExpose({ goToFirstPage, closeAllExpandedRows })
         :canExpand="record.canExpand"
       ></custom-table>
     </template>
+    <!-- 處理 #bodyCell slot -->
     <template #bodyCell="{ column, record }">
       <template v-if="$slots[String(column.dataIndex)]">
         <slot :name="String(column.dataIndex)" :record="record"></slot>
@@ -200,10 +201,20 @@ defineExpose({ goToFirstPage, closeAllExpandedRows })
         {{ record[String(column.dataIndex)] }}
       </template>
     </template>
+    <!-- 處理其他動態 slot，例如 summary / footer / headerCell 等 -->
+    <!-- 只有第一層可以用 -->
+    <template v-for="(_, key) in $slots" :key="key" #[key]>
+      <slot :name="key"></slot>
+    </template>
   </a-table>
 </template>
 <style lang="scss" scoped>
 :deep(.hide-icon-row .ant-table-row-expand-icon) {
   display: none;
+}
+:deep(.ant-table-summary) {
+  .ant-table-cell {
+    background-color: rgb(227, 230, 234);
+  }
 }
 </style>
