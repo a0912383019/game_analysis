@@ -155,8 +155,36 @@
 }
 
 .ant-pagination {
-  margin-top: 50px !important;
   margin-bottom: 0px !important;
+  .ant-pagination-total-text {
+    line-height: 33px !important;
+  }
+  .ant-pagination-item-active {
+    border: none;
+    a {
+      position: relative;
+      color: #1677ff;
+      text-decoration: none;
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0; // 與文字距離
+        left: 50%;
+        transform: translateX(-50%);
+        width: 14px; // 底線長度，可再調整
+        height: 1px; // 底線粗細
+        background-color: #1677ff;
+        border-radius: 1px;
+      }
+    }
+  }
+}
+
+.cdp-game-table .ant-pagination {
+  .ant-pagination-total-text {
+    position: absolute;
+    left: 0;
+  }
 }
 
 .custom-shape {

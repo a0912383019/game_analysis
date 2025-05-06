@@ -171,6 +171,7 @@ watch(
       </template>
       <custom-table
         ref="tableRef"
+        class="cdp-game-table"
         :pageSize="pagination.pageSize"
         :dataSource="tableData"
         :columns="props.columns"
@@ -191,32 +192,10 @@ watch(
   }
 }
 :deep(.ant-pagination) {
-  position: relative;
   justify-content: center;
-  margin-top: 15px !important;
-  .ant-pagination-total-text {
-    position: absolute;
-    left: 0;
-  }
-  .ant-pagination-item-active {
-    border: none;
-    a {
-      position: relative;
-      color: #1677ff;
-      text-decoration: none;
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: 0; // 與文字距離
-        left: 50%;
-        transform: translateX(-50%);
-        width: 14px; // 底線長度，可再調整
-        height: 1px; // 底線粗細
-        background-color: #1677ff;
-        border-radius: 1px;
-      }
-    }
-  }
+}
+:deep(.ant-table-thead > tr > th) {
+  height: 34px;
 }
 :deep(.ant-table-tbody) {
   .ant-table-cell {

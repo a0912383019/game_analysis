@@ -259,7 +259,7 @@ onMounted(() => {
           </a-col>
           <a-col :span="9">
             <custom-table
-              class="min-h-[300px] home-chart"
+              class="min-h-[290px] home-chart"
               :hasPage="false"
               :dataSource="tableData"
               :columns="columns"
@@ -290,6 +290,9 @@ onMounted(() => {
   display: inline-block;
   margin-right: 8px;
 }
+:deep(.ant-table-thead > tr > th) {
+  height: 34px;
+}
 .home-chart {
   :deep(.ant-table) {
     tbody {
@@ -301,5 +304,8 @@ onMounted(() => {
       height: 182px;
     }
   }
+}
+.cdp-card {
+  height: calc(100% - 10px);
 }
 </style>
