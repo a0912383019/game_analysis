@@ -176,7 +176,8 @@
     "payoff": "損益",
     "odds": "賠率",
     "people_proportion": "人數比例",
-    "total_bet_amount": "總下注額"
+    "total_bet_amount": "總下注額",
+    "table_no": "卓次"
   },
   "regional_difference": {
     "bet_amount_growth_ratio": "貨量成長率",
