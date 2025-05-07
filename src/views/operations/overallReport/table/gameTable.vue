@@ -606,7 +606,7 @@ const subFuncBetReportByGame = async (record: any) => {
   let params = generateOverallParams(undefined, undefined, sort, order, record.innerExtraParams)
 
   record.innerLoading = true
-  await queryApi(apiBetReportByGame, params, transformBetReportByGame, record)
+  await queryApi<ParamsBetReport>(apiBetReportByGame, params, transformBetReportByGame, record)
   record.innerLoading = false
 }
 
@@ -631,7 +631,7 @@ const subFuncBetReportByHall = async (record: any) => {
   let params = generateOverallParams(undefined, undefined, sort, order, record.innerExtraParams)
 
   record.innerLoading = true
-  await queryApi(apiBetReportByHall, params, transformBetReportByHall, record)
+  await queryApi<ParamsBetReport>(apiBetReportByHall, params, transformBetReportByHall, record)
   record.innerLoading = false
 }
 
@@ -657,7 +657,7 @@ const subFuncBetReportByUser = async (record: any) => {
   let params = generateOverallParams(pageSize, apiStart, sort, order, record.innerExtraParams)
 
   record.innerLoading = true
-  await queryApi(apiBetReportByUser, params, transformBetReportByUser, record)
+  await queryApi<ParamsBetReport>(apiBetReportByUser, params, transformBetReportByUser, record)
   record.innerLoading = false
 }
 
@@ -682,7 +682,7 @@ const subFuncBetReportLiveBySerialType = async (record: any) => {
   let params = generateOverallParams(undefined, undefined, sort, order, record.innerExtraParams)
 
   record.innerLoading = true
-  await queryApi(apiBetReportLiveBySerialType, params, transformBetReportLiveBySerialType, record)
+  await queryApi<ParamsBetReport>(apiBetReportLiveBySerialType, params, transformBetReportLiveBySerialType, record)
   record.innerLoading = false
 }
 
@@ -724,7 +724,7 @@ const tableChange = async (
   )
 
   loading.value = true
-  await queryApi(apiBetReportByLobby, params, transformBetReportByLobby, undefined)
+  await queryApi<ParamsBetReport>(apiBetReportByLobby, params, transformBetReportByLobby, undefined)
   loading.value = false
 }
 
@@ -739,7 +739,7 @@ onMounted(async () => {
     )
 
     loading.value = true
-    await queryApi(apiBetReportByLobby, params, transformBetReportByLobby, undefined)
+    await queryApi<ParamsBetReport>(apiBetReportByLobby, params, transformBetReportByLobby, undefined)
     loading.value = false
   }
 })

@@ -145,10 +145,9 @@ export const generateOverallParams = (
   }
 }
 
-// 營運中心-總報表 api 呼叫
-export const queryApi = async (
+export const queryApi = async <T>(
   apiFunc: Function,
-  params: ParamsBetReport,
+  params: T,
   transformFunc: Function,
   record: any
 ) => {

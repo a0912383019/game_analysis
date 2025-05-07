@@ -28,7 +28,7 @@ describe('playTable', () => {
     expect(wrapper.vm.combinationColumns).toStrictEqual([
       [
         {
-          align: 'center',
+          align: 'left',
           dataIndex: 'content',
           key: 'content',
           title: '遊玩組合',

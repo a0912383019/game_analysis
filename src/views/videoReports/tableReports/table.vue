@@ -217,10 +217,10 @@ onMounted(async () => {
   ]
 
   totalRow.value = {
-    memberCount: 44,
-    wagerCount: 99,
-    betAmount: 323,
-    payoff: 3333,
+    memberCount: '44',
+    wagerCount: '99',
+    betAmount: '323',
+    payoff: '3,333',
     profitRatio: '88%'
   }
 })

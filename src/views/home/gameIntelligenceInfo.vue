@@ -179,11 +179,7 @@ onMounted(() => {
               :showSizeChanger="false"
               :showRange="true"
               @update:tableChange="tableChange"
-            >
-              <template #game_category="scope">
-                <span>{{ scope.record.game_category }}</span>
-              </template>
-            </custom-table>
+            ></custom-table>
           </a-col>
         </a-row>
       </a-spin>
@@ -191,13 +187,13 @@ onMounted(() => {
   </a-card>
 </template>
 <style lang="scss" scoped>
-:deep(.ant-table-thead > tr > th) {
-  height: 34px;
-}
 :deep(.ant-table) {
   min-height: 235px;
-  .ant-empty {
-    height: 135px;
+  .ant-table-thead > tr > th {
+    height: 34px;
+  }
+  .ant-table-placeholder {
+    height: 200px;
   }
 }
 </style>

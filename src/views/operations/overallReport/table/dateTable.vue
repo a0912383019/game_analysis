@@ -312,7 +312,7 @@ const subFuncBetReportByLobby = async (record: any) => {
   let params = generateOverallParams(undefined, undefined, sort, order, record.innerExtraParams)
 
   record.innerLoading = true
-  await queryApi(apiBetReportByLobby, params, transformBetReportByLobby, record)
+  await queryApi<ParamsBetReport>(apiBetReportByLobby, params, transformBetReportByLobby, record)
   record.innerLoading = false
 }
 
@@ -334,7 +334,7 @@ const subFuncBetReportLiveBySerialType = async (record: any) => {
   let params = generateOverallParams(undefined, undefined, sort, order, record.innerExtraParams)
 
   record.innerLoading = true
-  await queryApi(apiBetReportLiveBySerialType, params, transformBetReportLiveBySerialType, record)
+  await queryApi<ParamsBetReport>(apiBetReportLiveBySerialType, params, transformBetReportLiveBySerialType, record)
   record.innerLoading = false
 }
 const fetchSubData = ref([subFuncBetReportByLobby, subFuncBetReportLiveBySerialType])
@@ -369,7 +369,7 @@ const tableChange = async (
   )
 
   loading.value = true
-  await queryApi(apiBetReportByDate, params, transformBetReportByDate, undefined)
+  await queryApi<ParamsBetReport>(apiBetReportByDate, params, transformBetReportByDate, undefined)
   loading.value = false
 }
 
@@ -384,7 +384,7 @@ onMounted(async () => {
     )
 
     loading.value = true
-    await queryApi(apiBetReportByDate, params, transformBetReportByDate, undefined)
+    await queryApi<ParamsBetReport>(apiBetReportByDate, params, transformBetReportByDate, undefined)
     loading.value = false
   }
 })
