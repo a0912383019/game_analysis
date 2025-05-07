@@ -20,9 +20,9 @@ const storeLogout = () => {
 const { name, picture } = JSON.parse(localStorage.game_user_info)
 </script>
 <template>
-  <a-dropdown overlayClassName="!min-w-[100px]" :trigger="['hover']" placement="bottom">
+  <a-dropdown overlayClassName="!min-w-[100px]" :trigger="['hover']" placement="bottomRight">
     <div class="flex cursor-pointer items-center !mr-6">
-      <div class="w-[30px] h-[30px] rounded-full overflow-hidden">
+      <div class="w-[30px] h-[30px] rounded-full overflow-hidden bg-picture">
         <img :src="picture" alt="" />
       </div>
       <a class="!pl-3 show-on-desktop">
@@ -42,6 +42,9 @@ const { name, picture } = JSON.parse(localStorage.game_user_info)
 <style lang="scss" scoped>
 .show-on-desktop {
   display: inline;
+}
+.bg-picture {
+  background-image: url('@/assets/icons/rabbit.svg');
 }
 
 @media (max-width: 1023px) {

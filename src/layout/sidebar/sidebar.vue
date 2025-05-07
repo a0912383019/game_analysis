@@ -13,10 +13,24 @@ const selectedKeys = ref<string[]>([])
 
 const openKeys = ref<string[]>([])
 
-// xc 站沒有視訊
+// xc 站沒有 [視訊報表/營運中心-地區貨量差異]
 const platformMenu = computed(() => {
   if (globalStore.currentPlatform.includes('xc')) {
-    return systemStore.menuList.filter((ele) => ele.name !== 'video_reports')
+    return (
+      systemStore.menuList
+        // 父層篩選
+        .filter((ele) => ele.name !== 'video_reports')
+        // 子層篩選
+        .map((ele) => {
+          if (ele.child) {
+            return {
+              ...ele,
+              child: ele.child.filter((child) => child.name !== 'regional_difference')
+            }
+          }
+          return ele
+        })
+    )
   } else {
     return systemStore.menuList
   }
@@ -56,10 +70,18 @@ watchEffect(() => {
   selectedKeys.value = activeItem ? [activeItem.key] : []
 })
 
+const xcExcludePath = [
+  '/operations/regional-difference', // 營運中心-地區貨量差異
+  '/video-reports/' // 視訊報表
+]
+
 watch(
   () => globalStore.currentPlatform,
   () => {
-    if (globalStore.currentPlatform.includes('xc') && route.path.includes('/video-reports/')) {
+    if (
+      globalStore.currentPlatform.includes('xc') &&
+      xcExcludePath.some((path) => route.fullPath.includes(path))
+    ) {
       router.push({ path: '/' })
     }
   }

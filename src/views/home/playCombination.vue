@@ -12,7 +12,7 @@ const combinationColumns = ref<TableColumnsType[]>([
       width: 380,
       dataIndex: 'content',
       key: 'content',
-      align: 'center'
+      align: 'left'
     },
     {
       title: t('data_name.people_proportion'),

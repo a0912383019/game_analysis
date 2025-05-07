@@ -148,8 +148,11 @@ const tableChange = async (
 watch(
   () => hallGroupValue.value,
   _.debounce(() => {
-    tableRef.value.goToFirstPage()
-    queryOperationGameAnalysis()
+    if (tableRef.value?.goToFirstPage) {
+      tableRef.value.goToFirstPage()
+      pagination.apiStart = 0
+      queryOperationGameAnalysis()
+    }
   }, 300)
 )
 </script>
@@ -194,15 +197,22 @@ watch(
 :deep(.ant-pagination) {
   justify-content: center;
 }
-:deep(.ant-table-thead > tr > th) {
-  height: 34px;
+:deep(.ant-card-body) {
+  min-height: 315px;
 }
-:deep(.ant-table-tbody) {
-  .ant-table-cell {
-    text-align: left !important;
+:deep(.ant-table) {
+  min-height: 235px;
+  .ant-table-thead > tr > th {
+    text-align: center !important;
+    height: 34px;
   }
-  > tr.ant-table-row > td {
-    padding: 16px 16px !important;
+  .ant-table-tbody {
+    > tr.ant-table-row > td {
+      padding: 8px 16px !important;
+    }
+  }
+  .ant-table-placeholder {
+    height: 200px;
   }
 }
 </style>

@@ -259,14 +259,14 @@ onMounted(() => {
           </a-col>
           <a-col :span="9">
             <custom-table
-              class="min-h-[290px] home-chart"
+              class="min-h-[290px]"
               :hasPage="false"
               :dataSource="tableData"
               :columns="columns"
               :serverSide="false"
               :loading="false"
             >
-              <template #game_category="scope">
+              <template #game_category="scope: any">
                 <span class="circle" :class="scope.record.color"></span>
                 <span>{{ scope.record.game_category }}</span>
               </template>
@@ -290,19 +290,17 @@ onMounted(() => {
   display: inline-block;
   margin-right: 8px;
 }
-:deep(.ant-table-thead > tr > th) {
-  height: 34px;
-}
-.home-chart {
-  :deep(.ant-table) {
-    tbody {
-      tr {
-        height: 42px;
-      }
+:deep(.ant-table) {
+  .ant-table-thead > tr > th {
+    height: 34px;
+  }
+  tbody {
+    tr {
+      height: 42px;
     }
-    .ant-empty {
-      height: 182px;
-    }
+  }
+  .ant-table-placeholder {
+    height: 245px;
   }
 }
 .cdp-card {

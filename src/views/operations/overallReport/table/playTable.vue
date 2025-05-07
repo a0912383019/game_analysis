@@ -161,7 +161,7 @@ const columns = ref<TableColumnsType[]>([
       sorter: true
     }
   ],
-  // 第二層 header 會員
+  // 第三層 header 會員
   [
     {
       title: t('common.member_id'),
@@ -350,7 +350,7 @@ const subFuncBetReportByHall = async (record: any) => {
   let params = generateOverallParams(undefined, undefined, sort, order, record.innerExtraParams)
 
   record.innerLoading = true
-  await queryApi(apiBetReportByHall, params, transformBetReportByHall, record)
+  await queryApi<ParamsBetReport>(apiBetReportByHall, params, transformBetReportByHall, record)
   record.innerLoading = false
 }
 
@@ -362,7 +362,7 @@ const subFuncBetReportByUser = async (record: any) => {
   let params = generateOverallParams(pageSize, apiStart, sort, order, record.innerExtraParams)
 
   record.innerLoading = true
-  await queryApi(apiBetReportByUser, params, transformBetReportByUser, record)
+  await queryApi<ParamsBetReport>(apiBetReportByUser, params, transformBetReportByUser, record)
   record.innerLoading = false
 }
 
@@ -399,7 +399,7 @@ const tableChange = async (
   )
 
   loading.value = true
-  await queryApi(
+  await queryApi<ParamsBetReport>(
     apiBetReportLiveBySerialType,
     params,
     transformBetReportLiveBySerialType,
@@ -419,7 +419,7 @@ onMounted(async () => {
     )
 
     loading.value = true
-    await queryApi(
+    await queryApi<ParamsBetReport>(
       apiBetReportLiveBySerialType,
       params,
       transformBetReportLiveBySerialType,
