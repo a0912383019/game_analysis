@@ -197,18 +197,14 @@ watch(
 :deep(.ant-pagination) {
   justify-content: center;
 }
-:deep(.ant-card-body) {
-  min-height: 315px;
-}
 :deep(.ant-table) {
-  min-height: 235px;
   .ant-table-thead > tr > th {
     text-align: center !important;
     height: 34px;
   }
   .ant-table-tbody {
-    > tr.ant-table-row > td {
-      padding: 8px 16px !important;
+    > tr.ant-table-row > td:first-child {
+      text-align: left !important;
     }
   }
   .ant-table-placeholder {
