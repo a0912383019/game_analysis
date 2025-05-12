@@ -117,8 +117,11 @@ const handleSearch = () => {
   })
 }
 
-onMounted(() => {
-  handleSearch()
+onMounted(async() => {
+  await nextTick()
+  if (formRef.value?.validate) {
+    handleSearch()
+  }
 })
 </script>
 <template>
