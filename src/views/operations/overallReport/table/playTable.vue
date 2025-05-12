@@ -150,8 +150,7 @@ const columns = ref<TableColumnsType[]>([
       title: t('common.return_to_player_theory'),
       dataIndex: 'expected_rtp',
       key: 'expected_rtp',
-      align: 'center',
-      sorter: true
+      align: 'center'
     },
     {
       title: t('common.return_to_player'),
@@ -203,15 +202,13 @@ const columns = ref<TableColumnsType[]>([
       title: t('common.return_to_player_theory'),
       dataIndex: 'expected_rtp',
       key: 'expected_rtp',
-      align: 'center',
-      sorter: true
+      align: 'center'
     },
     {
       title: t('common.return_to_player'),
       dataIndex: 'rtp',
       key: 'rtp',
-      align: 'center',
-      sorter: true
+      align: 'center'
     }
   ]
 ])

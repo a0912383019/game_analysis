@@ -1,11 +1,11 @@
-interface ParamsGameReportByLobbyGroup {
+interface ParamsGameReportByTarget {
   date: string
-  lobby_group?: number
+  target?: number
 }
 
-interface ResultGameReportByLobbyGroup {
+interface ResultGameReportByTarget {
   bet_amount: string
-  lobby_group: number
+  target: number
   payoff: string
   user_count: number
   wager_count: number

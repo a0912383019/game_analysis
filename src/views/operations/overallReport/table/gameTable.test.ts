@@ -238,7 +238,6 @@ describe('gameTable', () => {
           align: 'center',
           dataIndex: 'expected_rtp',
           key: 'expected_rtp',
-          sorter: true,
           title: 'RTP(理論)'
         },
         {
