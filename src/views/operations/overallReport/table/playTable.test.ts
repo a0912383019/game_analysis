@@ -169,7 +169,6 @@ describe('playTable', () => {
           align: 'center',
           dataIndex: 'expected_rtp',
           key: 'expected_rtp',
-          sorter: true,
           title: 'RTP(理論)'
         },
         {
@@ -221,14 +220,12 @@ describe('playTable', () => {
           align: 'center',
           dataIndex: 'expected_rtp',
           key: 'expected_rtp',
-          sorter: true,
           title: 'RTP(理論)'
         },
         {
           align: 'center',
           dataIndex: 'rtp',
           key: 'rtp',
-          sorter: true,
           title: 'RTP'
         }
       ]

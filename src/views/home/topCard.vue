@@ -2,7 +2,7 @@
 import { useI18n } from 'vue-i18n'
 import { useGlobalStore } from '@/stores'
 import { formatNumber } from '@/utils/commonUtils'
-import { apiGetGameReportByLobbyGroup } from '@/api'
+import { apiGetGameReportByTarget } from '@/api'
 import { targetMap } from '@/../public/js/system_config'
 import { notification } from 'ant-design-vue'
 import { getPlatformToday } from '@/utils/appDayjs'
@@ -14,14 +14,14 @@ const globalStore = useGlobalStore()
 const todayDate = ref<Dayjs>(getPlatformToday(globalStore.currentPlatform))
 
 const apiSuccess = ref<boolean>(false)
-const apiResponse = ref<ResultGameReportByLobbyGroup[]>([])
+const apiResponse = ref<ResultGameReportByTarget[]>([])
 
-const queryGameReportByLobbyGroup = async () => {
+const queryGameReportByTarget = async () => {
   apiSuccess.value = false
   apiResponse.value = []
 
   try {
-    const response = await apiGetGameReportByLobbyGroup({
+    const response = await apiGetGameReportByTarget({
       date: todayDate.value.format('YYYY-MM-DD')
     })
     const { result } = response
@@ -63,7 +63,7 @@ const targetOrder: number[] = [3, 2, 6, 5, 4]
 
 const cardList = computed<HomeCard[]>(() =>
   targetOrder.map((ele) => {
-    const cardObj = apiResponse.value.find((item) => item.lobby_group === ele)
+    const cardObj = apiResponse.value.find((item) => item.target === ele)
     return {
       title: targetMap[ele].name,
       customShapeColor: `bg-[var(${targetMap[ele].color})]`,
@@ -76,7 +76,7 @@ const cardList = computed<HomeCard[]>(() =>
 )
 
 onMounted(() => {
-  queryGameReportByLobbyGroup()
+  queryGameReportByTarget()
 })
 </script>
 <template>

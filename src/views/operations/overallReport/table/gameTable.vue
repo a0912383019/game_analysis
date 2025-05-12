@@ -221,7 +221,6 @@ const columns = ref<TableColumnsType[]>([
       dataIndex: 'expected_rtp',
       key: 'expected_rtp',
       align: 'center',
-      sorter: true
     },
     {
       title: t('common.return_to_player'),

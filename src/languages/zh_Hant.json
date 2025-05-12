@@ -170,10 +170,12 @@
     "num_of_free_game_lost_bet": "Free輸筆數",
     "win_bet_proportion": "贏單比例",
     "settlement_date": "結算日期",
+    "difference": "差異",
     "pagination_total": "共 {total} 筆"
   },
   "data_name": {
     "bet_amount": "貨量",
+    "bet_total": "貨量合計",
     "bonus_amount": "派彩",
     "game_profit_loss": "遊戲損益",
     "composite_rtp": "綜合RTP",
@@ -203,13 +205,11 @@
     "payout_phase_ratio": "吐分期下注率",
     "bet_range": "投注範圍"
   },
-  "device_difference": {
-    "volume_total": "貨量合計",
-    "percentage_change": "差異",
-    "personal_computer": "PC",
-    "platforms": "PhoneWeb",
-    "all_in_one": "AIO",
-    "c_all_in_one": "cAIO"
+  "device": {
+    "pc": "PC",
+    "phone_web": "PhoneWeb",
+    "android": "Android",
+    "ios": "IOS"
   },
   "bet_search": {
     "bet_slip": "注單",

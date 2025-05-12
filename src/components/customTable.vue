@@ -23,6 +23,7 @@ interface Props {
   canExpand?: boolean
   showSizeChanger?: boolean
   showRange?: boolean
+  customRowClass?: TableProps['rowClassName']
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -34,6 +35,16 @@ const props = withDefaults(defineProps<Props>(), {
   showSizeChanger: true,
   showRange: false
 })
+
+// 客製化 class 支援 function 跟 string
+const combinedRowClass = (record: any, index: number) => {
+  const baseClass = record.allowExpand === false ? 'hide-icon-row' : ''
+  const customClass = typeof props.customRowClass === 'function'
+    ? props.customRowClass(_, index, _)
+    : props.customRowClass || ''
+
+  return [baseClass, customClass].filter(Boolean).join(' ')
+}
 
 const currentPage = ref<number>(1)
 const pageSize = ref<number>(props.pageSize)
@@ -165,10 +176,10 @@ defineExpose({ goToFirstPage, closeAllExpandedRows })
     :scroll="{ x: 'max-content' }"
     :columns="props.columns[0]"
     :fetchSubData="props.fetchSubData"
-    :data-source="pageTableData"
+    :dataSource="pageTableData"
     :loading="props.loading"
     :expandedRowKeys="expandedRowKeys"
-    :row-class-name="(record) => (record.allowExpand === false ? 'hide-icon-row' : '')"
+    :rowClassName="combinedRowClass"
     bordered
     @expand="handleExpand"
     @change="handleTableChange"
