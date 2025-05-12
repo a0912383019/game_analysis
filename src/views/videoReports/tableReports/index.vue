@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-// import filterBox from '@/views/operations/overallReport/filter.vue'
+import filterBox from '@/views/videoReports/tableReports/filter.vue'
 import tableBox from '@/views/videoReports/tableReports/table.vue'
 // import { useOperationsOverallReportStore } from '@/stores'
 
@@ -11,7 +11,7 @@ import tableBox from '@/views/videoReports/tableReports/table.vue'
 // })
 </script>
 <template>
-  <!-- <filter-box /> -->
+  <filter-box />
   <table-box />
 </template>
 <style lang="scss" scoped></style>
