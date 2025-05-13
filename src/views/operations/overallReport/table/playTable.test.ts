@@ -124,7 +124,6 @@ describe('playTable', () => {
         {
           align: 'center',
           dataIndex: 'hall_name',
-          defaultSortOrder: 'descend',
           key: 'hall_name',
           sorter: true,
           title: '廳主名稱',
@@ -140,6 +139,7 @@ describe('playTable', () => {
         {
           align: 'center',
           dataIndex: 'wager_count',
+          defaultSortOrder: 'descend',
           key: 'wager_count',
           sorter: true,
           title: '單量'
@@ -169,7 +169,6 @@ describe('playTable', () => {
           align: 'center',
           dataIndex: 'expected_rtp',
           key: 'expected_rtp',
-          sorter: true,
           title: 'RTP(理論)'
         },
         {
@@ -221,14 +220,12 @@ describe('playTable', () => {
           align: 'center',
           dataIndex: 'expected_rtp',
           key: 'expected_rtp',
-          sorter: true,
           title: 'RTP(理論)'
         },
         {
           align: 'center',
           dataIndex: 'rtp',
           key: 'rtp',
-          sorter: true,
           title: 'RTP'
         }
       ]
@@ -289,8 +286,8 @@ describe('playTable', () => {
 
     const record = {
       innerPagination: {
-        current: 1,
-        pageSize: 10
+        sort: 'wager_count',
+        order: 'descend'
       }
     }
     await wrapper.vm.subFuncBetReportByHall(record)
@@ -317,6 +314,8 @@ describe('playTable', () => {
 
     const record = {
       innerPagination: {
+        sort: 'wager_count',
+        order: 'descend',
         current: 1,
         pageSize: 10
       }
@@ -373,12 +372,6 @@ describe('playTable', () => {
       ],
       records_total: 2
     }
-    const record = {
-      innerPagination: {
-        total: 1
-      },
-      innerData: []
-    }
     const params = {
       end_date: '2025-04-15',
       start_date: '2025-04-14',
@@ -391,12 +384,10 @@ describe('playTable', () => {
           game_code: '3003'
         }
       ],
-      length: 1000,
       sort: 'wager_count',
-      start: 0,
       order: 'DESC'
     }
-    wrapper.vm.transformBetReportLiveBySerialType(ret, record, params)
+    wrapper.vm.transformBetReportLiveBySerialType(ret, undefined, params)
     expect(wrapper.vm.pagination.total).toStrictEqual(2)
     expect(wrapper.vm.tableData).toStrictEqual([
       {
@@ -422,12 +413,9 @@ describe('playTable', () => {
         },
         innerLoading: true,
         innerPagination: {
-          current: 1,
           order: 'descend',
-          pageSize: 1000,
-          defaultSortCol: 'hall_name',
-          sort: 'hall_name',
-          total: 0
+          defaultSortCol: 'wager_count',
+          sort: 'wager_count'
         },
         key: 0,
         payoff: '0',
@@ -462,12 +450,9 @@ describe('playTable', () => {
         },
         innerLoading: true,
         innerPagination: {
-          current: 1,
           order: 'descend',
-          pageSize: 1000,
-          defaultSortCol: 'hall_name',
-          sort: 'hall_name',
-          total: 0
+          defaultSortCol: 'wager_count',
+          sort: 'wager_count'
         },
         key: 1,
         payoff: '400',
@@ -508,9 +493,6 @@ describe('playTable', () => {
       innerExtraParams: {
         expectedRtp: '0.3'
       },
-      innerPagination: {
-        total: 1
-      },
       innerData: []
     }
     const params = {
@@ -526,7 +508,6 @@ describe('playTable', () => {
       order: 'DESC'
     }
     wrapper.vm.transformBetReportByHall(ret, record, params)
-    expect(record.innerPagination.total).toStrictEqual(1)
     expect(record.innerData).toStrictEqual([
       {
         bet_amount: '88,347.6',

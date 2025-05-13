@@ -9,7 +9,6 @@ import Antd from 'ant-design-vue'
 import App from '@/App.vue'
 import router from '@/router'
 import { generateMenuRoutes } from '@/router/dynamicRoutes'
-import { getSessionStorageEntity } from '@/utils/commonUtils'
 
 const app: ReturnType<typeof createApp> = createApp(App)
 globalRegister(app)
@@ -22,9 +21,10 @@ app.use(pinia)
 app.use(Antd)
 
 // 重整頁面會丟失動態添加的 route，所以須重新加入
-const storageMenu = getSessionStorageEntity('game_config').menu_config
+const storageMenu = localStorage.getItem('menu_config')
 if (storageMenu) {
-  generateMenuRoutes(storageMenu)
+  const menuConfig: ResultSidebar[] = JSON.parse(storageMenu)
+  generateMenuRoutes(menuConfig)
 } else {
   sessionStorage.clear()
   localStorage.clear()

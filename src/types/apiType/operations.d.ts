@@ -66,7 +66,7 @@ interface Game {
 
 // 總報表參數
 interface ParamsBetReport extends BasePaginationParams {
-  device?: number
+  device?: number[]
   end_date: string
   game?: Game[]
   hall_id?: number
@@ -174,5 +174,19 @@ interface BetReportLiveBySerialType {
 
 interface ResultBetReportLiveBySerialType {
   data: BetReportLiveBySerialType[]
+  records_total: number
+}
+
+interface BetReportByDate {
+  bet_amount: string
+  data_date: string
+  payoff: string
+  payoff_ratio: string
+  user_count: number
+  wager_count: number
+}
+
+interface ResultBetReportByDate {
+  data: BetReportByDate[]
   records_total: number
 }

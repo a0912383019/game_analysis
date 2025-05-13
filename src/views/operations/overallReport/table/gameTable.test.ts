@@ -54,7 +54,6 @@ describe('gameTable', () => {
         {
           align: 'center',
           dataIndex: 'lobby_name',
-          defaultSortOrder: 'descend',
           key: 'lobby_name',
           sorter: true,
           title: '遊戲大類'
@@ -69,6 +68,7 @@ describe('gameTable', () => {
         {
           align: 'center',
           dataIndex: 'wager_count',
+          defaultSortOrder: 'descend',
           key: 'wager_count',
           sorter: true,
           title: '單量'
@@ -99,7 +99,6 @@ describe('gameTable', () => {
         {
           align: 'center',
           dataIndex: 'game_name',
-          defaultSortOrder: 'descend',
           key: 'game_name',
           sorter: true,
           title: '遊戲名稱'
@@ -114,6 +113,7 @@ describe('gameTable', () => {
         {
           align: 'center',
           dataIndex: 'wager_count',
+          defaultSortOrder: 'descend',
           key: 'wager_count',
           sorter: true,
           title: '單量'
@@ -193,7 +193,6 @@ describe('gameTable', () => {
         {
           align: 'center',
           dataIndex: 'hall_name',
-          defaultSortOrder: 'descend',
           key: 'hall_name',
           sorter: true,
           title: '廳主名稱',
@@ -209,6 +208,7 @@ describe('gameTable', () => {
         {
           align: 'center',
           dataIndex: 'wager_count',
+          defaultSortOrder: 'descend',
           key: 'wager_count',
           sorter: true,
           title: '單量'
@@ -238,7 +238,6 @@ describe('gameTable', () => {
           align: 'center',
           dataIndex: 'expected_rtp',
           key: 'expected_rtp',
-          sorter: true,
           title: 'RTP(理論)'
         },
         {
@@ -454,8 +453,8 @@ describe('gameTable', () => {
 
     const record = {
       innerPagination: {
-        current: 1,
-        pageSize: 10
+        sort: 'wager_count',
+        order: 'descend'
       },
       innerExtraParams: {
         lobby: 5
@@ -486,8 +485,8 @@ describe('gameTable', () => {
 
     const record = {
       innerPagination: {
-        current: 1,
-        pageSize: 10
+        sort: 'wager_count',
+        order: 'descend'
       },
       innerExtraParams: {
         lobby: 5,
@@ -519,6 +518,8 @@ describe('gameTable', () => {
 
     const record = {
       innerPagination: {
+        sort: 'wager_count',
+        order: 'descend',
         current: 1,
         pageSize: 10
       },
@@ -552,8 +553,8 @@ describe('gameTable', () => {
 
     const record = {
       innerPagination: {
-        current: 1,
-        pageSize: 10
+        sort: 'wager_count',
+        order: 'descend'
       },
       innerExtraParams: {
         lobby: 5,
@@ -589,9 +590,6 @@ describe('gameTable', () => {
       records_total: 1
     }
     const record = {
-      innerPagination: {
-        total: 1
-      },
       innerData: []
     }
     const params = {
@@ -601,13 +599,10 @@ describe('gameTable', () => {
       user_id: ['457599842'],
       username: [],
       game: [],
-      length: 1000,
       sort: 'lobby_name',
-      start: 0,
       order: 'DESC'
     }
     wrapper.vm.transformBetReportByLobby(ret, record, params)
-    expect(wrapper.vm.pagination.total).toStrictEqual(1)
     expect(wrapper.vm.tableData).toStrictEqual([
       {
         bet_amount: '1,941',
@@ -624,12 +619,9 @@ describe('gameTable', () => {
         },
         innerLoading: true,
         innerPagination: {
-          current: 1,
           order: 'descend',
-          pageSize: 1000,
-          defaultSortCol: 'game_name',
-          sort: 'game_name',
-          total: 0
+          defaultSortCol: 'wager_count',
+          sort: 'wager_count'
         },
         key: 0,
         lobby: 5,
@@ -685,9 +677,6 @@ describe('gameTable', () => {
       records_total: 2
     }
     const record = {
-      innerPagination: {
-        total: 1
-      },
       innerData: []
     }
     const params = {
@@ -701,13 +690,10 @@ describe('gameTable', () => {
           lobby: 5
         }
       ],
-      length: 1000,
       sort: 'game_name',
-      start: 0,
       order: 'DESC'
     }
     wrapper.vm.transformBetReportByGame(ret, record, params)
-    expect(record.innerPagination.total).toStrictEqual(2)
     expect(record.innerData).toStrictEqual([
       {
         base_lose_wager_count: '22',
@@ -732,12 +718,9 @@ describe('gameTable', () => {
         },
         innerLoading: true,
         innerPagination: {
-          current: 1,
           order: 'descend',
-          pageSize: 1000,
-          defaultSortCol: 'hall_name',
-          sort: 'hall_name',
-          total: 0
+          defaultSortCol: 'wager_count',
+          sort: 'wager_count'
         },
         key: 0,
         payoff: '29.4',
@@ -770,12 +753,9 @@ describe('gameTable', () => {
         },
         innerLoading: true,
         innerPagination: {
-          current: 1,
           order: 'descend',
-          pageSize: 1000,
-          defaultSortCol: 'hall_name',
-          sort: 'hall_name',
-          total: 0
+          defaultSortCol: 'wager_count',
+          sort: 'wager_count'
         },
         key: 1,
         payoff: '-110.4',
@@ -817,7 +797,9 @@ describe('gameTable', () => {
         gameCode: '3003'
       },
       innerPagination: {
-        total: 1
+        current: 1,
+        pageSize: 10,
+        total: 0
       },
       innerData: []
     }
@@ -828,13 +810,10 @@ describe('gameTable', () => {
       user_id: [],
       username: [],
       game: [],
-      length: 10,
       sort: 'hall_name',
-      start: 0,
       order: 'DESC'
     }
     wrapper.vm.transformBetReportByHall(ret, record, params)
-    expect(record.innerPagination.total).toStrictEqual(1)
     expect(record.innerData).toStrictEqual([
       {
         base_lose_wager_count: '1,044',
@@ -912,9 +891,7 @@ describe('gameTable', () => {
       user_id: ['457599842'],
       username: [],
       game: [],
-      length: 10,
       sort: 'wager_count',
-      start: 0,
       order: 'DESC'
     }
     wrapper.vm.transformBetReportByUser(ret, record, params)
@@ -940,12 +917,9 @@ describe('gameTable', () => {
         },
         innerLoading: true,
         innerPagination: {
-          current: 1,
           order: 'descend',
-          pageSize: 1000,
           defaultSortCol: 'wager_count',
-          sort: 'wager_count',
-          total: 0
+          sort: 'wager_count'
         },
         key: 0,
         payoff: '-81',
@@ -998,9 +972,6 @@ describe('gameTable', () => {
       records_total: 2
     }
     const record = {
-      innerPagination: {
-        total: 1
-      },
       innerData: []
     }
     const params = {
@@ -1015,13 +986,10 @@ describe('gameTable', () => {
           game_code: '3003'
         }
       ],
-      length: 1000,
       sort: 'wager_count',
-      start: 0,
       order: 'DESC'
     }
     wrapper.vm.transformBetReportLiveBySerialType(ret, record, params)
-    expect(record.innerPagination.total).toStrictEqual(2)
     expect(record.innerData).toStrictEqual([
       {
         bet_amount: '400',

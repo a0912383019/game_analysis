@@ -2,23 +2,32 @@
 import { useI18n } from 'vue-i18n'
 import type { TableColumnsType } from 'ant-design-vue'
 import { useGlobalStore } from '@/stores'
-import { formatNumberWithK } from '@/utils/commonUtils'
-import { lobbyGroupMap } from '@/../public/js/system_config'
+import { getSessionStorageEntity, formatNumberWithK, formatNumber } from '@/utils/commonUtils'
+import { targetMap } from '@/../public/js/system_config'
 import { EChartsOption, SeriesOption } from 'echarts'
 import { Empty } from 'ant-design-vue'
+import { apiGetGameReportTrend } from '@/api'
+import dayjs, { getPlatformToday } from '@/utils/appDayjs'
+import { notification } from 'ant-design-vue'
 
 const simpleImage = Empty.PRESENTED_IMAGE_SIMPLE
 
 const { t } = useI18n()
 
+const globalStore = useGlobalStore()
+
+const todayDate = ref<Dayjs>(getPlatformToday(globalStore.currentPlatform))
+const apiLoading = ref<boolean>(true)
+const platformLobbies = getSessionStorageEntity('platform_config').platform_lobbies || []
+
 const buttonGroup = computed(() => [
-  { name: t('data_name.payoff'), value: 0 },
-  { name: t('home.bet_people_num'), value: 1 },
-  { name: t('home.commissionable'), value: 2 },
-  { name: t('home.first_bet_people_num'), value: 3 },
-  { name: t('home.churned_people_num'), value: 4 }
+  { name: t('data_name.payoff'), value: 'payoff' },
+  { name: t('home.bet_people_num'), value: 'users_count' },
+  { name: t('data_name.bet_amount'), value: 'bet_amount' },
+  { name: t('home.first_bet_people_num'), value: 'first_play_count' },
+  { name: t('home.churned_people_num'), value: 'loss_count' }
 ])
-const currentTabs = ref<number>(0)
+const currentTabs = ref<string>('payoff')
 
 const getCssVar = (varName: string) =>
   getComputedStyle(document.documentElement).getPropertyValue(varName).trim()
@@ -36,7 +45,8 @@ const barChartOptions = reactive<EChartsOption>({
       label: {
         show: false
       }
-    }
+    },
+    valueFormatter: (value) => formatNumber(value as string)
   },
   legend: {},
   grid: {
@@ -47,68 +57,15 @@ const barChartOptions = reactive<EChartsOption>({
   },
   xAxis: {
     type: 'category',
-    data: ['11/23', '11/24', '11/25', '11/26', '11/27', '11/28', '11/29']
+    data: []
   },
   yAxis: {
     type: 'value',
     axisLabel: {
-      formatter: function (value: number) {
-        return formatNumberWithK(value)
-      }
+      formatter: (value: number) => formatNumberWithK(value)
     }
   },
   series: []
-})
-
-const chartTypeData = reactive<Record<number, SeriesOption[]>>({
-  0: [
-    {
-      name: '總計',
-      type: 'bar',
-      barWidth: '30px',
-      color: '#64AFFF',
-      data: [14200, 9999, 2500, 5390, 496, 220, 3199]
-    },
-    {
-      name: '電子',
-      type: 'line',
-      color: getCssVar(lobbyGroupMap[5].color),
-      data: [293, 7781, 1222, 5231, 0, 0]
-    },
-    {
-      name: '視訊',
-      type: 'line',
-      color: getCssVar(lobbyGroupMap[3].color),
-      data: [12930, 3324, 655, 701, 6, 1, 2240]
-    },
-    {
-      name: '棋牌',
-      type: 'line',
-      color: getCssVar(lobbyGroupMap[6].color),
-      data: [120, 322, 891, 1, 25, 9, 1770]
-    },
-    {
-      name: '捕魚',
-      type: 'line',
-      color: getCssVar(lobbyGroupMap[4].color),
-      data: [150, 122, 91, 122, 25, 229, 770]
-    },
-    {
-      name: '彩票',
-      type: 'line',
-      color: getCssVar(lobbyGroupMap[2].color),
-      data: [320, 222, 391, 331, 235, 91, 170]
-    }
-  ],
-  1: [
-    {
-      name: '總計',
-      type: 'bar',
-      barWidth: '30px',
-      color: '#64AFFF',
-      data: [1428800, 9999, 2500, 5390, 496, 220, 3199]
-    }
-  ]
 })
 
 const columns = ref<TableColumnsType[]>([
@@ -117,6 +74,7 @@ const columns = ref<TableColumnsType[]>([
       title: t('home.game_category'),
       dataIndex: 'game_category',
       key: 'game_category',
+      width: 100,
       align: 'center'
     },
     {
@@ -128,52 +86,153 @@ const columns = ref<TableColumnsType[]>([
   ]
 ])
 
-const tableData = ref<any>([
-  {
-    game_category: '總計',
-    totals: '--',
-    color: 'bg-[#64AFFF]'
-  },
-  {
-    game_category: '電子',
-    totals: '--',
-    color: `bg-[var(${lobbyGroupMap[5].color})]`
-  },
-  {
-    game_category: '視訊',
-    totals: '--',
-    color: `bg-[var(${lobbyGroupMap[3].color})]`
-  },
-  {
-    game_category: '棋牌',
-    totals: '--',
-    color: `bg-[var(${lobbyGroupMap[6].color})]`
-  },
-  {
-    game_category: '捕魚',
-    totals: '--',
-    color: `bg-[var(${lobbyGroupMap[4].color})]`
-  },
-  {
-    game_category: '彩票',
-    totals: '455678908',
-    color: `bg-[var(${lobbyGroupMap[2].color})]`
-  }
-])
+const tableTypeData = reactive<Record<string, any[]>>({
+  payoff: [],
+  users_count: [],
+  bet_amount: [],
+  first_play_count: [],
+  loss_count: []
+})
+const tableData = ref<any>([])
 
+const chartTypeData = reactive<Record<string, SeriesOption[]>>({
+  payoff: [],
+  users_count: [],
+  bet_amount: [],
+  first_play_count: [],
+  loss_count: []
+})
 const chartSeriesData = computed<SeriesOption[]>(() => {
   return chartTypeData[currentTabs.value] || []
 })
+
+const queryApiGetGameReportTrend = async () => {
+  apiLoading.value = true
+  try {
+    const response = await apiGetGameReportTrend({
+      start_date: todayDate.value.subtract(6, 'day').format('YYYY-MM-DD'),
+      end_date: todayDate.value.format('YYYY-MM-DD')
+    })
+
+    const { result } = response
+    if (result === 'success') {
+      transformData(response.ret)
+    } else {
+      throw new Error()
+    }
+  } catch (err) {
+    console.error(err)
+    if (axios.isAxiosError(err)) {
+      const status = err.response?.status
+      if (status === 401) {
+        // token 錯誤，登出
+        globalStore.storeHandleApiError()
+      } else if (status === 403) {
+        // 沒有權限
+        notification['error']({
+          message: t('msg.no_permission')
+        })
+      } else {
+        // query failed
+        notification['error']({
+          message: t('msg.query_failed')
+        })
+      }
+    } else {
+      // query failed
+      notification['error']({
+        message: t('msg.query_failed')
+      })
+    }
+  } finally {
+    apiLoading.value = false
+  }
+}
+
+const getTrendValueByTargetId = (
+  items: Array<GameReportTrend | GameReportTrendTarget>,
+  keyName: string,
+  targetId: number
+) => {
+  return items?.find((item) => item.target_id === targetId)?.[keyName] ?? 0
+}
+
+const transformData = (data: ResultGameReportTrend) => {
+  // 依日期分類
+  const groupedByDate = data.data.reduce(
+    (acc, item) => {
+      if (!acc[item.data_date]) {
+        acc[item.data_date] = []
+      }
+      acc[item.data_date].push(item)
+      return acc
+    },
+    {} as Record<string, GameReportTrend[]>
+  )
+
+  const sortedByDate = Object.entries(groupedByDate)
+    .sort(([dateA], [dateB]) => new Date(dateA).getTime() - new Date(dateB).getTime())
+    .map(([date, items]) => ({
+      date,
+      items
+    }))
+
+  barChartOptions.xAxis = [
+    {
+      type: 'category',
+      data: sortedByDate.map((item) => dayjs(item.date).format('MM/DD'))
+    }
+  ]
+
+  buttonGroup.value.forEach((item) => {
+    chartTypeData[item.value] = platformLobbies.map(({ target }) => {
+      return {
+        name: t(`target_group.${targetMap[target].name}`),
+        type: 'line',
+        color: getCssVar(targetMap[target].color),
+        data: sortedByDate.map((record) =>
+          getTrendValueByTargetId(record.items, item.value, target)
+        )
+      }
+    })
+
+    chartTypeData[item.value].unshift({
+      name: t('common.totals'),
+      type: 'bar',
+      barWidth: '30px',
+      color: '#64AFFF',
+      data: data.total.by_daily.map((ele) => ele[item.value])
+    })
+
+    tableTypeData[item.value] = platformLobbies.map(({ target }) => {
+      return {
+        game_category: t(`target_group.${targetMap[target].name}`),
+        color: `bg-[var(${targetMap[target].color})]`,
+        totals: formatNumber(getTrendValueByTargetId(data.total.by_target, item.value, target))
+      }
+    })
+
+    tableTypeData[item.value].unshift({
+      game_category: t('common.totals'),
+      color: 'bg-[#64AFFF]',
+      totals: formatNumber(data.total.overall[item.value])
+    })
+  })
+
+  barChartOptions.series = chartTypeData[currentTabs.value]
+  tableData.value = tableTypeData[currentTabs.value]
+}
 
 watch(
   () => currentTabs.value,
   () => {
     barChartOptions.series = chartSeriesData.value
+    tableData.value = tableTypeData[currentTabs.value]
   }
 )
 
 onMounted(() => {
-  barChartOptions.series = chartTypeData[0]
+  queryApiGetGameReportTrend()
 })
 </script>
 <template>
@@ -188,32 +247,34 @@ onMounted(() => {
     </template>
     <div class="!px-1">
       <cdp-button-group class="!mb-4" :buttonGroup="buttonGroup" v-model="currentTabs" />
-      <a-row justify="start">
-        <a-col :span="15">
-          <v-chart
-            v-if="chartSeriesData.length !== 0"
-            class="chart"
-            :option="barChartOptions"
-            autoresize
-          ></v-chart>
-          <a-empty v-else :image="simpleImage" class="!mt-[90px]" />
-        </a-col>
-        <a-col :span="9">
-          <custom-table
-            class="min-h-[300px] home-chart"
-            :hasPage="false"
-            :dataSource="tableData"
-            :columns="columns"
-            :serverSide="false"
-            :loading="false"
-          >
-            <template #game_category="scope">
-              <span class="circle" :class="scope.record.color"></span>
-              <span class="color">{{ scope.record.game_category }}</span>
-            </template>
-          </custom-table>
-        </a-col>
-      </a-row>
+      <a-spin :spinning="apiLoading">
+        <a-row justify="center">
+          <a-col :span="15">
+            <v-chart
+              v-if="chartSeriesData.length !== 0"
+              class="chart"
+              :option="barChartOptions"
+              autoresize
+            ></v-chart>
+            <a-empty v-else :image="simpleImage" class="!mt-[90px]" />
+          </a-col>
+          <a-col :span="9">
+            <custom-table
+              class="min-h-[290px]"
+              :hasPage="false"
+              :dataSource="tableData"
+              :columns="columns"
+              :serverSide="false"
+              :loading="false"
+            >
+              <template #game_category="scope: any">
+                <span class="circle" :class="scope.record.color"></span>
+                <span>{{ scope.record.game_category }}</span>
+              </template>
+            </custom-table>
+          </a-col>
+        </a-row>
+      </a-spin>
     </div>
   </a-card>
 </template>
@@ -230,13 +291,20 @@ onMounted(() => {
   display: inline-block;
   margin-right: 8px;
 }
-.home-chart {
-  :deep(.ant-table) {
-    tbody {
-      tr {
-        height: 42px;
-      }
+:deep(.ant-table) {
+  .ant-table-thead > tr > th {
+    height: 34px;
+  }
+  tbody {
+    tr {
+      height: 42px;
     }
   }
+  .ant-table-placeholder {
+    height: 245px;
+  }
+}
+.cdp-card {
+  height: calc(100% - 10px);
 }
 </style>

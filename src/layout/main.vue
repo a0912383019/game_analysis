@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useGlobalStore } from '@/stores'
 import { platformDict } from '@/../public/js/system_config'
-import { apiHalls, apiLobbies, apiLobbyDevices } from '@/api'
+import { apiHalls, apiLobbies, apiDevices } from '@/api'
 import { notification } from 'ant-design-vue'
 import { useI18n } from 'vue-i18n'
 
@@ -27,7 +27,7 @@ const refreshData = async () => {
       apiLobbies({
         lobby: undefined
       }),
-      apiLobbyDevices({
+      apiDevices({
         device: undefined
       })
     ])

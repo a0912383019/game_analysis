@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 import { useGlobalStore, useSystemStore } from '@/stores'
 import { sidebarIcon, SidebarIconType } from '@/../public/js/system_config'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 const route = useRoute()
+const router = useRouter()
 
 const globalStore = useGlobalStore()
 const systemStore = useSystemStore()
@@ -11,6 +12,29 @@ const systemStore = useSystemStore()
 const selectedKeys = ref<string[]>([])
 
 const openKeys = ref<string[]>([])
+
+// xc 站沒有 [視訊報表/營運中心-地區貨量差異]
+const platformMenu = computed(() => {
+  if (globalStore.currentPlatform.includes('xc')) {
+    return (
+      systemStore.menuList
+        // 父層篩選
+        .filter((ele) => ele.name !== 'video_reports')
+        // 子層篩選
+        .map((ele) => {
+          if (ele.child) {
+            return {
+              ...ele,
+              child: ele.child.filter((child) => child.name !== 'regional_difference')
+            }
+          }
+          return ele
+        })
+    )
+  } else {
+    return systemStore.menuList
+  }
+})
 
 const findMenuItemAndParentKey = (path: string) => {
   if (!systemStore.menuList) {
@@ -46,6 +70,23 @@ watchEffect(() => {
   selectedKeys.value = activeItem ? [activeItem.key] : []
 })
 
+const xcExcludePath = [
+  '/operations/regional-difference', // 營運中心-地區貨量差異
+  '/video-reports/' // 視訊報表
+]
+
+watch(
+  () => globalStore.currentPlatform,
+  () => {
+    if (
+      globalStore.currentPlatform.includes('xc') &&
+      xcExcludePath.some((path) => route.fullPath.includes(path))
+    ) {
+      router.push({ path: '/' })
+    }
+  }
+)
+
 onMounted(() => {
   // 第一次載入或是刷新頁面會根據路由高亮選單並展開
   const { parentKey } = findMenuItemAndParentKey(route.path)
@@ -74,7 +115,7 @@ onMounted(() => {
         mode="inline"
         v-model:openKeys="openKeys"
       >
-        <template v-for="menuItem in systemStore.menuList">
+        <template v-for="menuItem in platformMenu">
           <template v-if="menuItem.child">
             <a-sub-menu :popupClassName="'sidebar__sub-menu'" :key="menuItem.key">
               <template #title>{{ $t(`sidebar.${menuItem.name}`) }}</template>

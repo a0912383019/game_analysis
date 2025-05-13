@@ -107,7 +107,6 @@ const columns = ref<TableColumnsType[]>([
       dataIndex: 'hall_name',
       key: 'hall_name',
       align: 'center',
-      defaultSortOrder: 'descend',
       width: 320,
       sorter: true
     },
@@ -123,6 +122,7 @@ const columns = ref<TableColumnsType[]>([
       dataIndex: 'wager_count',
       key: 'wager_count',
       align: 'center',
+      defaultSortOrder: 'descend',
       sorter: true
     },
     {
@@ -150,8 +150,7 @@ const columns = ref<TableColumnsType[]>([
       title: t('common.return_to_player_theory'),
       dataIndex: 'expected_rtp',
       key: 'expected_rtp',
-      align: 'center',
-      sorter: true
+      align: 'center'
     },
     {
       title: t('common.return_to_player'),
@@ -161,7 +160,7 @@ const columns = ref<TableColumnsType[]>([
       sorter: true
     }
   ],
-  // 第二層 header 會員
+  // 第三層 header 會員
   [
     {
       title: t('common.member_id'),
@@ -203,20 +202,18 @@ const columns = ref<TableColumnsType[]>([
       title: t('common.return_to_player_theory'),
       dataIndex: 'expected_rtp',
       key: 'expected_rtp',
-      align: 'center',
-      sorter: true
+      align: 'center'
     },
     {
       title: t('common.return_to_player'),
       dataIndex: 'rtp',
       key: 'rtp',
-      align: 'center',
-      sorter: true
+      align: 'center'
     }
   ]
 ])
 
-const pagination = reactive({
+const pagination = reactive<Pagination>({
   apiStart: 0,
   pageSize: 10,
   total: 0,
@@ -270,11 +267,8 @@ const transformBetReportLiveBySerialType = (
         expectedRtp: item.expected_rtp
       },
       innerPagination: {
-        current: 1,
-        pageSize: 1000,
-        total: 0,
-        defaultSortCol: 'hall_name',
-        sort: 'hall_name',
+        defaultSortCol: 'wager_count',
+        sort: 'wager_count',
         order: 'descend'
       },
       innerData: []
@@ -288,7 +282,6 @@ const transformBetReportByHall = (
   record: any,
   params: ParamsBetReport
 ) => {
-  record.innerPagination.total = ret.records_total
   record.innerData = ret.data.map((item, idx) => {
     return {
       key: idx,
@@ -350,12 +343,11 @@ const transformBetReportByUser = (
 
 // 第二層 api 呼叫
 const subFuncBetReportByHall = async (record: any) => {
-  const { current, pageSize, sort, order } = record.innerPagination
-  let apiStart = (current - 1) * pageSize
-  let params = generateOverallParams(pageSize, apiStart, sort, order, record.innerExtraParams)
+  const { sort, order } = record.innerPagination
+  let params = generateOverallParams(undefined, undefined, sort, order, record.innerExtraParams)
 
   record.innerLoading = true
-  await queryApi(apiBetReportByHall, params, transformBetReportByHall, record)
+  await queryApi<ParamsBetReport>(apiBetReportByHall, params, transformBetReportByHall, record)
   record.innerLoading = false
 }
 
@@ -367,7 +359,7 @@ const subFuncBetReportByUser = async (record: any) => {
   let params = generateOverallParams(pageSize, apiStart, sort, order, record.innerExtraParams)
 
   record.innerLoading = true
-  await queryApi(apiBetReportByUser, params, transformBetReportByUser, record)
+  await queryApi<ParamsBetReport>(apiBetReportByUser, params, transformBetReportByUser, record)
   record.innerLoading = false
 }
 
@@ -404,7 +396,7 @@ const tableChange = async (
   )
 
   loading.value = true
-  await queryApi(
+  await queryApi<ParamsBetReport>(
     apiBetReportLiveBySerialType,
     params,
     transformBetReportLiveBySerialType,
@@ -424,7 +416,7 @@ onMounted(async () => {
     )
 
     loading.value = true
-    await queryApi(
+    await queryApi<ParamsBetReport>(
       apiBetReportLiveBySerialType,
       params,
       transformBetReportLiveBySerialType,

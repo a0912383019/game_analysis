@@ -87,9 +87,12 @@ const deviceTypeOptions = ref<SelectProps['options']>(
 )
 const deviceTypeProps = computed<AntSelectProps>(() => {
   return {
+    allowClear: false,
     placeHolderText: t('common.select_device'),
     placeHolderValuableText: t('common.device'),
-    options: deviceTypeOptions.value
+    options: deviceTypeOptions.value,
+    defaultAll: false,
+    mode: 'multiple'
   }
 })
 
@@ -114,8 +117,11 @@ const handleSearch = () => {
   })
 }
 
-onMounted(() => {
-  handleSearch()
+onMounted(async() => {
+  await nextTick()
+  if (formRef.value?.validate) {
+    handleSearch()
+  }
 })
 </script>
 <template>

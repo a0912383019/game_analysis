@@ -12,7 +12,7 @@ type ApiResponse<T = undefined> = T extends undefined ? BaseStatus : BaseStatusW
 
 interface BasePaginationParams {
   order: 'DESC' | 'ASC'
-  length: number
-  start: number
+  length?: number
+  start?: number
   sort: string
 }

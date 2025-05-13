@@ -120,8 +120,8 @@ export const generateGamePlayParam = (data: LobbyGameData[]): Game[] => {
 
 // 總報表共用參數整理
 export const generateOverallParams = (
-  apiLength: number,
-  apiStart: number,
+  apiLength: number | undefined,
+  apiStart: number | undefined,
   sortCol: string,
   order: string,
   paramInfo: any
@@ -145,9 +145,9 @@ export const generateOverallParams = (
   }
 }
 
-export const queryApi = async (
+export const queryApi = async <T>(
   apiFunc: Function,
-  params: ParamsBetReport,
+  params: T,
   transformFunc: Function,
   record: any
 ) => {

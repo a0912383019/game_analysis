@@ -22,6 +22,8 @@ interface Props {
   // 是否可展開
   canExpand?: boolean
   showSizeChanger?: boolean
+  showRange?: boolean
+  customRowClass?: TableProps['rowClassName']
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -30,8 +32,19 @@ const props = withDefaults(defineProps<Props>(), {
   loading: true,
   hasPage: true,
   canExpand: true,
-  showSizeChanger: true
+  showSizeChanger: true,
+  showRange: false
 })
+
+// 客製化 class 支援 function 跟 string
+const combinedRowClass = (record: any, index: number) => {
+  const baseClass = record.allowExpand === false ? 'hide-icon-row' : ''
+  const customClass = typeof props.customRowClass === 'function'
+    ? props.customRowClass(_, index, _)
+    : props.customRowClass || ''
+
+  return [baseClass, customClass].filter(Boolean).join(' ')
+}
 
 const currentPage = ref<number>(1)
 const pageSize = ref<number>(props.pageSize)
@@ -51,7 +64,7 @@ interface Pagination {
   pageSize: number
   total: number
   current: number
-  showTotal: (total: number) => string
+  showTotal: (total, range) => string
   showSizeChanger: boolean
   pageSizeOptions: string[]
   onChange: (page: number, pageSize: number) => void
@@ -65,7 +78,10 @@ const pagination = computed<Pagination>(() => ({
       : props.dataSource.length
     : props.dataSource.length,
   current: currentPage.value,
-  showTotal: (total: number) => t('common.pagination_total', { total: total }),
+  showTotal: (total, range) =>
+    props.showRange
+      ? `${range[0]}-${range[1]} / ` + t('common.pagination_total', { total: total })
+      : t('common.pagination_total', { total: total }),
   showSizeChanger: props.showSizeChanger,
   pageSizeOptions: ['10', '30', '50', '100'],
   onChange: (page: number, newPageSize: number) => {
@@ -86,8 +102,6 @@ const handleExpand = async (expanded: boolean, record: any) => {
     // 確保 record 有 pagination 狀態
     if (!record.innerPagination) {
       record.innerPagination = {
-        current: 1,
-        pageSize: 10,
         total: 0
       }
     }
@@ -162,9 +176,10 @@ defineExpose({ goToFirstPage, closeAllExpandedRows })
     :scroll="{ x: 'max-content' }"
     :columns="props.columns[0]"
     :fetchSubData="props.fetchSubData"
-    :data-source="pageTableData"
+    :dataSource="pageTableData"
     :loading="props.loading"
     :expandedRowKeys="expandedRowKeys"
+    :rowClassName="combinedRowClass"
     bordered
     @expand="handleExpand"
     @change="handleTableChange"
@@ -188,6 +203,7 @@ defineExpose({ goToFirstPage, closeAllExpandedRows })
         :canExpand="record.canExpand"
       ></custom-table>
     </template>
+    <!-- 處理 #bodyCell slot -->
     <template #bodyCell="{ column, record }">
       <template v-if="$slots[String(column.dataIndex)]">
         <slot :name="String(column.dataIndex)" :record="record"></slot>
@@ -196,6 +212,20 @@ defineExpose({ goToFirstPage, closeAllExpandedRows })
         {{ record[String(column.dataIndex)] }}
       </template>
     </template>
+    <!-- 處理其他動態 slot，例如 summary / footer / headerCell 等 -->
+    <!-- 只有第一層可以用 -->
+    <template v-for="(_, key) in $slots" :key="key" #[key]>
+      <slot :name="key"></slot>
+    </template>
   </a-table>
 </template>
-<style lang="scss"></style>
+<style lang="scss" scoped>
+:deep(.hide-icon-row .ant-table-row-expand-icon) {
+  display: none;
+}
+:deep(.ant-table-summary) {
+  .ant-table-cell {
+    background-color: rgb(227, 230, 234);
+  }
+}
+</style>

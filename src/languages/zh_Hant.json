@@ -65,7 +65,7 @@
     "amount": "單量",
     "people_num": "人數"
   },
-  "lobby_group": {
+  "target_group": {
     "live": "視訊",
     "prob": "電子",
     "card": "棋牌",
@@ -73,9 +73,8 @@
     "lottery": "彩票"
   },
   "home": {
-    "read": "已讀",
     "game_category": "遊戲類別",
-    "warning_news": "警示訊息通知",
+    "game_intelligence_info": "遊戲智能訊息",
     "game_combination": "遊玩組合",
     "game_flow": "遊玩流向",
     "bet_people_num": "投注人數",
@@ -102,14 +101,16 @@
     "search": "搜尋",
     "filter": "篩選",
     "select_hall": "請選擇廳",
+    "select_live_room": "請選擇視訊廳",
     "select_game": "請選擇遊戲",
     "select_game_hall": "請選擇遊戲大廳",
     "select_table": "請選擇桌次",
     "select_label": "請選擇標籤",
     "select_device": "請選擇裝置",
+    "select_country_region": "請選擇國家及地區",
     "select_country": "請選擇國家",
+    "select_region": "請選擇地區",
     "select_province": "請選擇省份",
-    "select_live_room": "請選擇視訊廳",
     "select_game_play": "請選擇遊戲及玩法",
     "select_risk_label": "請選擇風險標籤",
     "select_game_label": "請選擇遊戲標籤",
@@ -133,9 +134,10 @@
     "gameplay": "玩法",
     "label": "標籤",
     "device": "裝置",
+    "country_region": "國家及地區",
     "country": "國家",
+    "region": "地區",
     "province": "省份",
-    "live_room": "視訊廳",
     "live_table": "桌次",
     "game_label": "遊戲標籤",
     "risk_label": "風險標籤",
@@ -169,16 +171,20 @@
     "num_of_free_game_lost_bet": "Free輸筆數",
     "win_bet_proportion": "贏單比例",
     "settlement_date": "結算日期",
+    "difference": "差異",
     "pagination_total": "共 {total} 筆"
   },
   "data_name": {
     "bet_amount": "貨量",
+    "bet_total": "貨量合計",
     "bonus_amount": "派彩",
     "game_profit_loss": "遊戲損益",
     "composite_rtp": "綜合RTP",
     "payoff": "損益",
+    "odds": "賠率",
     "people_proportion": "人數比例",
-    "total_bet_amount": "總下注額"
+    "total_bet_amount": "總下注額",
+    "table_no": "卓次"
   },
   "regional_difference": {
     "bet_amount_growth_ratio": "貨量成長率",
@@ -200,13 +206,11 @@
     "payout_phase_ratio": "吐分期下注率",
     "bet_range": "投注範圍"
   },
-  "device_difference": {
-    "volume_total": "貨量合計",
-    "percentage_change": "差異",
-    "personal_computer": "PC",
-    "platforms": "PhoneWeb",
-    "all_in_one": "AIO",
-    "c_all_in_one": "cAIO"
+  "device": {
+    "pc": "PC",
+    "phone_web": "PhoneWeb",
+    "android": "Android",
+    "ios": "IOS"
   },
   "bet_search": {
     "bet_slip": "注單",

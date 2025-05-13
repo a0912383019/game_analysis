@@ -38,3 +38,23 @@ interface OverallReportFilterFormState {
   memberValue: string
   dateDuration: [Dayjs | undefined, Dayjs | undefined]
 }
+
+interface RegionDiffSearchType {
+  hallValue: number
+  gamePlayValue: Game[] | undefined
+  deviceValue: number | undefined
+  nationRegionValue: number[]
+  dateDuration: [Dayjs | undefined, Dayjs | undefined]
+}
+
+interface TableReportsSearchType {
+  hallValue: number
+  gameTypeValue: string[]
+  liveRoom: string[]
+  liveTable: string[]
+  dateDuration: [Dayjs | undefined, Dayjs | undefined]
+}
+
+interface TableReportsFilterFormState {
+  dateDuration: [Dayjs | undefined, Dayjs | undefined]
+}
