@@ -24,7 +24,7 @@ interface GameReportTrend {
   payoff: string
   target_id: number
   target_name: string
-  wagers_count: number
+  users_count: number
 }
 
 interface GameReportTrendDaily {

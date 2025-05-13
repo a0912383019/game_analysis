@@ -22,7 +22,7 @@ const platformLobbies = getSessionStorageEntity('platform_config').platform_lobb
 
 const buttonGroup = computed(() => [
   { name: t('data_name.payoff'), value: 'payoff' },
-  { name: t('home.bet_people_num'), value: 'wagers_count' },
+  { name: t('home.bet_people_num'), value: 'users_count' },
   { name: t('data_name.bet_amount'), value: 'bet_amount' },
   { name: t('home.first_bet_people_num'), value: 'first_play_count' },
   { name: t('home.churned_people_num'), value: 'loss_count' }
@@ -88,7 +88,7 @@ const columns = ref<TableColumnsType[]>([
 
 const tableTypeData = reactive<Record<string, any[]>>({
   payoff: [],
-  wagers_count: [],
+  users_count: [],
   bet_amount: [],
   first_play_count: [],
   loss_count: []
@@ -97,7 +97,7 @@ const tableData = ref<any>([])
 
 const chartTypeData = reactive<Record<string, SeriesOption[]>>({
   payoff: [],
-  wagers_count: [],
+  users_count: [],
   bet_amount: [],
   first_play_count: [],
   loss_count: []
@@ -211,6 +211,7 @@ const transformData = (data: ResultGameReportTrend) => {
         totals: formatNumber(getTrendValueByTargetId(data.total.by_target, item.value, target))
       }
     })
+
     tableTypeData[item.value].unshift({
       game_category: t('common.totals'),
       color: 'bg-[#64AFFF]',
