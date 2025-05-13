@@ -34,7 +34,7 @@ describe('operatingTrendsChart', () => {
             target_id: 2,
             target_name: '視訊',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 2
@@ -44,7 +44,7 @@ describe('operatingTrendsChart', () => {
             target_id: 3,
             target_name: '電子',
             payoff: '2.4000',
-            wagers_count: 1,
+            users_count: 1,
             bet_amount: '6.0000',
             first_play_count: 0,
             loss_count: 4
@@ -54,7 +54,7 @@ describe('operatingTrendsChart', () => {
             target_id: 4,
             target_name: '彩票',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 1
@@ -64,7 +64,7 @@ describe('operatingTrendsChart', () => {
             target_id: 5,
             target_name: '捕魚',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 0
@@ -74,7 +74,7 @@ describe('operatingTrendsChart', () => {
             target_id: 6,
             target_name: '棋牌',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 2
@@ -84,7 +84,7 @@ describe('operatingTrendsChart', () => {
             target_id: 2,
             target_name: '視訊',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 0
@@ -94,7 +94,7 @@ describe('operatingTrendsChart', () => {
             target_id: 3,
             target_name: '電子',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 0
@@ -104,7 +104,7 @@ describe('operatingTrendsChart', () => {
             target_id: 4,
             target_name: '彩票',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 0
@@ -114,7 +114,7 @@ describe('operatingTrendsChart', () => {
             target_id: 5,
             target_name: '捕魚',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 0
@@ -124,7 +124,7 @@ describe('operatingTrendsChart', () => {
             target_id: 6,
             target_name: '棋牌',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 0
@@ -134,7 +134,7 @@ describe('operatingTrendsChart', () => {
             target_id: 2,
             target_name: '視訊',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 1
@@ -144,7 +144,7 @@ describe('operatingTrendsChart', () => {
             target_id: 3,
             target_name: '電子',
             payoff: '6.0000',
-            wagers_count: 1,
+            users_count: 1,
             bet_amount: '6.0000',
             first_play_count: 0,
             loss_count: 5
@@ -154,7 +154,7 @@ describe('operatingTrendsChart', () => {
             target_id: 4,
             target_name: '彩票',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 1
@@ -164,7 +164,7 @@ describe('operatingTrendsChart', () => {
             target_id: 5,
             target_name: '捕魚',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 0
@@ -174,7 +174,7 @@ describe('operatingTrendsChart', () => {
             target_id: 6,
             target_name: '棋牌',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 0
@@ -184,7 +184,7 @@ describe('operatingTrendsChart', () => {
             target_id: 2,
             target_name: '視訊',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 1
@@ -194,7 +194,7 @@ describe('operatingTrendsChart', () => {
             target_id: 3,
             target_name: '電子',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 8
@@ -204,7 +204,7 @@ describe('operatingTrendsChart', () => {
             target_id: 4,
             target_name: '彩票',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 0
@@ -214,7 +214,7 @@ describe('operatingTrendsChart', () => {
             target_id: 5,
             target_name: '捕魚',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 1
@@ -224,7 +224,7 @@ describe('operatingTrendsChart', () => {
             target_id: 6,
             target_name: '棋牌',
             payoff: '-254.0000',
-            wagers_count: 2,
+            users_count: 2,
             bet_amount: '72.0000',
             first_play_count: 0,
             loss_count: 1
@@ -234,7 +234,7 @@ describe('operatingTrendsChart', () => {
             target_id: 2,
             target_name: '視訊',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 0
@@ -244,7 +244,7 @@ describe('operatingTrendsChart', () => {
             target_id: 3,
             target_name: '電子',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 2
@@ -254,7 +254,7 @@ describe('operatingTrendsChart', () => {
             target_id: 4,
             target_name: '彩票',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 0
@@ -264,7 +264,7 @@ describe('operatingTrendsChart', () => {
             target_id: 5,
             target_name: '捕魚',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 1
@@ -274,7 +274,7 @@ describe('operatingTrendsChart', () => {
             target_id: 6,
             target_name: '棋牌',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 0
@@ -284,7 +284,7 @@ describe('operatingTrendsChart', () => {
             target_id: 2,
             target_name: '視訊',
             payoff: '-100.0000',
-            wagers_count: 1,
+            users_count: 1,
             bet_amount: '100.0000',
             first_play_count: 0,
             loss_count: 3
@@ -294,7 +294,7 @@ describe('operatingTrendsChart', () => {
             target_id: 3,
             target_name: '電子',
             payoff: '-2415.0000',
-            wagers_count: 104,
+            users_count: 104,
             bet_amount: '5200.0000',
             first_play_count: 0,
             loss_count: 4
@@ -304,7 +304,7 @@ describe('operatingTrendsChart', () => {
             target_id: 4,
             target_name: '彩票',
             payoff: '250.0000',
-            wagers_count: 1,
+            users_count: 1,
             bet_amount: '250.0000',
             first_play_count: 0,
             loss_count: 2
@@ -314,7 +314,7 @@ describe('operatingTrendsChart', () => {
             target_id: 5,
             target_name: '捕魚',
             payoff: '200.0000',
-            wagers_count: 1,
+            users_count: 1,
             bet_amount: '200.0000',
             first_play_count: 0,
             loss_count: 0
@@ -324,7 +324,7 @@ describe('operatingTrendsChart', () => {
             target_id: 6,
             target_name: '棋牌',
             payoff: '4516.0000',
-            wagers_count: 4,
+            users_count: 4,
             bet_amount: '4900.0000',
             first_play_count: 0,
             loss_count: 0
@@ -334,7 +334,7 @@ describe('operatingTrendsChart', () => {
             target_id: 2,
             target_name: '視訊',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 0
@@ -344,7 +344,7 @@ describe('operatingTrendsChart', () => {
             target_id: 3,
             target_name: '電子',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 0
@@ -354,7 +354,7 @@ describe('operatingTrendsChart', () => {
             target_id: 4,
             target_name: '彩票',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 0
@@ -364,7 +364,7 @@ describe('operatingTrendsChart', () => {
             target_id: 5,
             target_name: '捕魚',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 0
@@ -374,7 +374,7 @@ describe('operatingTrendsChart', () => {
             target_id: 6,
             target_name: '棋牌',
             payoff: '0',
-            wagers_count: 0,
+            users_count: 0,
             bet_amount: '0',
             first_play_count: 0,
             loss_count: 0
@@ -386,7 +386,7 @@ describe('operatingTrendsChart', () => {
               target_id: 2,
               target_name: '視訊',
               payoff: '-100.0000',
-              wagers_count: 1,
+              users_count: 1,
               bet_amount: '100.0000',
               first_play_count: 0,
               loss_count: 7
@@ -395,7 +395,7 @@ describe('operatingTrendsChart', () => {
               target_id: 3,
               target_name: '電子',
               payoff: '-2406.6000',
-              wagers_count: 106,
+              users_count: 106,
               bet_amount: '5212.0000',
               first_play_count: 0,
               loss_count: 23
@@ -404,7 +404,7 @@ describe('operatingTrendsChart', () => {
               target_id: 4,
               target_name: '彩票',
               payoff: '250.0000',
-              wagers_count: 1,
+              users_count: 1,
               bet_amount: '250.0000',
               first_play_count: 0,
               loss_count: 4
@@ -413,7 +413,7 @@ describe('operatingTrendsChart', () => {
               target_id: 5,
               target_name: '捕魚',
               payoff: '200.0000',
-              wagers_count: 1,
+              users_count: 1,
               bet_amount: '200.0000',
               first_play_count: 0,
               loss_count: 2
@@ -422,7 +422,7 @@ describe('operatingTrendsChart', () => {
               target_id: 6,
               target_name: '棋牌',
               payoff: '4262.0000',
-              wagers_count: 6,
+              users_count: 6,
               bet_amount: '4972.0000',
               first_play_count: 0,
               loss_count: 3
@@ -432,7 +432,7 @@ describe('operatingTrendsChart', () => {
             {
               data_date: '2025-04-22',
               payoff: '2.4000',
-              wagers_count: 1,
+              users_count: 1,
               bet_amount: '6.0000',
               first_play_count: 0,
               loss_count: 9
@@ -440,7 +440,7 @@ describe('operatingTrendsChart', () => {
             {
               data_date: '2025-04-23',
               payoff: '0',
-              wagers_count: 0,
+              users_count: 0,
               bet_amount: '0',
               first_play_count: 0,
               loss_count: 0
@@ -448,7 +448,7 @@ describe('operatingTrendsChart', () => {
             {
               data_date: '2025-04-24',
               payoff: '6.0000',
-              wagers_count: 1,
+              users_count: 1,
               bet_amount: '6.0000',
               first_play_count: 0,
               loss_count: 7
@@ -456,7 +456,7 @@ describe('operatingTrendsChart', () => {
             {
               data_date: '2025-04-25',
               payoff: '-254.0000',
-              wagers_count: 2,
+              users_count: 2,
               bet_amount: '72.0000',
               first_play_count: 0,
               loss_count: 11
@@ -464,7 +464,7 @@ describe('operatingTrendsChart', () => {
             {
               data_date: '2025-04-26',
               payoff: '0',
-              wagers_count: 0,
+              users_count: 0,
               bet_amount: '0',
               first_play_count: 0,
               loss_count: 3
@@ -472,7 +472,7 @@ describe('operatingTrendsChart', () => {
             {
               data_date: '2025-04-27',
               payoff: '2451.0000',
-              wagers_count: 111,
+              users_count: 111,
               bet_amount: '10650.0000',
               first_play_count: 0,
               loss_count: 9
@@ -480,7 +480,7 @@ describe('operatingTrendsChart', () => {
             {
               data_date: '2025-04-28',
               payoff: '0',
-              wagers_count: 0,
+              users_count: 0,
               bet_amount: '0',
               first_play_count: 0,
               loss_count: 0
@@ -488,7 +488,7 @@ describe('operatingTrendsChart', () => {
           ],
           overall: {
             payoff: '2205.4000',
-            wagers_count: 115,
+            users_count: 115,
             bet_amount: '10734.0000',
             first_play_count: 0,
             loss_count: 39
@@ -558,7 +558,7 @@ describe('operatingTrendsChart', () => {
       },
       {
         name: '投注人數',
-        value: 'wagers_count'
+        value: 'users_count'
       },
       {
         name: '貨量',
@@ -723,7 +723,7 @@ describe('operatingTrendsChart', () => {
           totals: '250'
         }
       ],
-      wagers_count: [
+      users_count: [
         {
           color: 'bg-[#64AFFF]',
           game_category: '總計',
@@ -945,7 +945,7 @@ describe('operatingTrendsChart', () => {
           type: 'line'
         }
       ],
-      wagers_count: [
+      users_count: [
         {
           barWidth: '30px',
           color: '#64AFFF',
@@ -1117,7 +1117,7 @@ describe('operatingTrendsChart', () => {
         payoff: '800',
         target_id: 1,
         target_name: 'Target A',
-        wagers_count: 10
+        users_count: 10
       },
       {
         betAmount: '2000',
@@ -1127,7 +1127,7 @@ describe('operatingTrendsChart', () => {
         payoff: '1500',
         target_id: 2,
         target_name: 'Target B',
-        wagers_count: 20
+        users_count: 20
       }
     ]
 
