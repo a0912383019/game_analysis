@@ -127,9 +127,9 @@ const columns = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('data_name.odds'), // 賠率
-      dataIndex: '', // 待填
-      key: '', // 待填
+      title: t('data_name.odds'),
+      dataIndex: 'odds',
+      key: 'odds',
       align: 'center',
       sorter: true
     },
@@ -268,7 +268,6 @@ const transformBetReportByLobby = (
         userId: params.user_id,
         username: params.username,
         lobby: item.lobby
-        // game: params.game
       },
       innerPagination: {
         defaultSortCol: 'wager_count',
@@ -293,7 +292,7 @@ const transformBetReportLiveBySerialType = (
         item.serial_type_name === ''
           ? `${item.game_name}`
           : `${item.game_name} - ${item.serial_type_name}`,
-      // odds: formatNumber(item.odds), // 賠率
+      odds: formatNumber(item.odds),
       user_count: formatNumber(item.user_count),
       wager_count: formatNumber(item.wager_count),
       bet_amount: formatNumber(item.bet_amount),
@@ -334,7 +333,12 @@ const subFuncBetReportLiveBySerialType = async (record: any) => {
   let params = generateOverallParams(undefined, undefined, sort, order, record.innerExtraParams)
 
   record.innerLoading = true
-  await queryApi<ParamsBetReport>(apiBetReportLiveBySerialType, params, transformBetReportLiveBySerialType, record)
+  await queryApi<ParamsBetReport>(
+    apiBetReportLiveBySerialType,
+    params,
+    transformBetReportLiveBySerialType,
+    record
+  )
   record.innerLoading = false
 }
 const fetchSubData = ref([subFuncBetReportByLobby, subFuncBetReportLiveBySerialType])

@@ -161,6 +161,7 @@ interface BetReportLiveBySerialType {
   game_name: string
   lobby: number
   lobby_name: string
+  odds: string
   payoff: string
   payoff_ratio: string
   rtp: string
