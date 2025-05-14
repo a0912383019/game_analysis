@@ -2,13 +2,14 @@
 import type { TableColumnsType, TableProps } from 'ant-design-vue'
 import { useI18n } from 'vue-i18n'
 import { apiBetReportLiveBySerialType } from '@/api'
-// import { useOperationsRegionDiffStore } from '@/stores'
+import { useOperationsDeviceDiffStore } from '@/stores'
 import { formatNumber, formatToPercentage } from '@/utils/commonUtils'
+import dayjs from '@/utils/appDayjs'
 
 const { t } = useI18n()
 
-// const operationsRegionDiffStore = useOperationsRegionDiffStore()
-// const { searchParams } = operationsRegionDiffStore
+const operationsDeviceDiffStore = useOperationsDeviceDiffStore()
+const { searchParams } = operationsDeviceDiffStore
 
 const tableData = ref<any[]>([])
 const dateLength = ref(0)
@@ -242,12 +243,14 @@ const customRowClass: TableProps['rowClassName'] = (_: any, index: number) => {
   return classText
 }
 
-// watch(
-//   () => operationsRegionDiffStore.isFiltered,
-//   () => {
-//     console.log(searchParams)
-//   }
-// )
+watch(
+  () => operationsDeviceDiffStore.isFiltered,
+  () => {
+    dateLength.value =
+      dayjs(searchParams.dateDuration[1]).diff(searchParams.dateDuration[0], 'day') + 1
+    // console.log(dateLength.value)
+  }
+)
 
 onMounted(() => {
   dateLength.value = 3
@@ -303,7 +306,7 @@ onMounted(() => {
   }
   .ant-table-tbody > tr.ant-table-row.is-first:hover > td.ant-table-cell,
   .ant-table-tbody > tr.ant-table-row.is-first > td.ant-table-cell {
-    background: #dbe2e7;
+    background: #e4e8eb;
   }
 }
 </style>

@@ -30,7 +30,8 @@ const allBinding = computed(() => ({
   <div
     :class="{
       'has-placeholder': props.hasPlaceholder,
-      'is-active': true
+      'is-active': true,
+      'more-left': props.type === 'number'
     }"
     :style="{ '--placeholder-text': `'${props.placeHolderText}'` }"
   >
@@ -75,7 +76,7 @@ const allBinding = computed(() => ({
     }
   }
 }
-.has-placeholder::after {
-  left: 20px;
+.more-left.has-placeholder::after {
+  left: 18px !important;
 }
 </style>
