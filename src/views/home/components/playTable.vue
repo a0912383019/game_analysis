@@ -168,7 +168,7 @@ watch(
         </span>
       </template>
       <template #extra>
-        <cdp-tooltip class="text-[#A5B1C5]" :text="t('text_msg.classify_by_hall_game')" />
+        <cdp-tooltip class="text-[#A5B1C5]" :text="t('msg.classify_by_hall_game')" />
         <span class="text-[#A5B1C5] !mr-2">{{ $t('common.hall_group') }}</span>
         <ant-select class="!w-[200px] !mr-15px" v-model="hallGroupValue" v-bind="hallGroupProps">
         </ant-select>

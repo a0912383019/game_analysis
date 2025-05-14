@@ -20,7 +20,7 @@ const { searchParams } = operationsDeviceDiffStore
 const formRef = ref<FormInstance>()
 const formState = reactive<DeviceDiffFilterFormState>({
   dateDuration: [undefined, undefined],
-  singleDeviceValue: 0,
+  singleDeviceValue: undefined,
   betTotalValue: undefined
 })
 
@@ -88,6 +88,7 @@ const gameProps = computed<AntSelectProps>(() => {
   }
 })
 
+const singleDeviceSymbol = ref<number>(0)
 const singleDeviceProps = computed<AntInputProps>(() => {
   return {
     type: 'number',
@@ -95,6 +96,7 @@ const singleDeviceProps = computed<AntInputProps>(() => {
   }
 })
 
+const betTotalSymbol = ref<number>(0)
 const betTotalProps = computed<AntInputProps>(() => {
   return {
     type: 'number',
@@ -171,11 +173,39 @@ watch(
         <a-col :span="12">
           <ant-select v-model="gameValue" v-bind="gameProps"></ant-select>
         </a-col>
-        <a-col :span="12">
-          <ant-input v-model="formState.singleDeviceValue" v-bind="singleDeviceProps"></ant-input>
+        <a-col :span="6">
+          <ant-input v-model="formState.singleDeviceValue" v-bind="singleDeviceProps">
+            <template #addonBefore>
+              <a-select
+                v-model:value="singleDeviceSymbol"
+                class="w-[110px] text-start"
+                popupClassName="!rounded-none"
+              >
+                <a-select-option :value="0">{{ $t('data_name.greater_than') }}</a-select-option>
+                <a-select-option :value="1">{{ $t('data_name.smaller_than') }}</a-select-option>
+                <template #suffixIcon>
+                  <cdp-icon name="downOutline"></cdp-icon>
+                </template>
+              </a-select>
+            </template>
+          </ant-input>
         </a-col>
-        <a-col :span="12">
-          <ant-input v-model="formState.betTotalValue" v-bind="betTotalProps"></ant-input>
+        <a-col :span="6">
+          <ant-input v-model="formState.betTotalValue" v-bind="betTotalProps">
+            <template #addonBefore>
+              <a-select
+                v-model:value="betTotalSymbol"
+                class="w-[110px] text-start"
+                popupClassName="!rounded-none"
+              >
+                <a-select-option :value="0">{{ $t('data_name.greater_than') }}</a-select-option>
+                <a-select-option :value="1">{{ $t('data_name.smaller_than') }}</a-select-option>
+                <template #suffixIcon>
+                  <cdp-icon name="downOutline"></cdp-icon>
+                </template>
+              </a-select>
+            </template>
+          </ant-input>
         </a-col>
         <a-col :span="12">
           <cdp-button-icon

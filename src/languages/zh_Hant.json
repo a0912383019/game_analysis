@@ -52,7 +52,8 @@
     "query_failed": "查詢失敗，請重新操作",
     "no_permission": "權限不足，請聯繫管理員",
     "login_error": "登入狀態異常，請重新登入",
-    "platform_config_error": "平台數據異常，請切換平台重試"
+    "platform_config_error": "平台數據異常，請切換平台重試",
+    "classify_by_hall_game": "依照廳主開放的遊戲做分類"
   },
   "currency": {
     "currency": "幣別",
@@ -185,7 +186,9 @@
     "odds": "賠率",
     "people_proportion": "人數比例",
     "total_bet_amount": "總下注額",
-    "table_no": "卓次"
+    "table_no": "卓次",
+    "greater_than": "大於",
+    "smaller_than": "小於"
   },
   "regional_difference": {
     "bet_amount_growth_ratio": "貨量成長率",
@@ -289,8 +292,5 @@
     "sZeroRecords": "暫無資料",
     "sInfo": "{START} - {END} / 共 {TOTAL} 筆",
     "sProcessing": "資料載入中..."
-  },
-  "text_msg": {
-    "classify_by_hall_game": "依照廳主開放的遊戲做分類"
   }
 }

@@ -56,7 +56,7 @@ interface DeviceDiffSearchType {
 }
 
 interface DeviceDiffFilterFormState {
-  singleDeviceValue: number
+  singleDeviceValue: number | undefined
   betTotalValue: number | undefined
   dateDuration: [Dayjs | undefined, Dayjs | undefined]
 }

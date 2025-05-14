@@ -55,18 +55,24 @@ const allBinding = computed(() => ({
       v-bind="allBinding"
       size="large"
       :controls="false"
-    ></a-input-number>
+    >
+      <template v-for="(_, key) in $slots" :key="key" #[key]>
+        <slot :name="key"></slot>
+      </template>
+    </a-input-number>
   </div>
 </template>
 <style lang="scss" scoped>
 .cdp-input {
   width: 100%;
   border-radius: 0 2px 2px 0 !important;
-  :deep(.ant-input-group-addon) {
+  :deep(.ant-input-group-addon),
+  :deep(.ant-input-number-group-addon) {
     border-radius: 2px 0 0 2px !important;
     background-color: #ffffff !important;
   }
-  :deep(.ant-input) {
+  :deep(.ant-input),
+  :deep(.ant-input-number) {
     height: 40px;
     font-size: 14px;
     border-radius: 0 2px 2px 0 !important;
