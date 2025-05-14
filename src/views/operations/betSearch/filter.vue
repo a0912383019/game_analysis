@@ -73,22 +73,22 @@ const lobbyProps = computed<AntSelectProps>(() => {
   return {
     allowClear: false,
     placeHolderText: t('common.select_game_hall'),
-    placeHolderValuableText: t('bet_search.game_hall'),
+    placeHolderValuableText: t('common.game_hall'),
     options: lobbyOptions.value
   }
 })
 
 // 遊戲
-const gameTypeValue = ref<string[]>([])
-const gameTypeOptions = ref<SelectProps['options']>([])
-const gameTypeLoading = ref<boolean>(true)
-const gameTypeProps = computed<AntSelectProps>(() => {
+const gameValue = ref<string[]>([])
+const gameOptions = ref<SelectProps['options']>([])
+const gameLoading = ref<boolean>(true)
+const gameProps = computed<AntSelectProps>(() => {
   return {
-    isLoading: gameTypeLoading.value,
+    isLoading: gameLoading.value,
     allowClear: false,
     placeHolderText: t('common.select_game'),
     placeHolderValuableText: t('common.game'),
-    options: gameTypeOptions.value,
+    options: gameOptions.value,
     defaultAll: false,
     mode: 'multiple'
   }
@@ -130,7 +130,7 @@ const handleSearch = () => {
   formRef.value?.validate().then(() => {
     searchParams.hallValue = hallValue.value
     searchParams.memberType = accountOrId.value
-    searchParams.gameTypeValue = gameTypeValue.value
+    searchParams.gameValue = gameValue.value
     searchParams.searchTypeValue = searchTypeValue.value
     searchParams.memberValue = formState.memberValue.split(',').filter(Boolean)
     searchParams.lobbyValue = lobbyValue.value
@@ -143,20 +143,20 @@ const handleSearch = () => {
 
 // 產生遊戲選項
 const generateLobbyGamesOptions = async () => {
-  gameTypeLoading.value = true
-  gameTypeValue.value = []
-  gameTypeOptions.value = []
+  gameLoading.value = true
+  gameValue.value = []
+  gameOptions.value = []
   if (lobbyValue.value !== undefined) {
     await queryLobbyGames(lobbyValue.value).then((games) => {
       if (games) {
-        gameTypeOptions.value = games.map(({ game_code, game_name }) => ({
+        gameOptions.value = games.map(({ game_code, game_name }) => ({
           value: game_code,
           label: game_name
         }))
       }
     })
   }
-  gameTypeLoading.value = false
+  gameLoading.value = false
 }
 
 watch(
@@ -206,7 +206,7 @@ watch(
           </a-form-item>
         </a-col>
         <a-col :span="12">
-          <ant-select v-model="gameTypeValue" v-bind="gameTypeProps"></ant-select>
+          <ant-select v-model="gameValue" v-bind="gameProps"></ant-select>
         </a-col>
         <a-col :span="12">
           <ant-select v-model="searchTypeValue" v-bind="searchTypeProps"></ant-select>

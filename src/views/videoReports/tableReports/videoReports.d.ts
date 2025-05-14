@@ -1,6 +1,6 @@
 interface TableReportsSearchType {
   hallValue: number
-  gameTypeValue: string[]
+  gameValue: string[]
   liveRoom: string[]
   liveTable: string[]
   dateDuration: [Dayjs | undefined, Dayjs | undefined]

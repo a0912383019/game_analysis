@@ -46,16 +46,16 @@ const hallProps = computed<AntSelectProps>(() => {
 })
 
 // 遊戲
-const gameTypeValue = ref<string[]>([])
-const gameTypeOptions = ref<SelectProps['options']>([])
-const gameTypeLoading = ref<boolean>(true)
-const gameTypeProps = computed<AntSelectProps>(() => {
+const gameValue = ref<string[]>([])
+const gameOptions = ref<SelectProps['options']>([])
+const gameLoading = ref<boolean>(true)
+const gameProps = computed<AntSelectProps>(() => {
   return {
-    isLoading: gameTypeLoading.value,
+    isLoading: gameLoading.value,
     allowClear: false,
     placeHolderText: t('common.select_game'),
     placeHolderValuableText: t('common.game'),
-    options: gameTypeOptions.value,
+    options: gameOptions.value,
     defaultAll: false,
     mode: 'multiple'
   }
@@ -130,8 +130,8 @@ const handleSearch = () => {
 
 // 產生遊戲選項
 const generateVideoGamesOptions = async () => {
-  gameTypeValue.value = []
-  gameTypeOptions.value = []
+  gameValue.value = []
+  gameOptions.value = []
 
   const config = getSessionStorageEntity('platform_config')
   const lobbies: ResultLobbies[] = (config && config.platform_lobbies) || []
@@ -144,7 +144,7 @@ const generateVideoGamesOptions = async () => {
 
   const games = await queryLobbyGames(lobby)
   if (games) {
-    gameTypeOptions.value = games.map(({ game_code, game_name }) => ({
+    gameOptions.value = games.map(({ game_code, game_name }) => ({
       value: game_code,
       label: game_name
     }))
@@ -152,9 +152,9 @@ const generateVideoGamesOptions = async () => {
 }
 
 onMounted(async () => {
-  gameTypeLoading.value = true
+  gameLoading.value = true
   await generateVideoGamesOptions()
-  gameTypeLoading.value = false
+  gameLoading.value = false
 
   handleSearch()
 })
@@ -173,7 +173,7 @@ onMounted(async () => {
           <ant-select v-model="hallValue" v-bind="hallProps"></ant-select>
         </a-col>
         <a-col :span="12">
-          <ant-select v-model="gameTypeValue" v-bind="gameTypeProps"></ant-select>
+          <ant-select v-model="gameValue" v-bind="gameProps"></ant-select>
         </a-col>
         <a-col :span="12">
           <ant-select v-model="liveRoomValue" v-bind="liveRoomProps"></ant-select>

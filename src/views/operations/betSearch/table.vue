@@ -296,7 +296,7 @@ const generateBetParams = (
     memberValue,
     hallValue,
     lobbyValue,
-    gameTypeValue
+    gameValue
   } = paramsData
 
   const orderType: 'DESC' | 'ASC' = order.value === 'descend' ? 'DESC' : 'ASC'
@@ -315,7 +315,7 @@ const generateBetParams = (
     sort: sortColumn.value,
     hall_id: hallValue ?? 0,
     lobby: lobbyValue ?? 0,
-    game_code: gameTypeValue,
+    game_code: gameValue,
     user_id,
     username
   }

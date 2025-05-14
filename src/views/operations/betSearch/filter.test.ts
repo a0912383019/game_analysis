@@ -168,8 +168,8 @@ describe('filter', () => {
   it('generateLobbyGamesOptions & game type variables', async () => {
     // generateLobbyGamesOptions 由 watch 觸發
     await flushPromises()
-    expect(wrapper.vm.gameTypeValue).toStrictEqual([])
-    expect(wrapper.vm.gameTypeOptions).toStrictEqual([
+    expect(wrapper.vm.gameValue).toStrictEqual([])
+    expect(wrapper.vm.gameOptions).toStrictEqual([
       {
         label: '水果拉霸',
         value: '5001'
@@ -179,8 +179,8 @@ describe('filter', () => {
         value: '5002'
       }
     ])
-    expect(wrapper.vm.gameTypeLoading).toBe(false)
-    expect(wrapper.vm.gameTypeProps).toStrictEqual({
+    expect(wrapper.vm.gameLoading).toBe(false)
+    expect(wrapper.vm.gameProps).toStrictEqual({
       allowClear: false,
       defaultAll: false,
       isLoading: false,
@@ -253,7 +253,7 @@ describe('filter', () => {
     operationsBetSearchStore = useOperationsBetSearchStore()
     expect(operationsBetSearchStore.searchParams).toStrictEqual({
       dateDuration: [undefined, undefined],
-      gameTypeValue: [],
+      gameValue: [],
       hallValue: undefined,
       lobbyValue: undefined,
       memberType: '',
@@ -269,7 +269,7 @@ describe('filter', () => {
     expect(wrapper.vm.formState.memberValue).toStrictEqual('tom,lily,zack')
     expect(operationsBetSearchStore.searchParams).toStrictEqual({
       dateDuration: [undefined, undefined],
-      gameTypeValue: [],
+      gameValue: [],
       hallValue: 19,
       lobbyValue: 5,
       memberType: 'account',
