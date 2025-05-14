@@ -43,7 +43,7 @@ const hallGroupValue = ref<string[]>([])
 const hallGroupOptions = ref<SelectProps['options']>(
   platformLobbies.map(({ target }) => ({
     value: target,
-    label: t(`room.${targetMap[target].name}`)
+    label: t(`target_group.${targetMap[target].name}`)
   }))
 )
 const hallGroupProps = computed<AntSelectProps>(() => {
@@ -168,6 +168,7 @@ watch(
         </span>
       </template>
       <template #extra>
+        <cdp-tooltip class="text-[#A5B1C5]" :text="t('text_msg.classify_by_hall_game')" />
         <span class="text-[#A5B1C5] !mr-2">{{ $t('common.hall_group') }}</span>
         <ant-select class="!w-[200px] !mr-15px" v-model="hallGroupValue" v-bind="hallGroupProps">
         </ant-select>

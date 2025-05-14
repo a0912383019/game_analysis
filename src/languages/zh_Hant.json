@@ -289,5 +289,8 @@
     "sZeroRecords": "暫無資料",
     "sInfo": "{START} - {END} / 共 {TOTAL} 筆",
     "sProcessing": "資料載入中..."
+  },
+  "text_msg": {
+    "classify_by_hall_game": "依照廳主開放的遊戲做分類"
   }
 }
