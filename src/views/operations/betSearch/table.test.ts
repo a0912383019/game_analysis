@@ -270,7 +270,7 @@ describe('table', () => {
       memberValue: ['123'],
       hallValue: 1,
       lobbyValue: 5,
-      gameTypeValue: ['3001', '3002']
+      gameValue: ['3001', '3002']
     }
     const result = wrapper.vm.generateBetParams(paramsData)
     expect(result).toEqual({

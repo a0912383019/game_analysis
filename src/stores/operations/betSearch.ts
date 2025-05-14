@@ -6,7 +6,7 @@ export const useOperationsBetSearchStore = defineStore('memberBetQueryStore', ()
     memberType: '',
     memberValue: [],
     lobbyValue: undefined,
-    gameTypeValue: [],
+    gameValue: [],
     searchTypeValue: '',
     timeDuration: [undefined, undefined],
     dateDuration: [undefined, undefined]

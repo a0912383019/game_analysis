@@ -17,7 +17,7 @@ describe('useOperationsBetSearchStore', () => {
     expect(operationsBetSearchStore.searchParams.memberType).toBe('')
     expect(operationsBetSearchStore.searchParams.memberValue).toEqual([])
     expect(operationsBetSearchStore.searchParams.lobbyValue).toBeUndefined()
-    expect(operationsBetSearchStore.searchParams.gameTypeValue).toEqual([])
+    expect(operationsBetSearchStore.searchParams.gameValue).toEqual([])
     expect(operationsBetSearchStore.searchParams.searchTypeValue).toBe('')
     expect(operationsBetSearchStore.searchParams.timeDuration).toEqual([undefined, undefined])
     expect(operationsBetSearchStore.searchParams.dateDuration).toEqual([undefined, undefined])
@@ -31,7 +31,7 @@ describe('useOperationsBetSearchStore', () => {
     operationsBetSearchStore.searchParams.memberType = 'account'
     operationsBetSearchStore.searchParams.memberValue = ['tom']
     operationsBetSearchStore.searchParams.lobbyValue = 5
-    operationsBetSearchStore.searchParams.gameTypeValue = ['Slot']
+    operationsBetSearchStore.searchParams.gameValue = ['Slot']
     operationsBetSearchStore.searchParams.searchTypeValue = 'settlement_date'
     operationsBetSearchStore.searchParams.timeDuration = [dayjs('2025-01-01 00:00:00'), undefined]
     operationsBetSearchStore.searchParams.dateDuration = [undefined, dayjs('2025-01-01')]
@@ -42,7 +42,7 @@ describe('useOperationsBetSearchStore', () => {
     expect(operationsBetSearchStore.searchParams.memberType).toBe('account')
     expect(operationsBetSearchStore.searchParams.memberValue).toEqual(['tom'])
     expect(operationsBetSearchStore.searchParams.lobbyValue).toBe(5)
-    expect(operationsBetSearchStore.searchParams.gameTypeValue).toEqual(['Slot'])
+    expect(operationsBetSearchStore.searchParams.gameValue).toEqual(['Slot'])
     expect(operationsBetSearchStore.searchParams.searchTypeValue).toBe('settlement_date')
     expect(operationsBetSearchStore.searchParams.timeDuration).toEqual([
       dayjs('2025-01-01 00:00:00'),

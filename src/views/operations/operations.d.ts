@@ -9,7 +9,7 @@ interface BetRecordSearchType {
   memberType: string
   memberValue: string[]
   lobbyValue: number | undefined
-  gameTypeValue: string[]
+  gameValue: string[]
   searchTypeValue: string
   timeDuration: [Dayjs | undefined, Dayjs | undefined]
   dateDuration: [Dayjs | undefined, Dayjs | undefined]
