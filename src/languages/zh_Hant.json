@@ -212,6 +212,10 @@
     "android": "Android",
     "ios": "IOS"
   },
+  "device_difference": {
+    "single_device_difference": "單一裝置差異(%)",
+    "bet_total_difference": "貨量合計差異(%)"
+  },
   "bet_search": {
     "bet_slip": "注單",
     "betting_time": "下注時間",

@@ -47,14 +47,16 @@ interface RegionDiffSearchType {
   dateDuration: [Dayjs | undefined, Dayjs | undefined]
 }
 
-interface TableReportsSearchType {
+interface DeviceDiffSearchType {
   hallValue: number
-  gameTypeValue: string[]
-  liveRoom: string[]
-  liveTable: string[]
+  gamePlayValue: Game[] | undefined
+  singleDeviceValue: number
+  betTotalValue: number | undefined
   dateDuration: [Dayjs | undefined, Dayjs | undefined]
 }
 
-interface TableReportsFilterFormState {
+interface DeviceDiffFilterFormState {
+  singleDeviceValue: number
+  betTotalValue: number | undefined
   dateDuration: [Dayjs | undefined, Dayjs | undefined]
 }
