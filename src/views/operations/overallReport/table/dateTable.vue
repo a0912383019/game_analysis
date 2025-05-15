@@ -193,7 +193,7 @@ const columns = ref<TableColumnsType[]>([
   ]
 ])
 
-const pagination = reactive({
+const pagination = reactive<Pagination>({
   apiStart: 0,
   pageSize: 10,
   total: 0,
@@ -210,6 +210,7 @@ const transformBetReportByDate = (
   record: any,
   params: ParamsBetReport
 ) => {
+  pagination.total = ret.records_total
   tableData.value = ret.data.map((item, idx) => {
     return {
       key: idx,
