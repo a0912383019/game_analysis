@@ -5,7 +5,7 @@ import type { AntSelectProps, AntCascaderProps } from '@/components/input/inputs
 import { useOperationsRegionDiffStore } from '@/stores'
 import type { Rule } from 'ant-design-vue/es/form'
 import { getSessionStorageEntity } from '@/utils/commonUtils'
-import { dateDurationRule, loadData, tidyMember, generateGamePlayParam } from '@/utils/filterUtils'
+import { dateDurationRule, loadData, generateGamePlayParam } from '@/utils/filterUtils'
 import dayjs from '@/utils/appDayjs'
 
 const { t } = useI18n()
@@ -14,8 +14,7 @@ const operationsRegionDiffStore = useOperationsRegionDiffStore()
 const { searchParams } = operationsRegionDiffStore
 
 const formRef = ref<FormInstance>()
-const formState = reactive<OverallReportFilterFormState>({
-  memberValue: '',
+const formState = reactive<RegionDiffFilterFormState>({
   dateDuration: [undefined, undefined]
 })
 
@@ -28,7 +27,7 @@ const rules: Record<string, Rule[]> = {
 const hallValue = ref<number>(0)
 const hallOptions = ref<SelectProps['options']>([
   { value: 0, label: t('common.all') },
-  ...getSessionStorageEntity('platform_config').platform_halls?.map(
+  ...(getSessionStorageEntity('platform_config').platform_halls ?? []).map(
     ({ hall_id, login_code, name }) => ({
       value: hall_id,
       label: name + ` [${login_code}]`
@@ -100,8 +99,6 @@ const dateDurationChange = (date: [Dayjs, Dayjs] | null) => {
 
 // 搜尋
 const handleSearch = () => {
-  formState.memberValue = tidyMember(formState.memberValue)
-
   formRef.value?.validate().then(() => {
     searchParams.hallValue = hallValue.value
     searchParams.deviceValue = deviceValue.value

@@ -153,11 +153,11 @@ describe('playTable', () => {
     expect(wrapper.vm.hallGroupValue).toStrictEqual([])
     expect(wrapper.vm.hallGroupOptions).toStrictEqual([
       {
-        label: '電子廳',
+        label: '電子',
         value: 3
       },
       {
-        label: '棋牌廳',
+        label: '棋牌',
         value: 6
       }
     ])
@@ -167,11 +167,11 @@ describe('playTable', () => {
       mode: 'multiple',
       options: [
         {
-          label: '電子廳',
+          label: '電子',
           value: 3
         },
         {
-          label: '棋牌廳',
+          label: '棋牌',
           value: 6
         }
       ],

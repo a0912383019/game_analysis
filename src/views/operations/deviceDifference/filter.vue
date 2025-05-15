@@ -33,7 +33,7 @@ const rules: Record<string, Rule[]> = {
 const hallValue = ref<number>(0)
 const hallOptions = ref<SelectProps['options']>([
   { value: 0, label: t('common.all') },
-  ...getSessionStorageEntity('platform_config').platform_halls?.map(
+  ...(getSessionStorageEntity('platform_config').platform_halls ?? []).map(
     ({ hall_id, login_code, name }) => ({
       value: hall_id,
       label: name + ` [${login_code}]`
@@ -88,16 +88,16 @@ const gameProps = computed<AntSelectProps>(() => {
   }
 })
 
-const singleDeviceSymbol = ref<number>(0)
-const singleDeviceProps = computed<AntInputProps>(() => {
+const singleDeviceSymbolValue = ref<number>(0)
+const singleDeviceSymbolProps = computed<AntInputProps>(() => {
   return {
     type: 'number',
     placeHolderText: t('device_difference.single_device_difference')
   }
 })
 
-const betTotalSymbol = ref<number>(0)
-const betTotalProps = computed<AntInputProps>(() => {
+const betTotalSymbolValue = ref<number>(0)
+const betTotalSymbolProps = computed<AntInputProps>(() => {
   return {
     type: 'number',
     placeHolderText: t('device_difference.bet_total_difference')
@@ -174,10 +174,10 @@ watch(
           <ant-select v-model="gameValue" v-bind="gameProps"></ant-select>
         </a-col>
         <a-col :span="6">
-          <ant-input v-model="formState.singleDeviceValue" v-bind="singleDeviceProps">
+          <ant-input v-model="formState.singleDeviceValue" v-bind="singleDeviceSymbolProps">
             <template #addonBefore>
               <a-select
-                v-model:value="singleDeviceSymbol"
+                v-model:value="singleDeviceSymbolValue"
                 class="w-[110px] text-start"
                 popupClassName="!rounded-none"
               >
@@ -191,10 +191,10 @@ watch(
           </ant-input>
         </a-col>
         <a-col :span="6">
-          <ant-input v-model="formState.betTotalValue" v-bind="betTotalProps">
+          <ant-input v-model="formState.betTotalValue" v-bind="betTotalSymbolProps">
             <template #addonBefore>
               <a-select
-                v-model:value="betTotalSymbol"
+                v-model:value="betTotalSymbolValue"
                 class="w-[110px] text-start"
                 popupClassName="!rounded-none"
               >

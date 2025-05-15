@@ -280,8 +280,8 @@ onMounted(() => {
 </template>
 <style lang="scss" scoped>
 .chart {
-  height: 289px;
-  max-height: 290px;
+  height: 285px;
+  max-height: 285px;
   overflow: visible !important;
 }
 .circle {

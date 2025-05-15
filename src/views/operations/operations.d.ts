@@ -1,4 +1,5 @@
 interface BetSearchFilterFormState {
+  hallValue: number | undefined
   memberValue: string
   timeDuration: [Dayjs | undefined, Dayjs | undefined]
   dateDuration: [Dayjs | undefined, Dayjs | undefined]
@@ -36,6 +37,10 @@ interface BaseOverallReportParams {
 
 interface OverallReportFilterFormState {
   memberValue: string
+  dateDuration: [Dayjs | undefined, Dayjs | undefined]
+}
+
+interface RegionDiffFilterFormState {
   dateDuration: [Dayjs | undefined, Dayjs | undefined]
 }
 

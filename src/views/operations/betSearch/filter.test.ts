@@ -101,19 +101,25 @@ describe('filter', () => {
   })
 
   it('formState init correctly', () => {
+    expect(wrapper.vm.formState.hallValue).toBe(19)
     expect(wrapper.vm.formState.memberValue).toBe('')
     expect(wrapper.vm.formState.timeDuration).toEqual([undefined, undefined])
     expect(wrapper.vm.formState.dateDuration).toEqual([undefined, undefined])
   })
 
   it('rules', () => {
+    expect(wrapper.vm.rules.hallValue).toStrictEqual([
+      {
+        message: '請至少選擇一個廳',
+        required: true
+      }
+    ])
     expect(wrapper.vm.rules.memberValue[0].validator).toBeInstanceOf(Function)
     expect(wrapper.vm.rules.timeDuration[0].validator).toBeInstanceOf(Function)
     expect(wrapper.vm.rules.dateDuration[0].validator).toBeInstanceOf(Function)
   })
 
   it('hall variables', () => {
-    expect(wrapper.vm.hallValue).toStrictEqual(19)
     expect(wrapper.vm.hallOptions).toStrictEqual([{ label: '寶馬-我是廳名 [bmw]', value: 1 }])
     expect(wrapper.vm.hallProps).toStrictEqual({
       allowClear: false,
