@@ -29,7 +29,7 @@ const rules: Record<string, Rule[]> = {
 const hallValue = ref<number>(0)
 const hallOptions = ref<SelectProps['options']>([
   { value: 0, label: t('common.all') },
-  ...getSessionStorageEntity('platform_config').platform_halls?.map(
+  ...(getSessionStorageEntity('platform_config').platform_halls ?? []).map(
     ({ hall_id, login_code, name }) => ({
       value: hall_id,
       label: name + ` [${login_code}]`

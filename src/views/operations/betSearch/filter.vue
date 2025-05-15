@@ -23,6 +23,7 @@ const { searchParams } = operationsBetSearchStore
 
 const formRef = ref<FormInstance>()
 const formState = reactive<BetSearchFilterFormState>({
+  hallValue: platformDefaultInfo[globalStore.currentPlatform]?.hall_id,
   memberValue: '',
   timeDuration: [undefined, undefined],
   dateDuration: [undefined, undefined]
@@ -30,18 +31,20 @@ const formState = reactive<BetSearchFilterFormState>({
 
 // 驗證規則
 const rules: Record<string, Rule[]> = {
+  hallValue: [{ required: true, message: t('msg.required_hall') }],
   memberValue: [{ validator: (_rule, value) => memberValueRule(_rule, value, accountOrId.value) }],
   timeDuration: [{ validator: timeDurationRule }],
   dateDuration: [{ validator: dateDurationRule }]
 }
 
 // 廳
-const hallValue = ref<number | undefined>(platformDefaultInfo[globalStore.currentPlatform].hall_id)
 const hallOptions = ref<SelectProps['options']>(
-  getSessionStorageEntity('platform_config').platform_halls?.map(({ hall_id, login_code, name }) => ({
-    value: hall_id,
-    label: name + ` [${login_code}]`
-  }))
+  getSessionStorageEntity('platform_config').platform_halls?.map(
+    ({ hall_id, login_code, name }) => ({
+      value: hall_id,
+      label: name + ` [${login_code}]`
+    })
+  )
 )
 const hallProps = computed<AntSelectProps>(() => {
   return {
@@ -128,7 +131,7 @@ const handleSearch = () => {
   formState.memberValue = tidyMember(formState.memberValue)
 
   formRef.value?.validate().then(() => {
-    searchParams.hallValue = hallValue.value
+    searchParams.hallValue = formState.hallValue
     searchParams.memberType = accountOrId.value
     searchParams.gameValue = gameValue.value
     searchParams.searchTypeValue = searchTypeValue.value
@@ -164,7 +167,7 @@ watch(
   () => {
     generateLobbyGamesOptions()
   },
-   // 讓 watch 在第一次渲染組建就會觸發
+  // 讓 watch 在第一次渲染組建就會觸發
   { immediate: true }
 )
 </script>
@@ -179,7 +182,9 @@ watch(
     >
       <a-row class="!mt-[20px] !mb-[15px] !mx-[7.5px]" justify="start" :gutter="[15, 15]">
         <a-col :span="12">
-          <ant-select v-model="hallValue" v-bind="hallProps"></ant-select>
+          <a-form-item name="hallValue">
+            <ant-select v-model="formState.hallValue" v-bind="hallProps"></ant-select>
+          </a-form-item>
         </a-col>
         <a-col :span="12">
           <a-form-item name="memberValue">
