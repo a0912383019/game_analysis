@@ -4,9 +4,10 @@ import { useI18n } from 'vue-i18n'
 import type { AntSelectProps, AntInputProps } from '@/components/input/inputs'
 import { useOperationsBetSearchStore, useGlobalStore } from '@/stores'
 import type { Rule } from 'ant-design-vue/es/form'
-import { getSessionStorageEntity } from '@/utils/commonUtils'
+import { getDefaultLobbyByTarget, getSessionStorageEntity } from '@/utils/commonUtils'
 import { queryLobbyGames } from '@/utils/commonApi'
-import { platformDefaultInfo } from '@/../public/js/system_config'
+import { platformDefaultHall } from '@/../public/js/system_config'
+import { platformDefaultTarget1 } from '@/config/defaultConfig'
 import {
   memberValueRule,
   dateDurationRule,
@@ -23,7 +24,7 @@ const { searchParams } = operationsBetSearchStore
 
 const formRef = ref<FormInstance>()
 const formState = reactive<BetSearchFilterFormState>({
-  hallValue: platformDefaultInfo[globalStore.currentPlatform]?.hall_id,
+  hallValue: platformDefaultHall[globalStore.currentPlatform]?.hall_id,
   memberValue: '',
   timeDuration: [undefined, undefined],
   dateDuration: [undefined, undefined]
@@ -65,7 +66,9 @@ const memberProps = computed<AntInputProps>(() => {
 })
 
 // 遊戲大廳
-const lobbyValue = ref<number | undefined>(platformDefaultInfo[globalStore.currentPlatform].lobby)
+const lobbyValue = ref<number | undefined>(
+  getDefaultLobbyByTarget(platformDefaultTarget1[globalStore.currentPlatform])
+)
 const lobbyOptions = ref<SelectProps['options']>(
   getSessionStorageEntity('platform_config').platform_lobbies?.map(({ lobby, lobby_name }) => ({
     value: lobby,

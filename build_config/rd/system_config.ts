@@ -32,56 +32,17 @@ export const platformDict: ConfigMap[] = [
   // }
 ]
 
-export const sidebarIcon = {
-  home: 'home',
-  operations: 'operationsCenter',
-  risk_control: 'riskCenter',
-  members: 'memberCenter',
-  video_reports: 'live',
-  electronic_reports: 'prob',
-  user_management: 'userManagement'
-} as const
-
-export type SidebarIconType = keyof typeof sidebarIcon
-
-// 遊戲大類編號
-export const targetMap: Record<number, { name: string; color: string }> = {
-  2: { name: 'live', color: '--cdp-yellow' }, // 視訊
-  3: { name: 'prob', color: '--cdp-pink' }, // 電子
-  4: { name: 'lottery', color: '--cdp-orange' }, // 彩票
-  5: { name: 'fish', color: '--cdp-blue' }, // 捕魚
-  6: { name: 'card', color: '--cdp-green' } // 棋牌
-}
-
-// 各平台篩選預設值
-export const platformDefaultInfo = {
+export const platformDefaultHall = {
   bbin: {
-    hall_id: 1, // 寶馬-我是廳名 [bmw]
-    lobby: 5, // BB電子
-    target: [3, 2, 6, 5, 4]
+    hall_id: 1 // 寶馬-我是廳名 [bmw]
   },
   bbgp: {
-    hall_id: 3820605, // WG [wgg]
-    lobby: 5, // BB電子
-    target: [3, 2, 6, 5, 4]
+    hall_id: 3820605 // WG [wgg]
   },
   xctw: {
-    hall_id: 19, // default_classify []
-    lobby: 5, // Gt5電子
-    target: [3]
+    hall_id: 19 // default_classify []
   },
   xcmy: {
-    hall_id: 29,
-    lobby: 5, // Gt5電子
-    target: [3]
+    hall_id: 29 // default_classify []
   }
-}
-
-// 各平台時區
-export const platformTimezones: Record<string, string> = {
-  bbin: 'America/New_York',
-  bbgp: 'America/New_York',
-  xctw: 'Asia/Taipei',
-  xcmy: 'Asia/Taipei',
-  midori: 'Asia/Manila'
 }

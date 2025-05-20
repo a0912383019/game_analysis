@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import filterBox from '@/views/riskControl/highProfitMembers/filter.vue'
-// import tableBox from '@/views/videoReports/tableReports/table.vue'
+import tableBox from '@/views/riskControl/highProfitMembers/table.vue'
 // import { useOperationsOverallReportStore } from '@/stores'
 
 // const operationsOverallReportStore = useOperationsOverallReportStore()
@@ -12,6 +12,6 @@ import filterBox from '@/views/riskControl/highProfitMembers/filter.vue'
 </script>
 <template>
   <filter-box />
-  <!-- <table-box /> -->
+  <table-box />
 </template>
 <style lang="scss" scoped></style>

@@ -143,7 +143,7 @@ onMounted(async () => {
               <template #addonBefore>
                 <a-select
                   v-model:value="accountOrId"
-                  class="w-[75px]"
+                  class="w-[110px] text-left"
                   popupClassName="!rounded-none"
                 >
                   <a-select-option value="account">{{ $t('common.accout') }}</a-select-option>

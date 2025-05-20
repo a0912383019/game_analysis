@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import type { SelectProps, FormInstance } from 'ant-design-vue'
+import type { SelectProps, FormInstance, CascaderProps } from 'ant-design-vue'
 import { useI18n } from 'vue-i18n'
-import type { AntSelectProps, AntInputProps } from '@/components/input/inputs'
+import type { AntSelectProps, AntInputProps, AntCascaderProps } from '@/components/input/inputs'
 import { useGlobalStore, useOperationsDeviceDiffStore } from '@/stores'
 import type { Rule } from 'ant-design-vue/es/form'
-import { getSessionStorageEntity } from '@/utils/commonUtils'
-import { dateDurationRule } from '@/utils/filterUtils'
-import { platformDefaultInfo } from '@/../public/js/system_config'
+import { getDefaultLobbyByTarget, getSessionStorageEntity } from '@/utils/commonUtils'
+import { dateDurationRule, loadData } from '@/utils/filterUtils'
 import { queryLobbyGames } from '@/utils/commonApi'
 import dayjs from '@/utils/appDayjs'
 
@@ -49,42 +48,21 @@ const hallProps = computed<AntSelectProps>(() => {
   }
 })
 
-// 日期區間
-const dateDurationChange = (date: [Dayjs, Dayjs] | null) => {
-  formState.dateDuration = date || [undefined, undefined]
-}
-
-// 遊戲大廳
-const lobbyValue = ref<number | undefined>(platformDefaultInfo[globalStore.currentPlatform].lobby)
-const lobbyOptions = ref<SelectProps['options']>(
+// 遊戲及玩法
+const gamePlayValue = ref<LobbyGameData[]>([])
+const gamePlayOptions = ref<CascaderProps['options']>(
   getSessionStorageEntity('platform_config').platform_lobbies?.map(({ lobby, lobby_name }) => ({
     value: lobby,
     label: lobby_name,
     isLeaf: false
   })) || []
 )
-const lobbyProps = computed<AntSelectProps>(() => {
+const gamePlayProps = computed<AntCascaderProps>(() => {
   return {
-    allowClear: false,
-    placeHolderText: t('common.select_game_hall'),
-    placeHolderValuableText: t('common.game_hall'),
-    options: lobbyOptions.value
-  }
-})
-
-// 遊戲
-const gameValue = ref<string[]>([])
-const gameOptions = ref<SelectProps['options']>([])
-const gameLoading = ref<boolean>(true)
-const gameProps = computed<AntSelectProps>(() => {
-  return {
-    isLoading: gameLoading.value,
-    allowClear: false,
-    placeHolderText: t('common.select_game'),
-    placeHolderValuableText: t('common.game'),
-    options: gameOptions.value,
-    defaultAll: false,
-    mode: 'multiple'
+    placeHolderText: t('common.select_game_play'),
+    placeHolderValuableText: t('common.game_play'),
+    options: gamePlayOptions.value,
+    loadData: loadData
   }
 })
 
@@ -104,6 +82,11 @@ const betTotalSymbolProps = computed<AntInputProps>(() => {
   }
 })
 
+// 日期區間
+const dateDurationChange = (date: [Dayjs, Dayjs] | null) => {
+  formState.dateDuration = date || [undefined, undefined]
+}
+
 // 搜尋
 const handleSearch = () => {
   formRef.value?.validate().then(() => {
@@ -113,33 +96,6 @@ const handleSearch = () => {
     operationsDeviceDiffStore.isFiltered = new Date().getTime()
   })
 }
-
-// 產生遊戲選項
-const generateLobbyGamesOptions = async () => {
-  gameLoading.value = true
-  gameValue.value = []
-  gameOptions.value = []
-  if (lobbyValue.value !== undefined) {
-    await queryLobbyGames(lobbyValue.value).then((games) => {
-      if (games) {
-        gameOptions.value = games.map(({ game_code, game_name }) => ({
-          value: game_code,
-          label: game_name
-        }))
-      }
-    })
-  }
-  gameLoading.value = false
-}
-
-watch(
-  () => lobbyValue.value,
-  () => {
-    generateLobbyGamesOptions()
-  },
-  // 讓 watch 在第一次渲染組建就會觸發
-  { immediate: true }
-)
 
 // onMounted(() => {
 //   handleSearch()
@@ -159,19 +115,7 @@ watch(
           <ant-select v-model="hallValue" v-bind="hallProps"></ant-select>
         </a-col>
         <a-col :span="12">
-          <a-form-item name="dateDuration">
-            <ant-date-range
-              v-model="formState.dateDuration"
-              @update:value="dateDurationChange"
-              :rangeConfig="2"
-            ></ant-date-range>
-          </a-form-item>
-        </a-col>
-        <a-col :span="12">
-          <ant-select v-model="lobbyValue" v-bind="lobbyProps"></ant-select>
-        </a-col>
-        <a-col :span="12">
-          <ant-select v-model="gameValue" v-bind="gameProps"></ant-select>
+          <ant-cascader v-model="gamePlayValue" v-bind="gamePlayProps"></ant-cascader>
         </a-col>
         <a-col :span="6">
           <ant-input v-model="formState.singleDeviceValue" v-bind="singleDeviceSymbolProps">
@@ -206,6 +150,17 @@ watch(
               </a-select>
             </template>
           </ant-input>
+        </a-col>
+        <a-col :span="12">
+          <a-form-item name="dateDuration">
+            <ant-date-range
+              v-model="formState.dateDuration"
+              @update:value="dateDurationChange"
+              :disabled-days="7"
+              :dateRepeat="true"
+              :rangeConfig="2"
+            ></ant-date-range>
+          </a-form-item>
         </a-col>
         <a-col :span="12">
           <cdp-button-icon

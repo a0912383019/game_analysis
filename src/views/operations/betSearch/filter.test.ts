@@ -8,8 +8,19 @@ import { useOperationsBetSearchStore, useGlobalStore } from '@/stores'
 import dayjs from '@/utils/appDayjs'
 
 vi.mock('@/../public/js/system_config', () => ({
-  platformDefaultInfo: {
-    bbin: { hall_id: 19, lobby: 5 }
+  platformDefaultHall: {
+    bbin: {
+      hall_id: 1
+    },
+    bbgp: {
+      hall_id: 3820605
+    },
+    xctw: {
+      hall_id: 19
+    },
+    xcmy: {
+      hall_id: 29
+    }
   }
 }))
 
@@ -60,6 +71,10 @@ describe('filter', () => {
       }
     })
 
+    vi.spyOn(module, 'getDefaultLobbyByTarget').mockImplementation(() => {
+      return 19
+    })
+
     wrapper = shallowMount(filter, {
       global: {
         plugins: [i18n],
@@ -101,7 +116,7 @@ describe('filter', () => {
   })
 
   it('formState init correctly', () => {
-    expect(wrapper.vm.formState.hallValue).toBe(19)
+    expect(wrapper.vm.formState.hallValue).toBe(1)
     expect(wrapper.vm.formState.memberValue).toBe('')
     expect(wrapper.vm.formState.timeDuration).toEqual([undefined, undefined])
     expect(wrapper.vm.formState.dateDuration).toEqual([undefined, undefined])
@@ -143,7 +158,7 @@ describe('filter', () => {
   })
 
   it('lobby variables', () => {
-    expect(wrapper.vm.lobbyValue).toStrictEqual(5)
+    expect(wrapper.vm.lobbyValue).toStrictEqual(19)
     expect(wrapper.vm.lobbyOptions).toStrictEqual([
       {
         label: 'BB電子',
@@ -276,8 +291,8 @@ describe('filter', () => {
     expect(operationsBetSearchStore.searchParams).toStrictEqual({
       dateDuration: [undefined, undefined],
       gameValue: [],
-      hallValue: 19,
-      lobbyValue: 5,
+      hallValue: 1,
+      lobbyValue: 19,
       memberType: 'account',
       memberValue: ['tom', 'lily', 'zack'],
       searchTypeValue: 'settlement_date',

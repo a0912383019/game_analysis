@@ -1,5 +1,5 @@
 import dayjs from '@/utils/appDayjs'
-import { platformTimezones } from '@/../public/js/system_config'
+import { platformTimezones } from '@/config/defaultConfig'
 import { useGlobalStore } from '@/stores'
 import { notification } from 'ant-design-vue'
 import { i18n } from '@/global/i18n'
@@ -129,4 +129,10 @@ export function handleApiError(err: unknown) {
   } else {
     notification['error']({ message: t('msg.query_failed') })
   }
+}
+
+export function getDefaultLobbyByTarget(target: number): number | undefined {
+  return getSessionStorageEntity('platform_config').platform_lobbies?.find(
+    (ele: ResultLobbies) => ele.target === target
+  )?.lobby
 }

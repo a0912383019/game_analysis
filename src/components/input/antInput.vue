@@ -5,7 +5,9 @@ const props = withDefaults(defineProps<AntInputProps>(), {
   modelValue: '',
   type: 'text',
   hasPlaceholder: true,
-  disabled: false
+  precision: 2,
+  disabled: false,
+  min: Infinity
 })
 
 const emit = defineEmits(['update:modelValue'])
@@ -51,9 +53,11 @@ const allBinding = computed(() => ({
     <a-input-number
       v-else-if="props.type === 'number'"
       :disabled="props.disabled"
+      :precision="props.precision"
       class="cdp-input"
       v-bind="allBinding"
       size="large"
+      :min="props.min"
       :controls="false"
     >
       <template v-for="(_, key) in $slots" :key="key" #[key]>

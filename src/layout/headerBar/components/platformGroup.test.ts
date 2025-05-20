@@ -5,6 +5,26 @@ import { i18n } from '@/global/i18n'
 import { createTestingPinia } from '@pinia/testing'
 import { useGlobalStore } from '@/stores'
 
+vi.mock('@/../public/js/system_config', () => ({
+  platformDict: [
+    {
+      name: 'BBIN',
+      key: 'bbin',
+      pColor: '#061127'
+    },
+    {
+      name: 'BBGP',
+      key: 'bbgp',
+      pColor: '#18242C'
+    },
+    {
+      name: 'Midori',
+      key: 'midori',
+      pColor: '#332E21'
+    }
+  ]
+}))
+
 describe('platformGroup', () => {
   let wrapper: VueWrapper<any>
   let globalStore: ReturnType<typeof useGlobalStore>

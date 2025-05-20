@@ -5,6 +5,7 @@ import type { AppRangePickerProps } from './inputs'
 
 const props = withDefaults(defineProps<AppRangePickerProps>(), {
   defaultDates: () => [dayjs().add(-2, 'd').startOf('day'), dayjs().add(-1, 'd').endOf('day')], // 預設近 2天
+  dateRepeat: false,
   disabledDays: 60, // 預設 60天
   rangeConfig: 1
 })
@@ -40,22 +41,26 @@ const hackValue = ref<[Dayjs, Dayjs] | undefined>(
 )
 
 const disabledDate = (current: Dayjs): boolean => {
-  // 禁用超過今天的日期
-  // const disabledAfterToday = current > dayjs().endOf('day')
   // 如果沒有選擇日期範圍
   if (!bindingValue.value || bindingValue.value.length !== 2) {
-    // return disabledAfterToday
     return false
   }
 
   const [start, end] = bindingValue.value
   if (!start && !end) return false
 
+  // 禁用選擇同一天（強制要至少 2 天範圍）
+  if (props.dateRepeat && start && !end && current.diff(start, 'days') === 0) {
+    return true
+  }
+  if (props.dateRepeat && !start && end && end.diff(current, 'days') === 0) {
+    return true
+  }
+
   // 禁用超過 x 天以外的日期
   const tooLate = start ? current.diff(start, 'days') > props.disabledDays - 1 : false
   const tooEarly = end ? end.diff(current, 'days') > props.disabledDays - 1 : false
 
-  // return disabledAfterToday || tooLate || tooEarly
   return tooLate || tooEarly
 }
 

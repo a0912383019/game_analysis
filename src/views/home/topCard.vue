@@ -3,7 +3,7 @@ import { useI18n } from 'vue-i18n'
 import { useGlobalStore } from '@/stores'
 import { formatNumber } from '@/utils/commonUtils'
 import { apiGetGameReportByTarget } from '@/api'
-import { targetMap } from '@/../public/js/system_config'
+import { targetMap } from '@/config/defaultConfig'
 import { notification } from 'ant-design-vue'
 import { getPlatformToday } from '@/utils/appDayjs'
 
