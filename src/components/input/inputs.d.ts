@@ -26,10 +26,13 @@ export interface AntInputProps {
   placeHolderText?: string
   originPlaceHolder?: string // 原始套件自帶的 placeholder
   disabled?: boolean
+  precision?: number // 小數點位數
+  min?: number
 }
 
 export interface AppRangePickerProps {
   defaultDates?: [string | Dayjs, string | Dayjs]
+  dateRepeat?: boolean // 日期可否重複選
   disabledDays?: number // 禁用超過的天數
   rangeConfig?: number // 快捷選項
 }

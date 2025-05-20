@@ -12,7 +12,7 @@ import {
 import { useGlobalStore } from '@/stores'
 import { createTestingPinia } from '@pinia/testing'
 
-vi.mock('@/../public/js/system_config', () => ({
+vi.mock('@/config/defaultConfig', () => ({
   platformTimezones: {
     bbin: 'America/New_York',
     xctw: 'Asia/Taipei'

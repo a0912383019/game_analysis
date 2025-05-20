@@ -10,7 +10,7 @@ vi.mock('@/api', () => ({
   apiGetGameReportTrend: vi.fn()
 }))
 
-vi.mock('@/../public/js/system_config', () => ({
+vi.mock('@/config/defaultConfig', () => ({
   targetMap: {
     2: { name: 'live', color: '--cdp-yellow' }, // 視訊
     3: { name: 'prob', color: '--cdp-pink' }, // 電子

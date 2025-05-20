@@ -2,23 +2,23 @@
 import type { SelectProps, FormInstance } from 'ant-design-vue'
 import { useI18n } from 'vue-i18n'
 import type { AntSelectProps, AntInputProps } from '@/components/input/inputs'
-import { useGlobalStore, useVideoReportsTableReportsStore } from '@/stores'
+import { useGlobalStore, useHighProfitMembersStore } from '@/stores'
 import type { Rule } from 'ant-design-vue/es/form'
-import { getSessionStorageEntity } from '@/utils/commonUtils'
+import { getSessionStorageEntity, getDefaultLobbyByTarget } from '@/utils/commonUtils'
 import { memberValueRule, dateDurationRule, tidyMember } from '@/utils/filterUtils'
-import { platformDefaultInfo } from '@/../public/js/system_config'
+import { platformDefaultTarget2 } from '@/config/defaultConfig'
 import dayjs from '@/utils/appDayjs'
 
 const { t } = useI18n()
 
 const globalStore = useGlobalStore()
 
-// const videoReportsTableReportsStore = useVideoReportsTableReportsStore()
-// const { searchParams } = videoReportsTableReportsStore
+const highProfitMembersStore = useHighProfitMembersStore()
+const { searchParams } = highProfitMembersStore
 
 const formRef = ref<FormInstance>()
 const formState = reactive<HighProfitMembersFormState>({
-  lobbyValue: platformDefaultInfo[globalStore.currentPlatform].lobby,
+  lobbyValue: getDefaultLobbyByTarget(platformDefaultTarget2[globalStore.currentPlatform]),
   memberValue: '',
   dateDuration: [undefined, undefined]
 })
@@ -60,6 +60,7 @@ const memberProfitValue = ref<number>()
 const memberProfitProps = computed<AntInputProps>(() => {
   return {
     type: 'number',
+    precision: 0,
     placeHolderText: t('data_name.member_payoff')
   }
 })
@@ -69,6 +70,7 @@ const memberSingleGameProfitValue = ref<number>()
 const memberSingleGameProfitProps = computed<AntInputProps>(() => {
   return {
     type: 'number',
+    precision: 0,
     placeHolderText: t('data_name.member_sigle_game_payoff')
   }
 })
@@ -83,7 +85,7 @@ const handleSearch = () => {
   formRef.value?.validate().then(() => {
     // searchParams.hallValue = hallValue.value
     // searchParams.dateDuration = formState.dateDuration
-    // videoReportsTableReportsStore.isFiltered = new Date().getTime()
+    highProfitMembersStore.isFiltered = new Date().getTime()
   })
 }
 

@@ -7,7 +7,7 @@ import { apiGetOperationGameAnalysis } from '@/api'
 import { notification } from 'ant-design-vue'
 import { getPlatformToday } from '@/utils/appDayjs'
 import { getSessionStorageEntity, formatNumber, formatToPercentage } from '@/utils/commonUtils'
-import { targetMap } from '@/../public/js/system_config'
+import { targetMap } from '@/config/defaultConfig'
 
 const { t } = useI18n()
 
