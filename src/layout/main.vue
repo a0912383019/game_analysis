@@ -20,43 +20,57 @@ const refreshData = async () => {
   globalStore.isLoading = true
 
   try {
-    const [hallRes, lobbyRes, deviceRes] = await Promise.all([
-      apiHalls({
-        hall_id: undefined
-      }),
-      apiLobbies({
-        lobby: undefined
-      }),
-      apiDevices({
-        device: undefined
-      })
+    const [hallResult, lobbyResult, deviceResult] = await Promise.allSettled([
+      apiHalls({ hall_id: undefined }),
+      apiLobbies({ lobby: undefined }),
+      apiDevices({ device: undefined })
     ])
 
     const platformData: Record<string, any> = {}
 
-    if (hallRes.result === 'success' && hallRes.ret.length !== 0) {
-      platformData['platform_halls'] = hallRes.ret
+    if (
+      hallResult.status === 'fulfilled' &&
+      hallResult.value.result === 'success' &&
+      hallResult.value.ret.length !== 0
+    ) {
+      platformData['platform_halls'] = hallResult.value.ret
     }
-    if (lobbyRes.result === 'success' && lobbyRes.ret.length !== 0) {
-      platformData['platform_lobbies'] = lobbyRes.ret
+
+    if (
+      lobbyResult.status === 'fulfilled' &&
+      lobbyResult.value.result === 'success' &&
+      lobbyResult.value.ret.length !== 0
+    ) {
+      platformData['platform_lobbies'] = lobbyResult.value.ret
     }
-    if (deviceRes.result === 'success' && deviceRes.ret.length !== 0) {
-      platformData['platform_devices'] = deviceRes.ret
+
+    if (
+      deviceResult.status === 'fulfilled' &&
+      deviceResult.value.result === 'success' &&
+      deviceResult.value.ret.length !== 0
+    ) {
+      platformData['platform_devices'] = deviceResult.value.ret
     }
 
     sessionStorage.setItem('platform_config', JSON.stringify(platformData))
-  } catch (error) {
-    console.error(error)
-    if (axios.isAxiosError(error)) {
-      const status = error.response?.status
-      if (status === 401) {
-        globalStore.storeHandleApiError()
-      } else {
-        notification['error']({
-          message: t('msg.platform_config_error')
-        })
-      }
+
+    // 額外提示錯誤（不是進 catch，而是個別處理）
+    const errors: string[] = []
+    if (hallResult.status === 'rejected') errors.push('Hall')
+    if (lobbyResult.status === 'rejected') errors.push('Lobby')
+    if (deviceResult.status === 'rejected') errors.push('Device')
+
+    if (errors.length > 0) {
+      notification['error']({
+        message: `${errors.join(', ')} ${t('msg.platform_config_error')}`
+      })
     }
+  } catch (error) {
+    // 這邊通常進不來，因為 allSettled 不會 throw error，但保險起見還是寫上
+    console.error(error)
+    notification['error']({
+      message: t('msg.platform_config_error')
+    })
   } finally {
     globalStore.isLoading = false
   }

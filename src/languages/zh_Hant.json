@@ -53,7 +53,7 @@
     "no_permission": "權限不足，請聯繫管理員",
     "login_error": "登入狀態異常，請重新登入",
     "required_hall": "請至少選擇一個廳",
-    "platform_config_error": "平台數據異常，請切換平台重試",
+    "platform_config_error": "數據異常，請切換平台重試",
     "classify_by_hall_game": "依照廳主開放的遊戲做分類"
   },
   "currency": {
