@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import hallTable from '@/views/operations/overallReport/table/hallTable.vue'
-import gameTable from '@/views/operations/overallReport/table/gameTable.vue'
-import playTable from '@/views/operations/overallReport/table/playTable.vue'
 import dateTable from '@/views/riskControl/highProfitMembers/table/dateTable.vue'
+import playerTable from '@/views/riskControl/highProfitMembers/table/playerTable.vue'
 import { useOperationsOverallReportStore } from '@/stores'
 import { formatToApiDate } from '@/utils/commonUtils'
 import dayjs from '@/utils/appDayjs'
@@ -24,7 +22,7 @@ const currentTabs = ref<string>('dateTable')
 // 整理所有 component
 const componentMap = {
   dateTable,
-  // playerTable,
+  playerTable,
   // gameTable
 }
 
