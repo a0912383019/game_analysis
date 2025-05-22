@@ -7,7 +7,6 @@ import type { Rule } from 'ant-design-vue/es/form'
 import { getDefaultLobbyByTarget, getSessionStorageEntity } from '@/utils/commonUtils'
 import { dateDurationRule, loadData } from '@/utils/filterUtils'
 import { platformDefaultTarget1 } from '@/config/defaultConfig'
-import { queryLobbyGames } from '@/utils/commonApi'
 import dayjs from '@/utils/appDayjs'
 
 const { t } = useI18n()
@@ -91,6 +90,7 @@ const deviceProps = computed<AntSelectProps>(() => {
   }
 })
 
+// 單一裝置差異(%)
 const singleDeviceSymbolValue = ref<number>(0)
 const singleDeviceSymbolProps = computed<AntInputProps>(() => {
   return {
@@ -99,6 +99,7 @@ const singleDeviceSymbolProps = computed<AntInputProps>(() => {
   }
 })
 
+// 貨量合計差異(%)
 const betTotalSymbolValue = ref<number>(0)
 const betTotalSymbolProps = computed<AntInputProps>(() => {
   return {

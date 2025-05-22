@@ -207,7 +207,6 @@ defineExpose({ goToFirstPage, closeAllExpandedRows })
     <!-- 處理 #headerCell slot -->
     <template #headerCell="{ column }">
       <template v-if="$slots['header-' + String(column.dataIndex)]">
-        {{ console.log(column.dataIndex) }}
         <slot :name="'header-' + String(column.dataIndex)" :column="column" />
       </template>
       <template v-else>
