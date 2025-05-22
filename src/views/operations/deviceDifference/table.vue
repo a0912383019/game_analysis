@@ -17,15 +17,31 @@ const dateLength = ref(0)
 const columns = ref<TableColumnsType[]>([
   [
     {
+      title: t('common.game_hall'),
+      dataIndex: 'game_hall',
+      align: 'center',
+      customCell: (_, index) => {
+        if (index === undefined) return {}
+        if (index % dateLength.value === 0) {
+          if (index === 0) {
+            return { rowSpan: dateLength.value, colSpan: 2 }
+          } else {
+            return { rowSpan: dateLength.value }
+          }
+        }
+        return { rowSpan: 0 }
+      }
+    },
+    {
       title: t('common.game_name'),
       dataIndex: 'game_name',
       align: 'center',
       customCell: (_, index) => {
         if (index === undefined) return {}
-        if (index % dateLength.value === 0) {
-          return { rowSpan: dateLength.value } // 第一列合併兩列
+        if (index < dateLength.value) {
+          return { colSpan: 0 }
         }
-        return { rowSpan: 0 } // 第二列隱藏
+        return {}
       }
     },
     {
@@ -41,6 +57,26 @@ const columns = ref<TableColumnsType[]>([
     {
       title: t('common.difference'),
       dataIndex: 'b_difference',
+      align: 'center'
+    },
+    {
+      title: t('device.phone'),
+      dataIndex: 'phone',
+      align: 'right'
+    },
+    {
+      title: t('common.difference'),
+      dataIndex: 'p_difference',
+      align: 'center'
+    },
+    {
+      title: t('device.pad'),
+      dataIndex: 'pad',
+      align: 'right'
+    },
+    {
+      title: t('common.difference'),
+      dataIndex: 'pad_difference',
       align: 'center'
     },
     {
@@ -61,26 +97,6 @@ const columns = ref<TableColumnsType[]>([
     {
       title: t('common.difference'),
       dataIndex: 'pw_difference',
-      align: 'center'
-    },
-    {
-      title: t('device.android'),
-      dataIndex: 'android',
-      align: 'right'
-    },
-    {
-      title: t('common.difference'),
-      dataIndex: 'a_difference',
-      align: 'center'
-    },
-    {
-      title: t('device.ios'),
-      dataIndex: 'ios',
-      align: 'right'
-    },
-    {
-      title: t('common.difference'),
-      dataIndex: 'ios_difference',
       align: 'center'
     }
   ]
@@ -218,18 +234,18 @@ const transformData = () => {
 
   tableData.value = data.flatMap((item) => {
     return item.data.map((row) => ({
-      game_name: item.game_name,
+      game_hall: item.game_name,
       date: row.date,
       bet_total: formatNumber(row.volume_total),
       b_difference: row.volume_diff || '--',
-      pc: formatNumber(row.pc_total),
-      pc_difference: row.pc_diff || '--',
-      phone_web: formatNumber(row.phone_web_total),
-      pw_difference: row.phone_web_diff || '--',
-      android: formatNumber(row.aio_total),
-      a_difference: row.aio_diff || '--',
-      ios: formatNumber(row.caio_total),
-      ios_difference: row.caio_diff || '--'
+      phone: formatNumber(row.pc_total),
+      p_difference: row.pc_diff || '--',
+      pad: formatNumber(row.phone_web_total),
+      pad_difference: row.phone_web_diff || '--',
+      pc: formatNumber(row.aio_total),
+      pc_difference: row.aio_diff || '--',
+      phone_web: formatNumber(row.caio_total),
+      pw_difference: row.caio_diff || '--'
     }))
   })
 }
@@ -267,9 +283,35 @@ onMounted(() => {
       :loading="apiLoading"
       :customRowClass="customRowClass"
     >
+      <template #header-phone="{ column }">
+        <span class="!mr-1">{{ column.title }}</span>
+        <cdp-tooltip :text="$t('device.phone_description')"></cdp-tooltip>
+      </template>
+      <template #header-pad="{ column }">
+        <span class="!mr-1">{{ column.title }}</span>
+        <cdp-tooltip :text="$t('device.pad_description')"></cdp-tooltip>
+      </template>
+      <template #header-pc="{ column }">
+        <span class="!mr-1">{{ column.title }}</span>
+        <cdp-tooltip :text="$t('device.pc_description')"></cdp-tooltip>
+      </template>
+      <template #header-phone_web="{ column }">
+        <span class="!mr-1">{{ column.title }}</span>
+        <cdp-tooltip :text="$t('device.phone_web_description')"></cdp-tooltip>
+      </template>
       <template #b_difference="scope: any">
         <span :class="{ 'text-red-500': parseFloat(scope.record.b_difference) < 0 }">
           {{ scope.record.b_difference }}
+        </span>
+      </template>
+      <template #p_difference="scope: any">
+        <span :class="{ 'text-red-500': parseFloat(scope.record.p_difference) < 0 }">
+          {{ scope.record.p_difference }}
+        </span>
+      </template>
+      <template #pad_difference="scope: any">
+        <span :class="{ 'text-red-500': parseFloat(scope.record.pad_difference) < 0 }">
+          {{ scope.record.pad_difference }}
         </span>
       </template>
       <template #pc_difference="scope: any">
@@ -280,16 +322,6 @@ onMounted(() => {
       <template #pw_difference="scope: any">
         <span :class="{ 'text-red-500': parseFloat(scope.record.pw_difference) < 0 }">
           {{ scope.record.pw_difference }}
-        </span>
-      </template>
-      <template #a_difference="scope: any">
-        <span :class="{ 'text-red-500': parseFloat(scope.record.a_difference) < 0 }">
-          {{ scope.record.a_difference }}
-        </span>
-      </template>
-      <template #ios_difference="scope: any">
-        <span :class="{ 'text-red-500': parseFloat(scope.record.ios_difference) < 0 }">
-          {{ scope.record.ios_difference }}
         </span>
       </template>
     </custom-table>

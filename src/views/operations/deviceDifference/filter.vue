@@ -6,6 +6,7 @@ import { useGlobalStore, useOperationsDeviceDiffStore } from '@/stores'
 import type { Rule } from 'ant-design-vue/es/form'
 import { getDefaultLobbyByTarget, getSessionStorageEntity } from '@/utils/commonUtils'
 import { dateDurationRule, loadData } from '@/utils/filterUtils'
+import { platformDefaultTarget1 } from '@/config/defaultConfig'
 import { queryLobbyGames } from '@/utils/commonApi'
 import dayjs from '@/utils/appDayjs'
 
@@ -48,6 +49,11 @@ const hallProps = computed<AntSelectProps>(() => {
   }
 })
 
+// 日期區間
+const dateDurationChange = (date: [Dayjs, Dayjs] | null) => {
+  formState.dateDuration = date || [undefined, undefined]
+}
+
 // 遊戲及玩法
 const gamePlayValue = ref<LobbyGameData[]>([])
 const gamePlayOptions = ref<CascaderProps['options']>(
@@ -63,6 +69,25 @@ const gamePlayProps = computed<AntCascaderProps>(() => {
     placeHolderValuableText: t('common.game_play'),
     options: gamePlayOptions.value,
     loadData: loadData
+  }
+})
+
+// 裝置
+const deviceValue = ref<number | undefined>()
+const deviceOptions = ref<SelectProps['options']>(
+  getSessionStorageEntity('platform_config').platform_devices?.map(({ id, name }) => ({
+    value: id,
+    label: name
+  }))
+)
+const deviceProps = computed<AntSelectProps>(() => {
+  return {
+    allowClear: false,
+    placeHolderText: t('common.select_device'),
+    placeHolderValuableText: t('common.device'),
+    options: deviceOptions.value,
+    defaultAll: false,
+    mode: 'multiple'
   }
 })
 
@@ -82,11 +107,6 @@ const betTotalSymbolProps = computed<AntInputProps>(() => {
   }
 })
 
-// 日期區間
-const dateDurationChange = (date: [Dayjs, Dayjs] | null) => {
-  formState.dateDuration = date || [undefined, undefined]
-}
-
 // 搜尋
 const handleSearch = () => {
   formRef.value?.validate().then(() => {
@@ -97,9 +117,14 @@ const handleSearch = () => {
   })
 }
 
-// onMounted(() => {
-//   handleSearch()
-// })
+onMounted(() => {
+  // 設定遊戲及玩法預設值
+  const defaultTarget = getDefaultLobbyByTarget(platformDefaultTarget1[globalStore.currentPlatform])
+  if (defaultTarget) {
+    gamePlayValue.value.push([defaultTarget])
+  }
+  // handleSearch()
+})
 </script>
 <template>
   <section class="cdp-section">
@@ -115,7 +140,25 @@ const handleSearch = () => {
           <ant-select v-model="hallValue" v-bind="hallProps"></ant-select>
         </a-col>
         <a-col :span="12">
+          <a-form-item name="dateDuration">
+            <ant-date-range
+              v-model="formState.dateDuration"
+              @update:value="dateDurationChange"
+              :defaultDates="[
+                dayjs().add(-7, 'd').startOf('day'),
+                dayjs().add(-1, 'd').endOf('day')
+              ]"
+              :disabled-days="7"
+              :dateRepeat="true"
+              :rangeConfig="2"
+            ></ant-date-range>
+          </a-form-item>
+        </a-col>
+        <a-col :span="12">
           <ant-cascader v-model="gamePlayValue" v-bind="gamePlayProps"></ant-cascader>
+        </a-col>
+        <a-col :span="12">
+          <ant-select v-model="deviceValue" v-bind="deviceProps"></ant-select>
         </a-col>
         <a-col :span="6">
           <ant-input v-model="formState.singleDeviceValue" v-bind="singleDeviceSymbolProps">
@@ -150,17 +193,6 @@ const handleSearch = () => {
               </a-select>
             </template>
           </ant-input>
-        </a-col>
-        <a-col :span="12">
-          <a-form-item name="dateDuration">
-            <ant-date-range
-              v-model="formState.dateDuration"
-              @update:value="dateDurationChange"
-              :disabled-days="7"
-              :dateRepeat="true"
-              :rangeConfig="2"
-            ></ant-date-range>
-          </a-form-item>
         </a-col>
         <a-col :span="12">
           <cdp-button-icon

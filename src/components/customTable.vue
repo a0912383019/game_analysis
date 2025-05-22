@@ -39,9 +39,10 @@ const props = withDefaults(defineProps<Props>(), {
 // 客製化 class 支援 function 跟 string
 const combinedRowClass = (record: any, index: number) => {
   const baseClass = record.allowExpand === false ? 'hide-icon-row' : ''
-  const customClass = typeof props.customRowClass === 'function'
-    ? props.customRowClass(_, index, _)
-    : props.customRowClass || ''
+  const customClass =
+    typeof props.customRowClass === 'function'
+      ? props.customRowClass(_, index, _)
+      : props.customRowClass || ''
 
   return [baseClass, customClass].filter(Boolean).join(' ')
 }
@@ -203,6 +204,16 @@ defineExpose({ goToFirstPage, closeAllExpandedRows })
         :canExpand="record.canExpand"
       ></custom-table>
     </template>
+    <!-- 處理 #headerCell slot -->
+    <template #headerCell="{ column }">
+      <template v-if="$slots['header-' + String(column.dataIndex)]">
+        {{ console.log(column.dataIndex) }}
+        <slot :name="'header-' + String(column.dataIndex)" :column="column" />
+      </template>
+      <template v-else>
+        {{ column.title }}
+      </template>
+    </template>
     <!-- 處理 #bodyCell slot -->
     <template #bodyCell="{ column, record }">
       <template v-if="$slots[String(column.dataIndex)]">
@@ -213,7 +224,6 @@ defineExpose({ goToFirstPage, closeAllExpandedRows })
       </template>
     </template>
     <!-- 處理其他動態 slot，例如 summary / footer / headerCell 等 -->
-    <!-- 只有第一層可以用 -->
     <template v-for="(_, key) in $slots" :key="key" #[key]>
       <slot :name="key"></slot>
     </template>

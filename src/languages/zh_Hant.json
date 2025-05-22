@@ -214,10 +214,14 @@
     "bet_range": "投注範圍"
   },
   "device": {
+    "phone": "Phone",
+    "phone_description": "IOS手機 & 安卓手機",
+    "pad": "Pad",
+    "pad_description": "IOS平板 & 安卓平板",
     "pc": "PC",
+    "pc_description": "PC & Mac",
     "phone_web": "PhoneWeb",
-    "android": "Android",
-    "ios": "IOS"
+    "phone_web_description": "其他"
   },
   "device_difference": {
     "single_device_difference": "單一裝置差異(%)",
