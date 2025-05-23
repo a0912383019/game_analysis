@@ -30,7 +30,8 @@ const columns = ref<TableColumnsType[]>([
           }
         }
         return { rowSpan: 0 }
-      }
+      },
+      sorter: true
     },
     {
       title: t('common.game_name'),
@@ -42,7 +43,8 @@ const columns = ref<TableColumnsType[]>([
           return { colSpan: 0 }
         }
         return {}
-      }
+      },
+      sorter: true
     },
     {
       title: t('date.date'),

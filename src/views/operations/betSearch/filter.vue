@@ -51,7 +51,7 @@ const hallProps = computed<AntSelectProps>(() => {
   return {
     allowClear: false,
     placeHolderText: t('common.select_hall'),
-    placeHolderValuableText: t('common.hall'),
+    placeHolderValuableText: t('common.hall_master'),
     options: hallOptions.value
   }
 })
@@ -195,7 +195,7 @@ watch(
               <template #addonBefore>
                 <a-select
                   v-model:value="accountOrId"
-                  class="w-[75px]"
+                  class="w-[110px] text-left"
                   popupClassName="!rounded-none"
                 >
                   <a-select-option value="account">{{ $t('common.accout') }}</a-select-option>

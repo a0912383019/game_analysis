@@ -60,7 +60,7 @@ describe('dateTable', () => {
           dataIndex: 'user_count',
           key: 'user_count',
           sorter: true,
-          title: '會員數'
+          title: '人數'
         },
         {
           align: 'center',
@@ -97,14 +97,14 @@ describe('dateTable', () => {
           dataIndex: 'lobby_name',
           key: 'lobby_name',
           sorter: true,
-          title: '遊戲大類'
+          title: '遊戲大廳'
         },
         {
           align: 'center',
           dataIndex: 'user_count',
           key: 'user_count',
           sorter: true,
-          title: '會員數'
+          title: '人數'
         },
         {
           align: 'center',
@@ -142,7 +142,7 @@ describe('dateTable', () => {
           dataIndex: 'serial_type_name',
           key: 'serial_type_name',
           sorter: true,
-          title: '遊戲注區',
+          title: '玩法名稱',
           width: 320
         },
         {
@@ -157,7 +157,7 @@ describe('dateTable', () => {
           dataIndex: 'user_count',
           key: 'user_count',
           sorter: true,
-          title: '會員數'
+          title: '人數'
         },
         {
           align: 'center',

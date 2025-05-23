@@ -209,7 +209,7 @@ defineExpose({ goToFirstPage, closeAllExpandedRows })
       <template v-if="$slots['header-' + String(column.dataIndex)]">
         <slot :name="'header-' + String(column.dataIndex)" :column="column" />
       </template>
-      <template v-else>
+      <template v-else-if="!column.RC_TABLE_INTERNAL_COL_DEFINE">
         {{ column.title }}
       </template>
     </template>

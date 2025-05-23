@@ -52,7 +52,7 @@ describe('playTable', () => {
           dataIndex: 'serial_type_name',
           key: 'serial_type_name',
           sorter: true,
-          title: '遊戲注區',
+          title: '玩法名稱',
           width: 320
         },
         {
@@ -60,7 +60,7 @@ describe('playTable', () => {
           dataIndex: 'user_count',
           key: 'user_count',
           sorter: true,
-          title: '會員數'
+          title: '人數'
         },
         {
           align: 'center',
@@ -134,7 +134,7 @@ describe('playTable', () => {
           dataIndex: 'user_count',
           key: 'user_count',
           sorter: true,
-          title: '會員數'
+          title: '人數'
         },
         {
           align: 'center',
@@ -182,10 +182,10 @@ describe('playTable', () => {
       [
         {
           align: 'center',
-          dataIndex: 'user_id',
-          key: 'user_id',
+          dataIndex: 'user',
+          key: 'user',
           sorter: true,
-          title: '會員ID'
+          title: '會員帳號 (ID)'
         },
         {
           align: 'center',
@@ -550,6 +550,7 @@ describe('playTable', () => {
       data: [
         {
           user_id: '457599842',
+          username: 'ckkaa',
           wager_count: 340,
           bet_amount: '1941.0000',
           payoff: '-81.0000',
@@ -594,7 +595,7 @@ describe('playTable', () => {
         payoff: '-81',
         payoff_ratio: '-4.17%',
         rtp: '--',
-        user_id: '457599842',
+        user: 'ckkaa (457599842)',
         wager_count: '340'
       }
     ])

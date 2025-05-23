@@ -40,7 +40,7 @@ const columns = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('common.member_quantity'),
+      title: t('unit.people_num'),
       dataIndex: 'user_count',
       key: 'user_count',
       align: 'center',
@@ -79,9 +79,9 @@ const columns = ref<TableColumnsType[]>([
   // 第二層 header 會員
   [
     {
-      title: t('common.member_id'),
-      dataIndex: 'user_id',
-      key: 'user_id',
+      title: t('common.member_info'),
+      dataIndex: 'user',
+      key: 'user',
       align: 'center',
       sorter: true
     },
@@ -115,10 +115,10 @@ const columns = ref<TableColumnsType[]>([
       sorter: true
     }
   ],
-  // 第三層 header 遊戲大類
+  // 第三層 header 遊戲大廳
   [
     {
-      title: t('common.game_categories'),
+      title: t('common.game_hall'),
       dataIndex: 'lobby_name',
       key: 'lobby_name',
       align: 'center',
@@ -296,7 +296,7 @@ const transformBetReportByUser = (
   record.innerData = ret.data.map((item, idx) => {
     return {
       key: idx,
-      user_id: item.user_id,
+      user: `${item.username} (${item.user_id})`,
       wager_count: formatNumber(item.wager_count),
       bet_amount: formatNumber(item.bet_amount),
       payoff: formatNumber(item.payoff),
@@ -481,7 +481,12 @@ const subFuncBetReportLiveBySerialType = async (record: any) => {
   let params = generateOverallParams(undefined, undefined, sort, order, record.innerExtraParams)
 
   record.innerLoading = true
-  await queryApi<ParamsBetReport>(apiBetReportLiveBySerialType, params, transformBetReportLiveBySerialType, record)
+  await queryApi<ParamsBetReport>(
+    apiBetReportLiveBySerialType,
+    params,
+    transformBetReportLiveBySerialType,
+    record
+  )
   record.innerLoading = false
 }
 
