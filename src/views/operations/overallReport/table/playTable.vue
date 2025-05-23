@@ -330,7 +330,7 @@ const transformBetReportByUser = (
   record.innerData = ret.data.map((item, idx) => {
     return {
       key: idx,
-      user: `${item.username} (${item.user_id})`,
+      user: `${item.user_name} (${item.user_id})`,
       wager_count: formatNumber(item.wager_count),
       bet_amount: formatNumber(item.bet_amount),
       payoff: formatNumber(item.payoff),
