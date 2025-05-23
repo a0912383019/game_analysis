@@ -64,7 +64,7 @@ describe('hallTable', () => {
           dataIndex: 'user_count',
           key: 'user_count',
           sorter: true,
-          title: '會員數'
+          title: '人數'
         },
         {
           align: 'center',
@@ -99,10 +99,10 @@ describe('hallTable', () => {
       [
         {
           align: 'center',
-          dataIndex: 'user_id',
-          key: 'user_id',
+          dataIndex: 'user',
+          key: 'user',
           sorter: true,
-          title: '會員ID'
+          title: '會員帳號 (ID)'
         },
         {
           align: 'center',
@@ -140,7 +140,7 @@ describe('hallTable', () => {
           dataIndex: 'lobby_name',
           key: 'lobby_name',
           sorter: true,
-          title: '遊戲大類'
+          title: '遊戲大廳'
         },
         {
           align: 'center',
@@ -492,6 +492,7 @@ describe('hallTable', () => {
       data: [
         {
           user_id: '457599842',
+          username: 'eeertppp',
           wager_count: 340,
           bet_amount: '1941.0000',
           payoff: '-81.0000',
@@ -548,7 +549,7 @@ describe('hallTable', () => {
         key: 0,
         payoff: '-81',
         payoff_ratio: '-4.17%',
-        user_id: '457599842',
+        user: 'eeertppp (457599842)',
         wager_count: '340'
       }
     ])

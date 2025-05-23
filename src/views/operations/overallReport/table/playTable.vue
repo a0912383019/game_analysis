@@ -28,7 +28,7 @@ const columns = ref<TableColumnsType[]>([
   // 第一層 header 玩法(僅視訊)
   [
     {
-      title: t('common.game_bet_area'),
+      title: t('common.game_mode'),
       dataIndex: 'serial_type_name',
       key: 'serial_type_name',
       align: 'center',
@@ -36,7 +36,7 @@ const columns = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('common.member_quantity'),
+      title: t('unit.people_num'),
       dataIndex: 'user_count',
       key: 'user_count',
       align: 'center',
@@ -111,7 +111,7 @@ const columns = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('common.member_quantity'),
+      title: t('unit.people_num'),
       dataIndex: 'user_count',
       key: 'user_count',
       align: 'center',
@@ -163,9 +163,9 @@ const columns = ref<TableColumnsType[]>([
   // 第三層 header 會員
   [
     {
-      title: t('common.member_id'),
-      dataIndex: 'user_id',
-      key: 'user_id',
+      title: t('common.member_info'),
+      dataIndex: 'user',
+      key: 'user',
       align: 'center',
       sorter: true
     },
@@ -330,7 +330,7 @@ const transformBetReportByUser = (
   record.innerData = ret.data.map((item, idx) => {
     return {
       key: idx,
-      user_id: item.user_id,
+      user: `${item.username} (${item.user_id})`,
       wager_count: formatNumber(item.wager_count),
       bet_amount: formatNumber(item.bet_amount),
       payoff: formatNumber(item.payoff),

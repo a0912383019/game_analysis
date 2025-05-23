@@ -35,7 +35,7 @@ const columns = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('common.member_quantity'),
+      title: t('unit.people_num'),
       dataIndex: 'user_count',
       key: 'user_count',
       align: 'center',
@@ -70,17 +70,17 @@ const columns = ref<TableColumnsType[]>([
       sorter: true
     }
   ],
-  // 第二層 header 遊戲大類
+  // 第二層 header 遊戲大廳
   [
     {
-      title: t('common.game_categories'),
+      title: t('common.game_hall'),
       dataIndex: 'lobby_name',
       key: 'lobby_name',
       align: 'center',
       sorter: true
     },
     {
-      title: t('common.member_quantity'),
+      title: t('unit.people_num'),
       dataIndex: 'user_count',
       key: 'user_count',
       align: 'center',
@@ -116,10 +116,10 @@ const columns = ref<TableColumnsType[]>([
       sorter: true
     }
   ],
-  // 第三層 header 遊戲注區
+  // 第三層 header 玩法
   [
     {
-      title: t('common.game_bet_area'),
+      title: t('common.game_mode'),
       dataIndex: 'serial_type_name',
       key: 'serial_type_name',
       align: 'center',
@@ -134,7 +134,7 @@ const columns = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('common.member_quantity'),
+      title: t('unit.people_num'),
       dataIndex: 'user_count',
       key: 'user_count',
       align: 'center',

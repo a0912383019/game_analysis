@@ -38,7 +38,7 @@ const hallProps = computed<AntSelectProps>(() => {
   return {
     allowClear: false,
     placeHolderText: t('common.select_hall'),
-    placeHolderValuableText: t('common.hall'),
+    placeHolderValuableText: t('common.hall_master'),
     options: hallOptions.value
   }
 })

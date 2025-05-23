@@ -121,10 +121,10 @@ describe('table', () => {
         },
         {
           align: 'center',
-          dataIndex: 'username',
-          key: 'username',
+          dataIndex: 'user',
+          key: 'user',
           sorter: true,
-          title: '會員帳號',
+          title: '會員帳號 (ID)',
           width: 172
         },
         {
@@ -181,10 +181,10 @@ describe('table', () => {
         },
         {
           align: 'center',
-          dataIndex: 'username',
-          key: 'username',
+          dataIndex: 'user',
+          key: 'user',
           sorter: true,
-          title: '會員帳號',
+          title: '會員帳號 (ID)',
           width: 204
         },
         {
@@ -312,7 +312,7 @@ describe('table', () => {
         payoff: '112',
         payoff_ratio: '24.14%',
         settle_date: '2025-03-27',
-        username: 'gaga2'
+        user: 'gaga2 (39584727)'
       }
     ])
 
@@ -347,7 +347,7 @@ describe('table', () => {
         payoff: '25',
         payoff_ratio: '29.41%',
         result: '已結',
-        username: 'gaga2',
+        user: 'gaga2 (39584727)',
         wager_id: '5200008582454'
       }
     ])

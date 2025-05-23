@@ -43,10 +43,10 @@ const columnsBet = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('common.member_account'),
+      title: t('common.member_info'),
       width: 172,
-      dataIndex: 'username',
-      key: 'username',
+      dataIndex: 'user',
+      key: 'user',
       align: 'center',
       sorter: true
     },
@@ -105,10 +105,10 @@ const columnsDate = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('common.member_account'),
+      title: t('common.member_info'),
       width: 204,
-      dataIndex: 'username',
-      key: 'username',
+      dataIndex: 'user',
+      key: 'user',
       align: 'center',
       sorter: true
     },
@@ -219,7 +219,7 @@ const transformTable = (data: BetRecords[] | BetSettledByDate[], searchType: str
       return {
         wager_id: item.wager_id,
         bet_time: formatByTimeZone(item.bet_time).format(t('date.format_time_rule')),
-        username: item.username,
+        user: `${item.username} (${item.user_id})`,
         game_name: item.game_name,
         bet_amount: formatNumber(item.bet_amount),
         result: generateBetResult(item.result),
@@ -231,7 +231,7 @@ const transformTable = (data: BetRecords[] | BetSettledByDate[], searchType: str
     tableData.value = (data as BetSettledByDate[]).map((item) => {
       return {
         settle_date: item.settle_date,
-        username: item.username,
+        user: `${item.username} (${item.user_id})`,
         game_name: item.game_name,
         bet_amount: formatNumber(item.bet_amount),
         payoff: formatNumber(item.payoff),

@@ -145,7 +145,7 @@ describe('filter', () => {
         }
       ],
       placeHolderText: '請選擇廳',
-      placeHolderValuableText: '廳'
+      placeHolderValuableText: '廳主'
     })
   })
 
