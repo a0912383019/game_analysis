@@ -1,11 +1,10 @@
 import { defineStore } from 'pinia'
 
 export const useVideoReportsTableReportsStore = defineStore('tableReports', () => {
-  const searchParams = reactive<TableReportsSearchType>({
+  const searchParams = reactive<VideoTableReportsSearchType>({
     hallValue: 0,
-    gameValue: [],
-    liveRoom: [],
-    liveTable: [],
+    gameCodes: [],
+    tableIds: [],
     dateDuration: [undefined, undefined]
   })
 

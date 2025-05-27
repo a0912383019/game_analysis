@@ -36,15 +36,26 @@ const currentTabComponent = computed(() => {
 })
 
 const getParamInfo = (): BaseOverallReportParams => {
-  return {
+  const params: BaseOverallReportParams = {
     device: searchParams.deviceTypeValue,
     endDate: formatToApiDate(dayjs(searchParams.dateDuration[1])),
     startDate: formatToApiDate(dayjs(searchParams.dateDuration[0])),
-    hallId: searchParams.hallValue === 0 ? undefined : searchParams.hallValue,
-    userId: searchParams.memberType === 'memberId' ? searchParams.memberValue : [],
-    username: searchParams.memberType === 'account' ? searchParams.memberValue : [],
-    game: searchParams.gamePlayValue
+    hallId: searchParams.hallValue === 0 ? undefined : searchParams.hallValue
   }
+
+  if (searchParams.memberType === 'memberId' && searchParams.memberValue.length > 0) {
+    params.userId = searchParams.memberValue
+  }
+
+  if (searchParams.memberType === 'account' && searchParams.memberValue.length > 0) {
+    params.username = searchParams.memberValue
+  }
+
+  if (searchParams.gamePlayValue && searchParams.gamePlayValue.length > 0) {
+    params.game = searchParams.gamePlayValue
+  }
+
+  return params
 }
 
 const keepAliveKey = ref(0)

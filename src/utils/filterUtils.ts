@@ -130,10 +130,17 @@ export const generateOverallParams = (
     device: paramInfo.device,
     end_date: paramInfo.endDate,
     start_date: paramInfo.startDate,
-    hall_id: paramInfo.hallId,
-    user_id: paramInfo.userId,
-    username: paramInfo.username,
-    game: paramInfo.game
+    hall_id: paramInfo.hallId
+  }
+
+  if (paramInfo.userId && paramInfo.userId.length > 0) {
+    apiParams['user_id'] = paramInfo.userId
+  }
+  if (paramInfo.username && paramInfo.username.length > 0) {
+    apiParams['username'] = paramInfo.username
+  }
+  if (paramInfo.game && paramInfo.game.length > 0) {
+    apiParams['game'] = paramInfo.game
   }
 
   return {
