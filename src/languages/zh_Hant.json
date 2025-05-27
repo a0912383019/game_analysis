@@ -292,6 +292,11 @@
     "jackpot_analysis": "JackPot分析",
     "free_game_analysis": "FreeGame分析"
   },
+  "video": {
+    "select_live_table": "請選擇視訊來源及桌次",
+    "live_table": "視訊來源及桌次",
+    "live_source": "視訊現場"
+  },
   "table": {
     "sZeroRecords": "暫無資料",
     "sInfo": "{START} - {END} / 共 {TOTAL} 筆",

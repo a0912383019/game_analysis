@@ -1,11 +1,10 @@
-interface TableReportsSearchType {
+interface VideoTableReportsSearchType {
   hallValue: number
-  gameValue: string[]
-  liveRoom: string[]
-  liveTable: string[]
+  gameCodes: string[]
+  tableIds: string[]
   dateDuration: [Dayjs | undefined, Dayjs | undefined]
 }
 
-interface TableReportsFilterFormState {
+interface VideoTableReportsFilterFormState {
   dateDuration: [Dayjs | undefined, Dayjs | undefined]
 }

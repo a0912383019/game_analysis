@@ -38,7 +38,7 @@ const rules: Record<string, Rule[]> = {
   dateDuration: [{ validator: dateDurationRule }]
 }
 
-// 廳
+// 廳主
 const hallOptions = ref<SelectProps['options']>(
   getSessionStorageEntity('platform_config').platform_halls?.map(
     ({ hall_id, login_code, name }) => ({

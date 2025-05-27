@@ -1,22 +1,24 @@
 <script setup lang="ts">
-import type { SelectProps, FormInstance } from 'ant-design-vue'
-import { useI18n } from 'vue-i18n'
-import type { AntSelectProps } from '@/components/input/inputs'
-import { useVideoReportsTableReportsStore } from '@/stores'
+import type { SelectProps, FormInstance, CascaderProps } from 'ant-design-vue'
 import type { Rule } from 'ant-design-vue/es/form'
+import type { AntSelectProps, AntCascaderProps } from '@/components/input/inputs'
+import { useI18n } from 'vue-i18n'
+import { useGlobalStore, useVideoReportsTableReportsStore } from '@/stores'
+import dayjs from '@/utils/appDayjs'
 import { getSessionStorageEntity } from '@/utils/commonUtils'
 import { dateDurationRule } from '@/utils/filterUtils'
-import dayjs from '@/utils/appDayjs'
 import { queryLobbyGames } from '@/utils/commonApi'
-import { notification } from 'ant-design-vue'
+import { apiLiveStates } from '@/api'
 
 const { t } = useI18n()
+
+const globalStore = useGlobalStore()
 
 const videoReportsTableReportsStore = useVideoReportsTableReportsStore()
 const { searchParams } = videoReportsTableReportsStore
 
 const formRef = ref<FormInstance>()
-const formState = reactive<TableReportsFilterFormState>({
+const formState = reactive<VideoTableReportsFilterFormState>({
   dateDuration: [undefined, undefined]
 })
 
@@ -25,7 +27,7 @@ const rules: Record<string, Rule[]> = {
   dateDuration: [{ validator: dateDurationRule }]
 }
 
-// 廳
+// 廳主
 const hallValue = ref<number>(0)
 const hallOptions = ref<SelectProps['options']>([
   { value: 0, label: t('common.all') },
@@ -61,55 +63,15 @@ const gameProps = computed<AntSelectProps>(() => {
   }
 })
 
-// 視訊廳
-const mockLiveRoom = [
-  { id: 0, name: 'AS現場' },
-  { id: 1, name: 'BB區塊鏈' },
-  { id: 2, name: 'BC現場' },
-  { id: 3, name: 'MX' },
-  { id: 4, name: 'RB' }
-]
-const liveRoomValue = ref<number | undefined>()
-const liveRoomOptions = ref<SelectProps['options']>(
-  mockLiveRoom.map(({ id, name }) => ({
-    value: id,
-    label: name
-  }))
-)
-const liveRoomProps = computed<AntSelectProps>(() => {
+// 視訊來源及桌次
+const liveTableLoading = ref<boolean>(true)
+const liveTableValue = ref<LobbyGameData[]>([])
+const liveTableOptions = ref<CascaderProps['options']>([{ loading: true }])
+const liveTableProps = computed<AntCascaderProps>(() => {
   return {
-    allowClear: false,
-    placeHolderText: t('common.select_live_room'),
-    placeHolderValuableText: t('room.live'),
-    options: liveRoomOptions.value,
-    defaultAll: false,
-    mode: 'multiple'
-  }
-})
-
-// 桌次
-const mockLiveTable = [
-  { id: 0, name: 'AS1' },
-  { id: 1, name: 'AS2' },
-  { id: 2, name: 'AS3' },
-  { id: 3, name: 'AS4' },
-  { id: 4, name: 'AS5' }
-]
-const liveTableValue = ref<number | undefined>()
-const liveTableOptions = ref<SelectProps['options']>(
-  mockLiveTable.map(({ id, name }) => ({
-    value: id,
-    label: name
-  }))
-)
-const liveTableProps = computed<AntSelectProps>(() => {
-  return {
-    allowClear: false,
-    placeHolderText: t('common.select_table'),
-    placeHolderValuableText: t('common.live_table'),
-    options: liveTableOptions.value,
-    defaultAll: false,
-    mode: 'multiple'
+    placeHolderText: t('video.select_live_table'),
+    placeHolderValuableText: t('video.live_table'),
+    options: liveTableOptions.value
   }
 })
 
@@ -118,10 +80,69 @@ const dateDurationChange = (date: [Dayjs, Dayjs] | null) => {
   formState.dateDuration = date || [undefined, undefined]
 }
 
+const queryApiLiveStates = async () => {
+  liveTableLoading.value = true
+  try {
+    const response = await apiLiveStates({ state: undefined })
+
+    const { result } = response
+    if (result === 'success') {
+      transformLiveStates(response.ret)
+    } else {
+      throw new Error()
+    }
+  } catch (err) {
+    console.error(err)
+    if (axios.isAxiosError(err)) {
+      const status = err.response?.status
+      if (status === 401) {
+        // token 錯誤，登出
+        globalStore.storeHandleApiError()
+      }
+    }
+  } finally {
+    liveTableLoading.value = false
+  }
+}
+
+const liveOriginalData = ref<ResultLiveStates[]>()
+const transformLiveStates = (data: ResultLiveStates[]) => {
+  liveOriginalData.value = data
+  liveTableOptions.value = data.map((stateItem) => ({
+    value: stateItem.state,
+    label: stateItem.state_name,
+    children: stateItem.table_data.map((table) => ({
+      value: table.table_id,
+      label: table.table_name
+    }))
+  }))
+}
+
 // 搜尋
 const handleSearch = () => {
+  // 處理table_id
+  const apiTableIdArr = liveTableValue.value
+    .map((ele) => {
+      if (ele.length === 1) {
+        const tables =
+          liveOriginalData.value?.find((item) => item.state === ele[0])?.table_data ?? []
+        return tables.map((t) => t.table_id.toString())
+      } else {
+        return [ele[1].toString()] // 保持一致性，回傳陣列
+      }
+    })
+    .flat()
+    .filter(Boolean) // 避免 undefined 混入
+
   formRef.value?.validate().then(() => {
     searchParams.hallValue = hallValue.value
+    searchParams.gameCodes =
+      gameValue.value.length === 0
+        ? (gameOptions.value ?? [])
+            .map((ele) => String(ele.value))
+            .filter((val): val is string => Boolean(val))
+        : gameValue.value.map((val) => String(val))
+    searchParams.tableIds = apiTableIdArr
     searchParams.dateDuration = formState.dateDuration
 
     videoReportsTableReportsStore.isFiltered = new Date().getTime()
@@ -152,6 +173,8 @@ const generateVideoGamesOptions = async () => {
 }
 
 onMounted(async () => {
+  queryApiLiveStates()
+
   gameLoading.value = true
   await generateVideoGamesOptions()
   gameLoading.value = false
@@ -176,10 +199,9 @@ onMounted(async () => {
           <ant-select v-model="gameValue" v-bind="gameProps"></ant-select>
         </a-col>
         <a-col :span="12">
-          <ant-select v-model="liveRoomValue" v-bind="liveRoomProps"></ant-select>
-        </a-col>
-        <a-col :span="12">
-          <ant-select v-model="liveTableValue" v-bind="liveTableProps"></ant-select>
+          <a-spin :spinning="liveTableLoading">
+            <ant-cascader v-model="liveTableValue" v-bind="liveTableProps"></ant-cascader>
+          </a-spin>
         </a-col>
         <a-col :span="12">
           <a-form-item name="dateDuration">

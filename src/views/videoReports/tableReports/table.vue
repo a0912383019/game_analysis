@@ -2,48 +2,41 @@
 import type { TableColumnsType } from 'ant-design-vue'
 import dayjs from '@/utils/appDayjs'
 import { useI18n } from 'vue-i18n'
-import { apiBetSettledByDate, apiBetRecords } from '@/api'
-import { useOperationsBetSearchStore, useGlobalStore } from '@/stores'
-import {
-  formatNumber,
-  formatToApiTime,
-  formatToApiDate,
-  formatByTimeZone,
-  formatToPercentage
-} from '@/utils/commonUtils'
+import { apiLiveTableReportsByState } from '@/api'
+import { useVideoReportsTableReportsStore, useGlobalStore } from '@/stores'
+import { formatNumber, formatToApiDate, formatToPercentage } from '@/utils/commonUtils'
 import { notification } from 'ant-design-vue'
 
 const { t } = useI18n()
 
 const globalStore = useGlobalStore()
 
-// const operationsBetSearchStore = useOperationsBetSearchStore()
-// const { searchParams } = operationsBetSearchStore
+const videoReportsTableReportsStore = useVideoReportsTableReportsStore()
+const { searchParams } = videoReportsTableReportsStore
 
-const tableRef = ref()
 const tableData = ref<any[]>([])
 
 const columns = ref<TableColumnsType[]>([
   [
     {
-      title: t('room.live'),
-      dataIndex: 'live',
-      key: 'live',
+      title: t('video.live_source'),
+      dataIndex: 'state_name',
+      key: 'state_name',
       align: 'center',
       defaultSortOrder: 'descend',
       sorter: true
     },
     {
-      title: t('common.member_quantity'),
-      dataIndex: 'member_count',
-      key: 'member_count',
+      title: t('unit.people_num'),
+      dataIndex: 'user_count',
+      key: 'user_count',
       align: 'right',
       sorter: true
     },
     {
       title: t('unit.amount'),
-      dataIndex: 'wager_count',
-      key: 'wager_count',
+      dataIndex: 'wagers_total',
+      key: 'wagers_total',
       align: 'right',
       sorter: true
     },
@@ -63,8 +56,8 @@ const columns = ref<TableColumnsType[]>([
     },
     {
       title: t('common.profit_ratio'),
-      dataIndex: 'profit_ratio',
-      key: 'profit_ratio',
+      dataIndex: 'payoff_ratio',
+      key: 'payoff_ratio',
       align: 'right',
       sorter: true
     }
@@ -86,7 +79,7 @@ const columns = ref<TableColumnsType[]>([
       sorter: true
     },
     {
-      title: t('common.member_quantity'),
+      title: t('unit.people_num'),
       dataIndex: 'member_count',
       key: 'member_count',
       align: 'right',
@@ -123,13 +116,13 @@ const columns = ref<TableColumnsType[]>([
   ]
 ])
 
-const sortColumn = ref<string>('lobby_name')
+const sortColumn = ref<string>('state_name')
 const order = ref<string>('descend')
 const apiLoading = ref<boolean>(false)
 
 interface TotalRow {
-  memberCount?: string
-  wagerCount?: string
+  userCount?: string
+  wagersTotal?: string
   betAmount?: string
   payoff?: string
   profitRatio?: string
@@ -137,100 +130,135 @@ interface TotalRow {
 
 const totalRow = ref<TotalRow>({})
 
+const queryApiLiveTableReportsByState = async (params: ParamsLiveTableReportsByState) => {
+  apiLoading.value = true
+  try {
+    const response = await apiLiveTableReportsByState(params)
+    const { result } = response
+
+    if (result === 'success') {
+      transformLiveTableReportsByState(response.ret)
+    } else {
+      throw new Error()
+    }
+  } catch (err) {
+    console.error(err)
+    if (axios.isAxiosError(err)) {
+      const status = err.response?.status
+      if (status === 401) {
+        // token 錯誤，登出
+        globalStore.storeHandleApiError()
+      } else if (status === 403) {
+        // 沒有權限
+        notification['error']({
+          message: t('msg.no_permission')
+        })
+      } else {
+        // query failed
+        notification['error']({
+          message: t('msg.query_failed')
+        })
+      }
+    } else {
+      // query failed
+      notification['error']({
+        message: t('msg.query_failed')
+      })
+    }
+  } finally {
+    apiLoading.value = false
+  }
+}
+
+const transformLiveTableReportsByState = (data: ResultLiveTableReportsByState) => {
+  tableData.value = data.data.map((item, idx) => {
+    return {
+      key: idx,
+      state_name: item.state_name,
+      user_count: formatNumber(item.user_count),
+      wagers_total: formatNumber(item.wagers_total),
+      bet_amount: formatNumber(item.bet_amount),
+      payoff: formatNumber(item.payoff),
+      payoff_ratio: formatToPercentage(item.payoff_ratio),
+      innerLoading: true, // 第二層的 loading
+      hasPage: false, // 第二層是否分頁模式
+      innerExtraParams: {
+        // 下一層需要帶入的參數
+        // device: params.device,
+        // endDate: item.data_date,
+        // startDate: item.data_date,
+        // hallId: params.hall_id,
+        // userId: params.user_id,
+        // username: params.username,
+        // game: params.game
+      },
+      innerPagination: {
+        defaultSortCol: 'bet_amount',
+        sort: 'bet_amount',
+        order: 'descend'
+      },
+      innerData: [] // 存放下一層資料的地方
+    }
+  })
+
+  totalRow.value = {
+    userCount: formatNumber(data.total.user_count),
+    wagersTotal: formatNumber(data.total.wagers_total),
+    betAmount: formatNumber(data.total.bet_amount),
+    payoff: formatNumber(data.total.payoff),
+    profitRatio: formatToPercentage(data.total.payoff_ratio)
+  }
+}
+
 const fetchSubData = ref([])
+
+const generateParams = (): ParamsLiveTableReportsByState => {
+  return {
+    start_date: formatToApiDate(dayjs(searchParams.dateDuration[0])),
+    end_date: formatToApiDate(dayjs(searchParams.dateDuration[1])),
+    game_code: searchParams.gameCodes,
+    hall_id: searchParams.hallValue !== 0 ? searchParams.hallValue : undefined,
+    order: order.value === 'descend' ? 'DESC' : 'ASC',
+    sort: sortColumn.value,
+    table_id: searchParams.tableIds.length > 0 ? searchParams.tableIds : undefined
+  }
+}
 
 const tableChange = async (
   page: number,
   size: number,
   sortOrder: any,
   sortField: string | undefined
-) => {}
+) => {
+  // 設定排序方向與排序欄位
+  sortColumn.value = sortField || sortColumn.value
 
-onMounted(async () => {
-  tableData.value = [
-    {
-      key: 0,
-      live: 'aaa',
-      member_count: 22,
-      wager_count: 199,
-      bet_amount: 982,
-      payoff: '283,111',
-      profit_ratio: '28%',
-      innerLoading: false,
-      hasPage: false,
-      innerPagination: {
-        defaultSortCol: 'wager_count',
-        sort: 'wager_count',
-        order: 'descend'
-      },
-      innerData: [
-        {
-          key: 0,
-          table_no: 'BE22',
-          game_name: '水果',
-          member_count: 22,
-          wager_count: 199,
-          bet_amount: 982,
-          payoff: '283,111',
-          profit_ratio: '28%'
-        },
-        {
-          key: 1,
-          table_no: 'BE22',
-          game_name: '水果',
-          member_count: 232,
-          wager_count: 661,
-          bet_amount: 87236,
-          payoff: '28223,111',
-          profit_ratio: '11%'
-        }
-      ]
-    },
-    {
-      key: 1,
-      live: 'bbb',
-      member_count: 22232,
-      wager_count: 0,
-      bet_amount: 0,
-      payoff: '41',
-      profit_ratio: '5%',
-      innerLoading: false,
-      hasPage: false,
-      innerPagination: {
-        defaultSortCol: 'wager_count',
-        sort: 'wager_count',
-        order: 'descend'
-      },
-      innerData: [
-        {
-          key: 0,
-          table_no: 'BE22',
-          game_name: '水果',
-          member_count: 232,
-          wager_count: 661,
-          bet_amount: 87236,
-          payoff: '28223,111',
-          profit_ratio: '11%'
-        }
-      ]
-    }
-  ]
-
-  totalRow.value = {
-    memberCount: '44',
-    wagerCount: '99',
-    betAmount: '323',
-    payoff: '3,333',
-    profitRatio: '88%'
+  // 如果排序是 undefined，恢復預設
+  if (sortOrder) {
+    order.value = sortOrder
+  } else {
+    order.value = 'descend'
+    sortColumn.value = 'bet_amount'
   }
-})
+
+  const apiParams = generateParams()
+  queryApiLiveTableReportsByState(apiParams)
+}
+
+watch(
+  () => videoReportsTableReportsStore.isFiltered,
+  () => {
+    const apiParams = generateParams()
+    queryApiLiveTableReportsByState(apiParams)
+  }
+)
 </script>
 <template>
   <section class="cdp-section !p-4">
     <custom-table
       :dataSource="tableData"
       :columns="columns"
-      :serverSide="false"
+      :serverSide="true"
       :hasPage="false"
       :loading="apiLoading"
       :fetchSubData="fetchSubData"

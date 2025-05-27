@@ -23,7 +23,7 @@ const rules: Record<string, Rule[]> = {
   dateDuration: [{ validator: dateDurationRule }]
 }
 
-// 廳
+// 廳主
 const hallValue = ref<number>(0)
 const hallOptions = ref<SelectProps['options']>([
   { value: 0, label: t('common.all') },
