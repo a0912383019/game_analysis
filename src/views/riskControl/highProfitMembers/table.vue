@@ -2,6 +2,7 @@
 import { useI18n } from 'vue-i18n'
 import dateTable from '@/views/riskControl/highProfitMembers/table/dateTable.vue'
 import playerTable from '@/views/riskControl/highProfitMembers/table/playerTable.vue'
+import gameTable from '@/views/riskControl/highProfitMembers/table/gameTable.vue'
 import { useOperationsOverallReportStore } from '@/stores'
 import { formatToApiDate } from '@/utils/commonUtils'
 import dayjs from '@/utils/appDayjs'
@@ -23,7 +24,7 @@ const currentTabs = ref<string>('dateTable')
 const componentMap = {
   dateTable,
   playerTable,
-  // gameTable
+  gameTable
 }
 
 // 當前使用的 component

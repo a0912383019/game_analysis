@@ -11,7 +11,6 @@ import { generateOverallParams, queryApi } from '@/utils/filterUtils'
 /**
  * 第一層有分頁
  * 第二層無分頁
- * 第三層無分頁
  */
 
 const { t } = useI18n()
@@ -58,6 +57,7 @@ const columns = ref<TableColumnsType[]>([
       dataIndex: 'member_payoff',
       key: 'member_payoff',
       align: 'right',
+      defaultSortOrder: 'descend',
       sorter: true
     },
     {
@@ -68,7 +68,7 @@ const columns = ref<TableColumnsType[]>([
       sorter: true
     }
   ],
-  // 第二層 header 會員
+  // 第二層 header 遊戲名稱
   [
     {
       title: t('common.game_name'),
@@ -103,6 +103,7 @@ const columns = ref<TableColumnsType[]>([
       dataIndex: 'member_payoff',
       key: 'member_payoff',
       align: 'right',
+      defaultSortOrder: 'descend',
       sorter: true
     },
     {
