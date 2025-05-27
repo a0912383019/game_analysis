@@ -130,14 +130,12 @@ onMounted(async () => {
             <template #addonBefore>
               <a-select
                 v-model:value="memberProfitSymbolValue"
-                class="w-[110px] text-start"
+                class="w-[110px] text-start pointer-events-none"
+                :showArrow="false"
+                :open="false"
                 popupClassName="!rounded-none"
               >
                 <a-select-option :value="0">{{ $t('data_name.greater_than') }}</a-select-option>
-                <a-select-option :value="1">{{ $t('data_name.smaller_than') }}</a-select-option>
-                <template #suffixIcon>
-                  <cdp-icon name="downOutline"></cdp-icon>
-                </template>
               </a-select>
             </template>
           </ant-input>
@@ -147,14 +145,12 @@ onMounted(async () => {
             <template #addonBefore>
               <a-select
                 v-model:value="memberSingleGameProfitSymbolValue"
-                class="w-[110px] text-start"
+                class="w-[110px] text-start pointer-events-none"
+                :showArrow="false"
+                :open="false"
                 popupClassName="!rounded-none"
               >
                 <a-select-option :value="0">{{ $t('data_name.greater_than') }}</a-select-option>
-                <a-select-option :value="1">{{ $t('data_name.smaller_than') }}</a-select-option>
-                <template #suffixIcon>
-                  <cdp-icon name="downOutline"></cdp-icon>
-                </template>
               </a-select>
             </template>
           </ant-input>
