@@ -6,8 +6,6 @@
     "format_time_rule": "YYYY-MM-DD HH:mm:ss",
     "date_duration": "日期區間",
     "time_duration": "時間區間",
-    "analysis_duration": "分析區間",
-    "compare_duration": "比較區間",
     "start_time": "起始時間",
     "end_time": "結束時間",
     "today": "今天",
@@ -212,11 +210,11 @@
   },
   "device": {
     "phone": "Phone",
-    "phone_description": "IOS手機 & 安卓手機",
+    "phone_description": "IOS手機 / Android手機",
     "pad": "Pad",
-    "pad_description": "IOS平板 & 安卓平板",
+    "pad_description": "IOS平板 / Android平板",
     "pc": "PC",
-    "pc_description": "PC & Mac",
+    "pc_description": "PC / Mac",
     "phone_web": "PhoneWeb",
     "phone_web_description": "其他(行動網頁版)"
   },
@@ -236,12 +234,14 @@
     "bet_destroy": "註銷"
   },
   "operation_analysis": {
+    "base_period": "基準期",
+    "compare_period": "對比期",
     "daily_avg_bet_amount": "日均貨量",
     "daily_avg_people_num": "日均人數",
     "daily_avg_order_quantity": "日均單量",
-    "daily_avg_bet_amount_diff": "日均貨量差異(比較-分析)",
-    "daily_avg_people_num_diff": "日均人數差異(比較-分析)",
-    "daily_avg_order_quantity_diff": "日均單量差異(比較-分析)"
+    "daily_avg_bet_amount_diff": "日均貨量差異",
+    "daily_avg_people_num_diff": "日均人數差異",
+    "daily_avg_order_quantity_diff": "日均單量差異"
   },
   "member_analysis": {
     "last_update_time": "最後異動時間",
