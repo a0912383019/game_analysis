@@ -21,6 +21,51 @@ const tableData = ref<any[]>([])
 const columns = ref<TableColumnsType[]>([
   [
     {
+      title: t('common.game_hall'),
+      dataIndex: 'game_hall',
+      key: 'game_hall',
+      align: 'center',
+      sorter: true
+    },
+    {
+      title: t('common.member_quantity'),
+      dataIndex: 'user_count',
+      key: 'user_count',
+      align: 'right',
+      sorter: true
+    },
+    {
+      title: t('unit.amount'),
+      dataIndex: 'wager_count',
+      key: 'wager_count',
+      align: 'right',
+      sorter: true
+    },
+    {
+      title: t('data_name.bet_amount'),
+      dataIndex: 'bet_amount',
+      key: 'bet_amount',
+      align: 'right',
+      defaultSortOrder: 'descend',
+      sorter: true
+    },
+    {
+      title: t('data_name.payoff'),
+      dataIndex: 'payoff',
+      key: 'payoff',
+      align: 'right',
+      sorter: true
+    },
+    {
+      title: t('regional_difference.bet_amount_growth_ratio'),
+      dataIndex: 'bet_amount_growth_ratio',
+      key: 'bet_amount_growth_ratio',
+      align: 'right',
+      sorter: true
+    }
+  ],
+  [
+    {
       title: t('common.country'),
       dataIndex: 'country',
       key: 'country',
@@ -66,9 +111,9 @@ const columns = ref<TableColumnsType[]>([
   ],
   [
     {
-      title: t('regional_difference.country_region'),
-      dataIndex: 'country_region',
-      key: 'country_region',
+      title: t('regional_difference.region'),
+      dataIndex: 'region',
+      key: 'region',
       align: 'center',
       sorter: true
     },
