@@ -24,3 +24,8 @@ export const apiGetOperationGameAnalysis = (params: ParamsOperationGameAnalysis)
     params
   )
 }
+
+// 取得遊戲智能訊息
+export const apiGetSmartDisplays = (params: ParamsSmartDisplays) => {
+  return apiGet<ParamsSmartDisplays, ResultSmartDisplays[]>('/api/auth/smart_displays', params)
+}

@@ -54,9 +54,9 @@ export function formatNumber(n: string | number, precision: number = 2): string 
  * @param {string} key sessionStorage的key值
  * @return {object} sessionStorage儲存的JSON物件
  */
-export function getSessionStorageEntity(key: string): Record<string, any> {
+export function getSessionStorageEntity<T>(key: string): T | null {
   const item = sessionStorage.getItem(key)
-  return item ? JSON.parse(item) : {}
+  return item ? (JSON.parse(item) as T) : null
 }
 
 /**
@@ -132,7 +132,7 @@ export function handleApiError(err: unknown) {
 }
 
 export function getDefaultLobbyByTarget(target: number): number | undefined {
-  return getSessionStorageEntity('platform_config').platform_lobbies?.find(
+  return getSessionStorageEntity<PlatformConfig>('platform_config')?.platform_lobbies?.find(
     (ele: ResultLobbies) => ele.target === target
   )?.lobby
 }

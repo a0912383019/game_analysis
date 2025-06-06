@@ -86,3 +86,17 @@ interface ResultOperationGameAnalysis {
   data: OperationGameAnalysis[]
   records_total: number
 }
+
+interface ParamsSmartDisplays {
+  start_date: string
+  end_date: string
+  target?: number
+}
+
+interface ResultSmartDisplays {
+  alert_id: string
+  alert_message: string
+  alert_type_id: number
+  data_date: string
+  target_id: number
+}
