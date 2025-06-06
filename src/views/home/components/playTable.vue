@@ -37,7 +37,8 @@ const sortColumn = ref<string>('bet_amount')
 const order = ref<string>('descend')
 const apiLoading = ref<boolean>(true)
 
-const platformLobbies = getSessionStorageEntity('platform_config').platform_lobbies || []
+const platformLobbies =
+  getSessionStorageEntity<PlatformConfig>('platform_config')?.platform_lobbies || []
 
 const hallGroupValue = ref<string[]>([])
 const hallGroupOptions = ref<SelectProps['options']>(

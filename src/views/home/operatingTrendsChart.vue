@@ -18,7 +18,8 @@ const globalStore = useGlobalStore()
 
 const todayDate = ref<Dayjs>(getPlatformToday(globalStore.currentPlatform))
 const apiLoading = ref<boolean>(true)
-const platformLobbies = getSessionStorageEntity('platform_config').platform_lobbies || []
+const platformLobbies =
+  getSessionStorageEntity<PlatformConfig>('platform_config')?.platform_lobbies || []
 
 const buttonGroup = computed(() => [
   { name: t('data_name.payoff'), value: 'payoff' },

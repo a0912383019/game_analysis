@@ -7,7 +7,7 @@ import playFlow from '@/views/home/playFlow.vue'
 </script>
 <template>
   <topCard />
-  <a-row justify="center">
+  <!-- <a-row justify="center">
     <a-col :span="12">
       <operatingTrendsChart class="!ml-[15px] !mr-[5px]" />
     </a-col>
@@ -19,7 +19,7 @@ import playFlow from '@/views/home/playFlow.vue'
     </a-col>
     <a-col :span="24">
       <playFlow class="!mb-[15px]" />
-    </a-col>
-  </a-row>
+    </a-col> -->
+  <!-- </a-row> -->
 </template>
 <style lang="scss" scoped></style>

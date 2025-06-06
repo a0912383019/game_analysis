@@ -40,7 +40,7 @@ const rules: Record<string, Rule[]> = {
 
 // 廳主
 const hallOptions = ref<SelectProps['options']>(
-  getSessionStorageEntity('platform_config').platform_halls?.map(
+  getSessionStorageEntity<PlatformConfig>('platform_config')?.platform_halls?.map(
     ({ hall_id, login_code, name }) => ({
       value: hall_id,
       label: name + ` [${login_code}]`
@@ -70,10 +70,12 @@ const lobbyValue = ref<number | undefined>(
   getDefaultLobbyByTarget(platformDefaultTarget1[globalStore.currentPlatform])
 )
 const lobbyOptions = ref<SelectProps['options']>(
-  getSessionStorageEntity('platform_config').platform_lobbies?.map(({ lobby, lobby_name }) => ({
-    value: lobby,
-    label: lobby_name
-  }))
+  getSessionStorageEntity<PlatformConfig>('platform_config')?.platform_lobbies?.map(
+    ({ lobby, lobby_name }) => ({
+      value: lobby,
+      label: lobby_name
+    })
+  )
 )
 const lobbyProps = computed<AntSelectProps>(() => {
   return {

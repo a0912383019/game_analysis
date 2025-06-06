@@ -283,19 +283,19 @@ onMounted(() => {
       :loading="apiLoading"
       :customRowClass="customRowClass"
     >
-      <template #header-phone="{ column }">
+      <template #header-phone="{ column }: any">
         <span class="!mr-1">{{ column.title }}</span>
         <cdp-tooltip :text="$t('device.phone_description')"></cdp-tooltip>
       </template>
-      <template #header-pad="{ column }">
+      <template #header-pad="{ column }: any">
         <span class="!mr-1">{{ column.title }}</span>
         <cdp-tooltip :text="$t('device.pad_description')"></cdp-tooltip>
       </template>
-      <template #header-pc="{ column }">
+      <template #header-pc="{ column }: any">
         <span class="!mr-1">{{ column.title }}</span>
         <cdp-tooltip :text="$t('device.pc_description')"></cdp-tooltip>
       </template>
-      <template #header-phone_web="{ column }">
+      <template #header-phone_web="{ column }: any">
         <span class="!mr-1">{{ column.title }}</span>
         <cdp-tooltip :text="$t('device.phone_web_description')"></cdp-tooltip>
       </template>

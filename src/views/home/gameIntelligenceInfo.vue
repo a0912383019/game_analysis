@@ -7,7 +7,6 @@ import { useGlobalStore } from '@/stores'
 import { getPlatformToday } from '@/utils/appDayjs'
 import { getSessionStorageEntity } from '@/utils/commonUtils'
 import { apiGetSmartDisplays } from '@/api'
-import CdpIcon from '@/components/cdpIcon.vue'
 
 const { t } = useI18n()
 const globalStore = useGlobalStore()

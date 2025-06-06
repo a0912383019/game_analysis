@@ -31,11 +31,13 @@ const rules: Record<string, Rule[]> = {
 
 // 遊戲大廳
 const lobbyOptions = ref<SelectProps['options']>(
-  getSessionStorageEntity('platform_config').platform_lobbies?.map(({ lobby, lobby_name }) => ({
-    value: lobby,
-    label: lobby_name,
-    isLeaf: false
-  })) || []
+  getSessionStorageEntity<PlatformConfig>('platform_config')?.platform_lobbies?.map(
+    ({ lobby, lobby_name }) => ({
+      value: lobby,
+      label: lobby_name,
+      isLeaf: false
+    })
+  ) || []
 )
 const lobbyProps = computed<AntSelectProps>(() => {
   return {

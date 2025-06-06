@@ -31,7 +31,7 @@ const rules: Record<string, Rule[]> = {
 const hallValue = ref<number>(0)
 const hallOptions = ref<SelectProps['options']>([
   { value: 0, label: t('common.all') },
-  ...(getSessionStorageEntity('platform_config').platform_halls ?? []).map(
+  ...(getSessionStorageEntity<PlatformConfig>('platform_config')?.platform_halls ?? []).map(
     ({ hall_id, login_code, name }) => ({
       value: hall_id,
       label: name + ` [${login_code}]`
@@ -154,7 +154,7 @@ const generateVideoGamesOptions = async () => {
   gameValue.value = []
   gameOptions.value = []
 
-  const config = getSessionStorageEntity('platform_config')
+  const config = getSessionStorageEntity<PlatformConfig>('platform_config')
   const lobbies: ResultLobbies[] = (config && config.platform_lobbies) || []
 
   // 視訊遊戲的玩法 target = 2
