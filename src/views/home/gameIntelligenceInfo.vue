@@ -1,21 +1,32 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import { notification } from 'ant-design-vue'
 import type { TableColumnsType } from 'ant-design-vue'
-// import { useGlobalStore } from '@/stores'
+import { targetMap } from '@/config/defaultConfig'
+import { useGlobalStore } from '@/stores'
+import { getPlatformToday } from '@/utils/appDayjs'
+import { getSessionStorageEntity } from '@/utils/commonUtils'
+import { apiGetSmartDisplays } from '@/api'
+import CdpIcon from '@/components/cdpIcon.vue'
 
 const { t } = useI18n()
-// const globalStore = useGlobalStore()
-const apiLoading = ref<boolean>(true)
+const globalStore = useGlobalStore()
 
-const buttonGroup = computed(() => [
-  { name: t('common.all'), value: 'all' },
-  { name: t('target_group.prob'), value: 'prob' },
-  { name: t('target_group.live'), value: 'live' },
-  { name: t('target_group.card'), value: 'card' },
-  { name: t('target_group.fish'), value: 'fish' },
-  { name: t('target_group.lottery'), value: 'lottery' }
-])
+const platformLobbies =
+  getSessionStorageEntity<PlatformConfig>('platform_config')?.platform_lobbies || []
+const todayDate = ref<Dayjs>(getPlatformToday(globalStore.currentPlatform))
+const apiLoading = ref<boolean>(true)
+const searchText = ref<string>('')
 const currentTabs = ref<string>('all')
+const tableRef = ref()
+
+const buttonGroup = computed(() => {
+  const lobbyOptions = platformLobbies.map(({ target, target_name }) => ({
+    name: target_name,
+    value: target
+  }))
+  return [{ name: t('common.all'), value: 'all' }, ...lobbyOptions]
+})
 
 const columns = ref<TableColumnsType[]>([
   [
@@ -23,133 +34,122 @@ const columns = ref<TableColumnsType[]>([
       title: t('home.game_category'),
       dataIndex: 'game_category',
       key: 'game_category',
-      align: 'center'
+      align: 'center',
+      width: 90
     },
     {
       title: t('common.content'),
       dataIndex: 'content',
       key: 'content',
-      align: 'center'
+      align: 'left'
     },
     {
       title: t('date.date'),
-      dataIndex: 'date',
-      key: 'date',
-      align: 'center'
+      dataIndex: 'data_date',
+      key: 'data_date',
+      align: 'center',
+      width: 120
     }
   ]
 ])
 
-const tableData = ref<any>([])
+const tableTypeData = reactive<Record<string, any[]>>({
+  all: [],
+  ...Object.fromEntries(platformLobbies.map(({ target }) => [target, []]))
+})
+const tableData = ref<ResultSmartDisplays[]>([])
 
-const mockNoteData = {
-  result: 'success',
-  ret: {
-    data: [
-      {
-        target_id: 1,
-        game_category: 'prob',
-        game_category_name: t('target_group.prob'),
-        content: '會員 xinyang105 今天贏了 30,372 元',
-        data_date: '2025-05-05'
-      },
-      {
-        target_id: 3,
-        game_category: 'card',
-        game_category_name: t('target_group.card'),
-        content: '會員 zhang7241329 今天贏了 180,750 元',
-        data_date: '2025-05-03'
-      },
-      {
-        target_id: 2,
-        game_category: 'live',
-        game_category_name: t('target_group.live'),
-        content: '會員 mai127 今天貨量大幅度提升',
-        data_date: '2025-05-01'
-      },
-      {
-        target_id: 2,
-        game_category: 'live',
-        game_category_name: t('target_group.live'),
-        content: '會員 wz8260 今天輸了 115,073 元',
-        data_date: '2025-04-30'
-      },
-      {
-        target_id: 4,
-        game_category: 'fish',
-        game_category_name: t('target_group.fish'),
-        content: '會員 kissygj 今天輸了 9,066 元',
-        data_date: '2025-04-30'
-      },
-      {
-        target_id: 4,
-        game_category: 'fish',
-        game_category_name: t('target_group.fish'),
-        content: '會員 zxcvb01 今天贏了 30,372 元',
-        data_date: '2025-05-05'
-      },
-      {
-        target_id: 1,
-        game_category: 'prob',
-        game_category_name: t('target_group.prob'),
-        content: '會員 d198821 今天贏了 229,768 元',
-        data_date: '2025-05-03'
-      },
-      {
-        target_id: 2,
-        game_category: 'live',
-        game_category_name: t('target_group.live'),
-        content: '會員 phanthanhtungg 今天輸了 83,001 元',
-        data_date: '2025-04-30'
-      },
-      {
-        target_id: 1,
-        game_category: 'prob',
-        game_category_name: t('target_group.prob'),
-        content: '會員 chhung88 今天輸了 28,016 元',
-        data_date: '2025-04-30'
-      }
-    ]
+const clearSearch = () => {
+  searchText.value = ''
+}
+
+const queryGetSmartDisplays = async () => {
+  apiLoading.value = true
+
+  try {
+    const response: BaseStatusWithData<ResultSmartDisplays[]> = await apiGetSmartDisplays({
+      start_date: todayDate.value.subtract(6, 'day').format('YYYY-MM-DD'),
+      end_date: todayDate.value.format('YYYY-MM-DD'),
+      target: currentTabs.value === 'all' ? undefined : parseInt(currentTabs.value)
+    })
+    const { result } = response
+    if (result === 'success') {
+      transformGetSmartDisplays(response.ret)
+    } else {
+      throw new Error()
+    }
+  } catch (err) {
+    console.error(err)
+    // 非 Axios 錯誤
+    if (!axios.isAxiosError(err)) {
+      notification.error({
+        message: t('msg.query_failed')
+      })
+      return
+    }
+
+    const status = err.response?.status
+
+    if (status === 401) {
+      globalStore.storeHandleApiError()
+      return
+    }
+
+    if (status === 403) {
+      notification.error({
+        message: t('msg.no_permission')
+      })
+      return
+    }
+
+    notification.error({
+      message: t('msg.query_failed')
+    })
+  } finally {
+    apiLoading.value = false
   }
 }
 
-const pagination = reactive({
-  currentPage: 1,
-  pageSize: 5,
-  total: 0
+const transformGetSmartDisplays = (data: ResultSmartDisplays[]) => {
+  // 為避免資料殘留，初始化所有分類對應的資料
+  Object.keys(tableTypeData).forEach((key) => {
+    tableTypeData[key] = []
+  })
+
+  data.forEach((item) => {
+    const categoryName = targetMap[item.target_id]?.name || 'unknown'
+    const mappedItem = {
+      game_category: t(`target_group.${categoryName}`),
+      content: item.alert_message,
+      data_date: item.data_date
+    }
+
+    tableTypeData.all.push(mappedItem)
+    tableTypeData[item.target_id]?.push(mappedItem)
+  })
+  updateTableData()
+}
+
+const updateTableData = () => {
+  const dataForCurrentTab = tableTypeData[currentTabs.value]
+  const keyword = searchText.value.toLowerCase()
+
+  const filteredData = searchText.value
+    ? dataForCurrentTab.filter((item) =>
+        Object.values(item).some((field) => String(field).toLowerCase().includes(keyword))
+      )
+    : dataForCurrentTab
+
+  tableData.value = filteredData
+}
+
+watch([() => currentTabs.value, () => searchText.value], () => {
+  tableRef.value.goToFirstPage()
+  updateTableData()
 })
 
-const transformData = (data: any[]) => {
-  const filteredData = data.filter(
-    (item) => currentTabs.value === 'all' || item.game_category === currentTabs.value
-  )
-
-  pagination.total = filteredData.length
-
-  tableData.value = filteredData.map((item) => ({
-    game_category: item.game_category_name,
-    content: item.content,
-    date: item.data_date
-  }))
-}
-
-const tableChange = (page: number, size: number) => {
-  pagination.currentPage = page
-  pagination.pageSize = size
-  transformData(mockNoteData.ret.data)
-}
-
-watch(
-  () => currentTabs.value,
-  () => {
-    pagination.currentPage = 1
-    transformData(mockNoteData.ret.data)
-  }
-)
-
 onMounted(() => {
-  apiLoading.value = false
-  transformData(mockNoteData.ret.data)
+  queryGetSmartDisplays()
 })
 </script>
 <template>
@@ -162,27 +162,43 @@ onMounted(() => {
         {{ $t('date.last_seven_days') }}
       </span>
     </template>
+    <template #extra>
+      <a-input
+        v-model:value="searchText"
+        class="!w-[200px] !mr-15px group"
+        :placeholder="$t('common.search')"
+      >
+        <template #suffix>
+          <span
+            v-if="searchText"
+            class="text-[10px] cursor-pointer group-focus-within:text-[#4096ff] text-[#D1D6E4]"
+            @click="clearSearch"
+          >
+            <cdp-icon name="delete"></cdp-icon>
+          </span>
+          <span v-else class="group-focus-within:text-[#4096ff] text-[#D1D6E4]">
+            <cdp-icon name="search"></cdp-icon>
+          </span>
+        </template>
+      </a-input>
+    </template>
     <div class="!px-1">
       <cdp-button-group class="!mb-4" :buttonGroup="buttonGroup" v-model="currentTabs" />
-      <a-spin :spinning="apiLoading">
-        <a-row justify="start">
-          <a-col :span="24">
-            <custom-table
-              class="min-h-[290px] cdp-game-table"
-              :hasPage="true"
-              :dataSource="tableData"
-              :columns="columns"
-              :serverSide="true"
-              :loading="false"
-              :pageSize="pagination.pageSize"
-              :total="pagination.total"
-              :showSizeChanger="false"
-              :showRange="true"
-              @update:tableChange="tableChange"
-            ></custom-table>
-          </a-col>
-        </a-row>
-      </a-spin>
+      <a-row justify="start">
+        <a-col :span="24">
+          <custom-table
+            ref="tableRef"
+            class="min-h-[290px] cdp-game-table"
+            :hasPage="true"
+            :dataSource="tableData"
+            :columns="columns"
+            :loading="apiLoading"
+            :pageSize="5"
+            :showSizeChanger="false"
+            :showRange="true"
+          ></custom-table>
+        </a-col>
+      </a-row>
     </div>
   </a-card>
 </template>
@@ -190,10 +206,21 @@ onMounted(() => {
 :deep(.ant-table) {
   min-height: 235px;
   .ant-table-thead > tr > th {
+    text-align: center !important;
     height: 34px;
   }
   .ant-table-placeholder {
     height: 200px;
+  }
+}
+
+:deep(.ant-pagination) {
+  @media (max-width: 1440px) {
+    flex-direction: row;
+    align-items: flex-start;
+    .ant-pagination-total-text {
+      position: relative;
+    }
   }
 }
 </style>

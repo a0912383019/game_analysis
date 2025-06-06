@@ -48,6 +48,12 @@ interface ResultDevices {
   name: string
 }
 
+interface PlatformConfig {
+  platform_halls: ResultHalls[]
+  platform_devices: ResultDevices[]
+  platform_lobbies: ResultLobbies[]
+}
+
 interface ParamsLobbyGames {
   lobby_id: number
 }

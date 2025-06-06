@@ -26,7 +26,11 @@ const refreshData = async () => {
       apiDevices({ device: undefined })
     ])
 
-    const platformData: Record<string, any> = {}
+    const platformData: PlatformConfig = {
+      platform_halls: [],
+      platform_devices: [],
+      platform_lobbies: []
+    }
 
     if (
       hallResult.status === 'fulfilled' &&
