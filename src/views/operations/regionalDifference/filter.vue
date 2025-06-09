@@ -27,7 +27,7 @@ const rules: Record<string, Rule[]> = {
 const hallValue = ref<number>(0)
 const hallOptions = ref<SelectProps['options']>([
   { value: 0, label: t('common.all') },
-  ...(getSessionStorageEntity('platform_config').platform_halls ?? []).map(
+  ...(getSessionStorageEntity<PlatformConfig>('platform_config')?.platform_halls ?? []).map(
     ({ hall_id, login_code, name }) => ({
       value: hall_id,
       label: name + ` [${login_code}]`
@@ -46,11 +46,13 @@ const hallProps = computed<AntSelectProps>(() => {
 // 遊戲及玩法
 const gamePlayValue = ref<LobbyGameData[]>([])
 const gamePlayOptions = ref<CascaderProps['options']>(
-  getSessionStorageEntity('platform_config').platform_lobbies?.map(({ lobby, lobby_name }) => ({
-    value: lobby,
-    label: lobby_name,
-    isLeaf: false
-  })) || []
+  getSessionStorageEntity<PlatformConfig>('platform_config')?.platform_lobbies?.map(
+    ({ lobby, lobby_name }) => ({
+      value: lobby,
+      label: lobby_name,
+      isLeaf: false
+    })
+  ) || []
 )
 const gamePlayProps = computed<AntCascaderProps>(() => {
   return {
@@ -64,10 +66,12 @@ const gamePlayProps = computed<AntCascaderProps>(() => {
 // 裝置
 const deviceValue = ref<number | undefined>()
 const deviceOptions = ref<SelectProps['options']>(
-  getSessionStorageEntity('platform_config').platform_devices?.map(({ id, name }) => ({
-    value: id,
-    label: name
-  }))
+  getSessionStorageEntity<PlatformConfig>('platform_config')?.platform_devices?.map(
+    ({ id, name }) => ({
+      value: id,
+      label: name
+    })
+  )
 )
 const deviceProps = computed<AntSelectProps>(() => {
   return {
