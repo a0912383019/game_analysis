@@ -102,7 +102,7 @@ describe('main', () => {
     expect(apiDevices).toBeCalledTimes(1)
 
     expect(sessionStorage.platform_config).toStrictEqual(
-      '{"platform_halls":[{"hall_id":19,"login_code":"","name":"default_classify"}],"platform_lobbies":[{"lobby":5,"lobby_name":"Gt5電子","target":3,"target_name":"電子"}],"platform_devices":[{"id":0,"name":"PC","created_time":"2025-04-22T16:47:56+08:00"}]}'
+      '{"platform_halls":[{"hall_id":19,"login_code":"","name":"default_classify"}],"platform_devices":[{"id":0,"name":"PC","created_time":"2025-04-22T16:47:56+08:00"}],"platform_lobbies":[{"lobby":5,"lobby_name":"Gt5電子","target":3,"target_name":"電子"}]}'
     )
 
     let setPropertySpy = vi.spyOn(document.documentElement.style, 'setProperty')

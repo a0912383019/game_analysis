@@ -94,6 +94,11 @@
 
 .ant-table {
   border-radius: 2px;
+  .ant-table-thead > tr > th {
+    background-color: #fafafa;
+    text-align: center !important;
+    height: 34px;
+  }
   .ant-table-container {
     border-radius: 2px;
     table {
@@ -109,10 +114,6 @@
 .ant-table-content > table > thead > tr > th {
   color: rgba(6, 17, 39, 0.5) !important;
   font-weight: 400 !important;
-}
-
-.ant-table-thead > tr > th {
-  background-color: #fafafa;
 }
 
 .ant-table tfoot > tr > td,

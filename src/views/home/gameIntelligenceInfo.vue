@@ -204,10 +204,6 @@ onMounted(() => {
 <style lang="scss" scoped>
 :deep(.ant-table) {
   min-height: 235px;
-  .ant-table-thead > tr > th {
-    text-align: center !important;
-    height: 34px;
-  }
   .ant-table-placeholder {
     height: 200px;
   }

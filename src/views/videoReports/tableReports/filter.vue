@@ -63,7 +63,7 @@ const gameProps = computed<AntSelectProps>(() => {
   }
 })
 
-// 視訊來源及桌次
+// 視訊現場及桌次
 const liveTableLoading = ref<boolean>(true)
 const liveTableValue = ref<LobbyGameData[]>([])
 const liveTableOptions = ref<CascaderProps['options']>([{ loading: true }])

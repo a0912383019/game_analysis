@@ -11,7 +11,7 @@
     "today": "今天",
     "yesterday": "昨天",
     "last_7_days": "前7天",
-    "last_seven_days": "近7天",
+    "last_seven_days": "前7日",
     "this_week": "本週",
     "last_week": "上週",
     "last_30_days": "前30天",
@@ -293,8 +293,8 @@
     "free_game_analysis": "FreeGame分析"
   },
   "video": {
-    "select_live_table": "請選擇視訊來源及桌次",
-    "live_table": "視訊來源及桌次",
+    "select_live_table": "請選擇視訊現場及桌次",
+    "live_table": "視訊現場及桌次",
     "live_source": "視訊現場"
   },
   "table": {

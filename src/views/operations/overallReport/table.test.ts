@@ -105,7 +105,6 @@ describe('table', () => {
       ],
       hallId: 6,
       startDate: '2025-03-10',
-      userId: [],
       username: ['tom']
     })
     expect(wrapper.vm.keepAliveKey).toStrictEqual(2)

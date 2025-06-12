@@ -33,16 +33,12 @@ const currentTabs = ref<string>('payoff')
 const getCssVar = (varName: string) =>
   getComputedStyle(document.documentElement).getPropertyValue(varName).trim()
 
-const barChartOptions = reactive<EChartsOption>({
+const barChartOptions = ref<EChartsOption>({
   tooltip: {
     trigger: 'axis',
     confine: true,
     axisPointer: {
       type: 'cross',
-      crossStyle: {
-        color: '#999',
-        type: 'dashed'
-      },
       label: {
         show: false
       }
@@ -178,12 +174,10 @@ const transformData = (data: ResultGameReportTrend) => {
       items
     }))
 
-  barChartOptions.xAxis = [
-    {
-      type: 'category',
-      data: sortedByDate.map((item) => dayjs(item.date).format('MM/DD'))
-    }
-  ]
+  barChartOptions.value.xAxis = {
+    type: 'category',
+    data: sortedByDate.map((item) => dayjs(item.date).format('MM/DD'))
+  }
 
   buttonGroup.value.forEach((item) => {
     chartTypeData[item.value] = platformLobbies.map(({ target }) => {
@@ -220,14 +214,14 @@ const transformData = (data: ResultGameReportTrend) => {
     })
   })
 
-  barChartOptions.series = chartTypeData[currentTabs.value]
+  barChartOptions.value.series = chartSeriesData.value
   tableData.value = tableTypeData[currentTabs.value]
 }
 
 watch(
   () => currentTabs.value,
   () => {
-    barChartOptions.series = chartSeriesData.value
+    barChartOptions.value.series = chartSeriesData.value
     tableData.value = tableTypeData[currentTabs.value]
   }
 )
@@ -253,7 +247,7 @@ onMounted(() => {
           <a-col :span="15">
             <v-chart
               v-if="chartSeriesData.length !== 0"
-              class="chart"
+              class="!w-285px"
               :option="barChartOptions"
               autoresize
             ></v-chart>
@@ -280,11 +274,6 @@ onMounted(() => {
   </a-card>
 </template>
 <style lang="scss" scoped>
-.chart {
-  height: 285px;
-  max-height: 285px;
-  overflow: visible !important;
-}
 .circle {
   width: 10px;
   height: 10px;
@@ -293,9 +282,6 @@ onMounted(() => {
   margin-right: 8px;
 }
 :deep(.ant-table) {
-  .ant-table-thead > tr > th {
-    height: 34px;
-  }
   tbody {
     tr {
       height: 42px;

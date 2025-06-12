@@ -269,10 +269,4 @@ onMounted(async () => {
     @update:tableChange="tableChange"
   ></custom-table>
 </template>
-<style lang="scss" scoped>
-:deep(.ant-table) {
-  .ant-table-thead > tr > th {
-    text-align: center !important;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

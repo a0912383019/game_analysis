@@ -492,7 +492,7 @@ describe('hallTable', () => {
       data: [
         {
           user_id: '457599842',
-          username: 'eeertppp',
+          user_name: 'eeertppp',
           wager_count: 340,
           bet_amount: '1941.0000',
           payoff: '-81.0000',
