@@ -12,7 +12,7 @@ const flowColumns = ref<TableColumnsType[]>([
       width: 380,
       dataIndex: 'content',
       key: 'content',
-      align: 'center'
+      align: 'left'
     },
     {
       title: t('unit.people_num'),

@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import overallReportTable from '@/views/operations/operationAnalysis/table/overallReportTable.vue'
-// import gameTable from '@/views/operations/overallReport/table/gameTable.vue'
-// import playTable from '@/views/operations/overallReport/table/playTable.vue'
-// import dateTable from '@/views/operations/overallReport/table/dateTable.vue'
+import hallTable from '@/views/operations/operationAnalysis/table/hallTable.vue'
 import { useOperationsOverallReportStore } from '@/stores'
 import { formatToApiDate } from '@/utils/commonUtils'
 import dayjs from '@/utils/appDayjs'
@@ -24,9 +22,7 @@ const currentTabs = ref<string>('overallReportTable')
 // 整理所有 component
 const componentMap = {
   overallReportTable,
-  // gameTable,
-  // playTable,
-  // dateTable
+  hallTable
 }
 
 // 當前使用的 component
@@ -52,19 +48,4 @@ const keepAliveKey = ref(0)
     </keep-alive>
   </section>
 </template>
-<style lang="scss" scoped>
-// // 無資料時 table 的高度
-// // 第一層
-// :deep(.ant-table-placeholder) {
-//   height: 400px;
-// }
-// // 內層
-// :deep(.ant-table-expanded-row) {
-//   .ant-table-placeholder {
-//     height: 100px !important;
-//   }
-//   .ant-pagination {
-//     margin-top: 15px !important;
-//   }
-// }
-</style>
+<style lang="scss" scoped></style>

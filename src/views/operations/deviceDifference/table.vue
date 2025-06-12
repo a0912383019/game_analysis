@@ -333,9 +333,6 @@ onMounted(() => {
   height: 400px;
 }
 :deep(.ant-table) {
-  .ant-table-thead > tr > th {
-    text-align: center !important;
-  }
   .ant-table-tbody > tr.ant-table-row.is-first:hover > td.ant-table-cell,
   .ant-table-tbody > tr.ant-table-row.is-first > td.ant-table-cell {
     background: #e4e8eb;

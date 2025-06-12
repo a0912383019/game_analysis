@@ -235,9 +235,4 @@ watch(
 :deep(.ant-table-placeholder) {
   height: 400px;
 }
-:deep(.ant-table) {
-  .ant-table-thead > tr > th {
-    text-align: center !important;
-  }
-}
 </style>

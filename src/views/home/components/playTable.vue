@@ -200,15 +200,6 @@ watch(
   justify-content: center;
 }
 :deep(.ant-table) {
-  .ant-table-thead > tr > th {
-    text-align: center !important;
-    height: 34px;
-  }
-  .ant-table-tbody {
-    > tr.ant-table-row > td:first-child {
-      text-align: left !important;
-    }
-  }
   .ant-table-placeholder {
     height: 200px;
   }
