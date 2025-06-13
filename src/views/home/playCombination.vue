@@ -9,13 +9,14 @@ const combinationColumns = ref<TableColumnsType[]>([
   [
     {
       title: t('home.game_combination'),
-      width: 380,
+      width: 520,
       dataIndex: 'content',
       key: 'content',
       align: 'left'
     },
     {
       title: t('data_name.people_proportion'),
+      width: 120,
       dataIndex: 'user_count_ratio',
       key: 'user_count_ratio',
       align: 'center',
@@ -23,6 +24,7 @@ const combinationColumns = ref<TableColumnsType[]>([
     },
     {
       title: t('unit.people_num'),
+      width: 120,
       dataIndex: 'user_count',
       key: 'user_count',
       align: 'center',
@@ -30,6 +32,7 @@ const combinationColumns = ref<TableColumnsType[]>([
     },
     {
       title: t('data_name.bet_amount'),
+      width: 120,
       dataIndex: 'bet_amount',
       key: 'bet_amount',
       align: 'center',
@@ -38,6 +41,7 @@ const combinationColumns = ref<TableColumnsType[]>([
     },
     {
       title: t('data_name.payoff'),
+      width: 120,
       dataIndex: 'payoff',
       key: 'payoff',
       align: 'center',
@@ -45,6 +49,7 @@ const combinationColumns = ref<TableColumnsType[]>([
     },
     {
       title: t('data_name.composite_rtp'),
+      width: 120,
       dataIndex: 'comprehensive_rtp',
       key: 'comprehensive_rtp',
       align: 'center',
