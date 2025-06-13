@@ -204,4 +204,7 @@ watch(
     height: 200px;
   }
 }
+:deep(.ant-table-cell) {
+  padding: 5px 16px !important;
+}
 </style>
