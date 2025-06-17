@@ -109,6 +109,7 @@ onMounted(async () => {
         <loading-box />
       </div>
     </div>
+    <chat-widget />
   </div>
 </template>
 <style lang="scss" scoped>
