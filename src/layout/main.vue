@@ -131,5 +131,17 @@ onMounted(async () => {
       width: calc(100% - 80px);
     }
   }
+  .loading {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 15;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(#000000, 0.8);
+  }
 }
 </style>
