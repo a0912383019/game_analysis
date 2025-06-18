@@ -4,6 +4,9 @@ import { CloseOutlined } from '@ant-design/icons-vue'
 
 const visible = ref(false)
 
+const inputText = ref('')
+const textareaRef = ref()
+
 function toggleChat() {
   visible.value = !visible.value
 }
@@ -16,6 +19,37 @@ const handleTitleBarScroll = (event) => {
   // 阻止滾輪事件的默認行為，即阻止頁面滾動
   event.preventDefault()
 }
+
+const handleEnter = (e) => {
+  if (e.shiftKey) {
+    // Shift + Enter 換行 → 什麼都不做，讓它正常輸入換行
+    return
+  }
+
+  // Enter → 提交
+  e.preventDefault()
+  if (inputText.value.trim() !== '') {
+    sendMessage()
+  }
+}
+
+// 模擬送出訊息
+const sendMessage = () => {
+  console.log('送出訊息:', inputText.value)
+  inputText.value = ''
+}
+
+watch(
+  () => inputText.value,
+  () => {
+    console.log('kkkk');
+    const el = textareaRef.value
+    if (el) {
+      el.style.height = 'auto'
+      el.style.height = el.scrollHeight + 'px'
+    }
+  }
+)
 </script>
 <template>
   <div>
@@ -30,14 +64,16 @@ const handleTitleBarScroll = (event) => {
     <!-- 標題列 -->
     <div
       @wheel.prevent="handleTitleBarScroll"
-      class="bg-[#FFFFFF] text-center !py-4 text-[#508BE5] !font-semibold shadow-[0px_2px_4px_0px_rgba(0,0,0,0.1)]"
+      class="bg-white text-center !py-4 text-[#508BE5] !font-semibold shadow-[0px_2px_4px_0px_rgba(0,0,0,0.1)]"
     >
       智能客服
-      <button class="absolute cursor-pointer right-3 top-4 text-gray-400 hover:text-gray-600" @click="closeChat">
+      <button
+        class="absolute cursor-pointer right-3 top-4 text-gray-400 hover:text-gray-600"
+        @click="closeChat"
+      >
         <CloseOutlined />
       </button>
     </div>
-
     <!-- 內容區塊 -->
     <div
       class="p-4 flex flex-col items-center text-sm text-gray-600 h-[520px] overflow-y-auto max-h-[520px] overscroll-y-contain"
@@ -47,9 +83,7 @@ const handleTitleBarScroll = (event) => {
         <cdp-icon name="robotHead" class="text-[37px] !ml-3 !h-15 !text-[#508BE5]" />
       </div>
       <!-- 提示文字 -->
-      <p class="text-center mb-4 leading-5 text-base !mb-4">
-        親，有什麼可以幫您的呢？
-      </p>
+      <p class="text-center mb-4 leading-5 text-base !mb-4">親，有什麼可以幫您的呢？</p>
       <div class="w-5/6">
         <button
           class="w-full text-white bg-[#3c81f6] hover:bg-[#2c6edb] rounded-full !py-2 !px-4 text-sm transition !my-3"
@@ -63,26 +97,26 @@ const handleTitleBarScroll = (event) => {
         </button>
       </div>
     </div>
-
     <!-- 輸入欄 -->
     <div
       @wheel.prevent="handleTitleBarScroll"
-      class="bg-[#FFFFFF] text-center !py-4 text-[#508BE5] !font-semibold shadow-[0px_2px_4px_0px_rgba(0,0,0,0.1)]"
+      class="bg-white !py-3 shadow-[0px_-2px_6px_0px_rgba(0,0,0,0.1)]"
     >
-      <input
-        type="text"
-        placeholder="您可以問任何問題..."
-        class="flex-1 px-3 py-2 text-sm border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-300"
-      />
-      <button
-        class="ml-2 text-white bg-[#3c81f6] hover:bg-[#2c6edb] rounded-full w-9 h-9 flex items-center justify-center"
-      >
-        <svg class="w-5 h-5 rotate-45" fill="currentColor" viewBox="0 0 20 20">
-          <path
-            d="M2.94 2.94a1.5 1.5 0 012.12 0l12 12a1.5 1.5 0 01-2.12 2.12L3.06 5.06a1.5 1.5 0 010-2.12z"
-          />
-        </svg>
-      </button>
+      <div class="w-full !px-3 flex">
+        <textarea
+          v-model="inputText"
+          ref="textareaRef"
+          @keydown.enter.exact.prevent="handleEnter"
+          @keydown.enter.shift.exact.prevent="inputText += '\n'"
+          placeholder="您可以問任何問題..."
+          class="max-h-[200px] overflow-y-auto !mr-3 flex-1 !px-3 text-sm bg-[#0611270A] placeholder-gray-400 rounded-[20px] focus:outline-none focus:ring-1 focus:ring-blue-300"
+        ></textarea>
+        <button
+          class="text-white bg-[#3c81f6] hover:bg-[#2c6edb] rounded-full w-10 h-10 flex items-center justify-center"
+        >
+          <cdp-icon name="talkPlane" class="text-[18px] !ml-1" />
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -105,6 +139,17 @@ const handleTitleBarScroll = (event) => {
 
 .chat-button-bg:hover {
   transform: scale(1.2);
+}
+textarea {
+  // width: 100%;
+  // height: 150px;
+  // padding: 12px 20px;
+  // box-sizing: border-box;
+  // border: 2px solid #ccc;
+  // border-radius: 4px;
+  // background-color: #f8f8f8;
+  // font-size: 16px;
+  resize: none;
 }
 </style>
 <style lang="scss">
