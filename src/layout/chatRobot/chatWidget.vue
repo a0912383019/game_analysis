@@ -47,17 +47,17 @@ const handleTitleBarScroll = (event) => {
         <cdp-icon name="robotHead" class="text-[37px] !ml-3 !h-15 !text-[#508BE5]" />
       </div>
       <!-- 提示文字 -->
-      <p class="text-center mb-4 leading-5 text-base !mb-6">
+      <p class="text-center mb-4 leading-5 text-base !mb-4">
         親，有什麼可以幫您的呢？
       </p>
-      <div class="w-full space-y-2">
+      <div class="w-5/6">
         <button
-          class="w-full text-white bg-[#3c81f6] hover:bg-[#2c6edb] rounded-full py-2 px-4 text-sm transition"
+          class="w-full text-white bg-[#3c81f6] hover:bg-[#2c6edb] rounded-full !py-2 !px-4 text-sm transition !my-3"
         >
-          09/18 ～ 09/19 esb 會員 abc123 遊玩糖果派對
+          09/18 ～ 09/19 esb 會員 abc123 遊玩糖果派對，損益跟獲利比最高的會員
         </button>
         <button
-          class="w-full text-white bg-[#3c81f6] hover:bg-[#2c6edb] rounded-full py-2 px-4 text-sm transition"
+          class="w-full text-white bg-[#3c81f6] hover:bg-[#2c6edb] rounded-full !py-2 !px-4 text-sm transition"
         >
           09/18 ～ 09/19 esb 會員 yy9001 遊玩梯子遊戲
         </button>
@@ -67,7 +67,7 @@ const handleTitleBarScroll = (event) => {
     <!-- 輸入欄 -->
     <div
       @wheel.prevent="handleTitleBarScroll"
-      class="border-t border-gray-200 p-3 flex items-center"
+      class="bg-[#FFFFFF] text-center !py-4 text-[#508BE5] !font-semibold shadow-[0px_2px_4px_0px_rgba(0,0,0,0.1)]"
     >
       <input
         type="text"

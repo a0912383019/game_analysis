@@ -135,7 +135,7 @@ onMounted(async () => {
     position: absolute;
     left: 0;
     top: 0;
-    z-index: 15;
+    z-index: 55;
     display: flex;
     align-items: center;
     justify-content: center;
