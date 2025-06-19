@@ -105,7 +105,11 @@ onMounted(async () => {
       <div class="mainArea__container">
         <router-view v-if="isReady" :key="currentPlatform" />
       </div>
-      <div class="loading" v-show="globalStore.isLoading">
+      <div
+        class="loadingContainer"
+        :class="{ close: globalStore.isSidebarClose }"
+        v-show="globalStore.isLoading"
+      >
         <loading-box />
       </div>
     </div>
@@ -131,17 +135,21 @@ onMounted(async () => {
       width: calc(100% - 80px);
     }
   }
-  .loading {
-    position: absolute;
-    left: 0;
+  .loadingContainer {
+    position: fixed;
+    margin-left: auto;
+    right: 0;
     top: 0;
-    z-index: 55;
+    z-index: 100;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: calc(100% - 250px);
     height: 100%;
     background-color: rgba(#000000, 0.8);
+    &.close {
+      width: calc(100% - 80px);
+    }
   }
 }
 </style>

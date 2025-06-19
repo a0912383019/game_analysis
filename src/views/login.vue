@@ -191,7 +191,7 @@ onMounted(() => {
       <div class="error !mt-1" v-show="failMsg.msg4.isShow">{{ failMsg.msg4.text }}</div>
     </div>
   </div>
-  <div class="loading" v-show="isLoading">
+  <div class="loadingContainer" v-show="isLoading">
     <loading-box />
   </div>
 </template>
@@ -218,6 +218,18 @@ onMounted(() => {
   height: 65px;
   flex-shrink: 0;
   background: url('@/assets/images/loginLogo.png') center / contain no-repeat;
+}
+.loadingContainer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(#000000, 0.8);
 }
 @keyframes shakeAni {
   10%,
