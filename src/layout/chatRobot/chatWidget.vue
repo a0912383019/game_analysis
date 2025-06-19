@@ -1,3 +1,4 @@
+import { url } from 'inspector';
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { CloseOutlined } from '@ant-design/icons-vue'
@@ -60,29 +61,39 @@ const handleEnter = (e) => {
 }
 
 // 模擬送出訊息
-const sendMessage = () => {
+const sendMessage = async () => {
   // console.log('送出訊息:', inputText.value)
   // inputText.value = ''
   const content = inputText.value.trim()
   if (!content) return
 
-  const now = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+  const now = new Date().toLocaleTimeString('en-GB', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false
+  })
+
   messages.value.push({
     id: Date.now(),
     role: 'user',
     content,
-    time: now,
+    time: now
   })
-
+  await nextTick(() => {
+    contentAreaRef.value.scrollTop = contentAreaRef.value.scrollHeight
+  })
   inputText.value = ''
 
   // 模擬 bot 回覆
-  setTimeout(() => {
+  setTimeout(async () => {
     messages.value.push({
       id: Date.now() + 1,
       role: 'bot',
       content: `這是機器人的回覆：\n你剛剛說了：${content}`,
-      time: now,
+      time: now
+    })
+    await nextTick(() => {
+      contentAreaRef.value.scrollTop = contentAreaRef.value.scrollHeight
     })
   }, 500)
 }
@@ -112,15 +123,14 @@ const messages = ref<ChatMessage[]>([
     id: 1,
     role: 'user',
     content: '09/18 ～ 09/19 esb 會員 abc123 遊玩糖果派對 獲利最高的注單',
-    time: '13:16 PM',
+    time: '13:16 PM'
   },
   {
     id: 2,
     role: 'bot',
-    content:
-      '09/18 ～ 09/19 esb 會員 abc123 遊玩糖果派對 獲利最高的注單號為\n19399963107',
-    time: '13:16 PM',
-  },
+    content: '09/18 ～ 09/19 esb 會員 abc123 遊玩糖果派對 獲利最高的注單號為\n19399963107',
+    time: '13:16 PM'
+  }
 ])
 </script>
 <template>
@@ -136,7 +146,7 @@ const messages = ref<ChatMessage[]>([
     <!-- 標題列 -->
     <div
       @wheel="handleChatWindowScroll"
-      class="bg-white text-center !py-4 text-[#508BE5] !font-semibold shadow-[0px_2px_4px_0px_rgba(0,0,0,0.1)]"
+      class="bg-white text-center !py-4 text-[#508BE5] !font-semibold border-b border-[#0000001a] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.1)]"
     >
       智能客服
       <button
@@ -148,7 +158,7 @@ const messages = ref<ChatMessage[]>([
     </div>
     <!-- 內容區塊 -->
     <div
-      @wheel.prvent="handleContentAreaScroll"
+      @wheel="handleContentAreaScroll"
       ref="contentAreaRef"
       class="p-4 flex flex-col items-center text-sm text-gray-600 h-[520px] max-h-[520px] overflow-y-auto overscroll-y-contain"
     >
@@ -158,7 +168,7 @@ const messages = ref<ChatMessage[]>([
       </div>
       <!-- 提示文字 -->
       <p class="text-center mb-4 leading-5 text-base !mb-4">親，有什麼可以幫您的呢？</p>
-      <div class="w-5/6">
+      <!-- <div class="w-5/6">
         <button
           class="w-full text-white bg-[#3c81f6] hover:bg-[#2c6edb] rounded-full !py-2 !px-4 text-sm transition !my-3"
         >
@@ -169,42 +179,53 @@ const messages = ref<ChatMessage[]>([
         >
           09/18 ～ 09/19 esb 會員 yy9001 遊玩梯子遊戲
         </button>
-      </div>
-      <div v-for="msg in messages" :key="msg.id" class="w-full flex flex-col items-start mb-4">
-        <div class="w-full flex" :class="msg.role === 'user' ? 'justify-end' : 'justify-start'">
-          <!-- Bot Icon -->
-          <div
-            v-if="msg.role === 'bot'"
-            class="flex-shrink-0 bg-[#e3efff] rounded-full w-[40px] h-[40px] flex items-center justify-center mr-2"
-          >
-            <cdp-icon name="robotHead" class="text-[22px] text-[#508BE5]" />
-          </div>
-
-          <!-- Message Bubble -->
-          <div
-            class="rounded-xl px-4 py-3 text-sm whitespace-pre-wrap max-w-[70%] shadow"
-            :class="
-              msg.role === 'user'
-                ? 'bg-[#3c81f6] text-white rounded-br-none'
-                : 'bg-white text-gray-800 rounded-bl-none'
-            "
-          >
-            {{ msg.content }}
-          </div>
-        </div>
-        <!-- Time -->
+      </div> -->
+      <div
+        v-for="msg in messages"
+        :key="msg.id"
+        class="w-full flex flex-col !items-start !mb-5 font-[Roboto]"
+      >
         <div
-          class="text-[11px] mt-1 text-gray-400"
-          :class="msg.role === 'user' ? 'text-right self-end pr-12' : 'text-left pl-12'"
+          class="flex items-end gap-1 w-full"
+          :class="msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'"
         >
-          {{ msg.time }}
+          <div
+            class="flex"
+            :class="msg.role === 'user' ? 'justify-end' : 'justify-start'"
+          >
+            <!-- Bot Icon -->
+            <div
+              v-if="msg.role === 'bot'"
+              class="flex-shrink-0 bg-[#e3efff] rounded-full w-[40px] h-[40px] flex items-center justify-center !mx-2"
+            >
+              <cdp-icon name="robotHead" class="text-[22px] text-[#508BE5]" />
+            </div>
+            <!-- Message Bubble -->
+            <div
+              class="chat-bubble break-all rounded-[10px] px-4 py-3 text-sm whitespace-pre-wrap !shadow-[0px_2px_7px_1px_rgba(0,0,0,0.1)]"
+              :class="
+                msg.role === 'user'
+                  ? 'bg-[#FFFFFF] text-black rounded-tr-none !mr-4 chat-bubble__right'
+                  : 'bg-[#3c81f6] text-white rounded-tl-none chat-bubble__left'
+              "
+            >
+              {{ msg.content }}
+            </div>
+          </div>
+          <!-- Time -->
+          <div
+            class="text-[11px] text-gray-400 w-[17%]"
+            :class="msg.role === 'user' ? 'text-right self-end !ml-13' : 'text-left !mr-6'"
+          >
+            {{ msg.time }}
+          </div>
         </div>
       </div>
     </div>
     <!-- 輸入欄 -->
     <div
       @wheel="handleChatWindowScroll"
-      class="bg-white !py-3 shadow-[0px_-2px_6px_0px_rgba(0,0,0,0.1)]"
+      class="bg-white !py-3 shadow-[0px_-2px_6px_0px_rgba(0,0,0,0.1)] border-t border-[#0000001a]"
     >
       <div class="w-full !px-3 flex">
         <textarea
@@ -212,7 +233,7 @@ const messages = ref<ChatMessage[]>([
           ref="textareaRef"
           @keydown.enter.exact.prevent="handleEnter"
           placeholder="您可以問任何問題..."
-          class="resize-none flex-1 !max-h-[200px] leading-[20px] h-[40px] !mr-3 !px-3 !py-[10px] overflow-y-auto overscroll-y-contain text-sm bg-[#0611270A] placeholder-gray-400 rounded-[20px] focus:outline-none focus:ring-1 focus:ring-blue-300"
+          class="resize-none flex-1 max-h-[180px] leading-[20px] h-[40px] !mr-3 !px-3 !py-[10px] overflow-y-auto overscroll-y-contain text-sm bg-[#0611270A] placeholder-gray-400 rounded-[20px] focus:outline-none focus:ring-1 focus:ring-blue-300"
         ></textarea>
         <button
           @click="handleEnter"
@@ -242,5 +263,37 @@ const messages = ref<ChatMessage[]>([
 }
 .chat-button-bg:hover {
   transform: scale(1.2);
+}
+.chat-bubble {
+  min-height: 2rem;
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  display: block;
+  position: relative;
+  width: fit-content;
+  &:before {
+    content: '';
+    background-color: inherit;
+    width: 0.5rem;
+    height: 0.5rem;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-image: url('@/assets/icons/chataArrow.svg');
+    mask-image: url('@/assets/icons/chataArrow.svg');
+    position: absolute;
+    top: 0;
+    -webkit-mask-position: 0 0px;
+    mask-position: 0 0px;
+    -webkit-mask-size: 10px;
+    mask-size: 10px;
+  }
+  &__left:before {
+    transform: scaleY(-1);
+    inset-inline-start: -0.5rem;
+  }
+  &__right:before {
+    inset-inline-end: -0.5rem;
+    transform: scale(-1, -1);
+  }
 }
 </style>
