@@ -64,7 +64,8 @@ const queryOperationGameAnalysis = async () => {
   try {
     const response = await apiGetOperationGameAnalysis({
       analysis_type: props.analysisType,
-      data_date: todayDate.value.format('YYYY-MM-DD'),
+      // data_date: todayDate.value.format('YYYY-MM-DD'),
+      data_date: '2025-06-19',
       target_types:
         hallGroupValue.value.length === 0 ? '-1' : [...hallGroupValue.value].sort().join(),
       length: pagination.pageSize,

@@ -17,7 +17,7 @@ interface ParamsGameReportTrend {
 }
 
 interface GameReportTrend {
-  betAmount: string
+  bet_amount: string
   data_date: string
   first_play_count: number
   loss_count: number
@@ -28,30 +28,30 @@ interface GameReportTrend {
 }
 
 interface GameReportTrendDaily {
-  commissionable: string
   data_date: string
   first_play_count: number
   loss_count: number
   payoff: string
-  wagers_count: number
+  users_count: number
+  bet_amount: string
 }
 
 interface GameReportTrendTarget {
-  commissionable: string
   first_play_count: number
   loss_count: number
   payoff: string
   target_id: number
+  bet_amount: string
   target_name: string
-  wagers_count: number
+  users_count: number
 }
 
 interface GameReportTrendOverall {
-  commissionable: string
+  bet_amount: string
   first_play_count: number
   loss_count: number
   payoff: string
-  wagers_count: number
+  users_count: number
   target_id?: number
   target_name?: string
 }
