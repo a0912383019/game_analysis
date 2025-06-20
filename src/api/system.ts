@@ -1,17 +1,47 @@
 import { apiGet, apiPut } from './axiosGoInstance'
-import { mockHalls, mockLobbies, mockDevices } from '@/api/mock/system'
+import {
+  mockRelease,
+  mockLogin,
+  mockSidebar,
+  mockHalls,
+  mockLobbies,
+  mockDevices,
+  mockLobbyGamesProb,
+  mockLobbyGamesLive,
+  mockLobbyGamesCard,
+  mockLobbyGamesFish,
+  mockLobbyGamesLottery
+} from '@/api/mock/system'
 
 const useMock = import.meta.env.VITE_ENV === 'local'
 
 export const apiRelease = () => {
+  if (useMock) {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(mockRelease), 300)
+    })
+  }
+
   return apiGet<undefined, undefined>('/api/release')
 }
 
 export const apiLogin = (params: ParamsLogin) => {
+  // if (useMock) {
+  //   return new Promise((resolve) => {
+  //     setTimeout(() => resolve(mockLogin), 300)
+  //   })
+  // }
+
   return apiPut<ParamsLogin, ResultLoginData>('/api/login_google', params)
 }
 
 export const apiGetSidebar = () => {
+  // if (useMock) {
+  //   return new Promise((resolve) => {
+  //     setTimeout(() => resolve(mockSidebar), 300)
+  //   })
+  // }
+
   return apiGet<undefined, ResultSidebar[]>('/api/auth/menu/sidebar')
 }
 
@@ -46,6 +76,34 @@ export const apiDevices = (params: ParamsDevices) => {
 }
 
 export const apiLobbyGames = (params: ParamsLobbyGames) => {
+  if (useMock) {
+    if (params.lobby_id === 5) {
+      return new Promise<ApiResponse<ResultLobbyGames[]>>((resolve) => {
+        setTimeout(() => resolve(mockLobbyGamesProb), 300)
+      })
+    }
+    if (params.lobby_id === 3) {
+      return new Promise<ApiResponse<ResultLobbyGames[]>>((resolve) => {
+        setTimeout(() => resolve(mockLobbyGamesLive), 300)
+      })
+    }
+    if (params.lobby_id === 66) {
+      return new Promise<ApiResponse<ResultLobbyGames[]>>((resolve) => {
+        setTimeout(() => resolve(mockLobbyGamesCard), 300)
+      })
+    }
+    if (params.lobby_id === 38) {
+      return new Promise<ApiResponse<ResultLobbyGames[]>>((resolve) => {
+        setTimeout(() => resolve(mockLobbyGamesFish), 300)
+      })
+    }
+    if (params.lobby_id === 12) {
+      return new Promise<ApiResponse<ResultLobbyGames[]>>((resolve) => {
+        setTimeout(() => resolve(mockLobbyGamesLottery), 300)
+      })
+    }
+  }
+
   const { lobby_id } = params
   return apiGet<undefined, ResultLobbyGames[]>(`/api/auth/lobbies/${lobby_id}/games`)
 }
