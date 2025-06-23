@@ -1,9 +1,0 @@
-<script lang="ts" setup>
-import filterBox from '@/views/operations/regionalDifference/filter.vue'
-import tableBox from '@/views/operations/regionalDifference/table.vue'
-</script>
-<template>
-  <filter-box />
-  <table-box />
-</template>
-<style lang="scss" scoped></style>

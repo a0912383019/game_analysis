@@ -26,21 +26,21 @@ export const apiRelease = () => {
 }
 
 export const apiLogin = (params: ParamsLogin) => {
-  // if (useMock) {
-  //   return new Promise((resolve) => {
-  //     setTimeout(() => resolve(mockLogin), 300)
-  //   })
-  // }
+  if (useMock) {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(mockLogin), 300)
+    })
+  }
 
   return apiPut<ParamsLogin, ResultLoginData>('/api/login_google', params)
 }
 
 export const apiGetSidebar = () => {
-  // if (useMock) {
-  //   return new Promise((resolve) => {
-  //     setTimeout(() => resolve(mockSidebar), 300)
-  //   })
-  // }
+  if (useMock) {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(mockSidebar), 300)
+    })
+  }
 
   return apiGet<undefined, ResultSidebar[]>('/api/auth/menu/sidebar')
 }

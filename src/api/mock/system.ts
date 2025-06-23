@@ -10,7 +10,7 @@ export const mockLogin: ApiResponse<ResultLoginData> = {
     token_type: 'bearer',
     expires_in: 21600,
     email: 'yu_lan@mail.family.net',
-    name: 'BI-Family-Yu_Lan',
+    name: 'BI-Family-Yu',
     picture:
       'https://lh3.googleusercontent.com/a/ACg8ocLERxVooBGvI1jWxkiCNh5D8KI06P5TXWh5iEy8_1pdHVPorfk=s96-c'
   }
@@ -35,10 +35,6 @@ export const mockSidebar: ApiResponse<ResultSidebar[]> = {
           title: 'operation_analysis',
           route: '/operations/operation-analysis'
         },
-        // {
-        //   title: 'regional_difference',
-        //   route: '/operations/regional-difference'
-        // },
         {
           title: 'device_difference',
           route: '/operations/device-difference'
@@ -53,84 +49,16 @@ export const mockSidebar: ApiResponse<ResultSidebar[]> = {
         }
       ]
     },
-    // {
-    //   title: 'risk_control',
-    //   route: '/risk-control',
-    //   submenu: [
-    //     {
-    //       title: 'high_profit_members',
-    //       route: '/risk-control/high-profit-members'
-    //     },
-    //     {
-    //       title: 'risk_behavior',
-    //       route: '/risk-control/risk-behavior'
-    //     }
-    //   ]
-    // },
-    // {
-    //   title: 'members',
-    //   route: '/members',
-    //   submenu: [
-    //     {
-    //       title: 'member_analysis',
-    //       route: '/members/member-analysis'
-    //     },
-    //     {
-    //       title: 'member_tags',
-    //       route: '/members/member-tags'
-    //     }
-    //   ]
-    // },
-    // {
-    //   title: 'electronic_reports',
-    //   route: '/electronic-reports',
-    //   submenu: [
-    //     {
-    //       title: 'game_risk',
-    //       route: '/electronic-reports/game-risk'
-    //     },
-    //     {
-    //       title: 'jackpot_stats',
-    //       route: '/electronic-reports/jackpot-stats'
-    //     },
-    //     {
-    //       title: 'page_load_time',
-    //       route: '/electronic-reports/page-load-time'
-    //     }
-    //   ]
-    // },
     {
       title: 'video_reports',
       route: '/video-reports',
       submenu: [
-        // {
-        //   title: 'game_risk',
-        //   route: '/video-reports/game-risk'
-        // },
         {
           title: 'table_reports',
           route: '/video-reports/table-reports'
         }
       ]
     }
-    // {
-    //   title: 'user_management',
-    //   route: '/user-management',
-    //   submenu: [
-    //     {
-    //       title: 'account_list',
-    //       route: '/user-management/account-list'
-    //     },
-    //     {
-    //       title: 'role_list',
-    //       route: '/user-management/role-list'
-    //     },
-    //     {
-    //       title: 'menu_management',
-    //       route: '/user-management/menu-management'
-    //     }
-    //   ]
-    // }
   ]
 }
 

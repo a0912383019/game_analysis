@@ -105,136 +105,339 @@ const columns = ref<TableColumnsType[]>([
 const apiLoading = ref<boolean>(false)
 
 const transformData = () => {
-  let data = [
-    {
-      game_name: '整體貨量',
-      data: [
-        {
-          date: '2025-05-07',
-          volume_total: '1331255085.29',
-          volume_diff: '',
-          aio_total: '24590',
-          aio_diff: '',
-          caio_total: '96418248',
-          caio_diff: '',
-          pc_total: '565741130.89',
-          pc_diff: '',
-          phone_web_total: '669071116.4',
-          phone_web_diff: ''
-        },
-        {
-          date: '2025-05-08',
-          volume_total: '959050960.9',
-          volume_diff: '-27.96%',
-          aio_total: '17250',
-          aio_diff: '-29.85%',
-          caio_total: '84843276',
-          caio_diff: '-12.00%',
-          pc_total: '486300732.78',
-          pc_diff: '-14.04%',
-          phone_web_total: '387889702.12',
-          phone_web_diff: '-42.03%'
-        }
-      ]
-    },
-    {
-      game_name: '21點百家樂',
-      data: [
-        {
-          date: '2025-05-07',
-          volume_total: '55391618.64',
-          volume_diff: '',
-          aio_total: '20',
-          aio_diff: '',
-          caio_total: '3710024',
-          caio_diff: '',
-          pc_total: '2004180.97',
-          pc_diff: '',
-          phone_web_total: '49677393.67',
-          phone_web_diff: ''
-        },
-        {
-          date: '2025-05-08',
-          volume_total: '16660540.99',
-          volume_diff: '-69.92%',
-          aio_total: '0',
-          aio_diff: '-100.00%',
-          caio_total: '1337593',
-          caio_diff: '-63.95%',
-          pc_total: '1775056.21',
-          pc_diff: '-11.43%',
-          phone_web_total: '13547891.77',
-          phone_web_diff: '-72.73%'
-        }
-      ]
-    },
-    {
-      game_name: '區塊鏈射龍門',
-      data: [
-        {
-          date: '2025-05-07',
-          volume_total: '140052.11',
-          volume_diff: '',
-          aio_total: '3530',
-          aio_diff: '',
-          caio_total: '440',
-          caio_diff: '',
-          pc_total: '13793',
-          pc_diff: '',
-          phone_web_total: '122289.11',
-          phone_web_diff: ''
-        },
-        {
-          date: '2025-05-08',
-          volume_total: '256347',
-          volume_diff: '83.04%',
-          aio_total: '0',
-          aio_diff: '-100.00%',
-          caio_total: '16473',
-          caio_diff: '3643.86%',
-          pc_total: '13067',
-          pc_diff: '-5.26%',
-          phone_web_total: '226807',
-          phone_web_diff: '85.47%'
-        }
-      ]
-    },
-    {
-      game_name: '區塊鏈泰國魚蝦蟹',
-      data: [
-        {
-          date: '2025-05-07',
-          volume_total: '30779',
-          volume_diff: '',
-          aio_total: '0',
-          aio_diff: '',
-          caio_total: '5875',
-          caio_diff: '',
-          pc_total: '0',
-          pc_diff: '',
-          phone_web_total: '24904',
-          phone_web_diff: ''
-        },
-        {
-          date: '2025-05-08',
-          volume_total: '13113',
-          volume_diff: '-57.40%',
-          aio_total: '0',
-          aio_diff: '',
-          caio_total: '0',
-          caio_diff: '-100.00%',
-          pc_total: '0',
-          pc_diff: '',
-          phone_web_total: '13113',
-          phone_web_diff: '-47.35%'
-        }
-      ]
-    }
-  ]
+  let data: any
+  if (dateLength.value > 2) {
+    data = [
+      {
+        game_hall: '整體貨量',
+        data: [
+          {
+            date: '2025-05-07',
+            volume_total: '1331255085.29',
+            volume_diff: '',
+            aio_total: '24590',
+            aio_diff: '',
+            caio_total: '96418248',
+            caio_diff: '',
+            pc_total: '565741130.89',
+            pc_diff: '',
+            phone_web_total: '669071116.4',
+            phone_web_diff: ''
+          },
+          {
+            date: '2025-05-08',
+            volume_total: '959050960.9',
+            volume_diff: '-27.96%',
+            aio_total: '17250',
+            aio_diff: '-29.85%',
+            caio_total: '84843276',
+            caio_diff: '-12.00%',
+            pc_total: '486300732.78',
+            pc_diff: '-14.04%',
+            phone_web_total: '387889702.12',
+            phone_web_diff: '-42.03%'
+          },
+          {
+            date: '2025-05-09',
+            volume_total: '959050960.9',
+            volume_diff: '-27.96%',
+            aio_total: '17250',
+            aio_diff: '-29.85%',
+            caio_total: '84843276',
+            caio_diff: '-12.00%',
+            pc_total: '486300732.78',
+            pc_diff: '-14.04%',
+            phone_web_total: '387889702.12',
+            phone_web_diff: '-42.03%'
+          },
+          {
+            date: '2025-05-10',
+            volume_total: '959050960.9',
+            volume_diff: '-27.96%',
+            aio_total: '17250',
+            aio_diff: '-29.85%',
+            caio_total: '84843276',
+            caio_diff: '-12.00%',
+            pc_total: '486300732.78',
+            pc_diff: '-14.04%',
+            phone_web_total: '387889702.12',
+            phone_web_diff: '-42.03%'
+          },
+          {
+            date: '2025-05-11',
+            volume_total: '959050960.9',
+            volume_diff: '-27.96%',
+            aio_total: '17250',
+            aio_diff: '-29.85%',
+            caio_total: '84843276',
+            caio_diff: '-12.00%',
+            pc_total: '486300732.78',
+            pc_diff: '-14.04%',
+            phone_web_total: '387889702.12',
+            phone_web_diff: '-42.03%'
+          },
+          {
+            date: '2025-05-12',
+            volume_total: '959050960.9',
+            volume_diff: '-27.96%',
+            aio_total: '17250',
+            aio_diff: '-29.85%',
+            caio_total: '84843276',
+            caio_diff: '-12.00%',
+            pc_total: '486300732.78',
+            pc_diff: '-14.04%',
+            phone_web_total: '387889702.12',
+            phone_web_diff: '-42.03%'
+          },
+          {
+            date: '2025-05-13',
+            volume_total: '959050960.9',
+            volume_diff: '-27.96%',
+            aio_total: '17250',
+            aio_diff: '-29.85%',
+            caio_total: '84843276',
+            caio_diff: '-12.00%',
+            pc_total: '486300732.78',
+            pc_diff: '-14.04%',
+            phone_web_total: '387889702.12',
+            phone_web_diff: '-42.03%'
+          }
+        ]
+      },
+      {
+        game_hall: 'BB視訊',
+        game_name: '21點百家樂',
+        data: [
+          {
+            date: '2025-05-07',
+            volume_total: '55391618.64',
+            volume_diff: '',
+            aio_total: '20',
+            aio_diff: '',
+            caio_total: '3710024',
+            caio_diff: '',
+            pc_total: '2004180.97',
+            pc_diff: '',
+            phone_web_total: '49677393.67',
+            phone_web_diff: ''
+          },
+          {
+            date: '2025-05-08',
+            volume_total: '16660540.99',
+            volume_diff: '-69.92%',
+            aio_total: '0',
+            aio_diff: '-100.00%',
+            caio_total: '1337593',
+            caio_diff: '-63.95%',
+            pc_total: '1775056.21',
+            pc_diff: '-11.43%',
+            phone_web_total: '13547891.77',
+            phone_web_diff: '-72.73%'
+          },
+          {
+            date: '2025-05-09',
+            volume_total: '55391618.64',
+            volume_diff: '',
+            aio_total: '20',
+            aio_diff: '',
+            caio_total: '3710024',
+            caio_diff: '',
+            pc_total: '2004180.97',
+            pc_diff: '',
+            phone_web_total: '49677393.67',
+            phone_web_diff: ''
+          },
+          {
+            date: '2025-05-10',
+            volume_total: '16660540.99',
+            volume_diff: '-69.92%',
+            aio_total: '0',
+            aio_diff: '-100.00%',
+            caio_total: '1337593',
+            caio_diff: '-63.95%',
+            pc_total: '1775056.21',
+            pc_diff: '-11.43%',
+            phone_web_total: '13547891.77',
+            phone_web_diff: '-72.73%'
+          },
+          {
+            date: '2025-05-11',
+            volume_total: '55391618.64',
+            volume_diff: '',
+            aio_total: '20',
+            aio_diff: '',
+            caio_total: '3710024',
+            caio_diff: '',
+            pc_total: '2004180.97',
+            pc_diff: '',
+            phone_web_total: '49677393.67',
+            phone_web_diff: ''
+          },
+          {
+            date: '2025-05-12',
+            volume_total: '16660540.99',
+            volume_diff: '-69.92%',
+            aio_total: '0',
+            aio_diff: '-100.00%',
+            caio_total: '1337593',
+            caio_diff: '-63.95%',
+            pc_total: '1775056.21',
+            pc_diff: '-11.43%',
+            phone_web_total: '13547891.77',
+            phone_web_diff: '-72.73%'
+          },
+          {
+            date: '2025-05-13',
+            volume_total: '55391618.64',
+            volume_diff: '',
+            aio_total: '20',
+            aio_diff: '',
+            caio_total: '3710024',
+            caio_diff: '',
+            pc_total: '2004180.97',
+            pc_diff: '',
+            phone_web_total: '49677393.67',
+            phone_web_diff: ''
+          }
+        ]
+      }
+    ]
+  } else {
+    data = [
+      {
+        game_hall: '整體貨量',
+        data: [
+          {
+            date: '2025-05-07',
+            volume_total: '1331255085.29',
+            volume_diff: '',
+            aio_total: '24590',
+            aio_diff: '',
+            caio_total: '96418248',
+            caio_diff: '',
+            pc_total: '565741130.89',
+            pc_diff: '',
+            phone_web_total: '669071116.4',
+            phone_web_diff: ''
+          },
+          {
+            date: '2025-05-08',
+            volume_total: '959050960.9',
+            volume_diff: '-27.96%',
+            aio_total: '17250',
+            aio_diff: '-29.85%',
+            caio_total: '84843276',
+            caio_diff: '-12.00%',
+            pc_total: '486300732.78',
+            pc_diff: '-14.04%',
+            phone_web_total: '387889702.12',
+            phone_web_diff: '-42.03%'
+          }
+        ]
+      },
+      {
+        game_hall: 'BB視訊',
+        game_name: '21點百家樂',
+        data: [
+          {
+            date: '2025-05-07',
+            volume_total: '55391618.64',
+            volume_diff: '',
+            aio_total: '20',
+            aio_diff: '',
+            caio_total: '3710024',
+            caio_diff: '',
+            pc_total: '2004180.97',
+            pc_diff: '',
+            phone_web_total: '49677393.67',
+            phone_web_diff: ''
+          },
+          {
+            date: '2025-05-08',
+            volume_total: '16660540.99',
+            volume_diff: '-69.92%',
+            aio_total: '0',
+            aio_diff: '-100.00%',
+            caio_total: '1337593',
+            caio_diff: '-63.95%',
+            pc_total: '1775056.21',
+            pc_diff: '-11.43%',
+            phone_web_total: '13547891.77',
+            phone_web_diff: '-72.73%'
+          }
+        ]
+      },
+      {
+        game_hall: 'BB電子',
+        game_name: '區塊鏈射龍門',
+        data: [
+          {
+            date: '2025-05-07',
+            volume_total: '140052.11',
+            volume_diff: '',
+            aio_total: '3530',
+            aio_diff: '',
+            caio_total: '440',
+            caio_diff: '',
+            pc_total: '13793',
+            pc_diff: '',
+            phone_web_total: '122289.11',
+            phone_web_diff: ''
+          },
+          {
+            date: '2025-05-08',
+            volume_total: '256347',
+            volume_diff: '83.04%',
+            aio_total: '0',
+            aio_diff: '-100.00%',
+            caio_total: '16473',
+            caio_diff: '3643.86%',
+            pc_total: '13067',
+            pc_diff: '-5.26%',
+            phone_web_total: '226807',
+            phone_web_diff: '85.47%'
+          }
+        ]
+      },
+      {
+        game_hall: 'BB棋牌',
+        game_name: '區塊鏈泰國魚蝦蟹',
+        data: [
+          {
+            date: '2025-05-07',
+            volume_total: '30779',
+            volume_diff: '',
+            aio_total: '0',
+            aio_diff: '',
+            caio_total: '5875',
+            caio_diff: '',
+            pc_total: '0',
+            pc_diff: '',
+            phone_web_total: '24904',
+            phone_web_diff: ''
+          },
+          {
+            date: '2025-05-08',
+            volume_total: '13113',
+            volume_diff: '-57.40%',
+            aio_total: '0',
+            aio_diff: '',
+            caio_total: '0',
+            caio_diff: '-100.00%',
+            pc_total: '0',
+            pc_diff: '',
+            phone_web_total: '13113',
+            phone_web_diff: '-47.35%'
+          }
+        ]
+      }
+    ]
+  }
 
   tableData.value = data.flatMap((item) => {
     return item.data.map((row) => ({
-      game_hall: item.game_name,
+      game_hall: item.game_hall,
+      game_name: item.game_name,
       date: row.date,
       bet_total: formatNumber(row.volume_total),
       b_difference: row.volume_diff || '--',
@@ -262,14 +465,15 @@ const customRowClass: TableProps['rowClassName'] = (_: any, index: number) => {
 watch(
   () => operationsDeviceDiffStore.isFiltered,
   () => {
-    dateLength.value =
-      dayjs(searchParams.dateDuration[1]).diff(searchParams.dateDuration[0], 'day') + 1
-    // console.log(dateLength.value)
+    // dateLength.value =
+    //   dayjs(searchParams.dateDuration[1]).diff(searchParams.dateDuration[0], 'day') + 1
+    dateLength.value = 7
+    transformData()
   }
 )
 
 onMounted(() => {
-  dateLength.value = 3
+  dateLength.value = 2
   transformData()
 })
 </script>
@@ -278,6 +482,7 @@ onMounted(() => {
     <custom-table
       :dataSource="tableData"
       :hasPage="false"
+      :pageSize="2000"
       :columns="columns"
       :serverSide="false"
       :loading="apiLoading"

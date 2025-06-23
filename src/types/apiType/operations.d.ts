@@ -21,7 +21,7 @@ interface BetRecords {
   lobby: number
   lobby_name: string
   payoff: string
-  payoff_ratio: string
+  payoff_ratio: string | null
   result: number
   user_id: string
   username: string
@@ -148,6 +148,7 @@ interface BetReportByUser {
   free_lose_wager_count: number
   free_win_wager_count: number
   win_ratio: string
+  rtp: string
 }
 
 interface ResultBetReportByUser {

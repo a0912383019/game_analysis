@@ -26,8 +26,7 @@ const activeKey = ref<string>('peopleNum')
 
 const chartSeriesMap = reactive<Record<string, SeriesOption[]>>({
   peopleNum: [],
-  amount: [],
-  betAmount: []
+  amount: []
 })
 
 const barChartOptions = computed<EChartsOption>(() => ({
@@ -141,14 +140,14 @@ const tableData = ref<any>([])
 onMounted(() => {
   chartSeriesMap.peopleNum = [
     {
-      name: 'wggwewwwwwwww',
+      name: 'wgg',
       type: 'bar',
       barMaxWidth: 30,
       barGap: '60%',
       data: [522535.21, 433311.339]
     },
     {
-      name: 'em192919291292',
+      name: 'em12',
       type: 'bar',
       barMaxWidth: 30,
       data: [2110030.6, 1850300.9]
@@ -168,7 +167,7 @@ onMounted(() => {
       data: [990120.0, 512334.2]
     },
     {
-      name: 'hhdvdvddffdff',
+      name: 'chorlot',
       type: 'bar',
       barMaxWidth: 30,
       data: [990120.0, 512334.2]
@@ -223,7 +222,6 @@ onMounted(() => {
   <a-tabs v-model:activeKey="activeKey" size="small" :tabBarGutter="15" class="cdp-tabs">
     <a-tab-pane key="peopleNum" :tab="t('unit.people_num')"></a-tab-pane>
     <a-tab-pane key="amount" :tab="t('unit.amount')"></a-tab-pane>
-    <a-tab-pane key="betAmount" :tab="t('data_name.bet_amount')"></a-tab-pane>
   </a-tabs>
   <v-chart
     v-if="chartSeriesMap[activeKey].length !== 0"

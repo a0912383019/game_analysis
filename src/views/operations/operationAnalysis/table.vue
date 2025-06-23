@@ -13,8 +13,7 @@ const { searchParams } = operationsOverallReportStore
 
 const buttonGroup = computed(() => [
   { name: t('sidebar.overall_report'), value: 'overallReportTable' },
-  { name: t('common.hall_master'), value: 'hallTable' },
-  { name: t('common.game'), value: 'gameTable' }
+  { name: t('common.hall_master'), value: 'hallTable' }
 ])
 
 const currentTabs = ref<string>('overallReportTable')
