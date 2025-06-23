@@ -1110,7 +1110,7 @@ describe('operatingTrendsChart', () => {
   it('getTrendValueByTargetId', () => {
     const fakeTrendData: GameReportTrend[] = [
       {
-        betAmount: '1000',
+        bet_amount: '1000',
         data_date: '2024-01-01',
         first_play_count: 5,
         loss_count: 2,
@@ -1120,7 +1120,7 @@ describe('operatingTrendsChart', () => {
         users_count: 10
       },
       {
-        betAmount: '2000',
+        bet_amount: '2000',
         data_date: '2024-01-02',
         first_play_count: 10,
         loss_count: 5,

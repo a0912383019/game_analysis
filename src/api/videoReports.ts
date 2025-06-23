@@ -11,7 +11,7 @@ const useMock = import.meta.env.VITE_ENV === 'local'
 // 視訊列表
 export const apiLiveStates = (params: ParamsLiveStates) => {
   if (useMock) {
-    return new Promise((resolve) => {
+    return new Promise<ApiResponse<ResultLiveStates[]>>((resolve) => {
       setTimeout(() => resolve(mockLiveStates), 300)
     })
   }
@@ -22,7 +22,7 @@ export const apiLiveStates = (params: ParamsLiveStates) => {
 // 視訊現場
 export const apiLiveTableReportsByState = (params: ParamsLiveTableReportsByState) => {
   if (useMock) {
-    return new Promise((resolve) => {
+    return new Promise<ApiResponse<ResultLiveTableReportsByState>>((resolve) => {
       setTimeout(() => resolve(mockLiveTableReportsByState), 300)
     })
   }
@@ -35,7 +35,7 @@ export const apiLiveTableReportsByState = (params: ParamsLiveTableReportsByState
 
 export const apiLiveTableReportsByTable = (params: ParamsLiveTableReportsByTable) => {
   if (useMock) {
-    return new Promise((resolve) => {
+    return new Promise<ApiResponse<ResultLiveTableReportsByTable>>((resolve) => {
       setTimeout(() => resolve(mockLiveTableReportsByTable), 300)
     })
   }

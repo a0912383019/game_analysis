@@ -27,7 +27,7 @@ export const apiRelease = () => {
 
 export const apiLogin = (params: ParamsLogin) => {
   if (useMock) {
-    return new Promise((resolve) => {
+    return new Promise<ApiResponse<ResultLoginData>>((resolve) => {
       setTimeout(() => resolve(mockLogin), 300)
     })
   }
@@ -37,7 +37,7 @@ export const apiLogin = (params: ParamsLogin) => {
 
 export const apiGetSidebar = () => {
   if (useMock) {
-    return new Promise((resolve) => {
+    return new Promise<ApiResponse<ResultSidebar[]>>((resolve) => {
       setTimeout(() => resolve(mockSidebar), 300)
     })
   }
