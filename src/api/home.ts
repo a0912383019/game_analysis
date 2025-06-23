@@ -7,7 +7,7 @@ import {
   mockSmartDisplays
 } from '@/api/mock/home'
 
-const useMock = import.meta.env.VITE_ENV === 'local'
+const useMock = import.meta.env.VITE_ENV === 'dev'
 
 // 首頁
 // 取得遊戲大類報表數值

@@ -6,7 +6,7 @@ import {
   mockLiveTableReportsByTable
 } from '@/api/mock/videoReports'
 
-const useMock = import.meta.env.VITE_ENV === 'local'
+const useMock = import.meta.env.VITE_ENV === 'dev'
 
 // 視訊列表
 export const apiLiveStates = (params: ParamsLiveStates) => {

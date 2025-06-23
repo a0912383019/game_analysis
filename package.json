@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vite --port 63342 --mode locals",
     "build": "vue-tsc --noEmit && vite build",
-    "build:local": "vue-tsc --noEmit && vite build --mode local",
     "build:rd": "vue-tsc --noEmit && vite build --mode rd",
     "build:dev": "vue-tsc --noEmit && vite build --mode dev",
     "build:staging": "vue-tsc --noEmit && vite build --mode staging",

@@ -2,24 +2,24 @@
 // https://vue3-google-signin.vercel.app/components/google-signin-button.html
 import vue3GoogleLogin from 'vue3-google-login'
 
-// 開發環境
-const developmentEnvironment = import.meta.env.VITE_ENV
+// // 開發環境
+// const developmentEnvironment = import.meta.env.VITE_ENV
 
-let clientId = '172879218577-i6b4q5765l7vu2qdf4d00d5p13604rv3.apps.googleusercontent.com'
+// let clientId = '172879218577-i6b4q5765l7vu2qdf4d00d5p13604rv3.apps.googleusercontent.com'
 
-// for qa
-if (developmentEnvironment === 'dev' || developmentEnvironment === 'local') {
-  clientId = '1055824448864-oifmo3rcb9t51lucpbvsf6v0mhrfvh0s.apps.googleusercontent.com'
-}
+// // for qa
+// if (developmentEnvironment === 'dev' || developmentEnvironment === 'local') {
+//   clientId = '1055824448864-oifmo3rcb9t51lucpbvsf6v0mhrfvh0s.apps.googleusercontent.com'
+// }
 
-// for staging
-if (developmentEnvironment === 'staging') {
-  clientId = '625258764705-4ceasn0n82ete5dnv9mt4dk9bjni9bqp.apps.googleusercontent.com'
-}
+// // for staging
+// if (developmentEnvironment === 'staging') {
+//   clientId = '625258764705-4ceasn0n82ete5dnv9mt4dk9bjni9bqp.apps.googleusercontent.com'
+// }
 
 export const googleLoginRegister = (app: ReturnType<typeof createApp>) => {
   app.use(vue3GoogleLogin, {
-    clientId,
+    clientId: 'fake',
     buttonConfig: {
       theme: 'outline',
       type: 'standard',

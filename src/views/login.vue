@@ -17,9 +17,31 @@ const isLoading = ref<boolean>(false)
 // google login
 const googleLoginCallback: CallbackTypes.CredentialCallback = (response) => {
   isLoading.value = true
+  mockLogin()
+
   // This callback will be triggered when the user selects or login to
   // his Google account from the popup
   handleLogin({ credential: response.credential })
+    .then(async () => {
+      // 取得路由的動態 sidebar
+      await queryApiGetSidebar()
+      // 登入成功取得 api access_token 後才導至首頁
+      router.push({ path: '/home' })
+
+      let { name } = JSON.parse(localStorage.game_user_info)
+      notification['success']({
+        message: `Hello, ${name}`,
+        duration: 2
+      })
+    })
+    .catch(() => {
+      isLoading.value = false
+      shake()
+    })
+}
+
+const mockLogin = () => {
+  handleLogin({ credential: 'fake' })
     .then(async () => {
       // 取得路由的動態 sidebar
       await queryApiGetSidebar()
@@ -184,7 +206,7 @@ onMounted(() => {
   <div class="container">
     <div class="login-logo !mb-7 !mt-1"></div>
     <div class="content" :class="{ isShaking }">
-      <GoogleLogin :callback="googleLoginCallback" />
+      <GoogleLogin :callback="googleLoginCallback" @click="mockLogin" />
       <div class="error !mt-1" v-show="failMsg.msg1.isShow">{{ failMsg.msg1.text }}</div>
       <div class="error !mt-1" v-show="failMsg.msg2.isShow">{{ failMsg.msg2.text }}</div>
       <div class="error !mt-1" v-show="failMsg.msg3.isShow">{{ failMsg.msg3.text }}</div>

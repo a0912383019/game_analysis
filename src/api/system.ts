@@ -13,7 +13,7 @@ import {
   mockLobbyGamesLottery
 } from '@/api/mock/system'
 
-const useMock = import.meta.env.VITE_ENV === 'local'
+const useMock = import.meta.env.VITE_ENV === 'dev'
 
 export const apiRelease = () => {
   if (useMock) {

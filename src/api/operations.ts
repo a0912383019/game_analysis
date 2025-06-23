@@ -11,7 +11,7 @@ import {
   mockBetSettledByDate
 } from '@/api/mock/operations'
 
-const useMock = import.meta.env.VITE_ENV === 'local'
+const useMock = import.meta.env.VITE_ENV === 'dev'
 
 // 總報表
 // 取得投注報表（by 遊戲）
