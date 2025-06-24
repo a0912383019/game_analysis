@@ -9,16 +9,16 @@ import dayjs from '@/utils/appDayjs'
 
 vi.mock('@/../public/js/system_config', () => ({
   platformDefaultHall: {
-    bbin: {
+    plata: {
       hall_id: 1
     },
-    bbgp: {
+    platb: {
       hall_id: 3820605
     },
-    xctw: {
+    platc: {
       hall_id: 19
     },
-    xcmy: {
+    platd: {
       hall_id: 29
     }
   }
@@ -57,7 +57,7 @@ describe('filter', () => {
   beforeEach(() => {
     createTestingPinia({ createSpy: vi.fn })
     globalStore = useGlobalStore()
-    globalStore.currentPlatform = 'bbin'
+    globalStore.currentPlatform = 'plata'
 
     vi.setSystemTime(mockDate.toDate())
 
@@ -65,8 +65,8 @@ describe('filter', () => {
       return {
         platform_halls: [{ hall_id: 1, login_code: 'bmw', name: '寶馬-我是廳名' }],
         platform_lobbies: [
-          { lobby: 5, lobby_name: 'BB電子' },
-          { lobby: 66, lobby_name: 'BB棋牌' }
+          { lobby: 5, lobby_name: 'max影音' },
+          { lobby: 66, lobby_name: 'max AR/VR' }
         ]
       }
     })
@@ -144,8 +144,8 @@ describe('filter', () => {
           value: 1
         }
       ],
-      placeHolderText: '請選擇廳',
-      placeHolderValuableText: '廳主'
+      placeHolderText: '請選擇數位區',
+      placeHolderValuableText: '數位區塊'
     })
   })
 
@@ -161,11 +161,11 @@ describe('filter', () => {
     expect(wrapper.vm.lobbyValue).toStrictEqual(19)
     expect(wrapper.vm.lobbyOptions).toStrictEqual([
       {
-        label: 'BB電子',
+        label: 'max影音',
         value: 5
       },
       {
-        label: 'BB棋牌',
+        label: 'max AR/VR',
         value: 66
       }
     ])
@@ -173,16 +173,16 @@ describe('filter', () => {
       allowClear: false,
       options: [
         {
-          label: 'BB電子',
+          label: 'max影音',
           value: 5
         },
         {
-          label: 'BB棋牌',
+          label: 'max AR/VR',
           value: 66
         }
       ],
-      placeHolderText: '請選擇遊戲大廳',
-      placeHolderValuableText: '遊戲大廳'
+      placeHolderText: '請選擇媒體大廳',
+      placeHolderValuableText: '媒體大廳'
     })
   })
 
@@ -216,8 +216,8 @@ describe('filter', () => {
           value: '5002'
         }
       ],
-      placeHolderText: '請選擇遊戲',
-      placeHolderValuableText: '遊戲'
+      placeHolderText: '請選擇媒體',
+      placeHolderValuableText: '媒體'
     })
   })
 

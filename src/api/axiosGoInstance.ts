@@ -25,14 +25,14 @@ axiosGoInstance.interceptors.request.use(
     if (request.method === 'post' || request.method === 'put') {
       request.data = {
         ...(request.data || {}),
-        platform: globalStore.currentPlatform // 預設 platform 為 bbin
+        platform: globalStore.currentPlatform // 預設 platform 為 plata
       }
     }
 
     if (request.method === 'get' || request.method === 'delete') {
       request.params = {
         ...(request.params || {}),
-        platform: globalStore.currentPlatform // 預設 platform 為 bbin
+        platform: globalStore.currentPlatform // 預設 platform 為 plata
       }
     }
 

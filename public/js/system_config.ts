@@ -6,43 +6,38 @@ type ConfigMap = {
 
 export const platformDict: ConfigMap[] = [
   {
-    name: 'BBIN',
-    key: 'bbin',
+    name: '平台A',
+    key: 'plata',
     pColor: '#061127'
   },
   {
-    name: 'BBGP',
-    key: 'bbgp',
+    name: '平台B',
+    key: 'platb',
     pColor: '#18242C'
   },
   {
-    name: 'XC台灣站',
-    key: 'xctw',
+    name: '平台C',
+    key: 'platc',
     pColor: '#28182C'
   },
   {
-    name: 'XC馬來站',
-    key: 'xcmy',
+    name: '平台D',
+    key: 'platd',
     pColor: '#28182C'
   }
-  // {
-  //   name: 'Midori',
-  //   key: 'midori',
-  //   pColor: '#332E21'
-  // }
 ]
 
 export const platformDefaultHall = {
-  bbin: {
+  plata: {
     hall_id: 1 // 寶馬-我是廳名 [bmw]
   },
-  bbgp: {
+  platb: {
     hall_id: 3820605 // WG [wgg]
   },
-  xctw: {
+  platc: {
     hall_id: 19 // default_classify []
   },
-  xcmy: {
+  platd: {
     hall_id: 29
   }
 }

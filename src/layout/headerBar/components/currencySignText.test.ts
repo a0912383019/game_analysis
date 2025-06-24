@@ -25,18 +25,17 @@ describe('currencySignText', () => {
   })
 
   it('currencySignText', () => {
-    expect(wrapper.vm.currencySignText).toStrictEqual('人民幣')
+    expect(wrapper.vm.currencySignText).toStrictEqual('亞洲')
 
-    globalStore.currentPlatform = 'midori'
-    expect(wrapper.vm.currencySignText).toStrictEqual('披索')
+    globalStore.currentPlatform = 'platc'
+    expect(wrapper.vm.currencySignText).toStrictEqual('美洲')
   })
 
   it('getCurrencySign', () => {
-    expect(wrapper.vm.getCurrencySign('xctw')).toBe('$')
-    expect(wrapper.vm.getCurrencySign('xcmy')).toBe('$')
-    expect(wrapper.vm.getCurrencySign('midori')).toBe('₱')
-    expect(wrapper.vm.getCurrencySign('bbin')).toBe('¥')
-    expect(wrapper.vm.getCurrencySign('bbgp')).toBe('¥')
+    expect(wrapper.vm.getCurrencySign('platc')).toBe('$')
+    expect(wrapper.vm.getCurrencySign('platd')).toBe('$')
+    expect(wrapper.vm.getCurrencySign('plata')).toBe('¥')
+    expect(wrapper.vm.getCurrencySign('platb')).toBe('¥')
     expect(wrapper.vm.getCurrencySign('unknown')).toBe('¥')
   })
 })

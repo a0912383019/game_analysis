@@ -49,15 +49,15 @@ describe('table', () => {
   it('buttonGroup', () => {
     expect(wrapper.vm.buttonGroup).toStrictEqual([
       {
-        name: '廳主',
+        name: '數位區塊',
         value: 'hallTable'
       },
       {
-        name: '遊戲',
+        name: '媒體',
         value: 'gameTable'
       },
       {
-        name: '玩法',
+        name: '內容',
         value: 'playTable'
       },
       {

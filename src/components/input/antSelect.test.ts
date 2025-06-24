@@ -31,16 +31,16 @@ describe('antSelect', () => {
       global: { stubs: { ASelect: { template: '<div><slot /></div>' } } },
       props: {
         modelValue: [],
-        placeHolderText: '請選擇廳主',
-        placeHolderValuableText: '廳主'
+        placeHolderText: '請選擇數位區',
+        placeHolderValuableText: '數位區塊'
       }
     })
     expect(wrapper.vm.isActive).toBe(false)
-    expect(wrapper.vm.placeholder).toBe('請選擇廳主')
+    expect(wrapper.vm.placeholder).toBe('請選擇數位區')
 
     await wrapper.setProps({ modelValue: [1, 2, 3] })
     expect(wrapper.vm.isActive).toBe(true)
-    expect(wrapper.vm.placeholder).toBe('廳主')
+    expect(wrapper.vm.placeholder).toBe('數位區塊')
   })
 
   it('should emit update:modelValue when onMounted select all or selecting value', async () => {

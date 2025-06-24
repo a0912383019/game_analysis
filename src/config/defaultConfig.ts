@@ -1,9 +1,9 @@
 // 各平台時區
 export const platformTimezones: Record<string, string> = {
-  bbin: 'America/New_York',
-  bbgp: 'America/New_York',
-  xctw: 'Asia/Taipei',
-  xcmy: 'Asia/Taipei',
+  plata: 'America/New_York',
+  platb: 'America/New_York',
+  platc: 'Asia/Taipei',
+  platd: 'Asia/Taipei',
   midori: 'Asia/Manila'
 }
 
@@ -31,16 +31,16 @@ export const targetMap: Record<number, { name: string; color: string }> = {
 
 // 遊戲大廳預設 target [2: 視訊, 3: 電子, 4: 彩票, 5: 捕魚, 6: 棋牌]
 export const platformDefaultTarget1 = {
-  bbin: 3,
-  bbgp: 3,
-  xctw: 3,
-  xcmy: 3,
+  plata: 3,
+  platb: 3,
+  platc: 3,
+  platd: 3,
   midori: 2
 }
 export const platformDefaultTarget2 = {
-  bbin: 2,
-  bbgp: 2,
-  xctw: 3,
-  xcmy: 3,
+  plata: 2,
+  platb: 2,
+  platc: 3,
+  platd: 3,
   midori: 2
 }

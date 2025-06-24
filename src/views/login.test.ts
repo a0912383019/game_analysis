@@ -88,7 +88,7 @@ describe('login', () => {
     expect(generateMenuRoutes).toBeCalledTimes(0)
 
     const mockApiLogin = apiLogin as Mock
-    mockApiLogin.mockResolvedValueOnce({
+    mockApiLogin.mockResolvedValue({
       result: 'success',
       ret: {
         access_token: 'test token',
@@ -150,14 +150,14 @@ describe('login', () => {
         ]
       }
     ]
-    mockApiGetSidebar.mockResolvedValueOnce({
+    mockApiGetSidebar.mockResolvedValue({
       result: 'success',
       ret: apiRoutes
     })
 
     wrapper.vm.googleLoginCallback({ credential: 'asdjio12j' })
     await flushPromises()
-    expect(wrapper.vm.isLoading).toBeTruthy()
+    expect(wrapper.vm.isLoading).toBe(true)
     // 驗證 user info
     const gameUserInfo = {
       name: 'BI-CDP-Robot',
@@ -237,7 +237,7 @@ describe('login', () => {
       }
     ]
     expect(systemStore.menuList).toStrictEqual(menuList)
-    expect(generateMenuRoutes).toBeCalledTimes(1)
+    expect(generateMenuRoutes).toBeCalledTimes(2)
     expect(spyPush).toHaveBeenCalledWith({ path: '/home' })
   })
 

@@ -121,14 +121,14 @@ const barChartOptions = ref<EChartsOption>({
       data: [52255.21, 43311.339]
     },
     {
-      name: '單量',
+      name: '留言數',
       type: 'bar',
       yAxisIndex: 1,
       barWidth: 30,
       data: [2110030.6, 1850300.9]
     },
     {
-      name: '貨量',
+      name: '觀看數',
       type: 'bar',
       yAxisIndex: 2,
       barWidth: 30,

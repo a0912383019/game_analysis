@@ -50,9 +50,9 @@ describe('dateTable', () => {
         {
           align: 'center',
           dataIndex: 'data_date',
+          defaultSortOrder: 'descend',
           key: 'data_date',
           sorter: true,
-          defaultSortOrder: 'descend',
           title: '日期'
         },
         {
@@ -60,28 +60,28 @@ describe('dateTable', () => {
           dataIndex: 'user_count',
           key: 'user_count',
           sorter: true,
-          title: '人數'
+          title: '留言數'
         },
         {
           align: 'center',
           dataIndex: 'wager_count',
           key: 'wager_count',
           sorter: true,
-          title: '單量'
+          title: '觀看數'
         },
         {
           align: 'center',
           dataIndex: 'bet_amount',
           key: 'bet_amount',
           sorter: true,
-          title: '貨量'
+          title: '流量'
         },
         {
           align: 'center',
           dataIndex: 'payoff',
           key: 'payoff',
           sorter: true,
-          title: '損益'
+          title: '瀏覽趨勢'
         },
         {
           align: 'center',
@@ -97,14 +97,14 @@ describe('dateTable', () => {
           dataIndex: 'lobby_name',
           key: 'lobby_name',
           sorter: true,
-          title: '遊戲大廳'
+          title: '媒體大廳'
         },
         {
           align: 'center',
           dataIndex: 'user_count',
           key: 'user_count',
           sorter: true,
-          title: '人數'
+          title: '留言數'
         },
         {
           align: 'center',
@@ -112,21 +112,21 @@ describe('dateTable', () => {
           defaultSortOrder: 'descend',
           key: 'wager_count',
           sorter: true,
-          title: '單量'
+          title: '觀看數'
         },
         {
           align: 'center',
           dataIndex: 'bet_amount',
           key: 'bet_amount',
           sorter: true,
-          title: '貨量'
+          title: '流量'
         },
         {
           align: 'center',
           dataIndex: 'payoff',
           key: 'payoff',
           sorter: true,
-          title: '損益'
+          title: '瀏覽趨勢'
         },
         {
           align: 'center',
@@ -142,7 +142,7 @@ describe('dateTable', () => {
           dataIndex: 'serial_type_name',
           key: 'serial_type_name',
           sorter: true,
-          title: '玩法名稱',
+          title: '內容名稱',
           width: 320
         },
         {
@@ -157,7 +157,7 @@ describe('dateTable', () => {
           dataIndex: 'user_count',
           key: 'user_count',
           sorter: true,
-          title: '人數'
+          title: '留言數'
         },
         {
           align: 'center',
@@ -165,42 +165,42 @@ describe('dateTable', () => {
           defaultSortOrder: 'descend',
           key: 'wager_count',
           sorter: true,
-          title: '單量'
+          title: '觀看數'
         },
         {
           align: 'center',
           dataIndex: 'bet_amount',
           key: 'bet_amount',
           sorter: true,
-          title: '貨量'
+          title: '流量'
         },
         {
           align: 'center',
           dataIndex: 'payoff',
           key: 'payoff',
           sorter: true,
-          title: '損益'
+          title: '瀏覽趨勢'
         },
         {
           align: 'center',
           dataIndex: 'expected_rtp',
           key: 'expected_rtp',
           sorter: true,
-          title: 'RTP(理論)'
+          title: '滿意度(理論)'
         },
         {
           align: 'center',
           dataIndex: 'rtp',
           key: 'rtp',
           sorter: true,
-          title: 'RTP'
+          title: '滿意度'
         },
         {
           align: 'center',
           dataIndex: 'serial_type_wager_count_ratio',
           key: 'serial_type_wager_count_ratio',
           sorter: true,
-          title: '佔單量'
+          title: '佔觀看數'
         },
         {
           align: 'center',
@@ -380,7 +380,7 @@ describe('dateTable', () => {
       data: [
         {
           lobby: 3,
-          lobby_name: 'BB視訊',
+          lobby_name: 'max直播',
           user_count: 5,
           wager_count: 15,
           bet_amount: '2834.0000',
@@ -407,7 +407,7 @@ describe('dateTable', () => {
     expect(record.innerData).toStrictEqual([
       {
         key: 0,
-        lobby_name: 'BB視訊',
+        lobby_name: 'max直播',
         user_count: '5',
         wager_count: '15',
         bet_amount: '2,834',
@@ -442,9 +442,9 @@ describe('dateTable', () => {
           bet_amount: '59.0000',
           expected_rtp: '0.8473',
           game_code: '3033',
-          game_name: '區塊鏈骰寶',
+          game_name: 'Spotify星閃閃',
           lobby: 3,
-          lobby_name: 'BB視訊',
+          lobby_name: 'max直播',
           odds: '60.0000',
           payoff: '-63.0000',
           payoff_ratio: '-1.0678',
@@ -460,9 +460,9 @@ describe('dateTable', () => {
           bet_amount: '100.0000',
           expected_rtp: '0.9600',
           game_code: '3046',
-          game_name: '區塊鏈幸運5張',
+          game_name: 'Spotify幸運5張',
           lobby: 3,
-          lobby_name: 'BB視訊',
+          lobby_name: 'max直播',
           odds: '1.0000',
           payoff: '100.0000',
           payoff_ratio: '1.0000',
@@ -494,7 +494,7 @@ describe('dateTable', () => {
     expect(record.innerData).toStrictEqual([
       {
         key: 0,
-        serial_type_name: '區塊鏈骰寶 - 點數/4點',
+        serial_type_name: 'Spotify星閃閃 - 點數/4點',
         odds: '60',
         user_count: '1',
         wager_count: '41',
@@ -507,7 +507,7 @@ describe('dateTable', () => {
       },
       {
         key: 1,
-        serial_type_name: '區塊鏈幸運5張 - 梅花',
+        serial_type_name: 'Spotify幸運5張 - 梅花',
         odds: '1',
         user_count: '2',
         wager_count: '2',

@@ -53,7 +53,7 @@ const dateDurationChange = (date: [Dayjs, Dayjs] | null) => {
   formState.dateDuration = date || [undefined, undefined]
 }
 
-// 遊戲及玩法
+// 媒體及內容
 const gamePlayValue = ref<LobbyGameData[]>([])
 const gamePlayOptions = ref<CascaderProps['options']>(
   getSessionStorageEntity<PlatformConfig>('platform_config')?.platform_lobbies?.map(
@@ -103,7 +103,7 @@ const singleDeviceSymbolProps = computed<AntInputProps>(() => {
   }
 })
 
-// 貨量合計差異(%)
+// 觀看數合計差異(%)
 const betTotalSymbolValue = ref<number>(0)
 const betTotalSymbolProps = computed<AntInputProps>(() => {
   return {
@@ -123,7 +123,7 @@ const handleSearch = () => {
 }
 
 onMounted(() => {
-  // 設定遊戲及玩法預設值
+  // 設定媒體及內容預設值
   const defaultTarget = getDefaultLobbyByTarget(platformDefaultTarget1[globalStore.currentPlatform])
   if (defaultTarget) {
     gamePlayValue.value.push([defaultTarget])

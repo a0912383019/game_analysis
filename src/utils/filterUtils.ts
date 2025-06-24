@@ -5,7 +5,7 @@ import { queryLobbyGames } from '@/utils/commonApi'
 import { handleApiError } from '@/utils/commonUtils'
 import { useGlobalStore } from '@/stores'
 
-// 遊戲及玩法選項
+// 媒體及內容選項
 export const loadData = async (selectedOptions: DefaultOptionType[]) => {
   const targetOption = selectedOptions[selectedOptions.length - 1]
   if (targetOption.children !== undefined) {
@@ -60,8 +60,8 @@ export const memberValueRule = (_rule: Rule, value: string, accountOrId: string)
     return Promise.resolve()
   }
 
-  // 先檢查平台是否為 'xctw' 或 'xcmy'，這兩個平台不限制輸入格式
-  if (['xctw', 'xcmy'].includes(useGlobalStore().currentPlatform)) {
+  // 先檢查平台是否為 'platc' 或 'platd'，這兩個平台不限制輸入格式
+  if (['platc', 'platd'].includes(useGlobalStore().currentPlatform)) {
     return Promise.resolve()
   }
 

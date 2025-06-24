@@ -56,14 +56,14 @@ describe('gameTable', () => {
           dataIndex: 'lobby_name',
           key: 'lobby_name',
           sorter: true,
-          title: '遊戲大廳'
+          title: '媒體大廳'
         },
         {
           align: 'center',
           dataIndex: 'user_count',
           key: 'user_count',
           sorter: true,
-          title: '人數'
+          title: '留言數'
         },
         {
           align: 'center',
@@ -71,21 +71,21 @@ describe('gameTable', () => {
           defaultSortOrder: 'descend',
           key: 'wager_count',
           sorter: true,
-          title: '單量'
+          title: '觀看數'
         },
         {
           align: 'center',
           dataIndex: 'bet_amount',
           key: 'bet_amount',
           sorter: true,
-          title: '貨量'
+          title: '流量'
         },
         {
           align: 'center',
           dataIndex: 'payoff',
           key: 'payoff',
           sorter: true,
-          title: '損益'
+          title: '瀏覽趨勢'
         },
         {
           align: 'center',
@@ -101,14 +101,14 @@ describe('gameTable', () => {
           dataIndex: 'game_name',
           key: 'game_name',
           sorter: true,
-          title: '遊戲名稱'
+          title: '媒體名稱'
         },
         {
           align: 'center',
           dataIndex: 'user_count',
           key: 'user_count',
           sorter: true,
-          title: '人數'
+          title: '留言數'
         },
         {
           align: 'center',
@@ -116,21 +116,21 @@ describe('gameTable', () => {
           defaultSortOrder: 'descend',
           key: 'wager_count',
           sorter: true,
-          title: '單量'
+          title: '觀看數'
         },
         {
           align: 'center',
           dataIndex: 'bet_amount',
           key: 'bet_amount',
           sorter: true,
-          title: '貨量'
+          title: '流量'
         },
         {
           align: 'center',
           dataIndex: 'payoff',
           key: 'payoff',
           sorter: true,
-          title: '損益'
+          title: '瀏覽趨勢'
         },
         {
           align: 'center',
@@ -144,14 +144,14 @@ describe('gameTable', () => {
           dataIndex: 'expected_rtp',
           key: 'expected_rtp',
           sorter: true,
-          title: 'RTP(理論)'
+          title: '滿意度(理論)'
         },
         {
           align: 'center',
           dataIndex: 'rtp',
           key: 'rtp',
           sorter: true,
-          title: 'RTP'
+          title: '滿意度'
         },
         {
           align: 'center',
@@ -195,7 +195,7 @@ describe('gameTable', () => {
           dataIndex: 'hall_name',
           key: 'hall_name',
           sorter: true,
-          title: '廳主名稱',
+          title: '數位區名稱',
           width: 320
         },
         {
@@ -203,7 +203,7 @@ describe('gameTable', () => {
           dataIndex: 'user_count',
           key: 'user_count',
           sorter: true,
-          title: '人數'
+          title: '留言數'
         },
         {
           align: 'center',
@@ -211,21 +211,21 @@ describe('gameTable', () => {
           defaultSortOrder: 'descend',
           key: 'wager_count',
           sorter: true,
-          title: '單量'
+          title: '觀看數'
         },
         {
           align: 'center',
           dataIndex: 'bet_amount',
           key: 'bet_amount',
           sorter: true,
-          title: '貨量'
+          title: '流量'
         },
         {
           align: 'center',
           dataIndex: 'payoff',
           key: 'payoff',
           sorter: true,
-          title: '損益'
+          title: '瀏覽趨勢'
         },
         {
           align: 'center',
@@ -238,14 +238,14 @@ describe('gameTable', () => {
           align: 'center',
           dataIndex: 'expected_rtp',
           key: 'expected_rtp',
-          title: 'RTP(理論)'
+          title: '滿意度(理論)'
         },
         {
           align: 'center',
           dataIndex: 'rtp',
           key: 'rtp',
           sorter: true,
-          title: 'RTP'
+          title: '滿意度'
         },
         {
           align: 'center',
@@ -297,21 +297,21 @@ describe('gameTable', () => {
           defaultSortOrder: 'descend',
           key: 'wager_count',
           sorter: true,
-          title: '單量'
+          title: '觀看數'
         },
         {
           align: 'center',
           dataIndex: 'bet_amount',
           key: 'bet_amount',
           sorter: true,
-          title: '貨量'
+          title: '流量'
         },
         {
           align: 'center',
           dataIndex: 'payoff',
           key: 'payoff',
           sorter: true,
-          title: '損益'
+          title: '瀏覽趨勢'
         },
         {
           align: 'center',
@@ -362,7 +362,7 @@ describe('gameTable', () => {
           dataIndex: 'serial_type_name',
           key: 'serial_type_name',
           sorter: true,
-          title: '玩法名稱'
+          title: '內容名稱'
         },
         {
           align: 'center',
@@ -370,21 +370,21 @@ describe('gameTable', () => {
           defaultSortOrder: 'descend',
           key: 'wager_count',
           sorter: true,
-          title: '單量'
+          title: '觀看數'
         },
         {
           align: 'center',
           dataIndex: 'bet_amount',
           key: 'bet_amount',
           sorter: true,
-          title: '貨量'
+          title: '流量'
         },
         {
           align: 'center',
           dataIndex: 'payoff',
           key: 'payoff',
           sorter: true,
-          title: '損益'
+          title: '瀏覽趨勢'
         },
         {
           align: 'center',
@@ -579,7 +579,7 @@ describe('gameTable', () => {
       data: [
         {
           lobby: 5,
-          lobby_name: 'BB電子',
+          lobby_name: 'max影音',
           user_count: 1,
           wager_count: 340,
           bet_amount: '1941.0000',
@@ -626,7 +626,7 @@ describe('gameTable', () => {
         key: 0,
         lobby: 5,
         user_count: '1',
-        lobby_name: 'BB電子',
+        lobby_name: 'max影音',
         payoff: '-81',
         payoff_ratio: '-4.17%',
         wager_count: '340'
@@ -639,9 +639,9 @@ describe('gameTable', () => {
       data: [
         {
           lobby: 5,
-          lobby_name: 'BB電子',
+          lobby_name: 'max影音',
           game_code: '5274',
-          game_name: '財富宙升',
+          game_name: '影音C',
           user_count: 1,
           wager_count: 22,
           bet_amount: '33.0000',
@@ -657,9 +657,9 @@ describe('gameTable', () => {
         },
         {
           lobby: 5,
-          lobby_name: 'BB電子',
+          lobby_name: 'max影音',
           game_code: '5261',
-          game_name: '招財喵喵',
+          game_name: '思鄉歸途',
           user_count: 1,
           wager_count: 318,
           bet_amount: '1908.0000',
@@ -702,7 +702,7 @@ describe('gameTable', () => {
         expected_rtp: '87.62%',
         free_lose_wager_count: '0',
         free_win_wager_count: '0',
-        game_name: '財富宙升',
+        game_name: '影音C',
         hasPage: false,
         innerData: [],
         innerExtraParams: {
@@ -737,7 +737,7 @@ describe('gameTable', () => {
         expected_rtp: '89.54%',
         free_lose_wager_count: '0',
         free_win_wager_count: '0',
-        game_name: '招財喵喵',
+        game_name: '思鄉歸途',
         hasPage: false,
         innerData: [],
         innerExtraParams: {
@@ -937,9 +937,9 @@ describe('gameTable', () => {
       data: [
         {
           lobby: 3,
-          lobby_name: 'BB視訊',
+          lobby_name: 'max直播',
           game_code: '3003',
-          game_name: '龍虎鬥',
+          game_name: '美食介紹',
           serial_type: '1',
           serial_type_name: '虎',
           user_count: 1,
@@ -954,9 +954,9 @@ describe('gameTable', () => {
         },
         {
           lobby: 3,
-          lobby_name: 'BB視訊',
+          lobby_name: 'max直播',
           game_code: '3003',
-          game_name: '龍虎鬥',
+          game_name: '美食介紹',
           serial_type: '2',
           serial_type_name: '龍',
           user_count: 1,

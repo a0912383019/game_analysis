@@ -34,7 +34,7 @@ describe('useGlobalStore', () => {
   it('initializes with correct default values', () => {
     expect(globalStore.isSidebarClose).toBe(false)
     expect(globalStore.isLoading).toBe(true)
-    expect(globalStore.currentPlatform).toBe('bbin')
+    expect(globalStore.currentPlatform).toBe('plata')
   })
 
   // // 測試 storeHandleApiError 清除、顯示通知並導回登入頁
@@ -62,6 +62,6 @@ describe('useGlobalStore', () => {
     // 斷言狀態會重置，回復初始值
     expect(globalStore.isSidebarClose).toBe(false)
     expect(globalStore.isLoading).toBe(true)
-    expect(globalStore.currentPlatform).toBe('bbin')
+    expect(globalStore.currentPlatform).toBe('plata')
   })
 })

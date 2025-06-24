@@ -14,8 +14,8 @@ const platformConfigs: Record<
     daySwitchHour: number // 幾點跨日 (以台灣時間為準)
   }
 > = {
-  bbin: { daySwitchHour: 12 },
-  bbgp: { daySwitchHour: 12 },
+  plata: { daySwitchHour: 12 },
+  platb: { daySwitchHour: 12 },
   xc_tw: { daySwitchHour: 0 },
   xc_my: { daySwitchHour: 0 },
   midori: { daySwitchHour: 6 }

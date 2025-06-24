@@ -204,9 +204,15 @@ onMounted(() => {
 </script>
 <template>
   <div class="container">
-    <div class="login-logo !mb-7 !mt-1"></div>
+    <div class="login-logo !mb-4 !mt-1"></div>
     <div class="content" :class="{ isShaking }">
-      <GoogleLogin :callback="googleLoginCallback" @click="mockLogin" />
+      <button
+        @click="mockLogin"
+        class="w-full !px-6 !py-1 cursor-pointer rounded-2xl bg-gradient-to-r from-red-400 to-indigo-800 text-white text-lg font-semibold shadow-lg hover:shadow-xl transition duration-300 ease-in-out hover:scale-105 active:scale-95"
+      >
+        登入
+      </button>
+      <!-- <GoogleLogin :callback="googleLoginCallback" @click="mockLogin" /> -->
       <div class="error !mt-1" v-show="failMsg.msg1.isShow">{{ failMsg.msg1.text }}</div>
       <div class="error !mt-1" v-show="failMsg.msg2.isShow">{{ failMsg.msg2.text }}</div>
       <div class="error !mt-1" v-show="failMsg.msg3.isShow">{{ failMsg.msg3.text }}</div>
@@ -229,6 +235,7 @@ onMounted(() => {
   z-index: 10;
   max-width: unset;
   background: url('@/assets/images/loginImg.png') center / cover no-repeat;
+  filter: hue-rotate(70deg);
 }
 .content {
   display: flex;
@@ -236,10 +243,10 @@ onMounted(() => {
   align-items: center;
 }
 .login-logo {
-  width: 116px;
-  height: 65px;
+  width: 226px;
+  height: 85px;
   flex-shrink: 0;
-  background: url('@/assets/images/loginLogo.png') center / contain no-repeat;
+  background: url('@/assets/images/logo.png') center / contain no-repeat;
 }
 .loadingContainer {
   position: fixed;

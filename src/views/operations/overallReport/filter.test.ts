@@ -27,8 +27,8 @@ describe('filter', () => {
       return {
         platform_halls: [{ hall_id: 1, login_code: 'bmw', name: '寶馬-我是廳名' }],
         platform_lobbies: [
-          { lobby: 5, lobby_name: 'BB電子' },
-          { lobby: 66, lobby_name: 'BB棋牌' }
+          { lobby: 5, lobby_name: 'max影音' },
+          { lobby: 66, lobby_name: 'max AR/VR' }
         ],
         platform_devices: [
           {
@@ -116,8 +116,8 @@ describe('filter', () => {
     expect(wrapper.vm.hallProps).toStrictEqual({
       allowClear: false,
       options: hallOptions,
-      placeHolderText: '請選擇廳',
-      placeHolderValuableText: '廳主'
+      placeHolderText: '請選擇數位區',
+      placeHolderValuableText: '數位區塊'
     })
   })
 
@@ -133,12 +133,12 @@ describe('filter', () => {
     const gamePlayOptions = [
       {
         isLeaf: false,
-        label: 'BB電子',
+        label: 'max影音',
         value: 5
       },
       {
         isLeaf: false,
-        label: 'BB棋牌',
+        label: 'max AR/VR',
         value: 66
       }
     ]
@@ -147,8 +147,8 @@ describe('filter', () => {
     expect(wrapper.vm.gamePlayProps).toStrictEqual({
       loadData: expect.any(Function),
       options: gamePlayOptions,
-      placeHolderText: '請選擇遊戲及玩法',
-      placeHolderValuableText: '遊戲及玩法'
+      placeHolderText: '請選擇媒體及內容',
+      placeHolderValuableText: '媒體及內容'
     })
   })
 

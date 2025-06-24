@@ -83,7 +83,7 @@ describe('filterUtils', () => {
     mockQueryLobbyGames.mockResolvedValueOnce([
       {
         game_code: '3026',
-        game_name: '區塊鏈龍虎鬥',
+        game_name: 'Spotify美食介紹',
         enable: 1,
         serial_info: [
           {
@@ -124,7 +124,7 @@ describe('filterUtils', () => {
             }
           ],
           isLeaf: false,
-          label: '區塊鏈龍虎鬥',
+          label: 'Spotify美食介紹',
           value: '3026'
         }
       ],
@@ -146,7 +146,7 @@ describe('filterUtils', () => {
   it('memberValueRule', async () => {
     await expect(memberValueRule({}, '', 'account')).resolves.toBeUndefined()
 
-    globalStore.currentPlatform = 'xctw'
+    globalStore.currentPlatform = 'platc'
     await expect(memberValueRule({}, 'invalid@input', 'account')).resolves.toBeUndefined()
 
     globalStore.currentPlatform = 'midori'

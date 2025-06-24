@@ -31,22 +31,24 @@ describe('playTable', () => {
           align: 'left',
           dataIndex: 'content',
           key: 'content',
-          title: '遊玩組合',
-          width: 380
+          title: '內容組合名稱',
+          width: 520
         },
         {
           align: 'center',
           dataIndex: 'user_count_ratio',
           key: 'user_count_ratio',
           sorter: true,
-          title: '人數比例'
+          title: '留言數比例',
+          width: 120
         },
         {
           align: 'center',
           dataIndex: 'user_count',
           key: 'user_count',
           sorter: true,
-          title: '人數'
+          title: '留言數',
+          width: 120
         },
         {
           align: 'center',
@@ -54,21 +56,24 @@ describe('playTable', () => {
           defaultSortOrder: 'descend',
           key: 'bet_amount',
           sorter: true,
-          title: '貨量'
+          title: '流量',
+          width: 120
         },
         {
           align: 'center',
           dataIndex: 'payoff',
           key: 'payoff',
           sorter: true,
-          title: '損益'
+          title: '瀏覽趨勢',
+          width: 120
         },
         {
           align: 'center',
           dataIndex: 'comprehensive_rtp',
           key: 'comprehensive_rtp',
           sorter: true,
-          title: '綜合RTP'
+          title: '綜合滿意度',
+          width: 120
         }
       ]
     ])

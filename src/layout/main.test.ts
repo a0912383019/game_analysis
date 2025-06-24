@@ -10,13 +10,13 @@ import { apiHalls, apiLobbies, apiDevices } from '@/api'
 vi.mock('@/../public/js/system_config', () => ({
   platformDict: [
     {
-      name: 'BBIN',
-      key: 'bbin',
+      name: 'plata',
+      key: 'plata',
       pColor: '#061127'
     },
     {
-      name: 'BBGP',
-      key: 'bbgp',
+      name: 'platb',
+      key: 'platb',
       pColor: '#18242C'
     },
     {
@@ -96,7 +96,7 @@ describe('main', () => {
   })
 
   it('currentPlatform & watch', async () => {
-    expect(wrapper.vm.currentPlatform).toStrictEqual('bbin')
+    expect(wrapper.vm.currentPlatform).toStrictEqual('plata')
     expect(apiHalls).toBeCalledTimes(1)
     expect(apiLobbies).toBeCalledTimes(1)
     expect(apiDevices).toBeCalledTimes(1)
@@ -116,8 +116,8 @@ describe('main', () => {
   })
 
   it('getColorByName', () => {
-    expect(wrapper.vm.getColorByName('bbin')).toBe('#061127')
-    expect(wrapper.vm.getColorByName('bbgp')).toBe('#18242C')
+    expect(wrapper.vm.getColorByName('plata')).toBe('#061127')
+    expect(wrapper.vm.getColorByName('platb')).toBe('#18242C')
     expect(wrapper.vm.getColorByName('midori')).toBe('#332E21')
     expect(wrapper.vm.getColorByName('xyz')).toBe('#000000')
   })

@@ -59,7 +59,7 @@ const memberProps = computed<AntInputProps>(() => {
   }
 })
 
-// 遊戲及玩法
+// 媒體及內容
 const gamePlayValue = ref<LobbyGameData[]>([])
 const gamePlayOptions = ref<CascaderProps['options']>(
   getSessionStorageEntity<PlatformConfig>('platform_config')?.platform_lobbies?.map(

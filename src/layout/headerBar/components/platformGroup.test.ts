@@ -8,13 +8,13 @@ import { useGlobalStore } from '@/stores'
 vi.mock('@/../public/js/system_config', () => ({
   platformDict: [
     {
-      name: 'BBIN',
-      key: 'bbin',
+      name: 'plata',
+      key: 'plata',
       pColor: '#061127'
     },
     {
-      name: 'BBGP',
-      key: 'bbgp',
+      name: 'platb',
+      key: 'platb',
       pColor: '#18242C'
     },
     {
@@ -45,7 +45,7 @@ describe('platformGroup', () => {
   })
 
   it('currentPlatform & handleChangePlatform', () => {
-    expect(wrapper.vm.currentPlatform).toStrictEqual('bbin')
+    expect(wrapper.vm.currentPlatform).toStrictEqual('plata')
 
     wrapper.vm.handleChangePlatform('midori')
     expect(globalStore.currentPlatform).toStrictEqual('midori')

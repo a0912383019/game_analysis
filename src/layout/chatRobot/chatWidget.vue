@@ -1,7 +1,7 @@
-import { url } from 'inspector';
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { CloseOutlined } from '@ant-design/icons-vue'
+import { chatWithGPT } from '@/api/axiosGPTInstance'
 
 const visible = ref(false)
 const inputText = ref('')
@@ -10,6 +10,14 @@ const textareaRef = ref()
 
 const toggleChat = () => {
   visible.value = !visible.value
+  if (visible.value) {
+    // 當聊天視窗打開時，自動滾動到底部
+    nextTick(() => {
+      if (contentAreaRef.value) {
+        contentAreaRef.value.scrollTop = contentAreaRef.value.scrollHeight
+      }
+    })
+  }
 }
 
 const closeChat = () => {
@@ -53,19 +61,34 @@ const handleChatWindowScroll = (event) => {
   event.preventDefault()
 }
 
-const handleEnter = (e) => {
+const isComposing = ref(false)
+
+const onCompositionEnd = () => {
+  isComposing.value = false
+}
+
+const handleEnter = (e: any) => {
   e.preventDefault()
+  if (isComposing.value) return // 輸入組字中，不送出
   if (inputText.value.trim() !== '') {
     sendMessage()
   }
 }
 
+const messageTimestamps = ref<Record<number, string>>({})
+
+interface ChatMessage {
+  role: 'assistant' | 'user'
+  content: string
+}
+
+const messages = ref<ChatMessage[]>([])
+
 // 模擬送出訊息
 const sendMessage = async () => {
-  // console.log('送出訊息:', inputText.value)
-  // inputText.value = ''
   const content = inputText.value.trim()
   if (!content) return
+  inputText.value = ''
 
   const now = new Date().toLocaleTimeString('en-GB', {
     hour: '2-digit',
@@ -73,29 +96,40 @@ const sendMessage = async () => {
     hour12: false
   })
 
-  messages.value.push({
-    id: Date.now(),
-    role: 'user',
-    content,
-    time: now
-  })
+  const userMsgIndex = messages.value.length
+  messages.value.push({ role: 'user', content })
+  messageTimestamps.value[userMsgIndex] = now
+
   await nextTick(() => {
     contentAreaRef.value.scrollTop = contentAreaRef.value.scrollHeight
   })
-  inputText.value = ''
 
-  // 模擬 bot 回覆
-  setTimeout(async () => {
-    messages.value.push({
-      id: Date.now() + 1,
-      role: 'bot',
-      content: `這是機器人的回覆：\n你剛剛說了：${content}`,
-      time: now
+  // 顯示回覆中的 loading 假訊息
+  const replyMsgIndex = messages.value.length
+  messages.value.push({ role: 'assistant', content: '助手正在思考中...' })
+  messageTimestamps.value[replyMsgIndex] = now
+
+  try {
+    const res = await chatWithGPT(messages.value)
+    const reply = res.data.choices[0].message
+
+    if (reply === '') {
+      messages.value.splice(replyMsgIndex, 1, { role: 'assistant', content: '我不確定您的問題' })
+    } else {
+      messages.value.splice(replyMsgIndex, 1, reply)
+    }
+
+    // 時間依然保留剛剛記錄的即可
+  } catch (e) {
+    messages.value.splice(replyMsgIndex, 1, {
+      role: 'assistant',
+      content: '請求出錯，請稍後重試'
     })
-    await nextTick(() => {
-      contentAreaRef.value.scrollTop = contentAreaRef.value.scrollHeight
-    })
-  }, 500)
+  }
+
+  await nextTick(() => {
+    contentAreaRef.value.scrollTop = contentAreaRef.value.scrollHeight
+  })
 }
 
 // textarea 根據輸入調整高度
@@ -111,27 +145,32 @@ watch(
   }
 )
 
-interface ChatMessage {
-  id: string | number
-  role: 'user' | 'bot'
-  content: string
-  time: string
-}
-
-const messages = ref<ChatMessage[]>([
-  {
-    id: 1,
-    role: 'user',
-    content: '09/18 ～ 09/19 esb 會員 abc123 遊玩糖果派對 獲利最高的注單',
-    time: '13:16 PM'
+watch(
+  [messages, messageTimestamps],
+  () => {
+    try {
+      localStorage.setItem('chatMessages', JSON.stringify(messages.value))
+      localStorage.setItem('messageTimestamps', JSON.stringify(messageTimestamps.value))
+    } catch (e) {
+      console.error('儲存聊天紀錄錯誤:', e)
+    }
   },
-  {
-    id: 2,
-    role: 'bot',
-    content: '09/18 ～ 09/19 esb 會員 abc123 遊玩糖果派對 獲利最高的注單號為\n19399963107',
-    time: '13:16 PM'
+  { deep: true }
+)
+
+onMounted(() => {
+  try {
+    const savedMessages = localStorage.getItem('chatMessages')
+    const savedTimestamps = localStorage.getItem('messageTimestamps')
+
+    messages.value = savedMessages ? JSON.parse(savedMessages) : []
+    messageTimestamps.value = savedTimestamps ? JSON.parse(savedTimestamps) : []
+  } catch (e) {
+    console.error('載入聊天紀錄錯誤:', e)
+    messages.value = []
+    messageTimestamps.value = []
   }
-])
+})
 </script>
 <template>
   <div>
@@ -148,7 +187,7 @@ const messages = ref<ChatMessage[]>([
       @wheel="handleChatWindowScroll"
       class="bg-white text-center !py-4 text-[#508BE5] !font-semibold border-b border-[#0000001a] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.1)]"
     >
-      智能客服
+      Groq 聊天助手
       <button
         class="absolute cursor-pointer right-3 top-4 text-gray-400 hover:text-gray-600"
         @click="closeChat"
@@ -168,34 +207,18 @@ const messages = ref<ChatMessage[]>([
       </div>
       <!-- 提示文字 -->
       <p class="text-center mb-4 leading-5 text-base !mb-4">親，有什麼可以幫您的呢？</p>
-      <!-- <div class="w-5/6">
-        <button
-          class="w-full text-white bg-[#3c81f6] hover:bg-[#2c6edb] rounded-full !py-2 !px-4 text-sm transition !my-3"
-        >
-          09/18 ～ 09/19 esb 會員 abc123 遊玩糖果派對，損益跟獲利比最高的會員
-        </button>
-        <button
-          class="w-full text-white bg-[#3c81f6] hover:bg-[#2c6edb] rounded-full !py-2 !px-4 text-sm transition"
-        >
-          09/18 ～ 09/19 esb 會員 yy9001 遊玩梯子遊戲
-        </button>
-      </div> -->
       <div
-        v-for="msg in messages"
-        :key="msg.id"
+        v-for="(msg, idx) in messages"
         class="w-full flex flex-col !items-start !mb-5 font-[Roboto]"
       >
         <div
           class="flex items-end gap-1 w-full"
           :class="msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'"
         >
-          <div
-            class="flex"
-            :class="msg.role === 'user' ? 'justify-end' : 'justify-start'"
-          >
+          <div class="flex" :class="msg.role === 'user' ? 'justify-end' : 'justify-start'">
             <!-- Bot Icon -->
             <div
-              v-if="msg.role === 'bot'"
+              v-if="msg.role === 'assistant'"
               class="flex-shrink-0 bg-[#e3efff] rounded-full w-[40px] h-[40px] flex items-center justify-center !mx-2"
             >
               <cdp-icon name="robotHead" class="text-[22px] text-[#508BE5]" />
@@ -203,11 +226,12 @@ const messages = ref<ChatMessage[]>([
             <!-- Message Bubble -->
             <div
               class="chat-bubble break-all rounded-[10px] px-4 py-3 text-sm whitespace-pre-wrap !shadow-[0px_2px_7px_1px_rgba(0,0,0,0.1)]"
-              :class="
+              :class="[
                 msg.role === 'user'
                   ? 'bg-[#FFFFFF] text-black rounded-tr-none !mr-4 chat-bubble__right'
-                  : 'bg-[#3c81f6] text-white rounded-tl-none chat-bubble__left'
-              "
+                  : 'bg-[#3c81f6] text-white rounded-tl-none chat-bubble__left',
+                msg.content === '助手正在思考中...' ? '!text-gray-500 !bg-[#cfcfcf]' : ''
+              ]"
             >
               {{ msg.content }}
             </div>
@@ -217,7 +241,7 @@ const messages = ref<ChatMessage[]>([
             class="text-[11px] text-gray-400 w-[17%]"
             :class="msg.role === 'user' ? 'text-right self-end !ml-13' : 'text-left !mr-6'"
           >
-            {{ msg.time }}
+            {{ messageTimestamps[idx] || '' }}
           </div>
         </div>
       </div>
@@ -232,6 +256,8 @@ const messages = ref<ChatMessage[]>([
           v-model="inputText"
           ref="textareaRef"
           @keydown.enter.exact.prevent="handleEnter"
+          @compositionstart="isComposing = true"
+          @compositionend="onCompositionEnd"
           placeholder="您可以問任何問題..."
           class="resize-none flex-1 max-h-[180px] leading-[20px] h-[40px] !mr-3 !px-3 !py-[10px] overflow-y-auto overscroll-y-contain text-sm bg-[#0611270A] placeholder-gray-400 rounded-[20px] focus:outline-none focus:ring-1 focus:ring-blue-300"
         ></textarea>

@@ -17,7 +17,7 @@ import { generateOverallParams, queryApi } from '@/utils/filterUtils'
  * 第二層有分頁(會員層)
  * 第三層無分頁
  * 第四層無分頁
- * 第五層無分頁(只有BB視訊才有第五層)
+ * 第五層無分頁(只有max直播才有第五層)
  */
 
 const { t } = useI18n()

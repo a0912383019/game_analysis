@@ -502,31 +502,31 @@ describe('operatingTrendsChart', () => {
         platform_lobbies: [
           {
             lobby: 5,
-            lobby_name: 'BB電子',
+            lobby_name: 'max影音',
             target: 3,
             target_name: '電子'
           },
           {
             lobby: 3,
-            lobby_name: 'BB視訊',
+            lobby_name: 'max直播',
             target: 2,
             target_name: '視訊'
           },
           {
             lobby: 66,
-            lobby_name: 'BB棋牌',
+            lobby_name: 'max AR/VR',
             target: 6,
             target_name: '棋牌'
           },
           {
             lobby: 38,
-            lobby_name: 'BB捕魚大師',
+            lobby_name: 'max Podcast大師',
             target: 5,
             target_name: '捕魚'
           },
           {
             lobby: 12,
-            lobby_name: 'BB彩票',
+            lobby_name: 'max電子書',
             target: 4,
             target_name: '彩票'
           }
@@ -553,23 +553,23 @@ describe('operatingTrendsChart', () => {
     expect(wrapper.vm.apiLoading).toBe(false)
     expect(wrapper.vm.buttonGroup).toStrictEqual([
       {
-        name: '損益',
+        name: '瀏覽趨勢',
         value: 'payoff'
       },
       {
-        name: '投注人數',
+        name: '留言數',
         value: 'users_count'
       },
       {
-        name: '貨量',
+        name: '流量',
         value: 'bet_amount'
       },
       {
-        name: '首投人數',
+        name: '會員按讚數',
         value: 'first_play_count'
       },
       {
-        name: '流失會員人數',
+        name: '流失會員留言數',
         value: 'loss_count'
       }
     ])
@@ -580,7 +580,7 @@ describe('operatingTrendsChart', () => {
           align: 'center',
           dataIndex: 'game_category',
           key: 'game_category',
-          title: '遊戲類別',
+          title: '媒體類別',
           width: 100
         },
         {
@@ -603,27 +603,27 @@ describe('operatingTrendsChart', () => {
         },
         {
           color: 'bg-[var(--cdp-pink)]',
-          game_category: '電子',
+          game_category: '影音',
           totals: '5,212'
         },
         {
           color: 'bg-[var(--cdp-yellow)]',
-          game_category: '視訊',
+          game_category: '直播',
           totals: '100'
         },
         {
           color: 'bg-[var(--cdp-green)]',
-          game_category: '棋牌',
+          game_category: '電子書',
           totals: '4,972'
         },
         {
           color: 'bg-[var(--cdp-blue)]',
-          game_category: '捕魚',
+          game_category: 'AR/VR',
           totals: '200'
         },
         {
           color: 'bg-[var(--cdp-orange)]',
-          game_category: '彩票',
+          game_category: 'Podcast',
           totals: '250'
         }
       ],
@@ -635,27 +635,27 @@ describe('operatingTrendsChart', () => {
         },
         {
           color: 'bg-[var(--cdp-pink)]',
-          game_category: '電子',
+          game_category: '影音',
           totals: '0'
         },
         {
           color: 'bg-[var(--cdp-yellow)]',
-          game_category: '視訊',
+          game_category: '直播',
           totals: '0'
         },
         {
           color: 'bg-[var(--cdp-green)]',
-          game_category: '棋牌',
+          game_category: '電子書',
           totals: '0'
         },
         {
           color: 'bg-[var(--cdp-blue)]',
-          game_category: '捕魚',
+          game_category: 'AR/VR',
           totals: '0'
         },
         {
           color: 'bg-[var(--cdp-orange)]',
-          game_category: '彩票',
+          game_category: 'Podcast',
           totals: '0'
         }
       ],
@@ -667,27 +667,27 @@ describe('operatingTrendsChart', () => {
         },
         {
           color: 'bg-[var(--cdp-pink)]',
-          game_category: '電子',
+          game_category: '影音',
           totals: '23'
         },
         {
           color: 'bg-[var(--cdp-yellow)]',
-          game_category: '視訊',
+          game_category: '直播',
           totals: '7'
         },
         {
           color: 'bg-[var(--cdp-green)]',
-          game_category: '棋牌',
+          game_category: '電子書',
           totals: '3'
         },
         {
           color: 'bg-[var(--cdp-blue)]',
-          game_category: '捕魚',
+          game_category: 'AR/VR',
           totals: '2'
         },
         {
           color: 'bg-[var(--cdp-orange)]',
-          game_category: '彩票',
+          game_category: 'Podcast',
           totals: '4'
         }
       ],
@@ -699,27 +699,27 @@ describe('operatingTrendsChart', () => {
         },
         {
           color: 'bg-[var(--cdp-pink)]',
-          game_category: '電子',
+          game_category: '影音',
           totals: '-2,406.6'
         },
         {
           color: 'bg-[var(--cdp-yellow)]',
-          game_category: '視訊',
+          game_category: '直播',
           totals: '-100'
         },
         {
           color: 'bg-[var(--cdp-green)]',
-          game_category: '棋牌',
+          game_category: '電子書',
           totals: '4,262'
         },
         {
           color: 'bg-[var(--cdp-blue)]',
-          game_category: '捕魚',
+          game_category: 'AR/VR',
           totals: '200'
         },
         {
           color: 'bg-[var(--cdp-orange)]',
-          game_category: '彩票',
+          game_category: 'Podcast',
           totals: '250'
         }
       ],
@@ -731,27 +731,27 @@ describe('operatingTrendsChart', () => {
         },
         {
           color: 'bg-[var(--cdp-pink)]',
-          game_category: '電子',
+          game_category: '影音',
           totals: '106'
         },
         {
           color: 'bg-[var(--cdp-yellow)]',
-          game_category: '視訊',
+          game_category: '直播',
           totals: '1'
         },
         {
           color: 'bg-[var(--cdp-green)]',
-          game_category: '棋牌',
+          game_category: '電子書',
           totals: '6'
         },
         {
           color: 'bg-[var(--cdp-blue)]',
-          game_category: '捕魚',
+          game_category: 'AR/VR',
           totals: '1'
         },
         {
           color: 'bg-[var(--cdp-orange)]',
-          game_category: '彩票',
+          game_category: 'Podcast',
           totals: '1'
         }
       ]
@@ -764,27 +764,27 @@ describe('operatingTrendsChart', () => {
       },
       {
         color: 'bg-[var(--cdp-pink)]',
-        game_category: '電子',
+        game_category: '影音',
         totals: '-2,406.6'
       },
       {
         color: 'bg-[var(--cdp-yellow)]',
-        game_category: '視訊',
+        game_category: '直播',
         totals: '-100'
       },
       {
         color: 'bg-[var(--cdp-green)]',
-        game_category: '棋牌',
+        game_category: '電子書',
         totals: '4,262'
       },
       {
         color: 'bg-[var(--cdp-blue)]',
-        game_category: '捕魚',
+        game_category: 'AR/VR',
         totals: '200'
       },
       {
         color: 'bg-[var(--cdp-orange)]',
-        game_category: '彩票',
+        game_category: 'Podcast',
         totals: '250'
       }
     ])
@@ -800,31 +800,31 @@ describe('operatingTrendsChart', () => {
         {
           color: '',
           data: ['6.0000', '0', '6.0000', '0', '0', '5200.0000', '0'],
-          name: '電子',
+          name: '影音',
           type: 'line'
         },
         {
           color: '',
           data: ['0', '0', '0', '0', '0', '100.0000', '0'],
-          name: '視訊',
+          name: '直播',
           type: 'line'
         },
         {
           color: '',
           data: ['0', '0', '0', '72.0000', '0', '4900.0000', '0'],
-          name: '棋牌',
+          name: '電子書',
           type: 'line'
         },
         {
           color: '',
           data: ['0', '0', '0', '0', '0', '200.0000', '0'],
-          name: '捕魚',
+          name: 'AR/VR',
           type: 'line'
         },
         {
           color: '',
           data: ['0', '0', '0', '0', '0', '250.0000', '0'],
-          name: '彩票',
+          name: 'Podcast',
           type: 'line'
         }
       ],
@@ -839,31 +839,31 @@ describe('operatingTrendsChart', () => {
         {
           color: '',
           data: [0, 0, 0, 0, 0, 0, 0],
-          name: '電子',
+          name: '影音',
           type: 'line'
         },
         {
           color: '',
           data: [0, 0, 0, 0, 0, 0, 0],
-          name: '視訊',
+          name: '直播',
           type: 'line'
         },
         {
           color: '',
           data: [0, 0, 0, 0, 0, 0, 0],
-          name: '棋牌',
+          name: '電子書',
           type: 'line'
         },
         {
           color: '',
           data: [0, 0, 0, 0, 0, 0, 0],
-          name: '捕魚',
+          name: 'AR/VR',
           type: 'line'
         },
         {
           color: '',
           data: [0, 0, 0, 0, 0, 0, 0],
-          name: '彩票',
+          name: 'Podcast',
           type: 'line'
         }
       ],
@@ -878,31 +878,31 @@ describe('operatingTrendsChart', () => {
         {
           color: '',
           data: [4, 0, 5, 8, 2, 4, 0],
-          name: '電子',
+          name: '影音',
           type: 'line'
         },
         {
           color: '',
           data: [2, 0, 1, 1, 0, 3, 0],
-          name: '視訊',
+          name: '直播',
           type: 'line'
         },
         {
           color: '',
           data: [2, 0, 0, 1, 0, 0, 0],
-          name: '棋牌',
+          name: '電子書',
           type: 'line'
         },
         {
           color: '',
           data: [0, 0, 0, 1, 1, 0, 0],
-          name: '捕魚',
+          name: 'AR/VR',
           type: 'line'
         },
         {
           color: '',
           data: [1, 0, 1, 0, 0, 2, 0],
-          name: '彩票',
+          name: 'Podcast',
           type: 'line'
         }
       ],
@@ -917,31 +917,31 @@ describe('operatingTrendsChart', () => {
         {
           color: '',
           data: ['2.4000', '0', '6.0000', '0', '0', '-2415.0000', '0'],
-          name: '電子',
+          name: '影音',
           type: 'line'
         },
         {
           color: '',
           data: ['0', '0', '0', '0', '0', '-100.0000', '0'],
-          name: '視訊',
+          name: '直播',
           type: 'line'
         },
         {
           color: '',
           data: ['0', '0', '0', '-254.0000', '0', '4516.0000', '0'],
-          name: '棋牌',
+          name: '電子書',
           type: 'line'
         },
         {
           color: '',
           data: ['0', '0', '0', '0', '0', '200.0000', '0'],
-          name: '捕魚',
+          name: 'AR/VR',
           type: 'line'
         },
         {
           color: '',
           data: ['0', '0', '0', '0', '0', '250.0000', '0'],
-          name: '彩票',
+          name: 'Podcast',
           type: 'line'
         }
       ],
@@ -956,31 +956,31 @@ describe('operatingTrendsChart', () => {
         {
           color: '',
           data: [1, 0, 1, 0, 0, 104, 0],
-          name: '電子',
+          name: '影音',
           type: 'line'
         },
         {
           color: '',
           data: [0, 0, 0, 0, 0, 1, 0],
-          name: '視訊',
+          name: '直播',
           type: 'line'
         },
         {
           color: '',
           data: [0, 0, 0, 2, 0, 4, 0],
-          name: '棋牌',
+          name: '電子書',
           type: 'line'
         },
         {
           color: '',
           data: [0, 0, 0, 0, 0, 1, 0],
-          name: '捕魚',
+          name: 'AR/VR',
           type: 'line'
         },
         {
           color: '',
           data: [0, 0, 0, 0, 0, 1, 0],
-          name: '彩票',
+          name: 'Podcast',
           type: 'line'
         }
       ]
@@ -996,31 +996,31 @@ describe('operatingTrendsChart', () => {
       {
         color: '',
         data: ['2.4000', '0', '6.0000', '0', '0', '-2415.0000', '0'],
-        name: '電子',
+        name: '影音',
         type: 'line'
       },
       {
         color: '',
         data: ['0', '0', '0', '0', '0', '-100.0000', '0'],
-        name: '視訊',
+        name: '直播',
         type: 'line'
       },
       {
         color: '',
         data: ['0', '0', '0', '-254.0000', '0', '4516.0000', '0'],
-        name: '棋牌',
+        name: '電子書',
         type: 'line'
       },
       {
         color: '',
         data: ['0', '0', '0', '0', '0', '200.0000', '0'],
-        name: '捕魚',
+        name: 'AR/VR',
         type: 'line'
       },
       {
         color: '',
         data: ['0', '0', '0', '0', '0', '250.0000', '0'],
-        name: '彩票',
+        name: 'Podcast',
         type: 'line'
       }
     ])
@@ -1036,27 +1036,27 @@ describe('operatingTrendsChart', () => {
       },
       {
         color: 'bg-[var(--cdp-pink)]',
-        game_category: '電子',
+        game_category: '影音',
         totals: '23'
       },
       {
         color: 'bg-[var(--cdp-yellow)]',
-        game_category: '視訊',
+        game_category: '直播',
         totals: '7'
       },
       {
         color: 'bg-[var(--cdp-green)]',
-        game_category: '棋牌',
+        game_category: '電子書',
         totals: '3'
       },
       {
         color: 'bg-[var(--cdp-blue)]',
-        game_category: '捕魚',
+        game_category: 'AR/VR',
         totals: '2'
       },
       {
         color: 'bg-[var(--cdp-orange)]',
-        game_category: '彩票',
+        game_category: 'Podcast',
         totals: '4'
       }
     ])
@@ -1071,31 +1071,31 @@ describe('operatingTrendsChart', () => {
       {
         color: '',
         data: [4, 0, 5, 8, 2, 4, 0],
-        name: '電子',
+        name: '影音',
         type: 'line'
       },
       {
         color: '',
         data: [2, 0, 1, 1, 0, 3, 0],
-        name: '視訊',
+        name: '直播',
         type: 'line'
       },
       {
         color: '',
         data: [2, 0, 0, 1, 0, 0, 0],
-        name: '棋牌',
+        name: '電子書',
         type: 'line'
       },
       {
         color: '',
         data: [0, 0, 0, 1, 1, 0, 0],
-        name: '捕魚',
+        name: 'AR/VR',
         type: 'line'
       },
       {
         color: '',
         data: [1, 0, 1, 0, 0, 2, 0],
-        name: '彩票',
+        name: 'Podcast',
         type: 'line'
       }
     ])
@@ -1131,9 +1131,9 @@ describe('operatingTrendsChart', () => {
       }
     ]
 
-    expect(wrapper.vm.getTrendValueByTargetId(fakeTrendData, 'betAmount', 1)).toBe('1000')
-    expect(wrapper.vm.getTrendValueByTargetId(fakeTrendData, 'betAmount', 2)).toBe('2000')
-    expect(wrapper.vm.getTrendValueByTargetId(fakeTrendData, 'betAmount', 999)).toBe(0)
+    expect(wrapper.vm.getTrendValueByTargetId(fakeTrendData, 'bet_amount', 1)).toBe('1000')
+    expect(wrapper.vm.getTrendValueByTargetId(fakeTrendData, 'bet_amount', 2)).toBe('2000')
+    expect(wrapper.vm.getTrendValueByTargetId(fakeTrendData, 'bet_amount', 999)).toBe(0)
     expect(wrapper.vm.getTrendValueByTargetId(fakeTrendData, 'nonexistentKey', 1)).toBe(0)
     expect(wrapper.vm.getTrendValueByTargetId(fakeTrendData, [], 'betAmount', 1)).toBe(0)
   })

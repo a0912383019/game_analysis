@@ -109,7 +109,7 @@ const transformData = () => {
   if (dateLength.value > 2) {
     data = [
       {
-        game_hall: '整體貨量',
+        game_hall: '整體觀看數',
         data: [
           {
             date: '2025-05-07',
@@ -205,8 +205,8 @@ const transformData = () => {
         ]
       },
       {
-        game_hall: 'BB視訊',
-        game_name: '21點百家樂',
+        game_hall: 'max直播',
+        game_name: '百大10秒體驗',
         data: [
           {
             date: '2025-05-07',
@@ -305,7 +305,7 @@ const transformData = () => {
   } else {
     data = [
       {
-        game_hall: '整體貨量',
+        game_hall: '整體觀看數',
         data: [
           {
             date: '2025-05-07',
@@ -336,8 +336,8 @@ const transformData = () => {
         ]
       },
       {
-        game_hall: 'BB視訊',
-        game_name: '21點百家樂',
+        game_hall: 'max直播',
+        game_name: '百大10秒體驗',
         data: [
           {
             date: '2025-05-07',
@@ -368,40 +368,8 @@ const transformData = () => {
         ]
       },
       {
-        game_hall: 'BB電子',
-        game_name: '區塊鏈射龍門',
-        data: [
-          {
-            date: '2025-05-07',
-            volume_total: '140052.11',
-            volume_diff: '',
-            aio_total: '3530',
-            aio_diff: '',
-            caio_total: '440',
-            caio_diff: '',
-            pc_total: '13793',
-            pc_diff: '',
-            phone_web_total: '122289.11',
-            phone_web_diff: ''
-          },
-          {
-            date: '2025-05-08',
-            volume_total: '256347',
-            volume_diff: '83.04%',
-            aio_total: '0',
-            aio_diff: '-100.00%',
-            caio_total: '16473',
-            caio_diff: '3643.86%',
-            pc_total: '13067',
-            pc_diff: '-5.26%',
-            phone_web_total: '226807',
-            phone_web_diff: '85.47%'
-          }
-        ]
-      },
-      {
-        game_hall: 'BB棋牌',
-        game_name: '區塊鏈泰國魚蝦蟹',
+        game_hall: 'max AR/VR',
+        game_name: 'Spotify泰國網紅介紹',
         data: [
           {
             date: '2025-05-07',

@@ -13,15 +13,15 @@ const currencySignText = computed<string>(() => {
 const getCurrencySign = (platform: string): string => {
   let currencySign: string = '¥'
   switch (platform) {
-    case 'xctw':
-    case 'xcmy':
+    case 'platc':
+    case 'platd':
       currencySign = '$'
       break
     case 'midori':
       currencySign = '₱'
       break
-    case 'bbin':
-    case 'bbgp':
+    case 'plata':
+    case 'platb':
     default:
       currencySign = '¥'
       break

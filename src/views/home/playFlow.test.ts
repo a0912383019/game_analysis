@@ -28,40 +28,44 @@ describe('playTable', () => {
     expect(wrapper.vm.flowColumns).toStrictEqual([
       [
         {
-          title: '遊玩流向',
-          width: 380,
+          align: 'left',
           dataIndex: 'content',
           key: 'content',
-          align: 'center'
+          title: '內容組合走向',
+          width: 520
         },
         {
-          title: '人數',
+          align: 'center',
           dataIndex: 'user_count',
           key: 'user_count',
-          align: 'center',
-          sorter: true
+          sorter: true,
+          title: '留言數',
+          width: 120
         },
         {
-          title: '貨量',
+          align: 'center',
           dataIndex: 'bet_amount',
-          key: 'bet_amount',
-          align: 'center',
           defaultSortOrder: 'descend',
-          sorter: true
+          key: 'bet_amount',
+          sorter: true,
+          title: '流量',
+          width: 120
         },
         {
-          title: '損益',
+          align: 'center',
           dataIndex: 'payoff',
           key: 'payoff',
-          align: 'center',
-          sorter: true
+          sorter: true,
+          title: '瀏覽趨勢',
+          width: 120
         },
         {
-          title: '綜合RTP',
+          align: 'center',
           dataIndex: 'comprehensive_rtp',
           key: 'comprehensive_rtp',
-          align: 'center',
-          sorter: true
+          sorter: true,
+          title: '綜合滿意度',
+          width: 120
         }
       ]
     ])

@@ -9,7 +9,7 @@ const { t } = useI18n()
 const globalStore = useGlobalStore()
 
 // 刷新的 key
-const currentPlatform = ref<string>('bbin')
+const currentPlatform = ref<string>('plata')
 
 const getColorByName = (name: string): string => {
   return platformDict.find((item) => item.name.toLowerCase() === name)?.pColor || '#000000'

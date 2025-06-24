@@ -4,7 +4,7 @@ export const mockLiveStates: ApiResponse<ResultLiveStates[]> = {
   ret: [
     {
       state: 0,
-      state_name: 'BB 现场',
+      state_name: '影音現場',
       table_data: [
         {
           table_no: 1,
@@ -15,7 +15,7 @@ export const mockLiveStates: ApiResponse<ResultLiveStates[]> = {
     },
     {
       state: 1,
-      state_name: '区块链',
+      state_name: '電子書簽名會場',
       table_data: [
         {
           table_no: 1,
@@ -46,7 +46,7 @@ export const mockLiveStates: ApiResponse<ResultLiveStates[]> = {
     },
     {
       state: 11,
-      state_name: 'AS 现场',
+      state_name: '直播現場',
       table_data: [
         {
           table_no: 1,
@@ -92,7 +92,7 @@ export const mockLiveStates: ApiResponse<ResultLiveStates[]> = {
     },
     {
       state: 13,
-      state_name: 'MX 现场',
+      state_name: 'Podcast 現場',
       table_data: [
         {
           table_no: 4,
@@ -146,7 +146,7 @@ export const mockLiveTableReportsByState: ApiResponse<ResultLiveTableReportsBySt
     data: [
       {
         state: 1,
-        state_name: '区块链',
+        state_name: '影音現場',
         user_count: 1,
         wagers_total: 17,
         bet_amount: '665.0000',
@@ -155,7 +155,7 @@ export const mockLiveTableReportsByState: ApiResponse<ResultLiveTableReportsBySt
       },
       {
         state: 13,
-        state_name: 'MX 现场',
+        state_name: '電子書簽名會場',
         user_count: 7,
         wagers_total: 114,
         bet_amount: '59591.0000',
@@ -164,7 +164,7 @@ export const mockLiveTableReportsByState: ApiResponse<ResultLiveTableReportsBySt
       },
       {
         state: 7,
-        state_name: 'BC 现场',
+        state_name: '直播現場',
         user_count: 1,
         wagers_total: 29,
         bet_amount: '5550.0000',
@@ -173,7 +173,7 @@ export const mockLiveTableReportsByState: ApiResponse<ResultLiveTableReportsBySt
       },
       {
         state: 11,
-        state_name: 'AS 现场',
+        state_name: 'Podcast 現場',
         user_count: 8,
         wagers_total: 57,
         bet_amount: '8420.0000',
@@ -197,7 +197,7 @@ export const mockLiveTableReportsByTable: ApiResponse<ResultLiveTableReportsByTa
     data: [
       {
         table_name: 'BC4',
-        game_name: '區塊鏈百家樂',
+        game_name: 'Spotify百大10秒體驗',
         user_count: 1,
         wagers_total: 8,
         bet_amount: '330.0000',
@@ -206,7 +206,7 @@ export const mockLiveTableReportsByTable: ApiResponse<ResultLiveTableReportsByTa
       },
       {
         table_name: 'BC3',
-        game_name: '區塊鏈百家樂',
+        game_name: 'Spotify百大10秒體驗',
         user_count: 3,
         wagers_total: 15,
         bet_amount: '2660.0000',
@@ -215,7 +215,7 @@ export const mockLiveTableReportsByTable: ApiResponse<ResultLiveTableReportsByTa
       },
       {
         table_name: 'BC3',
-        game_name: '區塊鏈輪盤',
+        game_name: 'Spotify流行',
         user_count: 1,
         wagers_total: 1,
         bet_amount: '100.0000',
@@ -223,17 +223,8 @@ export const mockLiveTableReportsByTable: ApiResponse<ResultLiveTableReportsByTa
         payoff_ratio: '1.0000'
       },
       {
-        table_name: 'BC3',
-        game_name: '區塊鏈射龍門',
-        user_count: 1,
-        wagers_total: 6,
-        bet_amount: '285.0000',
-        payoff: '136.4000',
-        payoff_ratio: '0.4786'
-      },
-      {
         table_name: 'BC2',
-        game_name: '區塊鏈百家樂',
+        game_name: 'Spotify百大10秒體驗',
         user_count: 2,
         wagers_total: 5,
         bet_amount: '110.0000',
@@ -242,7 +233,7 @@ export const mockLiveTableReportsByTable: ApiResponse<ResultLiveTableReportsByTa
       },
       {
         table_name: 'BC2',
-        game_name: '區塊鏈保險百家樂',
+        game_name: 'Spotify百大10秒體驗',
         user_count: 2,
         wagers_total: 3,
         bet_amount: '307.0000',
@@ -251,16 +242,7 @@ export const mockLiveTableReportsByTable: ApiResponse<ResultLiveTableReportsByTa
       },
       {
         table_name: 'BC2',
-        game_name: '區塊鏈炸金花',
-        user_count: 1,
-        wagers_total: 30,
-        bet_amount: '101950.0000',
-        payoff: '-36147.0000',
-        payoff_ratio: '-0.3546'
-      },
-      {
-        table_name: 'BC2',
-        game_name: '區塊鏈三公',
+        game_name: 'Spotify風景介紹',
         user_count: 2,
         wagers_total: 3,
         bet_amount: '240.0000',
@@ -269,7 +251,7 @@ export const mockLiveTableReportsByTable: ApiResponse<ResultLiveTableReportsByTa
       },
       {
         table_name: 'BC2',
-        game_name: '區塊鏈HiLo',
+        game_name: 'SpotifyHiLo',
         user_count: 1,
         wagers_total: 2,
         bet_amount: '300.0000',
@@ -278,7 +260,7 @@ export const mockLiveTableReportsByTable: ApiResponse<ResultLiveTableReportsByTa
       },
       {
         table_name: 'BC2',
-        game_name: '區塊鏈越南骰寶',
+        game_name: 'Spotify越南星閃閃',
         user_count: 1,
         wagers_total: 2,
         bet_amount: '80.0000',
@@ -287,34 +269,16 @@ export const mockLiveTableReportsByTable: ApiResponse<ResultLiveTableReportsByTa
       },
       {
         table_name: 'BC2',
-        game_name: '區塊鏈泰國魚蝦蟹',
+        game_name: 'Spotify泰國網紅介紹',
         user_count: 1,
         wagers_total: 1,
         bet_amount: '200.0000',
         payoff: '200.0000',
         payoff_ratio: '1.0000'
-      },
-      {
-        table_name: 'BC2',
-        game_name: '區塊鏈幸運5張',
-        user_count: 1,
-        wagers_total: 1,
-        bet_amount: '200.0000',
-        payoff: '200.0000',
-        payoff_ratio: '1.0000'
-      },
-      {
-        table_name: 'BC2',
-        game_name: '區塊鏈射龍門',
-        user_count: 1,
-        wagers_total: 11,
-        bet_amount: '380.0000',
-        payoff: '-7.6000',
-        payoff_ratio: '-0.0200'
       },
       {
         table_name: 'BC1',
-        game_name: '區塊鏈百家樂',
+        game_name: 'Spotify百大10秒體驗',
         user_count: 6,
         wagers_total: 11,
         bet_amount: '50200626.0000',
@@ -323,7 +287,7 @@ export const mockLiveTableReportsByTable: ApiResponse<ResultLiveTableReportsByTa
       },
       {
         table_name: 'BC1',
-        game_name: '區塊鏈龍虎鬥',
+        game_name: 'Spotify美食介紹',
         user_count: 2,
         wagers_total: 2,
         bet_amount: '600.0000',
@@ -332,7 +296,7 @@ export const mockLiveTableReportsByTable: ApiResponse<ResultLiveTableReportsByTa
       },
       {
         table_name: 'BC1',
-        game_name: '區塊鏈色碟',
+        game_name: 'Spotify戰爭紀錄',
         user_count: 1,
         wagers_total: 1,
         bet_amount: '200.0000',
@@ -341,7 +305,7 @@ export const mockLiveTableReportsByTable: ApiResponse<ResultLiveTableReportsByTa
       },
       {
         table_name: 'BC1',
-        game_name: '區塊鏈魚蝦蟹',
+        game_name: 'Spotify演算法解釋',
         user_count: 1,
         wagers_total: 2,
         bet_amount: '400.0000',
@@ -350,7 +314,7 @@ export const mockLiveTableReportsByTable: ApiResponse<ResultLiveTableReportsByTa
       },
       {
         table_name: 'BC1',
-        game_name: '區塊鏈HiLo',
+        game_name: 'SpotifyHiLo',
         user_count: 1,
         wagers_total: 29,
         bet_amount: '9800.0000',
@@ -359,7 +323,7 @@ export const mockLiveTableReportsByTable: ApiResponse<ResultLiveTableReportsByTa
       },
       {
         table_name: 'BC1',
-        game_name: '區塊鏈番攤',
+        game_name: 'Spotify日本旅遊',
         user_count: 1,
         wagers_total: 1,
         bet_amount: '200.0000',

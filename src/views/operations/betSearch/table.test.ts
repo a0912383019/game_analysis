@@ -46,7 +46,7 @@ describe('table', () => {
             user_id: '39584727',
             username: 'gaga2',
             lobby: 5,
-            lobby_name: 'BB電子',
+            lobby_name: 'max影音',
             game_code: '5278',
             game_name: 'ColorGame',
             bet_amount: '464.0000',
@@ -70,7 +70,7 @@ describe('table', () => {
             user_id: '39584727',
             username: 'gaga2',
             lobby: 5,
-            lobby_name: 'BB電子',
+            lobby_name: 'max影音',
             game_code: '5278',
             game_name: 'ColorGame',
             bet_amount: '85.0000',
@@ -132,7 +132,7 @@ describe('table', () => {
           dataIndex: 'game_name',
           key: 'game_name',
           sorter: true,
-          title: '遊戲名稱',
+          title: '媒體名稱',
           width: 145
         },
         {
@@ -148,7 +148,7 @@ describe('table', () => {
           dataIndex: 'bet_amount',
           key: 'bet_amount',
           sorter: true,
-          title: '貨量',
+          title: '流量',
           width: 125
         },
         {
@@ -156,7 +156,7 @@ describe('table', () => {
           dataIndex: 'payoff',
           key: 'payoff',
           sorter: true,
-          title: '損益',
+          title: '瀏覽趨勢',
           width: 115
         },
         {
@@ -192,7 +192,7 @@ describe('table', () => {
           dataIndex: 'game_name',
           key: 'game_name',
           sorter: true,
-          title: '遊戲名稱',
+          title: '媒體名稱',
           width: 177
         },
         {
@@ -200,7 +200,7 @@ describe('table', () => {
           dataIndex: 'bet_amount',
           key: 'bet_amount',
           sorter: true,
-          title: '貨量',
+          title: '流量',
           width: 152
         },
         {
@@ -208,7 +208,7 @@ describe('table', () => {
           dataIndex: 'payoff',
           key: 'payoff',
           sorter: true,
-          title: '損益',
+          title: '瀏覽趨勢',
           width: 140
         },
         {

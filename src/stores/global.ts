@@ -8,7 +8,7 @@ export const useGlobalStore = defineStore('globalStore', () => {
 
   const isLoading = ref<boolean>(true)
 
-  const currentPlatform = ref<string>('bbin')
+  const currentPlatform = ref<string>('plata')
 
   const { t } = i18n.global
 
@@ -26,7 +26,7 @@ export const useGlobalStore = defineStore('globalStore', () => {
   const resetState = () => {
     isSidebarClose.value = false
     isLoading.value = true
-    currentPlatform.value = 'bbin'
+    currentPlatform.value = 'plata'
   }
 
   return {

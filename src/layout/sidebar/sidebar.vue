@@ -13,7 +13,7 @@ const selectedKeys = ref<string[]>([])
 
 const openKeys = ref<string[]>([])
 
-// xc 站沒有 [視訊報表/營運中心-地區貨量差異]
+// xc 站沒有 [視訊報表/營運中心-地區觀看數差異]
 const platformMenu = computed(() => {
   if (globalStore.currentPlatform.includes('xc')) {
     return (
@@ -71,7 +71,7 @@ watchEffect(() => {
 })
 
 const xcExcludePath = [
-  '/operations/regional-difference', // 營運中心-地區貨量差異
+  '/operations/regional-difference', // 營運中心-地區觀看數差異
   '/video-reports/' // 視訊報表
 ]
 
@@ -173,14 +173,14 @@ onMounted(() => {
   }
 }
 .logo {
-  top: 15px;
-  left: 24px;
+  top: 10px;
+  left: 0px;
   position: absolute;
-  width: 75px;
-  height: 30px;
+  width: 120px;
+  height: 40px;
   flex-shrink: 0;
   z-index: 500;
-  background: url('@/assets/images/BBIN.png') var(--primary-color) 50% / contain no-repeat;
+  background: url('@/assets/images/logo.png') var(--primary-color) 50% / contain no-repeat;
 }
 .sidebar {
   position: fixed;

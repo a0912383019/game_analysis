@@ -14,8 +14,8 @@ import { createTestingPinia } from '@pinia/testing'
 
 vi.mock('@/config/defaultConfig', () => ({
   platformTimezones: {
-    bbin: 'America/New_York',
-    xctw: 'Asia/Taipei'
+    plata: 'America/New_York',
+    platc: 'Asia/Taipei'
   }
 }))
 
@@ -72,12 +72,12 @@ describe('commonUtils', () => {
   })
 
   it('formatToApiTime', () => {
-    globalStore.currentPlatform = 'xctw'
+    globalStore.currentPlatform = 'platc'
     const inputTime = '2024-03-09 00:00:00'
     const result1 = formatToApiTime(inputTime)
     expect(result1).toStrictEqual('2024-03-09T00:00:00+08:00')
 
-    globalStore.currentPlatform = 'bbin'
+    globalStore.currentPlatform = 'plata'
     const result2 = formatToApiTime(inputTime)
     expect(result2).toStrictEqual('2024-03-09T00:00:00-05:00')
   })
@@ -91,12 +91,12 @@ describe('commonUtils', () => {
   })
 
   it('formatByTimeZone', () => {
-    globalStore.currentPlatform = 'xctw'
+    globalStore.currentPlatform = 'platc'
     const inputTime = '2024-03-09T00:00:00-04:00'
     const result1 = formatByTimeZone(inputTime).format('YYYY-MM-DD HH:mm:ss')
     expect(result1).toStrictEqual('2024-03-09 12:00:00')
 
-    globalStore.currentPlatform = 'bbin'
+    globalStore.currentPlatform = 'plata'
     const result2 = formatByTimeZone(inputTime).format('YYYY-MM-DD HH:mm:ss')
     expect(result2).toStrictEqual('2024-03-08 23:00:00')
   })

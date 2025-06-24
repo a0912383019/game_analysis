@@ -57,7 +57,7 @@ describe('playTable', () => {
       ret: {
         data: [
           {
-            content: 'BB彩票-BB 重慶時時彩',
+            content: 'max電子書-BB 重慶時時彩',
             user_count_ratio: '0.2500',
             user_count: 1,
             bet_amount: '8280.0000',
@@ -65,7 +65,7 @@ describe('playTable', () => {
             comprehensive_rtp: '0'
           },
           {
-            content: 'BB電子-爆利金剛',
+            content: 'max影音-爆利金剛',
             user_count_ratio: '0.2500',
             user_count: 1,
             bet_amount: '724.0000',
@@ -73,7 +73,7 @@ describe('playTable', () => {
             comprehensive_rtp: '13.3768'
           },
           {
-            content: 'BB電子-五行',
+            content: 'max影音-影音A',
             user_count_ratio: '0.2500',
             user_count: 1,
             bet_amount: '300.0000',
@@ -81,7 +81,7 @@ describe('playTable', () => {
             comprehensive_rtp: '1.0800'
           },
           {
-            content: 'BB電子-麻將胡了',
+            content: 'max影音-紀錄片',
             user_count_ratio: '0.2500',
             user_count: 1,
             bet_amount: '10.0000',
@@ -96,8 +96,8 @@ describe('playTable', () => {
     vi.spyOn(module, 'getSessionStorageEntity').mockImplementation(() => {
       return {
         platform_lobbies: [
-          { lobby: 5, lobby_name: 'BB電子', target: 3 },
-          { lobby: 66, lobby_name: 'BB棋牌', target: 6 }
+          { lobby: 5, lobby_name: 'max影音', target: 3 },
+          { lobby: 66, lobby_name: 'max AR/VR', target: 6 }
         ]
       }
     })
@@ -141,23 +141,23 @@ describe('playTable', () => {
     expect(wrapper.vm.platformLobbies).toStrictEqual([
       {
         lobby: 5,
-        lobby_name: 'BB電子',
+        lobby_name: 'max影音',
         target: 3
       },
       {
         lobby: 66,
-        lobby_name: 'BB棋牌',
+        lobby_name: 'max AR/VR',
         target: 6
       }
     ])
     expect(wrapper.vm.hallGroupValue).toStrictEqual([])
     expect(wrapper.vm.hallGroupOptions).toStrictEqual([
       {
-        label: '電子',
+        label: '影音',
         value: 3
       },
       {
-        label: '棋牌',
+        label: '電子書',
         value: 6
       }
     ])
@@ -167,11 +167,11 @@ describe('playTable', () => {
       mode: 'multiple',
       options: [
         {
-          label: '電子',
+          label: '影音',
           value: 3
         },
         {
-          label: '棋牌',
+          label: '電子書',
           value: 6
         }
       ],
@@ -195,7 +195,7 @@ describe('playTable', () => {
       {
         bet_amount: '8,280',
         comprehensive_rtp: '0%',
-        content: 'BB彩票-BB 重慶時時彩',
+        content: 'max電子書-BB 重慶時時彩',
         payoff: '8,280',
         user_count: '1',
         user_count_ratio: '25%'
@@ -203,7 +203,7 @@ describe('playTable', () => {
       {
         bet_amount: '724',
         comprehensive_rtp: '1,337.68%',
-        content: 'BB電子-爆利金剛',
+        content: 'max影音-爆利金剛',
         payoff: '-8,960.8',
         user_count: '1',
         user_count_ratio: '25%'
@@ -211,7 +211,7 @@ describe('playTable', () => {
       {
         bet_amount: '300',
         comprehensive_rtp: '108%',
-        content: 'BB電子-五行',
+        content: 'max影音-影音A',
         payoff: '-24',
         user_count: '1',
         user_count_ratio: '25%'
@@ -219,7 +219,7 @@ describe('playTable', () => {
       {
         bet_amount: '10',
         comprehensive_rtp: '44%',
-        content: 'BB電子-麻將胡了',
+        content: 'max影音-紀錄片',
         payoff: '5.6',
         user_count: '1',
         user_count_ratio: '25%'

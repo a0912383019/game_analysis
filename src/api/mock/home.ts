@@ -509,7 +509,7 @@ export const mockOperationGameAnalysisCombination: ApiResponse<ResultOperationGa
   ret: {
     data: [
       {
-        content: 'BB電子-超牛逼',
+        content: 'max影音-小電影',
         user_count_ratio: '0.1250',
         user_count: 1,
         bet_amount: '384000.0000',
@@ -517,7 +517,7 @@ export const mockOperationGameAnalysisCombination: ApiResponse<ResultOperationGa
         comprehensive_rtp: '0.7867'
       },
       {
-        content: 'BB電子-麻將胡了',
+        content: 'max影音-紀錄片',
         user_count_ratio: '0.1250',
         user_count: 1,
         bet_amount: '58000.0000',
@@ -525,7 +525,7 @@ export const mockOperationGameAnalysisCombination: ApiResponse<ResultOperationGa
         comprehensive_rtp: '0.9013'
       },
       {
-        content: 'BB電子-五行',
+        content: 'max影音-影音A',
         user_count_ratio: '0.2500',
         user_count: 2,
         bet_amount: '6400.0000',
@@ -533,7 +533,7 @@ export const mockOperationGameAnalysisCombination: ApiResponse<ResultOperationGa
         comprehensive_rtp: '0.2014'
       },
       {
-        content: 'BB電子-糖果派對-極速版',
+        content: 'max影音-急速領域-極速版',
         user_count_ratio: '0.2500',
         user_count: 2,
         bet_amount: '4825.0000',
@@ -541,7 +541,7 @@ export const mockOperationGameAnalysisCombination: ApiResponse<ResultOperationGa
         comprehensive_rtp: '2.9815'
       },
       {
-        content: 'BB電子-糖果派對2',
+        content: 'max影音-急速領域2',
         user_count_ratio: '0.1250',
         user_count: 1,
         bet_amount: '3800.0000',
@@ -558,7 +558,7 @@ export const mockOperationGameAnalysisFlow: ApiResponse<ResultOperationGameAnaly
   ret: {
     data: [
       {
-        content: 'BB電子-超牛逼 > BB電子-大鵬展翅 > BB電子-招財喵喵',
+        content: 'max影音-小電影 > max影音-大鵬展翅 > max影音-思鄉歸途',
         user_count_ratio: '0.1000',
         user_count: 1,
         bet_amount: '4960000.0000',
@@ -566,7 +566,7 @@ export const mockOperationGameAnalysisFlow: ApiResponse<ResultOperationGameAnaly
         comprehensive_rtp: '0.8500'
       },
       {
-        content: 'BB電子-糖果派對-極速版 > BB電子-麻將胡了',
+        content: 'max影音-急速領域-極速版 > max影音-紀錄片',
         user_count_ratio: '0.1000',
         user_count: 1,
         bet_amount: '252700.0000',
@@ -574,7 +574,7 @@ export const mockOperationGameAnalysisFlow: ApiResponse<ResultOperationGameAnaly
         comprehensive_rtp: '0.8959'
       },
       {
-        content: 'BB電子-瘋狂果醬罐 > BB彩票-3D彩',
+        content: 'max影音-影音D > max電子書-3D彩',
         user_count_ratio: '0.3000',
         user_count: 3,
         bet_amount: '119415.0000',
@@ -582,7 +582,7 @@ export const mockOperationGameAnalysisFlow: ApiResponse<ResultOperationGameAnaly
         comprehensive_rtp: '1.0549'
       },
       {
-        content: 'BB視訊-骰寶 > BB視訊-百家樂',
+        content: 'max直播-星閃閃 > max直播-百大10秒體驗',
         user_count_ratio: '0.1000',
         user_count: 1,
         bet_amount: '3500.0000',
@@ -591,7 +591,7 @@ export const mockOperationGameAnalysisFlow: ApiResponse<ResultOperationGameAnaly
       },
       {
         content:
-          'BB視訊-區塊鏈百家樂 > BB視訊-區塊鏈保險百家樂 > BB視訊-區塊鏈龍虎鬥 > BB視訊-區塊鏈色碟 > BB視訊-區塊鏈三公 > BB視訊-區塊鏈HiLo > BB視訊-區塊鏈幸運5張 > BB視訊-區塊鏈魚蝦蟹 > BB視訊-區塊鏈泰國魚蝦蟹 > BB視訊-輪盤 > BB視訊-區塊鏈輪盤 > BB視訊-骰寶 > BB視訊-區塊鏈番攤',
+          'max直播-Spotify百大10秒體驗 > max直播-Spotify保險百大10秒體驗 > max直播-Spotify美食介紹 > max直播-Spotify戰爭紀錄 > max直播-Spotify風景介紹 > max直播-SpotifyHiLo > max直播-Spotify幸運5張 > max直播-Spotify演算法解釋 > max直播-Spotify泰國網紅介紹 > max直播-流行 > max直播-Spotify流行 > max直播-星閃閃 > max直播-Spotify日本旅遊',
         user_count_ratio: '0.1000',
         user_count: 1,
         bet_amount: '2707.0000',
@@ -609,14 +609,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '碰碰胡遊戲7日客單量：30.61，已連續2天以上小於70',
+      alert_message: '抖音背景樂7日流量：30.61，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-19'
     },
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 競速北京PK拾遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '電音北京PK聽世界1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-19'
     },
@@ -630,14 +630,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '221',
       alert_type_id: 51,
-      alert_message: '區塊鏈骰寶遊戲7日ARPPU：已連續2天以上，下降 5% 至 0',
+      alert_message: 'Spotify跨平台7日ARPPU：已連續2天以上，下降 5% 至 0',
       target_id: 2,
       data_date: '2025-06-19'
     },
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈骰寶遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify跨平台1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-19'
     },
@@ -651,7 +651,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '草原拍拍遊戲7日客單量：46.75，已連續2天以上小於70',
+      alert_message: '草原拍拍遊戲7日流量：46.75，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-19'
     },
@@ -665,14 +665,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '數字大轉輪遊戲7日客單量：30，已連續2天以上小於70',
+      alert_message: '數字大轉輪遊戲7日流量：30，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-19'
     },
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '百搭雙星遊戲7日客單量：6，已連續2天以上小於70',
+      alert_message: '百搭雙星遊戲7日流量：6，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-19'
     },
@@ -693,7 +693,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 競速北京PK拾遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '電音北京PK聽世界7日流量：0，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-19'
     },
@@ -707,7 +707,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '滿天星遊戲7日客單量：6.34，已連續2天以上小於70',
+      alert_message: '滿天星遊戲7日流量：6.34，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-19'
     },
@@ -728,14 +728,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 猜拳王遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'BB 猜拳王遊戲7日流量：0，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-19'
     },
     {
       alert_id: '214',
       alert_type_id: 49,
-      alert_message: '捕魚達人遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '捕魚達人遊戲7日流量：0，已連續2天以上小於70',
       target_id: 5,
       data_date: '2025-06-19'
     },
@@ -756,7 +756,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 彈珠台遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'BB 彈珠台遊戲7日流量：0，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-19'
     },
@@ -784,14 +784,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '金鯊銀鯊遊戲7日客單量：26，已連續2天以上小於70',
+      alert_message: '金鯊銀鯊遊戲7日流量：26，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-19'
     },
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: '梯子遊戲遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '梯子遊戲遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-19'
     },
@@ -833,7 +833,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '211',
       alert_type_id: 49,
-      alert_message: '區塊鏈骰寶遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'Spotify跨平台7日流量：0，已連續2天以上小於70',
       target_id: 2,
       data_date: '2025-06-19'
     },
@@ -847,7 +847,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '125',
       alert_type_id: 29,
-      alert_message: '新玩家會員7日客單量：已連續2天以上，上升 10% 至 811.45，比昨日上升 239.58%',
+      alert_message: '新玩家會員7日流量：已連續2天以上，上升 10% 至 811.45，比昨日上升 239.58%',
       target_id: 4,
       data_date: '2025-06-19'
     },
@@ -882,7 +882,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '大小7遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '大小7遊戲7日流量：0，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-19'
     },
@@ -896,7 +896,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: 'ColorGame遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'ColorGame遊戲1日流量：0，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-19'
     },
@@ -924,21 +924,21 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '221',
       alert_type_id: 51,
-      alert_message: '區塊鏈番攤遊戲7日ARPPU：已連續2天以上，下降 5% 至 150',
+      alert_message: 'Spotify日本旅遊遊戲7日ARPPU：已連續2天以上，下降 5% 至 150',
       target_id: 2,
       data_date: '2025-06-19'
     },
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: '瘋狂果醬罐遊戲1日客單量：50.16，已連續2天以上小於100',
+      alert_message: '影音D遊戲1日流量：50.16，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-19'
     },
     {
       alert_id: '210',
       alert_type_id: 48,
-      alert_message: '飛禽走獸遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '飛禽走獸遊戲1日流量：0，已連續2天以上小於100',
       target_id: 6,
       data_date: '2025-06-19'
     },
@@ -952,14 +952,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB PK3遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'BB PK3遊戲7日流量：0，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-19'
     },
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 競速3D遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '電音3D遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-19'
     },
@@ -980,21 +980,21 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈28百家樂遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify28百大10秒體驗遊戲1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-19'
     },
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '大豐收遊戲7日客單量：50，已連續2天以上小於70',
+      alert_message: '大豐收遊戲7日流量：50，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-19'
     },
     {
       alert_id: '209',
       alert_type_id: 48,
-      alert_message: '捕魚大師遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '捕魚大師遊戲1日流量：0，已連續2天以上小於100',
       target_id: 5,
       data_date: '2025-06-19'
     },
@@ -1008,42 +1008,42 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '162',
       alert_type_id: 37,
-      alert_message: '老玩家會員1日客單量：已連續1天以上，上升 10% 至 1,140.87，比昨日上升 347.84%',
+      alert_message: '老玩家會員1日流量：已連續1天以上，上升 10% 至 1,140.87，比昨日上升 347.84%',
       target_id: 3,
       data_date: '2025-06-19'
     },
     {
       alert_id: '119',
       alert_type_id: 28,
-      alert_message: '新玩家會員1日客單量：已連續1天以上，上升 10% 至 250，比昨日上升 8,233.33%',
+      alert_message: '新玩家會員1日流量：已連續1天以上，上升 10% 至 250，比昨日上升 8,233.33%',
       target_id: 3,
       data_date: '2025-06-19'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 快3遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'BB 快3遊戲7日流量：0，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-19'
     },
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '大小遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '大小遊戲7日流量：0，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-19'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 幸運熊貓遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'BB 幸運熊貓遊戲7日流量：0，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-19'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 大小7遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'BB 大小7遊戲7日流量：0，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-19'
     },
@@ -1057,21 +1057,21 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '捕魚高手遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '捕魚高手遊戲7日流量：0，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-19'
     },
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 猜拳王遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'BB 猜拳王遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-19'
     },
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈炸金花遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify炸金花遊戲1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-19'
     },
@@ -1085,7 +1085,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈21點百家樂遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify百大10秒體驗遊戲1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-19'
     },
@@ -1099,35 +1099,35 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '167',
       alert_type_id: 38,
-      alert_message: '老玩家會員7日客單量：已連續2天以上，上升 10% 至 546.09，比昨日上升 60.01%',
+      alert_message: '老玩家會員7日流量：已連續2天以上，上升 10% 至 546.09，比昨日上升 60.01%',
       target_id: 3,
       data_date: '2025-06-19'
     },
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '葉問遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '葉問遊戲7日流量：0，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-19'
     },
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '百家樂遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '百大10秒體驗遊戲7日流量：0，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-19'
     },
     {
       alert_id: '120',
       alert_type_id: 28,
-      alert_message: '新玩家會員1日客單量：已連續2天以上，上升 10% 至 1,839，比昨日上升 330.22%',
+      alert_message: '新玩家會員1日流量：已連續2天以上，上升 10% 至 1,839，比昨日上升 330.22%',
       target_id: 4,
       data_date: '2025-06-19'
     },
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '金瓶梅2遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '金瓶梅2遊戲7日流量：0，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-19'
     },
@@ -1141,7 +1141,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: '九尾狐遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '九尾狐遊戲1日流量：0，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-19'
     },
@@ -1155,7 +1155,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: 'Hello Tiki遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Hello Tiki遊戲1日流量：0，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-19'
     },
@@ -1169,7 +1169,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '森林舞會遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '森林舞會遊戲7日流量：0，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-19'
     },
@@ -1183,28 +1183,28 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 競速3D遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '電音3D遊戲7日流量：0，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-19'
     },
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '舞獅奪寶遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '舞獅奪寶遊戲7日流量：0，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-19'
     },
     {
       alert_id: '211',
       alert_type_id: 49,
-      alert_message: '龍虎鬥遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '美食介紹遊戲7日流量：0，已連續2天以上小於70',
       target_id: 2,
       data_date: '2025-06-19'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 雷電PK遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'BB 雷電PK遊戲7日流量：0，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-19'
     },
@@ -1225,7 +1225,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '221',
       alert_type_id: 51,
-      alert_message: '區塊鏈輪盤遊戲7日ARPPU：已連續2天以上，下降 5% 至 100',
+      alert_message: 'Spotify流行遊戲7日ARPPU：已連續2天以上，下降 5% 至 100',
       target_id: 2,
       data_date: '2025-06-19'
     },
@@ -1239,14 +1239,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 雷電PK遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'BB 雷電PK遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-19'
     },
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: 'Crash遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'Crash遊戲7日流量：0，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-19'
     },
@@ -1282,14 +1282,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '飛禽走獸遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '飛禽走獸遊戲7日流量：0，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-19'
     },
     {
       alert_id: '211',
       alert_type_id: 49,
-      alert_message: '區塊鏈越南骰寶遊戲7日客單量：40，已連續2天以上小於70',
+      alert_message: 'Spotify越南跨平台7日流量：40，已連續2天以上小於70',
       target_id: 2,
       data_date: '2025-06-19'
     },
@@ -1303,7 +1303,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '魚躍龍門遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '魚躍龍門遊戲7日流量：0，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-19'
     },
@@ -1317,7 +1317,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '209',
       alert_type_id: 48,
-      alert_message: '富貴漁場遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '富貴漁場遊戲1日流量：0，已連續2天以上小於100',
       target_id: 5,
       data_date: '2025-06-19'
     },
@@ -1331,14 +1331,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: 'ColorGame遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'ColorGame遊戲7日流量：0，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-19'
     },
     {
       alert_id: '126',
       alert_type_id: 29,
-      alert_message: '新玩家會員7日客單量：已連續2天以上，下降 10% 至 0，比昨日下降 100%',
+      alert_message: '新玩家會員7日流量：已連續2天以上，下降 10% 至 0，比昨日下降 100%',
       target_id: 5,
       data_date: '2025-06-19'
     },
@@ -1373,7 +1373,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '221',
       alert_type_id: 51,
-      alert_message: '區塊鏈百家樂遊戲7日ARPPU：已連續2天以上，下降 5% 至 20,078.68',
+      alert_message: 'Spotify百大10秒體驗遊戲7日ARPPU：已連續2天以上，下降 5% 至 20,078.68',
       target_id: 2,
       data_date: '2025-06-19'
     },
@@ -1394,21 +1394,21 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '21點百家樂遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '百大10秒體驗遊戲7日流量：0，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-19'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 招財金豬遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'BB 招財金豬遊戲7日流量：0，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-19'
     },
     {
       alert_id: '211',
       alert_type_id: 49,
-      alert_message: '番攤遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '日本旅遊遊戲7日流量：0，已連續2天以上小於70',
       target_id: 2,
       data_date: '2025-06-19'
     },
@@ -1450,21 +1450,21 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 猜拳王遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'BB 猜拳王遊戲7日流量：0，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-18'
     },
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈骰寶遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify跨平台1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-18'
     },
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '百搭雙星遊戲7日客單量：6，已連續2天以上小於70',
+      alert_message: '百搭雙星遊戲7日流量：6，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-18'
     },
@@ -1478,7 +1478,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '223',
       alert_type_id: 51,
-      alert_message: 'BB 競速3D遊戲7日ARPPU：已連續2天以上，下降 5% 至 0',
+      alert_message: '電音3D遊戲7日ARPPU：已連續2天以上，下降 5% 至 0',
       target_id: 4,
       data_date: '2025-06-18'
     },
@@ -1492,7 +1492,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '舞獅奪寶遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '舞獅奪寶遊戲7日流量：0，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-18'
     },
@@ -1513,21 +1513,21 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '214',
       alert_type_id: 49,
-      alert_message: '捕魚達人遊戲7日客單量：29.27，已連續2天以上小於70',
+      alert_message: '捕魚達人遊戲7日流量：29.27，已連續2天以上小於70',
       target_id: 5,
       data_date: '2025-06-18'
     },
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 競速北京PK拾遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '電音北京PK聽世界1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-18'
     },
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '金鯊銀鯊遊戲7日客單量：26，已連續2天以上小於70',
+      alert_message: '金鯊銀鯊遊戲7日流量：26，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-18'
     },
@@ -1555,35 +1555,35 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '167',
       alert_type_id: 38,
-      alert_message: '老玩家會員7日客單量：已連續2天以上，上升 10% 至 341.3，比昨日上升 21.21%',
+      alert_message: '老玩家會員7日流量：已連續2天以上，上升 10% 至 341.3，比昨日上升 21.21%',
       target_id: 3,
       data_date: '2025-06-18'
     },
     {
       alert_id: '168',
       alert_type_id: 38,
-      alert_message: '老玩家會員7日客單量：已連續2天以上，上升 10% 至 193.17，比昨日上升 124.04%',
+      alert_message: '老玩家會員7日流量：已連續2天以上，上升 10% 至 193.17，比昨日上升 124.04%',
       target_id: 4,
       data_date: '2025-06-18'
     },
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈28百家樂遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify28百大10秒體驗遊戲1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-18'
     },
     {
       alert_id: '122',
       alert_type_id: 28,
-      alert_message: '新玩家會員1日客單量：已連續2天以上，下降 10% 至 0，比昨日下降 100%',
+      alert_message: '新玩家會員1日流量：已連續2天以上，下降 10% 至 0，比昨日下降 100%',
       target_id: 6,
       data_date: '2025-06-18'
     },
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈龍虎鬥遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify美食介紹遊戲1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-18'
     },
@@ -1611,7 +1611,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '大小遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '大小遊戲7日流量：0，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-18'
     },
@@ -1625,7 +1625,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 雷電PK遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'BB 雷電PK遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-18'
     },
@@ -1646,7 +1646,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '飛禽走獸遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '飛禽走獸遊戲7日流量：0，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-18'
     },
@@ -1660,28 +1660,28 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '169',
       alert_type_id: 38,
-      alert_message: '老玩家會員7日客單量：已連續2天以上，上升 10% 至 2,660.11，比昨日上升 41.59%',
+      alert_message: '老玩家會員7日流量：已連續2天以上，上升 10% 至 2,660.11，比昨日上升 41.59%',
       target_id: 5,
       data_date: '2025-06-18'
     },
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 猜拳王遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'BB 猜拳王遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-18'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 大小7遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'BB 大小7遊戲7日流量：0，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-18'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 幸運熊貓遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'BB 幸運熊貓遊戲7日流量：0，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-18'
     },
@@ -1702,7 +1702,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '211',
       alert_type_id: 49,
-      alert_message: '區塊鏈越南骰寶遊戲7日客單量：40，已連續2天以上小於70',
+      alert_message: 'Spotify越南跨平台7日流量：40，已連續2天以上小於70',
       target_id: 2,
       data_date: '2025-06-18'
     },
@@ -1723,28 +1723,28 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '125',
       alert_type_id: 29,
-      alert_message: '新玩家會員7日客單量：已連續1天以上，上升 10% 至 238.96，比昨日上升 843.26%',
+      alert_message: '新玩家會員7日流量：已連續1天以上，上升 10% 至 238.96，比昨日上升 843.26%',
       target_id: 4,
       data_date: '2025-06-18'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 彈珠台遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'BB 彈珠台遊戲7日流量：0，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-18'
     },
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈三公遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify風景介紹遊戲1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-18'
     },
     {
       alert_id: '209',
       alert_type_id: 48,
-      alert_message: '富貴漁場遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '富貴漁場遊戲1日流量：0，已連續2天以上小於100',
       target_id: 5,
       data_date: '2025-06-18'
     },
@@ -1758,7 +1758,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 十分彩遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'BB 十分彩遊戲7日流量：0，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-18'
     },
@@ -1779,7 +1779,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 快3遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'BB 快3遊戲7日流量：0，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-18'
     },
@@ -1807,28 +1807,28 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '120',
       alert_type_id: 28,
-      alert_message: '新玩家會員1日客單量：已連續1天以上，上升 10% 至 427.45，比昨日上升 8,449.02%',
+      alert_message: '新玩家會員1日流量：已連續1天以上，上升 10% 至 427.45，比昨日上升 8,449.02%',
       target_id: 4,
       data_date: '2025-06-18'
     },
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: '無限1024遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'POD-2遊戲1日流量：0，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-18'
     },
     {
       alert_id: '210',
       alert_type_id: 48,
-      alert_message: '飛禽走獸遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '飛禽走獸遊戲1日流量：0，已連續2天以上小於100',
       target_id: 6,
       data_date: '2025-06-18'
     },
     {
       alert_id: '217',
       alert_type_id: 50,
-      alert_message: '無限1024遊戲1日ARPPU：已連續2天以上，下降 10% 至 0',
+      alert_message: 'POD-2遊戲1日ARPPU：已連續2天以上，下降 10% 至 0',
       target_id: 3,
       data_date: '2025-06-18'
     },
@@ -1877,7 +1877,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '大豐收遊戲7日客單量：50，已連續2天以上小於70',
+      alert_message: '大豐收遊戲7日流量：50，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-18'
     },
@@ -1898,7 +1898,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '滿天星遊戲7日客單量：6.34，已連續2天以上小於70',
+      alert_message: '滿天星遊戲7日流量：6.34，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-18'
     },
@@ -1912,28 +1912,28 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 競速3D遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '電音3D遊戲7日流量：0，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-18'
     },
     {
       alert_id: '211',
       alert_type_id: 49,
-      alert_message: '區塊鏈三公遊戲7日客單量：20，已連續2天以上小於70',
+      alert_message: 'Spotify風景介紹遊戲7日流量：20，已連續2天以上小於70',
       target_id: 2,
       data_date: '2025-06-18'
     },
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '草原拍拍遊戲7日客單量：46.75，已連續2天以上小於70',
+      alert_message: '草原拍拍遊戲7日流量：46.75，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-18'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 競速北京PK拾遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '電音北京PK聽世界7日流量：0，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-18'
     },
@@ -1947,14 +1947,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: 'ColorGame遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'ColorGame遊戲1日流量：0，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-18'
     },
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: '九尾狐遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '九尾狐遊戲1日流量：0，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-18'
     },
@@ -1968,14 +1968,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '225',
       alert_type_id: 51,
-      alert_message: '21點遊戲7日ARPPU：已連續2天以上，下降 5% 至 5',
+      alert_message: '遊戲7日ARPPU：已連續2天以上，下降 5% 至 5',
       target_id: 6,
       data_date: '2025-06-18'
     },
     {
       alert_id: '221',
       alert_type_id: 51,
-      alert_message: '區塊鏈番攤遊戲7日ARPPU：已連續2天以上，下降 5% 至 160',
+      alert_message: 'Spotify日本旅遊遊戲7日ARPPU：已連續2天以上，下降 5% 至 160',
       target_id: 2,
       data_date: '2025-06-18'
     },
@@ -1996,7 +1996,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '大小7遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '大小7遊戲7日流量：0，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-18'
     },
@@ -2010,7 +2010,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '209',
       alert_type_id: 48,
-      alert_message: '捕魚大師遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '捕魚大師遊戲1日流量：0，已連續2天以上小於100',
       target_id: 5,
       data_date: '2025-06-18'
     },
@@ -2024,14 +2024,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈21點百家樂遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify百大10秒體驗遊戲1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-18'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 招財金豬遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'BB 招財金豬遊戲7日流量：0，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-18'
     },
@@ -2087,14 +2087,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '217',
       alert_type_id: 50,
-      alert_message: '瘋狂果醬罐遊戲1日ARPPU：已連續2天以上，下降 10% 至 0',
+      alert_message: '影音D遊戲1日ARPPU：已連續2天以上，下降 10% 至 0',
       target_id: 3,
       data_date: '2025-06-18'
     },
     {
       alert_id: '211',
       alert_type_id: 49,
-      alert_message: '番攤遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '日本旅遊遊戲7日流量：0，已連續2天以上小於70',
       target_id: 2,
       data_date: '2025-06-18'
     },
@@ -2108,28 +2108,28 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 雷電PK遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'BB 雷電PK遊戲7日流量：0，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-18'
     },
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '麻將胡了遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '紀錄片遊戲7日流量：0，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-18'
     },
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: 'ColorGame遊戲7日客單量：10，已連續2天以上小於70',
+      alert_message: 'ColorGame遊戲7日流量：10，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-18'
     },
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 競速3D遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '電音3D遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-18'
     },
@@ -2150,7 +2150,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB PK3遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'BB PK3遊戲7日流量：0，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-18'
     },
@@ -2164,35 +2164,35 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: '糖果派對2遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '急速領域2遊戲1日流量：0，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-17'
     },
     {
       alert_id: '211',
       alert_type_id: 49,
-      alert_message: '區塊鏈三公遊戲7日客單量：20，已連續2天以上小於70',
+      alert_message: 'Spotify風景介紹遊戲7日流量：20，已連續2天以上小於70',
       target_id: 2,
       data_date: '2025-06-17'
     },
     {
       alert_id: '209',
       alert_type_id: 48,
-      alert_message: '捕魚大師遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '捕魚大師遊戲1日流量：0，已連續2天以上小於100',
       target_id: 5,
       data_date: '2025-06-17'
     },
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: 'ColorGame遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'ColorGame遊戲1日流量：0，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-17'
     },
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈三公遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify風景介紹遊戲1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-17'
     },
@@ -2227,7 +2227,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 競速3D遊戲7日客單量：17，已連續2天以上小於70',
+      alert_message: '電音3D遊戲7日流量：17，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-17'
     },
@@ -2241,7 +2241,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '草原拍拍遊戲7日客單量：46.87，已連續2天以上小於70',
+      alert_message: '草原拍拍遊戲7日流量：46.87，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-17'
     },
@@ -2256,7 +2256,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
       alert_id: '161',
       alert_type_id: 37,
       alert_message:
-        '老玩家會員1日客單量：已連續1天以上，上升 10% 至 1,764.36，比昨日上升 1,875.36%',
+        '老玩家會員1日流量：已連續1天以上，上升 10% 至 1,764.36，比昨日上升 1,875.36%',
       target_id: 2,
       data_date: '2025-06-17'
     },
@@ -2277,14 +2277,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '大豐收遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '大豐收遊戲7日流量：0，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-17'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 幸運熊貓遊戲7日客單量：9，已連續2天以上小於70',
+      alert_message: 'BB 幸運熊貓遊戲7日流量：9，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-17'
     },
@@ -2320,56 +2320,56 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '222',
       alert_type_id: 51,
-      alert_message: '糖果派對2遊戲7日ARPPU：已連續2天以上，下降 5% 至 400',
+      alert_message: '急速領域2遊戲7日ARPPU：已連續2天以上，下降 5% 至 400',
       target_id: 3,
       data_date: '2025-06-17'
     },
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '飛禽走獸遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '飛禽走獸遊戲7日流量：0，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-17'
     },
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 猜拳王遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'BB 猜拳王遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-17'
     },
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: 'ColorGame遊戲7日客單量：10，已連續2天以上小於70',
+      alert_message: 'ColorGame遊戲7日流量：10，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-17'
     },
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: '無限1024遊戲1日客單量：68.25，已連續2天以上小於100',
+      alert_message: 'POD-2遊戲1日流量：68.25，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-17'
     },
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '麻將胡了遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '紀錄片遊戲7日流量：0，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-17'
     },
     {
       alert_id: '214',
       alert_type_id: 49,
-      alert_message: '捕魚達人遊戲7日客單量：29.27，已連續2天以上小於70',
+      alert_message: '捕魚達人遊戲7日流量：29.27，已連續2天以上小於70',
       target_id: 5,
       data_date: '2025-06-17'
     },
     {
       alert_id: '222',
       alert_type_id: 51,
-      alert_message: '糖果派對-極速版遊戲7日ARPPU：已連續2天以上，下降 5% 至 7,060.73',
+      alert_message: '急速領域-極速版遊戲7日ARPPU：已連續2天以上，下降 5% 至 7,060.73',
       target_id: 3,
       data_date: '2025-06-17'
     },
@@ -2383,7 +2383,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈28百家樂遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify28百大10秒體驗遊戲1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-17'
     },
@@ -2397,28 +2397,28 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '211',
       alert_type_id: 49,
-      alert_message: '區塊鏈越南骰寶遊戲7日客單量：40，已連續2天以上小於70',
+      alert_message: 'Spotify越南跨平台7日流量：40，已連續2天以上小於70',
       target_id: 2,
       data_date: '2025-06-17'
     },
     {
       alert_id: '211',
       alert_type_id: 49,
-      alert_message: '番攤遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '日本旅遊遊戲7日流量：0，已連續2天以上小於70',
       target_id: 2,
       data_date: '2025-06-17'
     },
     {
       alert_id: '210',
       alert_type_id: 48,
-      alert_message: '飛禽走獸遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '飛禽走獸遊戲1日流量：0，已連續2天以上小於100',
       target_id: 6,
       data_date: '2025-06-17'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 彈珠台遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'BB 彈珠台遊戲7日流量：0，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-17'
     },
@@ -2440,7 +2440,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 快3遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'BB 快3遊戲7日流量：0，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-17'
     },
@@ -2468,7 +2468,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '舞獅奪寶遊戲7日客單量：45.14，已連續2天以上小於70',
+      alert_message: '舞獅奪寶遊戲7日流量：45.14，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-17'
     },
@@ -2489,14 +2489,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '211',
       alert_type_id: 49,
-      alert_message: '骰寶遊戲7日客單量：20，已連續2天以上小於70',
+      alert_message: '跨平台7日流量：20，已連續2天以上小於70',
       target_id: 2,
       data_date: '2025-06-17'
     },
     {
       alert_id: '162',
       alert_type_id: 37,
-      alert_message: '老玩家會員1日客單量：已連續2天以上，上升 10% 至 1,489.04，比昨日上升 579.03%',
+      alert_message: '老玩家會員1日流量：已連續2天以上，上升 10% 至 1,489.04，比昨日上升 579.03%',
       target_id: 3,
       data_date: '2025-06-17'
     },
@@ -2524,7 +2524,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 競速六合彩遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '電音六合彩遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-17'
     },
@@ -2538,7 +2538,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '百搭雙星遊戲7日客單量：6.91，已連續2天以上小於70',
+      alert_message: '百搭雙星遊戲7日流量：6.91，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-17'
     },
@@ -2552,14 +2552,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 雷電PK遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'BB 雷電PK遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-17'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 猜拳王遊戲7日客單量：10，已連續2天以上小於70',
+      alert_message: 'BB 猜拳王遊戲7日流量：10，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-17'
     },
@@ -2573,14 +2573,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '217',
       alert_type_id: 50,
-      alert_message: '碰碰胡遊戲1日ARPPU：已連續2天以上，下降 10% 至 0',
+      alert_message: '抖音背景樂1日ARPPU：已連續2天以上，下降 10% 至 0',
       target_id: 3,
       data_date: '2025-06-17'
     },
     {
       alert_id: '209',
       alert_type_id: 48,
-      alert_message: '富貴漁場遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '富貴漁場遊戲1日流量：0，已連續2天以上小於100',
       target_id: 5,
       data_date: '2025-06-17'
     },
@@ -2608,42 +2608,42 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '216',
       alert_type_id: 50,
-      alert_message: '區塊鏈龍虎鬥遊戲1日ARPPU：已連續2天以上，下降 10% 至 0',
+      alert_message: 'Spotify美食介紹遊戲1日ARPPU：已連續2天以上，下降 10% 至 0',
       target_id: 2,
       data_date: '2025-06-17'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 招財金豬遊戲7日客單量：10，已連續2天以上小於70',
+      alert_message: 'BB 招財金豬遊戲7日流量：10，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-17'
     },
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 競速北京PK拾遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '電音北京PK聽世界1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-17'
     },
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '金鯊銀鯊遊戲7日客單量：26，已連續2天以上小於70',
+      alert_message: '金鯊銀鯊遊戲7日流量：26，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-17'
     },
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '葫蘆娃遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '葫蘆娃遊戲7日流量：0，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-17'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB PK3遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'BB PK3遊戲7日流量：0，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-17'
     },
@@ -2657,21 +2657,21 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈骰寶遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify跨平台1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-17'
     },
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: '九尾狐遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '九尾狐遊戲1日流量：0，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-17'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 競速重慶時時彩遊戲7日客單量：20，已連續2天以上小於70',
+      alert_message: '電音重慶時時彩遊戲7日流量：20，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-17'
     },
@@ -2692,14 +2692,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '大小遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '大小遊戲7日流量：0，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-17'
     },
     {
       alert_id: '222',
       alert_type_id: 51,
-      alert_message: '麻將胡了遊戲7日ARPPU：已連續2天以上，下降 5% 至 0',
+      alert_message: '紀錄片遊戲7日ARPPU：已連續2天以上，下降 5% 至 0',
       target_id: 3,
       data_date: '2025-06-17'
     },
@@ -2741,7 +2741,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '167',
       alert_type_id: 38,
-      alert_message: '老玩家會員7日客單量：已連續2天以上，上升 10% 至 281.56，比昨日上升 27.84%',
+      alert_message: '老玩家會員7日流量：已連續2天以上，上升 10% 至 281.56，比昨日上升 27.84%',
       target_id: 3,
       data_date: '2025-06-17'
     },
@@ -2763,7 +2763,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '166',
       alert_type_id: 38,
-      alert_message: '老玩家會員7日客單量：已連續1天以上，上升 10% 至 734.3，比昨日上升 472.48%',
+      alert_message: '老玩家會員7日流量：已連續1天以上，上升 10% 至 734.3，比昨日上升 472.48%',
       target_id: 2,
       data_date: '2025-06-17'
     },
@@ -2777,21 +2777,21 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 競速重慶時時彩遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '電音重慶時時彩遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-17'
     },
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 競速3D遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '電音3D遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-17'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 競速北京PK拾遊戲7日客單量：40，已連續2天以上小於70',
+      alert_message: '電音北京PK聽世界7日流量：40，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-17'
     },
@@ -2819,28 +2819,28 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '大小7遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '大小7遊戲7日流量：0，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-17'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 雷電PK遊戲7日客單量：15，已連續2天以上小於70',
+      alert_message: 'BB 雷電PK遊戲7日流量：15，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-17'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 競速六合彩遊戲7日客單量：28.75，已連續2天以上小於70',
+      alert_message: '電音六合彩遊戲7日流量：28.75，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-17'
     },
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈21點百家樂遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify百大10秒體驗遊戲1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-17'
     },
@@ -2868,7 +2868,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '滿天星遊戲7日客單量：6.34，已連續2天以上小於70',
+      alert_message: '滿天星遊戲7日流量：6.34，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-17'
     },
@@ -2896,7 +2896,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '滿天星遊戲7日客單量：50，已連續2天以上小於70',
+      alert_message: '滿天星遊戲7日流量：50，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-16'
     },
@@ -2917,35 +2917,35 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '209',
       alert_type_id: 48,
-      alert_message: '捕魚大師遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '捕魚大師遊戲1日流量：0，已連續2天以上小於100',
       target_id: 5,
       data_date: '2025-06-16'
     },
     {
       alert_id: '201',
       alert_type_id: 47,
-      alert_message: '龍虎鬥遊戲：對比上月全遊戲排名，已連續2週進入前10名，目前第8名',
+      alert_message: '美食介紹遊戲：對比上月全遊戲排名，已連續2週進入前10名，目前第8名',
       target_id: 2,
       data_date: '2025-06-16'
     },
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 競速六合彩遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '電音六合彩遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-16'
     },
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '葫蘆娃遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '葫蘆娃遊戲7日流量：0，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-16'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 猜拳王遊戲7日客單量：10，已連續2天以上小於70',
+      alert_message: 'BB 猜拳王遊戲7日流量：10，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-16'
     },
@@ -2959,7 +2959,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '202',
       alert_type_id: 47,
-      alert_message: '魚蝦蟹開了遊戲：對比上月全遊戲排名，已連續2週掉出前10名，目前第- -名',
+      alert_message: '演算法解釋開了遊戲：對比上月全遊戲排名，已連續2週掉出前10名，目前第- -名',
       target_id: 3,
       data_date: '2025-06-16'
     },
@@ -2994,7 +2994,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 幸運熊貓遊戲7日客單量：9，已連續2天以上小於70',
+      alert_message: 'BB 幸運熊貓遊戲7日流量：9，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-16'
     },
@@ -3008,14 +3008,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 招財金豬遊戲7日客單量：10，已連續2天以上小於70',
+      alert_message: 'BB 招財金豬遊戲7日流量：10，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-16'
     },
     {
       alert_id: '203',
       alert_type_id: 47,
-      alert_message: 'BB 競速重慶時時彩遊戲：對比上月全遊戲排名，已連續2週掉出前10名，目前第11名',
+      alert_message: '電音重慶時時彩遊戲：對比上月全遊戲排名，已連續2週掉出前10名，目前第11名',
       target_id: 4,
       data_date: '2025-06-16'
     },
@@ -3029,21 +3029,21 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: 'ColorGame遊戲7日客單量：61.11，已連續2天以上小於70',
+      alert_message: 'ColorGame遊戲7日流量：61.11，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-16'
     },
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 猜拳王遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'BB 猜拳王遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-16'
     },
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: '九尾狐遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '九尾狐遊戲1日流量：0，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-16'
     },
@@ -3057,28 +3057,28 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '大豐收遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '大豐收遊戲7日流量：0，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-16'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 競速北京PK拾遊戲7日客單量：40，已連續2天以上小於70',
+      alert_message: '電音北京PK聽世界7日流量：40，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-16'
     },
     {
       alert_id: '203',
       alert_type_id: 47,
-      alert_message: 'BB 競速北京PK拾遊戲：對比上月全遊戲排名，已連續2週掉出前10名，目前第12名',
+      alert_message: '電音北京PK聽世界：對比上月全遊戲排名，已連續2週掉出前10名，目前第12名',
       target_id: 4,
       data_date: '2025-06-16'
     },
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '大鵬展翅遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '大鵬展翅遊戲7日流量：0，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-16'
     },
@@ -3120,28 +3120,28 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 雷電PK遊戲7日客單量：13.75，已連續2天以上小於70',
+      alert_message: 'BB 雷電PK遊戲7日流量：13.75，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-16'
     },
     {
       alert_id: '222',
       alert_type_id: 51,
-      alert_message: '碰碰胡遊戲7日ARPPU：已連續2天以上，下降 5% 至 6,331.67',
+      alert_message: '抖音背景樂7日ARPPU：已連續2天以上，下降 5% 至 6,331.67',
       target_id: 3,
       data_date: '2025-06-16'
     },
     {
       alert_id: '221',
       alert_type_id: 51,
-      alert_message: '區塊鏈越南骰寶遊戲7日ARPPU：已連續2天以上，下降 5% 至 0',
+      alert_message: 'Spotify越南跨平台7日ARPPU：已連續2天以上，下降 5% 至 0',
       target_id: 2,
       data_date: '2025-06-16'
     },
     {
       alert_id: '211',
       alert_type_id: 49,
-      alert_message: '區塊鏈三公遊戲7日客單量：20，已連續2天以上小於70',
+      alert_message: 'Spotify風景介紹遊戲7日流量：20，已連續2天以上小於70',
       target_id: 2,
       data_date: '2025-06-16'
     },
@@ -3155,21 +3155,21 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '210',
       alert_type_id: 48,
-      alert_message: '飛禽走獸遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '飛禽走獸遊戲1日流量：0，已連續2天以上小於100',
       target_id: 6,
       data_date: '2025-06-16'
     },
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈21點百家樂遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify百大10秒體驗遊戲1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-16'
     },
     {
       alert_id: '202',
       alert_type_id: 47,
-      alert_message: '聚寶消消樂遊戲：對比上月全遊戲排名，已連續2週進入前10名，目前第2名',
+      alert_message: 'AR-1遊戲：對比上月全遊戲排名，已連續2週進入前10名，目前第2名',
       target_id: 3,
       data_date: '2025-06-16'
     },
@@ -3183,7 +3183,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '205',
       alert_type_id: 47,
-      alert_message: '龍虎鬥遊戲：對比上月全遊戲排名，已連續2週掉出前10名，目前第- -名',
+      alert_message: '美食介紹遊戲：對比上月全遊戲排名，已連續2週掉出前10名，目前第- -名',
       target_id: 6,
       data_date: '2025-06-16'
     },
@@ -3197,7 +3197,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '202',
       alert_type_id: 47,
-      alert_message: '無限1024遊戲：對比上月全遊戲排名，已連續2週掉出前10名，目前第14名',
+      alert_message: 'POD-2遊戲：對比上月全遊戲排名，已連續2週掉出前10名，目前第14名',
       target_id: 3,
       data_date: '2025-06-16'
     },
@@ -3232,7 +3232,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 快3遊戲7日客單量：25，已連續2天以上小於70',
+      alert_message: 'BB 快3遊戲7日流量：25，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-16'
     },
@@ -3246,7 +3246,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '百搭雙星遊戲7日客單量：6.91，已連續2天以上小於70',
+      alert_message: '百搭雙星遊戲7日流量：6.91，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-16'
     },
@@ -3274,7 +3274,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: '無限1024遊戲1日客單量：98.04，已連續2天以上小於100',
+      alert_message: 'POD-2遊戲1日流量：98.04，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-16'
     },
@@ -3288,21 +3288,21 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '201',
       alert_type_id: 47,
-      alert_message: '區塊鏈21點百家樂遊戲：對比上月全遊戲排名，已連續2週掉出前10名，目前第24名',
+      alert_message: 'Spotify百大10秒體驗遊戲：對比上月全遊戲排名，已連續2週掉出前10名，目前第24名',
       target_id: 2,
       data_date: '2025-06-16'
     },
     {
       alert_id: '211',
       alert_type_id: 49,
-      alert_message: '區塊鏈HiLo遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'SpotifyHiLo遊戲7日流量：0，已連續2天以上小於70',
       target_id: 2,
       data_date: '2025-06-16'
     },
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '草原拍拍遊戲7日客單量：46.87，已連續2天以上小於70',
+      alert_message: '草原拍拍遊戲7日流量：46.87，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-16'
     },
@@ -3323,21 +3323,21 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '五行遊戲7日客單量：49.75，已連續2天以上小於70',
+      alert_message: '影音A遊戲7日流量：49.75，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-16'
     },
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈HiLo遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'SpotifyHiLo遊戲1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-16'
     },
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: '糖果派對2遊戲1日客單量：50，已連續2天以上小於100',
+      alert_message: '急速領域2遊戲1日流量：50，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-16'
     },
@@ -3351,21 +3351,21 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '211',
       alert_type_id: 49,
-      alert_message: '番攤遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '日本旅遊遊戲7日流量：0，已連續2天以上小於70',
       target_id: 2,
       data_date: '2025-06-16'
     },
     {
       alert_id: '201',
       alert_type_id: 47,
-      alert_message: '區塊鏈番攤遊戲：對比上月全遊戲排名，已連續2週進入前10名，目前第2名',
+      alert_message: 'Spotify日本旅遊遊戲：對比上月全遊戲排名，已連續2週進入前10名，目前第2名',
       target_id: 2,
       data_date: '2025-06-16'
     },
     {
       alert_id: '201',
       alert_type_id: 47,
-      alert_message: '輪盤遊戲：對比上月全遊戲排名，已連續2週掉出前10名，目前第12名',
+      alert_message: '流行遊戲：對比上月全遊戲排名，已連續2週掉出前10名，目前第12名',
       target_id: 2,
       data_date: '2025-06-16'
     },
@@ -3386,7 +3386,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: '梯子遊戲遊戲7日客單量：10，已連續2天以上小於70',
+      alert_message: '梯子遊戲遊戲7日流量：10，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-16'
     },
@@ -3407,7 +3407,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '209',
       alert_type_id: 48,
-      alert_message: '富貴漁場遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '富貴漁場遊戲1日流量：0，已連續2天以上小於100',
       target_id: 5,
       data_date: '2025-06-16'
     },
@@ -3421,7 +3421,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 競速北京PK拾遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '電音北京PK聽世界1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-16'
     },
@@ -3435,7 +3435,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '大小遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '大小遊戲7日流量：0，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-16'
     },
@@ -3470,21 +3470,21 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 雷電PK遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'BB 雷電PK遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-16'
     },
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '麻將胡了遊戲7日客單量：2，已連續2天以上小於70',
+      alert_message: '紀錄片遊戲7日流量：2，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-16'
     },
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈三公遊戲1日客單量：20，已連續2天以上小於100',
+      alert_message: 'Spotify風景介紹遊戲1日流量：20，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-16'
     },
@@ -3498,21 +3498,21 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: '滿天星遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '滿天星遊戲1日流量：0，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-16'
     },
     {
       alert_id: '211',
       alert_type_id: 49,
-      alert_message: '區塊鏈越南骰寶遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'Spotify越南跨平台7日流量：0，已連續2天以上小於70',
       target_id: 2,
       data_date: '2025-06-16'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 競速重慶時時彩遊戲7日客單量：20，已連續2天以上小於70',
+      alert_message: '電音重慶時時彩遊戲7日流量：20，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-16'
     },
@@ -3540,7 +3540,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '202',
       alert_type_id: 47,
-      alert_message: '招財喵喵遊戲：對比上月全遊戲排名，已連續2週進入前10名，目前第3名',
+      alert_message: '思鄉歸途遊戲：對比上月全遊戲排名，已連續2週進入前10名，目前第3名',
       target_id: 3,
       data_date: '2025-06-16'
     },
@@ -3554,7 +3554,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '221',
       alert_type_id: 51,
-      alert_message: '區塊鏈21點百家樂遊戲7日ARPPU：已連續2天以上，下降 5% 至 157.85',
+      alert_message: 'Spotify百大10秒體驗遊戲7日ARPPU：已連續2天以上，下降 5% 至 157.85',
       target_id: 2,
       data_date: '2025-06-16'
     },
@@ -3568,21 +3568,21 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '大小7遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '大小7遊戲7日流量：0，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-16'
     },
     {
       alert_id: '221',
       alert_type_id: 51,
-      alert_message: '區塊鏈三公遊戲7日ARPPU：已連續2天以上，下降 5% 至 40',
+      alert_message: 'Spotify風景介紹遊戲7日ARPPU：已連續2天以上，下降 5% 至 40',
       target_id: 2,
       data_date: '2025-06-16'
     },
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈28百家樂遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify28百大10秒體驗遊戲1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-16'
     },
@@ -3596,28 +3596,28 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '金鯊銀鯊遊戲7日客單量：26，已連續2天以上小於70',
+      alert_message: '金鯊銀鯊遊戲7日流量：26，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-16'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 競速3D遊戲7日客單量：24.17，已連續2天以上小於70',
+      alert_message: '電音3D遊戲7日流量：24.17，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-16'
     },
     {
       alert_id: '214',
       alert_type_id: 49,
-      alert_message: '捕魚達人遊戲7日客單量：29.14，已連續2天以上小於70',
+      alert_message: '捕魚達人遊戲7日流量：29.14，已連續2天以上小於70',
       target_id: 5,
       data_date: '2025-06-16'
     },
     {
       alert_id: '201',
       alert_type_id: 47,
-      alert_message: '區塊鏈HiLo遊戲：對比上月全遊戲排名，已連續2週掉出前10名，目前第- -名',
+      alert_message: 'SpotifyHiLo遊戲：對比上月全遊戲排名，已連續2週掉出前10名，目前第- -名',
       target_id: 2,
       data_date: '2025-06-16'
     },
@@ -3631,7 +3631,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '201',
       alert_type_id: 47,
-      alert_message: '骰寶遊戲：對比上月全遊戲排名，已連續2週掉出前10名，目前第34名',
+      alert_message: '跨平台：對比上月全遊戲排名，已連續2週掉出前10名，目前第34名',
       target_id: 2,
       data_date: '2025-06-16'
     },
@@ -3652,7 +3652,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '205',
       alert_type_id: 47,
-      alert_message: '21點百家樂遊戲：對比上月全遊戲排名，已連續2週掉出前10名，目前第14名',
+      alert_message: '百大10秒體驗遊戲：對比上月全遊戲排名，已連續2週掉出前10名，目前第14名',
       target_id: 6,
       data_date: '2025-06-16'
     },
@@ -3673,49 +3673,49 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 競速重慶時時彩遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '電音重慶時時彩遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-16'
     },
     {
       alert_id: '202',
       alert_type_id: 47,
-      alert_message: '糖果派對-極速版遊戲：對比上月全遊戲排名，已連續2週進入前10名，目前第10名',
+      alert_message: '急速領域-極速版遊戲：對比上月全遊戲排名，已連續2週進入前10名，目前第10名',
       target_id: 3,
       data_date: '2025-06-16'
     },
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '飛禽走獸遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '飛禽走獸遊戲7日流量：0，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-16'
     },
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 競速3D遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '電音3D遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-16'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 競速六合彩遊戲7日客單量：28.18，已連續2天以上小於70',
+      alert_message: '電音六合彩遊戲7日流量：28.18，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-16'
     },
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: 'ColorGame遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'ColorGame遊戲1日流量：0，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-16'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB PK3遊戲7日客單量：30，已連續2天以上小於70',
+      alert_message: 'BB PK3遊戲7日流量：30，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-16'
     },
@@ -3729,14 +3729,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈骰寶遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify跨平台1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-16'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 猜拳王遊戲7日客單量：10，已連續2天以上小於70',
+      alert_message: 'BB 猜拳王遊戲7日流量：10，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-15'
     },
@@ -3757,14 +3757,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '209',
       alert_type_id: 48,
-      alert_message: '捕魚大師遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '捕魚大師遊戲1日流量：0，已連續2天以上小於100',
       target_id: 5,
       data_date: '2025-06-15'
     },
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈骰寶遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify跨平台1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-15'
     },
@@ -3778,14 +3778,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 競速六合彩遊戲7日客單量：28.18，已連續2天以上小於70',
+      alert_message: '電音六合彩遊戲7日流量：28.18，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-15'
     },
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: '滿天星遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '滿天星遊戲1日流量：0，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-15'
     },
@@ -3806,7 +3806,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 雷電PK遊戲7日客單量：13.75，已連續2天以上小於70',
+      alert_message: 'BB 雷電PK遊戲7日流量：13.75，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-15'
     },
@@ -3820,14 +3820,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '大豐收遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '大豐收遊戲7日流量：0，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-15'
     },
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 競速3D遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '電音3D遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-15'
     },
@@ -3841,7 +3841,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '麻將胡了遊戲7日客單量：2，已連續2天以上小於70',
+      alert_message: '紀錄片遊戲7日流量：2，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-15'
     },
@@ -3855,14 +3855,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: '瘋狂果醬罐遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '影音D遊戲1日流量：0，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-15'
     },
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 雷電PK遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'BB 雷電PK遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-15'
     },
@@ -3876,14 +3876,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: '梯子遊戲遊戲7日客單量：10，已連續2天以上小於70',
+      alert_message: '梯子遊戲遊戲7日流量：10，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-15'
     },
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '下龍灣神話遊戲7日客單量：36.58，已連續2天以上小於70',
+      alert_message: '下龍灣神話遊戲7日流量：36.58，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-15'
     },
@@ -3897,7 +3897,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '大小遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '大小遊戲7日流量：0，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-15'
     },
@@ -3911,14 +3911,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '火燒連環船遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '火燒連環船遊戲7日流量：0，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-15'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 招財金豬遊戲7日客單量：10，已連續2天以上小於70',
+      alert_message: 'BB 招財金豬遊戲7日流量：10，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-15'
     },
@@ -3932,7 +3932,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '209',
       alert_type_id: 48,
-      alert_message: '富貴漁場遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '富貴漁場遊戲1日流量：0，已連續2天以上小於100',
       target_id: 5,
       data_date: '2025-06-15'
     },
@@ -3946,21 +3946,21 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 幸運熊貓遊戲7日客單量：9，已連續2天以上小於70',
+      alert_message: 'BB 幸運熊貓遊戲7日流量：9，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-15'
     },
     {
       alert_id: '211',
       alert_type_id: 49,
-      alert_message: '區塊鏈21點百家樂遊戲7日客單量：54.69，已連續2天以上小於70',
+      alert_message: 'Spotify百大10秒體驗遊戲7日流量：54.69，已連續2天以上小於70',
       target_id: 2,
       data_date: '2025-06-15'
     },
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: '聚寶消消樂遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'AR-1遊戲1日流量：0，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-15'
     },
@@ -3988,7 +3988,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 競速重慶時時彩遊戲7日客單量：20，已連續2天以上小於70',
+      alert_message: '電音重慶時時彩遊戲7日流量：20，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-15'
     },
@@ -4016,28 +4016,28 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '大鵬展翅遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '大鵬展翅遊戲7日流量：0，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-15'
     },
     {
       alert_id: '211',
       alert_type_id: 49,
-      alert_message: '區塊鏈HiLo遊戲7日客單量：53.33，已連續2天以上小於70',
+      alert_message: 'SpotifyHiLo遊戲7日流量：53.33，已連續2天以上小於70',
       target_id: 2,
       data_date: '2025-06-15'
     },
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈百家樂遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify百大10秒體驗遊戲1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-15'
     },
     {
       alert_id: '162',
       alert_type_id: 37,
-      alert_message: '老玩家會員1日客單量：已連續2天以上，下降 10% 至 68.27，比昨日下降 73.87%',
+      alert_message: '老玩家會員1日流量：已連續2天以上，下降 10% 至 68.27，比昨日下降 73.87%',
       target_id: 3,
       data_date: '2025-06-15'
     },
@@ -4058,14 +4058,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: 'ColorGame遊戲7日客單量：61.11，已連續2天以上小於70',
+      alert_message: 'ColorGame遊戲7日流量：61.11，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-15'
     },
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈三公遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify風景介紹遊戲1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-15'
     },
@@ -4086,14 +4086,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈21點百家樂遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify百大10秒體驗遊戲1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-15'
     },
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '大小7遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '大小7遊戲7日流量：0，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-15'
     },
@@ -4107,28 +4107,28 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: '糖果派對2遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '急速領域2遊戲1日流量：0，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-15'
     },
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '金鯊銀鯊遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '金鯊銀鯊遊戲7日流量：0，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-15'
     },
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 競速重慶時時彩遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '電音重慶時時彩遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-15'
     },
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: '無限1024遊戲1日客單量：96.2，已連續2天以上小於100',
+      alert_message: 'POD-2遊戲1日流量：96.2，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-15'
     },
@@ -4142,7 +4142,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: 'ColorGame遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'ColorGame遊戲1日流量：0，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-15'
     },
@@ -4163,14 +4163,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '葫蘆娃遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '葫蘆娃遊戲7日流量：0，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-15'
     },
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈28百家樂遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify28百大10秒體驗遊戲1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-15'
     },
@@ -4184,28 +4184,28 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '214',
       alert_type_id: 49,
-      alert_message: '捕魚達人遊戲7日客單量：28.99，已連續2天以上小於70',
+      alert_message: '捕魚達人遊戲7日流量：28.99，已連續2天以上小於70',
       target_id: 5,
       data_date: '2025-06-15'
     },
     {
       alert_id: '211',
       alert_type_id: 49,
-      alert_message: '區塊鏈越南骰寶遊戲7日客單量：20，已連續2天以上小於70',
+      alert_message: 'Spotify越南跨平台7日流量：20，已連續2天以上小於70',
       target_id: 2,
       data_date: '2025-06-15'
     },
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '飛禽走獸遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '飛禽走獸遊戲7日流量：0，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-15'
     },
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 競速北京PK拾遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '電音北京PK聽世界1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-15'
     },
@@ -4240,7 +4240,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈HiLo遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'SpotifyHiLo遊戲1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-15'
     },
@@ -4275,7 +4275,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 快3遊戲7日客單量：25，已連續2天以上小於70',
+      alert_message: 'BB 快3遊戲7日流量：25，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-15'
     },
@@ -4289,7 +4289,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '211',
       alert_type_id: 49,
-      alert_message: '番攤遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '日本旅遊遊戲7日流量：0，已連續2天以上小於70',
       target_id: 2,
       data_date: '2025-06-15'
     },
@@ -4303,42 +4303,42 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '21點百家樂遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '百大10秒體驗遊戲1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-15'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB PK3遊戲7日客單量：30，已連續2天以上小於70',
+      alert_message: 'BB PK3遊戲7日流量：30，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-15'
     },
     {
       alert_id: '210',
       alert_type_id: 48,
-      alert_message: '飛禽走獸遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '飛禽走獸遊戲1日流量：0，已連續2天以上小於100',
       target_id: 6,
       data_date: '2025-06-15'
     },
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 猜拳王遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'BB 猜拳王遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-15'
     },
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '滿天星遊戲7日客單量：20，已連續2天以上小於70',
+      alert_message: '滿天星遊戲7日流量：20，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-15'
     },
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 競速六合彩遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '電音六合彩遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-15'
     },
@@ -4380,7 +4380,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: '招財喵喵遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '思鄉歸途遊戲1日流量：0，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-15'
     },
@@ -4401,7 +4401,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 競速3D遊戲7日客單量：24.17，已連續2天以上小於70',
+      alert_message: '電音3D遊戲7日流量：24.17，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-15'
     },
@@ -4422,14 +4422,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '五行遊戲7日客單量：49.75，已連續2天以上小於70',
+      alert_message: '影音A遊戲7日流量：49.75，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-15'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 競速北京PK拾遊戲7日客單量：40，已連續2天以上小於70',
+      alert_message: '電音北京PK聽世界7日流量：40，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-15'
     },
@@ -4443,7 +4443,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '211',
       alert_type_id: 49,
-      alert_message: '區塊鏈溫州牌九遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: 'Spotify溫州牌九遊戲7日流量：0，已連續2天以上小於70',
       target_id: 2,
       data_date: '2025-06-15'
     },
@@ -4464,7 +4464,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 招財金豬遊戲7日客單量：10，已連續2天以上小於70',
+      alert_message: 'BB 招財金豬遊戲7日流量：10，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-14'
     },
@@ -4478,7 +4478,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '五行遊戲7日客單量：49.75，已連續2天以上小於70',
+      alert_message: '影音A遊戲7日流量：49.75，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-14'
     },
@@ -4492,7 +4492,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 雷電PK遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'BB 雷電PK遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-14'
     },
@@ -4513,7 +4513,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '麻將胡了遊戲7日客單量：2，已連續2天以上小於70',
+      alert_message: '紀錄片遊戲7日流量：2，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-14'
     },
@@ -4534,7 +4534,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB PK3遊戲7日客單量：30，已連續2天以上小於70',
+      alert_message: 'BB PK3遊戲7日流量：30，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-14'
     },
@@ -4548,14 +4548,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '大小7遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '大小7遊戲7日流量：0，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-14'
     },
     {
       alert_id: '214',
       alert_type_id: 49,
-      alert_message: '捕魚達人遊戲7日客單量：28.99，已連續2天以上小於70',
+      alert_message: '捕魚達人遊戲7日流量：28.99，已連續2天以上小於70',
       target_id: 5,
       data_date: '2025-06-14'
     },
@@ -4576,7 +4576,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 猜拳王遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'BB 猜拳王遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-14'
     },
@@ -4618,7 +4618,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '209',
       alert_type_id: 48,
-      alert_message: '捕魚大師遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '捕魚大師遊戲1日流量：0，已連續2天以上小於100',
       target_id: 5,
       data_date: '2025-06-14'
     },
@@ -4632,28 +4632,28 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: '梯子遊戲遊戲7日客單量：10，已連續2天以上小於70',
+      alert_message: '梯子遊戲遊戲7日流量：10，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-14'
     },
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: '滿天星遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '滿天星遊戲1日流量：0，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-14'
     },
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈28百家樂遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify28百大10秒體驗遊戲1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-14'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 競速重慶時時彩遊戲7日客單量：20，已連續2天以上小於70',
+      alert_message: '電音重慶時時彩遊戲7日流量：20，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-14'
     },
@@ -4667,7 +4667,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈21點百家樂遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify百大10秒體驗遊戲1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-14'
     },
@@ -4688,7 +4688,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '211',
       alert_type_id: 49,
-      alert_message: '番攤遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '日本旅遊遊戲7日流量：0，已連續2天以上小於70',
       target_id: 2,
       data_date: '2025-06-14'
     },
@@ -4702,14 +4702,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '下龍灣神話遊戲7日客單量：36.58，已連續2天以上小於70',
+      alert_message: '下龍灣神話遊戲7日流量：36.58，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-14'
     },
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '大鵬展翅遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '大鵬展翅遊戲7日流量：0，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-14'
     },
@@ -4737,28 +4737,28 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '210',
       alert_type_id: 48,
-      alert_message: '飛禽走獸遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '飛禽走獸遊戲1日流量：0，已連續2天以上小於100',
       target_id: 6,
       data_date: '2025-06-14'
     },
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈HiLo遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'SpotifyHiLo遊戲1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-14'
     },
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 競速重慶時時彩遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '電音重慶時時彩遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-14'
     },
     {
       alert_id: '118',
       alert_type_id: 28,
-      alert_message: '新玩家會員1日客單量：已連續2天以上，下降 10% 至 0，比昨日下降 100%',
+      alert_message: '新玩家會員1日流量：已連續2天以上，下降 10% 至 0，比昨日下降 100%',
       target_id: 2,
       data_date: '2025-06-14'
     },
@@ -4779,7 +4779,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '火燒連環船遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '火燒連環船遊戲7日流量：0，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-14'
     },
@@ -4807,14 +4807,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '211',
       alert_type_id: 49,
-      alert_message: '區塊鏈21點百家樂遊戲7日客單量：53.48，已連續2天以上小於70',
+      alert_message: 'Spotify百大10秒體驗遊戲7日流量：53.48，已連續2天以上小於70',
       target_id: 2,
       data_date: '2025-06-14'
     },
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '大豐收遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '大豐收遊戲7日流量：0，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-14'
     },
@@ -4828,7 +4828,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: '瘋狂果醬罐遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '影音D遊戲1日流量：0，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-14'
     },
@@ -4842,42 +4842,42 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '多福多財遊戲7日客單量：43.08，已連續2天以上小於70',
+      alert_message: '多福多財遊戲7日流量：43.08，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-14'
     },
     {
       alert_id: '211',
       alert_type_id: 49,
-      alert_message: '區塊鏈溫州牌九遊戲7日客單量：41，已連續2天以上小於70',
+      alert_message: 'Spotify溫州牌九遊戲7日流量：41，已連續2天以上小於70',
       target_id: 2,
       data_date: '2025-06-14'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 猜拳王遊戲7日客單量：10，已連續2天以上小於70',
+      alert_message: 'BB 猜拳王遊戲7日流量：10，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-14'
     },
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '太有財遊戲7日客單量：6，已連續2天以上小於70',
+      alert_message: '太有財遊戲7日流量：6，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-14'
     },
     {
       alert_id: '211',
       alert_type_id: 49,
-      alert_message: '區塊鏈越南骰寶遊戲7日客單量：23.75，已連續2天以上小於70',
+      alert_message: 'Spotify越南跨平台7日流量：23.75，已連續2天以上小於70',
       target_id: 2,
       data_date: '2025-06-14'
     },
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '滿天星遊戲7日客單量：20，已連續2天以上小於70',
+      alert_message: '滿天星遊戲7日流量：20，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-14'
     },
@@ -4891,21 +4891,21 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: 'ColorGame遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'ColorGame遊戲1日流量：0，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-14'
     },
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '大小遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '大小遊戲7日流量：0，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-14'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 快3遊戲7日客單量：25，已連續2天以上小於70',
+      alert_message: 'BB 快3遊戲7日流量：25，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-14'
     },
@@ -4919,14 +4919,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '217',
       alert_type_id: 50,
-      alert_message: '招財喵喵遊戲1日ARPPU：已連續2天以上，下降 10% 至 0',
+      alert_message: '思鄉歸途遊戲1日ARPPU：已連續2天以上，下降 10% 至 0',
       target_id: 3,
       data_date: '2025-06-14'
     },
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: 'ColorGame遊戲7日客單量：61.11，已連續2天以上小於70',
+      alert_message: 'ColorGame遊戲7日流量：61.11，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-14'
     },
@@ -4940,7 +4940,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '金鯊銀鯊遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '金鯊銀鯊遊戲7日流量：0，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-14'
     },
@@ -4961,7 +4961,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈骰寶遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify跨平台1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-14'
     },
@@ -4975,7 +4975,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '216',
       alert_type_id: 50,
-      alert_message: '百家樂遊戲1日ARPPU：已連續2天以上，下降 10% 至 0',
+      alert_message: '百大10秒體驗遊戲1日ARPPU：已連續2天以上，下降 10% 至 0',
       target_id: 2,
       data_date: '2025-06-14'
     },
@@ -4989,14 +4989,14 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 競速北京PK拾遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '電音北京PK聽世界1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-14'
     },
     {
       alert_id: '211',
       alert_type_id: 49,
-      alert_message: '區塊鏈HiLo遊戲7日客單量：53.33，已連續2天以上小於70',
+      alert_message: 'SpotifyHiLo遊戲7日流量：53.33，已連續2天以上小於70',
       target_id: 2,
       data_date: '2025-06-14'
     },
@@ -5010,7 +5010,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '208',
       alert_type_id: 48,
-      alert_message: 'BB 競速3D遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '電音3D遊戲1日流量：0，已連續2天以上小於100',
       target_id: 4,
       data_date: '2025-06-14'
     },
@@ -5031,7 +5031,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 競速北京PK拾遊戲7日客單量：40，已連續2天以上小於70',
+      alert_message: '電音北京PK聽世界7日流量：40，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-14'
     },
@@ -5045,7 +5045,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '217',
       alert_type_id: 50,
-      alert_message: '糖果派對-極速版遊戲1日ARPPU：已連續2天以上，下降 10% 至 0',
+      alert_message: '急速領域-極速版遊戲1日ARPPU：已連續2天以上，下降 10% 至 0',
       target_id: 3,
       data_date: '2025-06-14'
     },
@@ -5059,35 +5059,35 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '215',
       alert_type_id: 49,
-      alert_message: '飛禽走獸遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '飛禽走獸遊戲7日流量：0，已連續2天以上小於70',
       target_id: 6,
       data_date: '2025-06-14'
     },
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: '糖果派對2遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '急速領域2遊戲1日流量：0，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-14'
     },
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '21點百家樂遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: '百大10秒體驗遊戲1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-14'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 競速3D遊戲7日客單量：24.17，已連續2天以上小於70',
+      alert_message: '電音3D遊戲7日流量：24.17，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-14'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 競速六合彩遊戲7日客單量：28.18，已連續2天以上小於70',
+      alert_message: '電音六合彩遊戲7日流量：28.18，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-14'
     },
@@ -5101,7 +5101,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '217',
       alert_type_id: 50,
-      alert_message: '翻轉神廟遊戲1日ARPPU：已連續2天以上，下降 10% 至 0',
+      alert_message: 'POD-1遊戲1日ARPPU：已連續2天以上，下降 10% 至 0',
       target_id: 3,
       data_date: '2025-06-14'
     },
@@ -5122,7 +5122,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 雷電PK遊戲7日客單量：13.75，已連續2天以上小於70',
+      alert_message: 'BB 雷電PK遊戲7日流量：13.75，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-14'
     },
@@ -5136,7 +5136,7 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '207',
       alert_type_id: 48,
-      alert_message: '無限1024遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'POD-2遊戲1日流量：0，已連續2天以上小於100',
       target_id: 3,
       data_date: '2025-06-14'
     },
@@ -5150,28 +5150,28 @@ export const mockSmartDisplays: ApiResponse<ResultSmartDisplays[]> = {
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈三公遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify風景介紹遊戲1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-14'
     },
     {
       alert_id: '213',
       alert_type_id: 49,
-      alert_message: 'BB 幸運熊貓遊戲7日客單量：9，已連續2天以上小於70',
+      alert_message: 'BB 幸運熊貓遊戲7日流量：9，已連續2天以上小於70',
       target_id: 4,
       data_date: '2025-06-14'
     },
     {
       alert_id: '206',
       alert_type_id: 48,
-      alert_message: '區塊鏈龍虎鬥遊戲1日客單量：0，已連續2天以上小於100',
+      alert_message: 'Spotify美食介紹遊戲1日流量：0，已連續2天以上小於100',
       target_id: 2,
       data_date: '2025-06-14'
     },
     {
       alert_id: '212',
       alert_type_id: 49,
-      alert_message: '葫蘆娃遊戲7日客單量：0，已連續2天以上小於70',
+      alert_message: '葫蘆娃遊戲7日流量：0，已連續2天以上小於70',
       target_id: 3,
       data_date: '2025-06-14'
     },
