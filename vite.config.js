@@ -10,7 +10,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default ({ mode }) => {
   return defineConfig({
-    base: '/',
+    base: '/vue3_ts_groq/',
     plugins: [
       vue(),
       tailwindcss(),
