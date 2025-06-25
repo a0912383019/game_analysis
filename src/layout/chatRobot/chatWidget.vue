@@ -113,8 +113,8 @@ const sendMessage = async () => {
     const res = await chatWithGPT(messages.value)
     const reply = res.data.choices[0].message
 
-    if (reply === '') {
-      messages.value.splice(replyMsgIndex, 1, { role: 'assistant', content: '我不確定您的問題' })
+    if (reply.content === '') {
+      messages.value.splice(replyMsgIndex, 1, { role: 'assistant', content: '我不確定您的問題，無法回答' })
     } else {
       messages.value.splice(replyMsgIndex, 1, reply)
     }
