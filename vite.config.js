@@ -10,7 +10,8 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default ({ mode }) => {
   return defineConfig({
-    base: '/vue3_ts_groq/',
+    base: '/',
+    // base: '/vue3_ts_groq/',
     plugins: [
       vue(),
       tailwindcss(),
@@ -56,6 +57,14 @@ export default ({ mode }) => {
         }
       }
     },
+    // build: {
+    //   rollupOptions: {
+    //     output: {
+    //       // workaround _plugin-vue_export-helper.js
+    //       sanitizeFileName: (s) => s.replace(/^[\x00|_|-]/, '')
+    //     }
+    //   }
+    // },
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url))
